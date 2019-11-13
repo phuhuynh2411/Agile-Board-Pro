@@ -9,5 +9,6 @@
 import UIKit
 
 class ColumnCollectionViewCell: UICollectionViewCell {
-    var columnIndexPath: IndexPath?
+    
+    @IBOutlet weak var tableView: ColumnTableView!
 }

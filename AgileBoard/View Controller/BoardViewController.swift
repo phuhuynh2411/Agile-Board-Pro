@@ -10,21 +10,33 @@ import UIKit
 
 class BoardViewController: UIViewController {
     
+    @IBOutlet var columnTableViewController: ColumnTableViewController!
+    
+    override func viewDidLoad() {
+        print("Board View Controller: View Did Load")
+    
+    }
 
 }
 
 extension BoardViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return 3
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! ColumnCollectionViewCell
-        cell.columnIndexPath = indexPath
+        print("Collection index path: \(indexPath)")
+        cell.tableView.dataSource = columnTableViewController
+        cell.tableView.delegate = columnTableViewController
+        
+        columnTableViewController?.tableView(reloadAt: indexPath)
         
         return cell
     }
+    
 }
 
 

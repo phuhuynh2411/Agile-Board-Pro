@@ -68,10 +68,6 @@
                                                             </connections>
                                                         </tableViewCell>
                                                     </prototypes>
-                                                    <connections>
-                                                        <outlet property="dataSource" destination="URM-sr-2vG" id="7pC-xM-abY"/>
-                                                        <outlet property="delegate" destination="URM-sr-2vG" id="olC-ML-Sb3"/>
-                                                    </connections>
                                                 </tableView>
                                             </subviews>
                                             <constraints>
@@ -80,6 +76,9 @@
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="414" height="528"/>
+                                        <connections>
+                                            <outlet property="tableView" destination="ACE-zG-O21" id="sPs-bq-P5G"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
@@ -99,9 +98,12 @@
                     <navigationItem key="navigationItem" title="Agile Board" id="3xz-is-bWa">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Xzc-ZA-3rQ"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="columnTableViewController" destination="Fas-KT-mQv" id="oHL-7E-l3y"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <customObject id="URM-sr-2vG" customClass="ColumnViewController" customModule="AgileBoard" customModuleProvider="target"/>
+                <customObject id="Fas-KT-mQv" customClass="ColumnTableViewController" customModule="AgileBoard" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="1965.217391304348" y="-64.955357142857139"/>
         </scene>

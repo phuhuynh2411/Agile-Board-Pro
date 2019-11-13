@@ -9,6 +9,5 @@
 import UIKit
 
 class ColumnTableView: UITableView {
-    var columnIndexPath: IndexPath?
-
+        
 }
