@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8420628C237AFD7E0076CDAC /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8420628B237AFD7E0076CDAC /* Story.swift */; };
+		8420628C237AFD7E0076CDAC /* Issue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8420628B237AFD7E0076CDAC /* Issue.swift */; };
 		843C8984237AE7460050586E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843C8983237AE7460050586E /* AppDelegate.swift */; };
 		843C8988237AE7460050586E /* BoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843C8987237AE7460050586E /* BoardViewController.swift */; };
 		843C898B237AE7460050586E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 843C8989237AE7460050586E /* Main.storyboard */; };
@@ -20,7 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8420628B237AFD7E0076CDAC /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
+		8420628B237AFD7E0076CDAC /* Issue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Issue.swift; sourceTree = "<group>"; };
 		843C8980237AE7460050586E /* AgileBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AgileBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		843C8983237AE7460050586E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		843C8987237AE7460050586E /* BoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardViewController.swift; sourceTree = "<group>"; };
@@ -48,7 +48,7 @@
 		8420628A237AFD690076CDAC /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				8420628B237AFD7E0076CDAC /* Story.swift */,
+				8420628B237AFD7E0076CDAC /* Issue.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -204,7 +204,7 @@
 				84A51ABE237AF16700477B75 /* ColumnCollectionViewCell.swift in Sources */,
 				84A51ABC237AEF5500477B75 /* StoryTableViewCell.swift in Sources */,
 				84A51AC0237AF8DD00477B75 /* ColumnTableViewController.swift in Sources */,
-				8420628C237AFD7E0076CDAC /* Story.swift in Sources */,
+				8420628C237AFD7E0076CDAC /* Issue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

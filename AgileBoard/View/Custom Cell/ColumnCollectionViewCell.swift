@@ -10,5 +10,7 @@ import UIKit
 
 class ColumnCollectionViewCell: UICollectionViewCell {
     
+    // MARK: - Outlets
     @IBOutlet weak var tableView: ColumnTableView!
+    
 }

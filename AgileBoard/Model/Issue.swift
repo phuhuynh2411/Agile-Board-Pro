@@ -7,7 +7,7 @@
 //
 
 import UIKit
-class Story {
+class Issue {
     var summary: String = ""
     var assignee: UIImage?
     

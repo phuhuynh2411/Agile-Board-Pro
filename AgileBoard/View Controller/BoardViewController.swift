@@ -10,14 +10,39 @@ import UIKit
 
 class BoardViewController: UIViewController {
     
+    // MARK: - Properties
+    
+    let dataList1 = [
+        Issue(summary: "Sed posuere consectetur est at lobortis."),
+        Issue(summary: "Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit."),
+        Issue(summary: "Aenean lacinia bibendum nulla sed consectetur.")
+    ]
+    let dataList2 = [
+           Issue(summary: "Sed posuere consectetur est at lobortis."),
+           Issue(summary: "Morbi leo risus, porta ac consectetur ac, vestibulum at eros."),
+           Issue(summary: "Integer posuere erat a ante venenatis dapibus posuere velit aliquet.")
+    ]
+    let dataList3 = [
+           Issue(summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."),
+           Issue(summary: "Donec ullamcorper nulla non metus auctor fringilla."),
+           Issue(summary: "Donec sed odio dui.")
+    ]
+    var collectionData = [[Issue]]()
+    
+    // MARK: - Outlets
+    
     @IBOutlet var columnTableViewController: ColumnTableViewController!
     
     override func viewDidLoad() {
-        print("Board View Controller: View Did Load")
-    
+        
+        collectionData.append(dataList1)
+        collectionData.append(dataList2)
+        collectionData.append(dataList3)
+        
     }
 
 }
+// MARK: - Collection Data Source
 
 extension BoardViewController: UICollectionViewDataSource {
     
@@ -28,15 +53,15 @@ extension BoardViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! ColumnCollectionViewCell
-        print("Collection index path: \(indexPath)")
+        
+        // Set the data source and the delegate to the table view
         cell.tableView.dataSource = columnTableViewController
         cell.tableView.delegate = columnTableViewController
         
-        columnTableViewController?.tableView(reloadAt: indexPath)
+        // Initilize data for the table view
+        columnTableViewController?.tableView(reloadDataAt: indexPath, withIssues: collectionData[indexPath.row])
         
         return cell
     }
     
 }
-
-
