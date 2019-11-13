@@ -15,7 +15,12 @@ class StoryTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+    
+        self.layer.cornerRadius = 5.0
+        self.layer.masksToBounds = true
+        
+        self.contentView.backgroundColor = UIColor.red
+        //self.contentView.layer.masksToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -25,3 +30,4 @@ class StoryTableViewCell: UITableViewCell {
     }
 
 }
+

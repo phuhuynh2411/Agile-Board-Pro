@@ -9,5 +9,22 @@
 import UIKit
 
 class ColumnTableView: UITableView {
+    
+//    override init(frame: CGRect, style: UITableView.Style) {
+//        super.init(frame: frame, style: style)
+//
+//        print("Table view load")
+//    }
+//
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
         
+        // Make the table view rounded.
+        self.layer.cornerRadius = 5.0
+      
+        self.layer.backgroundColor = UIColor(hexString: "#f4f5f7").cgColor
+        print("Color was set up")
+        
+        
+    }
 }
