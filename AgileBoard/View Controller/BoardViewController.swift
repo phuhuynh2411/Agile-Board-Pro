@@ -33,11 +33,16 @@ class BoardViewController: UIViewController {
     
     @IBOutlet var columnTableViewController: ColumnTableViewController!
     
+    @IBOutlet weak var pageControl: UIPageControl!
+    
     override func viewDidLoad() {
         
         collectionData.append(dataList1)
         collectionData.append(dataList2)
         collectionData.append(dataList3)
+        
+        // Set the number of pages for the page control
+        self.pageControl.numberOfPages = collectionData.count
         
     }
 
@@ -62,6 +67,25 @@ extension BoardViewController: UICollectionViewDataSource {
         columnTableViewController?.tableView(reloadDataAt: indexPath, withIssues: collectionData[indexPath.row])
         
         return cell
+    }
+    
+    
+}
+
+// MARK: - Collection View Delegate
+extension BoardViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        
+        // Refresh the current page for the page control
+        self.pageControl.currentPage = indexPath.section
+        
+        print("View will display")
+        
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        pageControl.currentPage = Int(scrollView.contentOffset.x) / Int(scrollView.frame.width)
     }
     
 }

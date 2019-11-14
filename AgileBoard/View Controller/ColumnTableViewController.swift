@@ -41,7 +41,7 @@ class ColumnTableViewController: UITableViewController {
     // MARK: - Table View Data Source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1 // issueList?.count ?? 0
+        return issueList?.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -51,14 +51,6 @@ class ColumnTableViewController: UITableViewController {
         cell.summaryLabel.text = issueList?[indexPath.row].summary
         
         return cell
-    }
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        issueList?.count ?? 0
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        10
     }
     
 }

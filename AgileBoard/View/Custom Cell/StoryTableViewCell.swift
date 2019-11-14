@@ -12,15 +12,15 @@ class StoryTableViewCell: UITableViewCell {
 
     @IBOutlet weak var summaryLabel: UILabel!
     @IBOutlet weak var assigneeImageView: UIImageView!
+    @IBOutlet weak var mainBackgroundView: UIView!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
     
-        self.layer.cornerRadius = 5.0
-        self.layer.masksToBounds = true
-        
-        self.contentView.backgroundColor = UIColor.red
-        //self.contentView.layer.masksToBounds = true
+        mainBackgroundView.layer.cornerRadius = 5.0
+        mainBackgroundView.layer.masksToBounds = true
+    
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

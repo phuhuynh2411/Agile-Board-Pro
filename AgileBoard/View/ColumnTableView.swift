@@ -21,10 +21,6 @@ class ColumnTableView: UITableView {
         
         // Make the table view rounded.
         self.layer.cornerRadius = 5.0
-      
-        self.layer.backgroundColor = UIColor(hexString: "#f4f5f7").cgColor
-        print("Color was set up")
-        
         
     }
 }

@@ -13,6 +13,7 @@
 		843C898B237AE7460050586E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 843C8989237AE7460050586E /* Main.storyboard */; };
 		843C898D237AE7480050586E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 843C898C237AE7480050586E /* Assets.xcassets */; };
 		843C8990237AE7480050586E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 843C898E237AE7480050586E /* LaunchScreen.storyboard */; };
+		8458B443237CF98500D6D473 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8458B442237CF98500D6D473 /* ShadowView.swift */; };
 		84A51ABC237AEF5500477B75 /* StoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A51ABB237AEF5500477B75 /* StoryTableViewCell.swift */; };
 		84A51ABE237AF16700477B75 /* ColumnCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A51ABD237AF16700477B75 /* ColumnCollectionViewCell.swift */; };
 		84A51AC0237AF8DD00477B75 /* ColumnTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A51ABF237AF8DD00477B75 /* ColumnTableViewController.swift */; };
@@ -29,6 +30,7 @@
 		843C898C237AE7480050586E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		843C898F237AE7480050586E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		843C8991237AE7480050586E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8458B442237CF98500D6D473 /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
 		84A51ABB237AEF5500477B75 /* StoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryTableViewCell.swift; sourceTree = "<group>"; };
 		84A51ABD237AF16700477B75 /* ColumnCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnCollectionViewCell.swift; sourceTree = "<group>"; };
 		84A51ABF237AF8DD00477B75 /* ColumnTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnTableViewController.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 				843C898E237AE7480050586E /* LaunchScreen.storyboard */,
 				84DB1E01237B0EFA008BB31A /* ColumnTableView.swift */,
 				84206291237AFED20076CDAC /* Custom Cell */,
+				8458B442237CF98500D6D473 /* ShadowView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -201,6 +204,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8458B443237CF98500D6D473 /* ShadowView.swift in Sources */,
 				84F56A05237C5B56007E6C68 /* UIColor+Extention.swift in Sources */,
 				843C8988237AE7460050586E /* BoardViewController.swift in Sources */,
 				84DB1E02237B0EFA008BB31A /* ColumnTableView.swift in Sources */,
