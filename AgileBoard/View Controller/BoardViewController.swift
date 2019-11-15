@@ -53,15 +53,16 @@ class BoardViewController: UIViewController {
         
         collectionData.append(dataList1)
         collectionData.append(dataList2)
-       // collectionData.append(dataList3)
+        collectionData.append(dataList3)
         
         // Set the number of pages for the page control
         self.pageControl.numberOfPages = collectionData.count
      
         // Fit the cell in the collection view
-        if let flowLayout = issueCollectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
-            flowLayout.estimatedItemSize = CGSize(width: issueCollectionView.frame.width, height: issueCollectionView.frame.height - 20)
-        }
+//        if let flowLayout = issueCollectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
+//            flowLayout.estimatedItemSize = CGSize(width: issueCollectionView.frame.width - 40, height: issueCollectionView.frame.height)
+//            print("Issue collection height \(issueCollectionView.bounds.height)")
+//        }
         
         // Remove navigation border
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for:.default)
@@ -91,13 +92,12 @@ extension BoardViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifier.IssueCollectionViewCell, for: indexPath) as! IssueCollectionViewCell
         
         
-        // Set the data source and the delegate to the table view
+        // Ajust the cellection view cell
+        if let flowLayout = issueCollectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
+            flowLayout.estimatedItemSize = CGSize(width: issueCollectionView.frame.width - 40, height: issueCollectionView.frame.height)
+        }
         
-        cell.issueTableView.dataSource = issueTableViewController
-        cell.issueTableView.delegate = issueTableViewController
-        
-        // Initilize data for the table view
-        issueTableViewController?.tableView(reloadDataAt: indexPath, withIssues: collectionData[indexPath.row])
+        cell.issueTableViewController?.issueList = collectionData[indexPath.row]
         
         return cell
     }
@@ -106,6 +106,7 @@ extension BoardViewController: UICollectionViewDataSource {
 }
 
 // MARK: - Collection View Delegate
+
 extension BoardViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {

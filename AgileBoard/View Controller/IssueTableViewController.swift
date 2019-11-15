@@ -40,7 +40,7 @@ class IssueTableViewController: UITableViewController {
         // Register custome cell
         let nibName = UINib(nibName: Identifier.IssueTableViewCell, bundle: .main)
         tableView.register(nibName, forCellReuseIdentifier: Identifier.IssueTableViewCell)
-        
+    
     }
     
     // MARK: - Supporting Methods
@@ -56,7 +56,6 @@ class IssueTableViewController: UITableViewController {
     // MARK: - Table View Data Source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("Number of row: \(issueList?.count)")
         return issueList?.count ?? 0
     }
     
@@ -65,9 +64,7 @@ class IssueTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.IssueTableViewCell, for: indexPath) as! IssueTableViewCell
         
         cell.summaryLabel.text = issueList?[indexPath.row].summary
-        
-        print("Reload cell: \(issueList?.count)")
-        
+                
         return cell
     }
     
@@ -77,8 +74,17 @@ class IssueTableViewController: UITableViewController {
         return 40
     }
     
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "TO DO (3)"
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 40))
+        let label = UILabel(frame: CGRect(x: 20, y: 13, width: tableView.frame.width - 20, height: 20))
+        label.text = "TODO (3)"
+        label.font = UIFont.systemFont(ofSize: 14)
+        
+        headerView.addSubview(label)
+        headerView.backgroundColor = UIColor(hexString: "#F4F5F7", alpha: 1)
+        
+        return headerView
     }
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -95,6 +101,22 @@ class IssueTableViewController: UITableViewController {
         }
 
     }
+    
+    // MARK: - Table Footer
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 40
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 40))
+        footerView.backgroundColor = UIColor(hexString: "#F4F5F7", alpha: 1)
+        
+        return footerView
+    }
+    
+    // MARK: - Pan Gesture
     
     @objc func panAction(gestureRecognizer: UIPanGestureRecognizer) {
         

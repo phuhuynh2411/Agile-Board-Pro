@@ -17,20 +17,19 @@
                 <rect key="frame" x="0.0" y="0.0" width="336" height="340"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VAI-Yh-EkV">
+                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VAI-Yh-EkV" customClass="IssueTableView" customModule="AgileBoard" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="336" height="340"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" red="0.95686274509803915" green="0.96078431372549022" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="336" id="iL8-am-zwK"/>
+                            <constraint firstAttribute="width" constant="336" id="6eW-Hc-rpW"/>
                         </constraints>
                     </tableView>
                 </subviews>
             </view>
-            <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="VAI-Yh-EkV" secondAttribute="bottom" id="Mo6-fJ-UqS"/>
+                <constraint firstItem="VAI-Yh-EkV" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="THS-hf-sgu"/>
                 <constraint firstItem="VAI-Yh-EkV" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="o7g-pT-kc4"/>
-                <constraint firstItem="VAI-Yh-EkV" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="qM4-aS-QkZ"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="285" height="303"/>

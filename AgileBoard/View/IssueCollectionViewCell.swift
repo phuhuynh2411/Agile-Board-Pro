@@ -10,7 +10,8 @@ import UIKit
 
 class IssueCollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet weak var issueTableView: UITableView!
+    @IBOutlet weak var issueTableView: IssueTableView!
+    var issueTableViewController: IssueTableViewController?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -19,6 +20,14 @@ class IssueCollectionViewCell: UICollectionViewCell {
         // Register custom cell for the issue table view
         let nibName = UINib(nibName: Identifier.IssueTableViewCell, bundle: .main)
         issueTableView.register(nibName, forCellReuseIdentifier: Identifier.IssueTableViewCell)
+        
+        // Initilize the issue table view controller
+        issueTableViewController = IssueTableViewController(style: .plain)
+        
+        // Set data source and delegate to the table view
+        issueTableView.dataSource = issueTableViewController
+        issueTableView.delegate = issueTableViewController
+        
     }
 
 }
