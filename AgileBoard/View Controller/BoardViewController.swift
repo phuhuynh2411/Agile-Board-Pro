@@ -102,7 +102,6 @@ extension BoardViewController: UICollectionViewDataSource {
         return cell
     }
     
-    
 }
 
 // MARK: - Collection View Delegate
@@ -120,6 +119,8 @@ extension BoardViewController: UICollectionViewDelegate {
         pageControl.currentPage = Int(scrollView.contentOffset.x) / Int(scrollView.frame.width)
     }
     
+    
+
 }
 
 

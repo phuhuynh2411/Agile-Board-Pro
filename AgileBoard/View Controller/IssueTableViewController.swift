@@ -105,7 +105,7 @@ class IssueTableViewController: UITableViewController {
     // MARK: - Table Footer
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 40
+        return 50
     }
     
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
