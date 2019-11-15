@@ -13,12 +13,15 @@
 		843C898B237AE7460050586E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 843C8989237AE7460050586E /* Main.storyboard */; };
 		843C898D237AE7480050586E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 843C898C237AE7480050586E /* Assets.xcassets */; };
 		843C8990237AE7480050586E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 843C898E237AE7480050586E /* LaunchScreen.storyboard */; };
+		8442DC3B237E7B92008C88C6 /* IssueCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8442DC39237E7B92008C88C6 /* IssueCollectionViewCell.swift */; };
+		8442DC3C237E7B92008C88C6 /* IssueCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8442DC3A237E7B92008C88C6 /* IssueCollectionViewCell.xib */; };
+		8442DC3F237E7DF8008C88C6 /* IssueTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8442DC3D237E7DF8008C88C6 /* IssueTableViewCell.swift */; };
+		8442DC40237E7DF8008C88C6 /* IssueTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8442DC3E237E7DF8008C88C6 /* IssueTableViewCell.xib */; };
+		8442DC42237E969C008C88C6 /* Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8442DC41237E969C008C88C6 /* Identifier.swift */; };
 		8458B443237CF98500D6D473 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8458B442237CF98500D6D473 /* ShadowView.swift */; };
-		84A51ABC237AEF5500477B75 /* StoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A51ABB237AEF5500477B75 /* StoryTableViewCell.swift */; };
-		84A51ABE237AF16700477B75 /* ColumnCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A51ABD237AF16700477B75 /* ColumnCollectionViewCell.swift */; };
-		84A51AC0237AF8DD00477B75 /* ColumnTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A51ABF237AF8DD00477B75 /* ColumnTableViewController.swift */; };
+		84A51AC0237AF8DD00477B75 /* IssueTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A51ABF237AF8DD00477B75 /* IssueTableViewController.swift */; };
 		84BF40C1237D47C800600AE7 /* UIPanGestureRecognizer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BF40C0237D47C800600AE7 /* UIPanGestureRecognizer+Extension.swift */; };
-		84DB1E02237B0EFA008BB31A /* ColumnTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DB1E01237B0EFA008BB31A /* ColumnTableView.swift */; };
+		84DB1E02237B0EFA008BB31A /* IssueTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DB1E01237B0EFA008BB31A /* IssueTableView.swift */; };
 		84F56A05237C5B56007E6C68 /* UIColor+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F56A04237C5B56007E6C68 /* UIColor+Extention.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,12 +34,15 @@
 		843C898C237AE7480050586E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		843C898F237AE7480050586E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		843C8991237AE7480050586E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8442DC39237E7B92008C88C6 /* IssueCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IssueCollectionViewCell.swift; path = AgileBoard/View/IssueCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
+		8442DC3A237E7B92008C88C6 /* IssueCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = IssueCollectionViewCell.xib; path = AgileBoard/View/IssueCollectionViewCell.xib; sourceTree = SOURCE_ROOT; };
+		8442DC3D237E7DF8008C88C6 /* IssueTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IssueTableViewCell.swift; path = AgileBoard/View/IssueTableViewCell.swift; sourceTree = SOURCE_ROOT; };
+		8442DC3E237E7DF8008C88C6 /* IssueTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = IssueTableViewCell.xib; path = AgileBoard/View/IssueTableViewCell.xib; sourceTree = SOURCE_ROOT; };
+		8442DC41237E969C008C88C6 /* Identifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifier.swift; sourceTree = "<group>"; };
 		8458B442237CF98500D6D473 /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
-		84A51ABB237AEF5500477B75 /* StoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryTableViewCell.swift; sourceTree = "<group>"; };
-		84A51ABD237AF16700477B75 /* ColumnCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnCollectionViewCell.swift; sourceTree = "<group>"; };
-		84A51ABF237AF8DD00477B75 /* ColumnTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnTableViewController.swift; sourceTree = "<group>"; };
+		84A51ABF237AF8DD00477B75 /* IssueTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueTableViewController.swift; sourceTree = "<group>"; };
 		84BF40C0237D47C800600AE7 /* UIPanGestureRecognizer+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIPanGestureRecognizer+Extension.swift"; sourceTree = SOURCE_ROOT; };
-		84DB1E01237B0EFA008BB31A /* ColumnTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnTableView.swift; sourceTree = "<group>"; };
+		84DB1E01237B0EFA008BB31A /* IssueTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueTableView.swift; sourceTree = "<group>"; };
 		84F56A04237C5B56007E6C68 /* UIColor+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIColor+Extention.swift"; path = "AgileBoard/View/UIColor+Extention.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -63,7 +69,7 @@
 			isa = PBXGroup;
 			children = (
 				843C8987237AE7460050586E /* BoardViewController.swift */,
-				84A51ABF237AF8DD00477B75 /* ColumnTableViewController.swift */,
+				84A51ABF237AF8DD00477B75 /* IssueTableViewController.swift */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -73,7 +79,7 @@
 			children = (
 				843C8989237AE7460050586E /* Main.storyboard */,
 				843C898E237AE7480050586E /* LaunchScreen.storyboard */,
-				84DB1E01237B0EFA008BB31A /* ColumnTableView.swift */,
+				84DB1E01237B0EFA008BB31A /* IssueTableView.swift */,
 				84206291237AFED20076CDAC /* Custom Cell */,
 				8458B442237CF98500D6D473 /* ShadowView.swift */,
 			);
@@ -100,8 +106,11 @@
 		84206291237AFED20076CDAC /* Custom Cell */ = {
 			isa = PBXGroup;
 			children = (
-				84A51ABD237AF16700477B75 /* ColumnCollectionViewCell.swift */,
-				84A51ABB237AEF5500477B75 /* StoryTableViewCell.swift */,
+				8442DC3D237E7DF8008C88C6 /* IssueTableViewCell.swift */,
+				8442DC3E237E7DF8008C88C6 /* IssueTableViewCell.xib */,
+				8442DC39237E7B92008C88C6 /* IssueCollectionViewCell.swift */,
+				8442DC3A237E7B92008C88C6 /* IssueCollectionViewCell.xib */,
+				8442DC41237E969C008C88C6 /* Identifier.swift */,
 			);
 			path = "Custom Cell";
 			sourceTree = "<group>";
@@ -194,6 +203,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8442DC3C237E7B92008C88C6 /* IssueCollectionViewCell.xib in Resources */,
+				8442DC40237E7DF8008C88C6 /* IssueTableViewCell.xib in Resources */,
 				843C8990237AE7480050586E /* LaunchScreen.storyboard in Resources */,
 				843C898D237AE7480050586E /* Assets.xcassets in Resources */,
 				843C898B237AE7460050586E /* Main.storyboard in Resources */,
@@ -210,12 +221,13 @@
 				8458B443237CF98500D6D473 /* ShadowView.swift in Sources */,
 				84F56A05237C5B56007E6C68 /* UIColor+Extention.swift in Sources */,
 				843C8988237AE7460050586E /* BoardViewController.swift in Sources */,
-				84DB1E02237B0EFA008BB31A /* ColumnTableView.swift in Sources */,
+				8442DC3F237E7DF8008C88C6 /* IssueTableViewCell.swift in Sources */,
+				8442DC42237E969C008C88C6 /* Identifier.swift in Sources */,
+				84DB1E02237B0EFA008BB31A /* IssueTableView.swift in Sources */,
 				843C8984237AE7460050586E /* AppDelegate.swift in Sources */,
-				84A51ABE237AF16700477B75 /* ColumnCollectionViewCell.swift in Sources */,
-				84A51ABC237AEF5500477B75 /* StoryTableViewCell.swift in Sources */,
 				84BF40C1237D47C800600AE7 /* UIPanGestureRecognizer+Extension.swift in Sources */,
-				84A51AC0237AF8DD00477B75 /* ColumnTableViewController.swift in Sources */,
+				84A51AC0237AF8DD00477B75 /* IssueTableViewController.swift in Sources */,
+				8442DC3B237E7B92008C88C6 /* IssueCollectionViewCell.swift in Sources */,
 				8420628C237AFD7E0076CDAC /* Issue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -15,6 +15,15 @@ class BoardViewController: UIViewController {
     let dataList1 = [
         Issue(summary: "Sed posuere consectetur est at lobortis."),
         Issue(summary: "Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit."),
+        Issue(summary: "Aenean lacinia bibendum nulla sed consectetur."),
+        Issue(summary: "Sed posuere consectetur est at lobortis."),
+        Issue(summary: "Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit."),
+        Issue(summary: "Aenean lacinia bibendum nulla sed consectetur."),
+        Issue(summary: "Sed posuere consectetur est at lobortis."),
+        Issue(summary: "Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit."),
+        Issue(summary: "Aenean lacinia bibendum nulla sed consectetur."),
+        Issue(summary: "Sed posuere consectetur est at lobortis."),
+        Issue(summary: "Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit."),
         Issue(summary: "Aenean lacinia bibendum nulla sed consectetur.")
     ]
     let dataList2 = [
@@ -32,34 +41,37 @@ class BoardViewController: UIViewController {
     
     // MARK: - Outlets
     
-    @IBOutlet var columnTableViewController: ColumnTableViewController!
-    
     @IBOutlet weak var pageControl: UIPageControl!
     
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var issueCollectionView: UICollectionView!
     
-    @IBOutlet var collectionPanGesture: UIPanGestureRecognizer!
+    // Issue table view controller
+    @IBOutlet var issueTableViewController: IssueTableViewController!
     
-    @IBOutlet weak var issueCollectionTopAlignmentConstrant: NSLayoutConstraint!
     
     override func viewDidLoad() {
         
         collectionData.append(dataList1)
         collectionData.append(dataList2)
-        collectionData.append(dataList3)
+       // collectionData.append(dataList3)
         
         // Set the number of pages for the page control
         self.pageControl.numberOfPages = collectionData.count
      
         // Fit the cell in the collection view
-        if let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
-            flowLayout.estimatedItemSize = CGSize(width: collectionView.frame.width, height: collectionView.frame.height - 30)
+        if let flowLayout = issueCollectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
+            flowLayout.estimatedItemSize = CGSize(width: issueCollectionView.frame.width, height: issueCollectionView.frame.height - 20)
         }
         
         // Remove navigation border
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for:.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.layoutIfNeeded()
+        
+        // Register custom cell for UICollectionView
+        let nib = UINib(nibName: Identifier.IssueCollectionViewCell, bundle: .main)
+        issueCollectionView.register(nib, forCellWithReuseIdentifier: Identifier.IssueCollectionViewCell)
+        
         
     }
 
@@ -71,19 +83,21 @@ class BoardViewController: UIViewController {
 extension BoardViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return collectionData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! ColumnCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifier.IssueCollectionViewCell, for: indexPath) as! IssueCollectionViewCell
+        
         
         // Set the data source and the delegate to the table view
-        cell.tableView.dataSource = columnTableViewController
-        cell.tableView.delegate = columnTableViewController
+        
+        cell.issueTableView.dataSource = issueTableViewController
+        cell.issueTableView.delegate = issueTableViewController
         
         // Initilize data for the table view
-        columnTableViewController?.tableView(reloadDataAt: indexPath, withIssues: collectionData[indexPath.row])
+        issueTableViewController?.tableView(reloadDataAt: indexPath, withIssues: collectionData[indexPath.row])
         
         return cell
     }

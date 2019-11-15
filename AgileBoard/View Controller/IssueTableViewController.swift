@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ColumnTableViewController: UITableViewController {
+class IssueTableViewController: UITableViewController {
     
     // MARK: - Outlets
     @IBOutlet weak var issueCollectionView: UICollectionView!
@@ -37,6 +37,9 @@ class ColumnTableViewController: UITableViewController {
     override func viewDidLoad() {
         // Add your code here
         
+        // Register custome cell
+        let nibName = UINib(nibName: Identifier.IssueTableViewCell, bundle: .main)
+        tableView.register(nibName, forCellReuseIdentifier: Identifier.IssueTableViewCell)
         
     }
     
@@ -45,6 +48,7 @@ class ColumnTableViewController: UITableViewController {
         
         columnIndexPath = indexPath
         self.issueList = issueList
+        //print("reload data \(issueList.count) ")
         
         tableView.reloadData()
     }
@@ -52,14 +56,17 @@ class ColumnTableViewController: UITableViewController {
     // MARK: - Table View Data Source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("Number of row: \(issueList?.count)")
         return issueList?.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! StoryTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.IssueTableViewCell, for: indexPath) as! IssueTableViewCell
         
         cell.summaryLabel.text = issueList?[indexPath.row].summary
+        
+        print("Reload cell: \(issueList?.count)")
         
         return cell
     }
@@ -84,7 +91,7 @@ class ColumnTableViewController: UITableViewController {
         
         // Store the initial point of the collection view
         if initialFrame == nil {
-            initialFrame =  issueCollectionView.frame
+            //initialFrame =  issueCollectionView.frame
         }
 
     }

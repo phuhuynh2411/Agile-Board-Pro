@@ -1,26 +1,25 @@
 //
-//  StoryTableViewCell.swift
+//  IssueTableViewCell.swift
 //  AgileBoard
 //
-//  Created by Huynh Tan Phu on 11/12/19.
+//  Created by Huynh Tan Phu on 11/15/19.
 //  Copyright © 2019 Filesoft. All rights reserved.
 //
 
 import UIKit
 
-class StoryTableViewCell: UITableViewCell {
+class IssueTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var cellBackgroundView: UIView!
     @IBOutlet weak var summaryLabel: UILabel!
-    @IBOutlet weak var assigneeImageView: UIImageView!
-    @IBOutlet weak var mainBackgroundView: UIView!
-    
+    @IBOutlet weak var assigneeImageVIew: UIImageView!
+    @IBOutlet weak var issueTypeImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-    
-        mainBackgroundView.layer.cornerRadius = 5.0
-        mainBackgroundView.layer.masksToBounds = true
-    
+        
+        cellBackgroundView.layer.cornerRadius = 7.0
+        cellBackgroundView.layer.masksToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -28,6 +27,5 @@ class StoryTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
 }
-
