@@ -13,4 +13,12 @@ class ColumnCollectionViewCell: UICollectionViewCell {
     // MARK: - Outlets
     @IBOutlet weak var tableView: ColumnTableView!
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
 }

@@ -29,11 +29,18 @@ class BoardViewController: UIViewController {
     ]
     var collectionData = [[Issue]]()
     
+    
     // MARK: - Outlets
     
     @IBOutlet var columnTableViewController: ColumnTableViewController!
     
     @IBOutlet weak var pageControl: UIPageControl!
+    
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    @IBOutlet var collectionPanGesture: UIPanGestureRecognizer!
+    
+    @IBOutlet weak var issueCollectionTopAlignmentConstrant: NSLayoutConstraint!
     
     override func viewDidLoad() {
         
@@ -43,10 +50,22 @@ class BoardViewController: UIViewController {
         
         // Set the number of pages for the page control
         self.pageControl.numberOfPages = collectionData.count
+     
+        // Fit the cell in the collection view
+        if let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
+            flowLayout.estimatedItemSize = CGSize(width: collectionView.frame.width, height: collectionView.frame.height - 30)
+        }
+        
+        // Remove navigation border
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for:.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.layoutIfNeeded()
         
     }
 
 }
+    
+
 // MARK: - Collection Data Source
 
 extension BoardViewController: UICollectionViewDataSource {
@@ -79,9 +98,7 @@ extension BoardViewController: UICollectionViewDelegate {
         
         // Refresh the current page for the page control
         self.pageControl.currentPage = indexPath.section
-        
-        print("View will display")
-        
+                
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
@@ -89,3 +106,5 @@ extension BoardViewController: UICollectionViewDelegate {
     }
     
 }
+
+
