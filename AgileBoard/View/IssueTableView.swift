@@ -10,23 +10,17 @@ import UIKit
 
 class IssueTableView: UITableView{
     
-//    override init(frame: CGRect, style: UITableView.Style) {
-//        super.init(frame: frame, style: style)
-//
-//        print("Table view load")
-//    }
-//
     var initialCenter = CGPoint()
     var panGesture: UIPanGestureRecognizer?
     
+    var visibleCellHeight: CGFloat?
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        
-        // Make the table view rounded.
-        self.layer.cornerRadius = 5.0
-        
-        // Add Pan Gesture Recognizer
-        // addPadGesture()
+    }
+    
+    var tableHeightConstraint: NSLayoutConstraint {
+        return self.constraints.first { $0.identifier == "tableHeightConstraint" }!
     }
     
     func addPadGesture() {
@@ -76,7 +70,5 @@ class IssueTableView: UITableView{
           //piece.center = initialCenter
        }
     }
-    
-    
     
 }

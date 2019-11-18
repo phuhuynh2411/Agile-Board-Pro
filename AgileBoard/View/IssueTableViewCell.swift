@@ -20,6 +20,7 @@ class IssueTableViewCell: UITableViewCell {
         
         cellBackgroundView.layer.cornerRadius = 7.0
         cellBackgroundView.layer.masksToBounds = true
+                
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

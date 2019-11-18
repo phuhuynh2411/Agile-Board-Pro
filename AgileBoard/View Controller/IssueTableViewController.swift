@@ -23,6 +23,7 @@ class IssueTableViewController: UITableViewController {
     // a initial frame of Issue Collection View
     var initialFrame: CGRect?
     
+    
     // MARK: - Init Methods
     override init(style: UITableView.Style) {
         super.init(style: style)
@@ -35,12 +36,11 @@ class IssueTableViewController: UITableViewController {
     
     // MARK: - View Methods
     override func viewDidLoad() {
-        // Add your code here
         
         // Register custome cell
         let nibName = UINib(nibName: Identifier.IssueTableViewCell, bundle: .main)
         tableView.register(nibName, forCellReuseIdentifier: Identifier.IssueTableViewCell)
-    
+        
     }
     
     // MARK: - Supporting Methods
@@ -60,61 +60,95 @@ class IssueTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+                
         let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.IssueTableViewCell, for: indexPath) as! IssueTableViewCell
         
         cell.summaryLabel.text = issueList?[indexPath.row].summary
-                
+        
+        let issueTableView = tableView as! IssueTableView
+        
+        // Calculate the visible table view cell's height
+        // if the cell is the last one.
+        if let lastVisibleIndexPath = tableView.indexPathsForVisibleRows?.last {
+            if indexPath == lastVisibleIndexPath && issueTableView.visibleCellHeight == nil {
+                fitVisibleCellHeight(tableView: issueTableView)
+            }
+        }
+        
         return cell
+    }
+    
+    func fitVisibleCellHeight(tableView: IssueTableView){
+        var heightOfTableView: CGFloat = 0.0
+        
+        UIView.animate(withDuration: 0, animations: {
+            tableView.layoutIfNeeded()
+            }) { (complete) in
+
+                // Get visible cells and sum up their heights
+                let cells = tableView.visibleCells
+                for cell in cells {
+                    heightOfTableView += cell.frame.height
+                }
+
+                print("Returned visible cell's height \(heightOfTableView)")
+                tableView.visibleCellHeight = heightOfTableView
+                
+                //tableView.frame = CGRect(x: tableView.frame.minX, y: tableView.frame.minY, width: tableView.frame.width, height: heightOfTableView)
+               // tableView.
+               //tableView.tableHeightConstraint.constant = heightOfTableView
+                tableView.layoutIfNeeded()
+                
+        }
     }
     
     // MARK: - Table Header
     
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40
-    }
+//    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        return 40
+//    }
+//
+//    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//
+//        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 40))
+//        let label = UILabel(frame: CGRect(x: 20, y: 13, width: tableView.frame.width - 20, height: 20))
+//        label.text = "TODO (3)"
+//        label.font = UIFont.systemFont(ofSize: 14)
+//
+//        headerView.addSubview(label)
+//        headerView.backgroundColor = UIColor(hexString: "#F4F5F7", alpha: 1)
+//
+//        return headerView
+//    }
     
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 40))
-        let label = UILabel(frame: CGRect(x: 20, y: 13, width: tableView.frame.width - 20, height: 20))
-        label.text = "TODO (3)"
-        label.font = UIFont.systemFont(ofSize: 14)
-        
-        headerView.addSubview(label)
-        headerView.backgroundColor = UIColor(hexString: "#F4F5F7", alpha: 1)
-        
-        return headerView
-    }
-    
-    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-
-        // Make the table header round
-        //view.layer.cornerRadius = 5.0
-        //view.layer.masksToBounds = true
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panAction(gestureRecognizer:)))
-        view.addGestureRecognizer(panGesture)
-        
-        // Store the initial point of the collection view
-        if initialFrame == nil {
-            //initialFrame =  issueCollectionView.frame
-        }
-
-    }
+//    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+//
+//        // Make the table header round
+//        //view.layer.cornerRadius = 5.0
+//        //view.layer.masksToBounds = true
+//        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panAction(gestureRecognizer:)))
+//        view.addGestureRecognizer(panGesture)
+//        
+//        // Store the initial point of the collection view
+//        if initialFrame == nil {
+//            //initialFrame =  issueCollectionView.frame
+//        }
+//
+//    }
     
     // MARK: - Table Footer
     
-    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 50
-    }
-    
-    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        
-        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 40))
-        footerView.backgroundColor = UIColor(hexString: "#F4F5F7", alpha: 1)
-        
-        return footerView
-    }
+//    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+//        return 50
+//    }
+//
+//    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+//
+//        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 40))
+//        footerView.backgroundColor = UIColor(hexString: "#F4F5F7", alpha: 1)
+//
+//        return footerView
+//    }
     
     // MARK: - Pan Gesture
     

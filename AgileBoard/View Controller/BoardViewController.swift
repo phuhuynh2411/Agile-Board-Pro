@@ -26,6 +26,7 @@ class BoardViewController: UIViewController {
         Issue(summary: "Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit."),
         Issue(summary: "Aenean lacinia bibendum nulla sed consectetur.")
     ]
+    
     let dataList2 = [
            Issue(summary: "Sed posuere consectetur est at lobortis."),
            Issue(summary: "Morbi leo risus, porta ac consectetur ac, vestibulum at eros."),
@@ -34,7 +35,8 @@ class BoardViewController: UIViewController {
     let dataList3 = [
            Issue(summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."),
            Issue(summary: "Donec ullamcorper nulla non metus auctor fringilla."),
-           Issue(summary: "Donec sed odio dui.")
+           Issue(summary: "Donec sed odio dui."),
+           Issue(summary: "Integer posuere erat a ante venenatis dapibus posuere velit aliquet.")
     ]
     var collectionData = [[Issue]]()
     
@@ -50,19 +52,13 @@ class BoardViewController: UIViewController {
     
     
     override func viewDidLoad() {
-        
+                
         collectionData.append(dataList1)
         collectionData.append(dataList2)
         collectionData.append(dataList3)
         
         // Set the number of pages for the page control
         self.pageControl.numberOfPages = collectionData.count
-     
-        // Fit the cell in the collection view
-//        if let flowLayout = issueCollectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
-//            flowLayout.estimatedItemSize = CGSize(width: issueCollectionView.frame.width - 40, height: issueCollectionView.frame.height)
-//            print("Issue collection height \(issueCollectionView.bounds.height)")
-//        }
         
         // Remove navigation border
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for:.default)
@@ -73,7 +69,17 @@ class BoardViewController: UIViewController {
         let nib = UINib(nibName: Identifier.IssueCollectionViewCell, bundle: .main)
         issueCollectionView.register(nib, forCellWithReuseIdentifier: Identifier.IssueCollectionViewCell)
         
+    }
+    
+    override func viewDidLayoutSubviews() {
+        print("Collection view did load subviews")
         
+        if let flowLayout = issueCollectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
+
+            let screenSize = UIScreen.main.bounds
+
+            flowLayout.estimatedItemSize = CGSize(width: screenSize.width - 40, height: issueCollectionView.frame.height)
+        }
     }
 
 }
@@ -89,15 +95,12 @@ extension BoardViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
+        print("Load Collection Cell")
+                
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifier.IssueCollectionViewCell, for: indexPath) as! IssueCollectionViewCell
         
-        
-        // Ajust the cellection view cell
-        if let flowLayout = issueCollectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
-            flowLayout.estimatedItemSize = CGSize(width: issueCollectionView.frame.width - 40, height: issueCollectionView.frame.height)
-        }
-        
         cell.issueTableViewController?.issueList = collectionData[indexPath.row]
+        cell.collectionView = issueCollectionView
         
         return cell
     }
@@ -118,9 +121,44 @@ extension BoardViewController: UICollectionViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         pageControl.currentPage = Int(scrollView.contentOffset.x) / Int(scrollView.frame.width)
     }
-    
-    
 
+}
+
+// MARK: - UICollectionViewDelegateFolowLayout
+
+extension BoardViewController: UICollectionViewDelegateFlowLayout {
+    
+//    func collectionView(_ collectionView: UICollectionView,
+//                        layout collectionViewLayout: UICollectionViewLayout,
+//                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+//
+//        print("See height for collection cell")
+//        
+//        let screenSize: CGRect = UIScreen.main.bounds
+//        var height = collectionView.frame.height
+//
+//        if let cell = collectionView.cellForItem(at: indexPath) as? IssueCollectionViewCell{
+//            let tableView = cell.issueTableView
+//            height  = tableView!.contentSize.height
+//        }
+//
+//
+//        return CGSize(width: screenSize.width - 40, height: height )
+//
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView,
+//                        layout collectionViewLayout: UICollectionViewLayout,
+//                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+//        return 1.0
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, layout
+//        collectionViewLayout: UICollectionViewLayout,
+//                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+//        return 10.0
+//    }
+    
 }
 
 
