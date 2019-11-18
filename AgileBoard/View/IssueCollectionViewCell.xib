@@ -41,12 +41,14 @@
                         <rect key="frame" x="0.0" y="267" width="336" height="50"/>
                         <color key="backgroundColor" red="0.95686274510000002" green="0.96078431369999995" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="50" id="4GH-B8-OqF"/>
+                            <constraint firstAttribute="height" constant="50" id="foV-3t-6rY"/>
                         </constraints>
                     </view>
                     <tableView clipsSubviews="YES" contentMode="scaleToFill" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VAI-Yh-EkV" customClass="IssueTableView" customModule="AgileBoard" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="40" width="336" height="227"/>
-                        <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="227" identifier="tableHeightConstraint" id="kEh-i1-gwC"/>
+                        </constraints>
                     </tableView>
                 </subviews>
             </view>
@@ -54,14 +56,13 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="jbX-r8-Opn" secondAttribute="trailing" id="0wh-3x-BQb"/>
                 <constraint firstItem="jbX-r8-Opn" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="139-nl-w2t"/>
+                <constraint firstAttribute="trailing" secondItem="YVf-Ii-e0A" secondAttribute="trailing" id="9NZ-Ix-z8a"/>
                 <constraint firstItem="VAI-Yh-EkV" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="FgT-Ft-uJk"/>
                 <constraint firstAttribute="trailing" secondItem="VAI-Yh-EkV" secondAttribute="trailing" id="NTn-xQ-RLr"/>
-                <constraint firstAttribute="trailing" secondItem="YVf-Ii-e0A" secondAttribute="trailing" id="RTW-Nc-SJl"/>
-                <constraint firstItem="YVf-Ii-e0A" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="h4w-va-9ri"/>
-                <constraint firstAttribute="bottom" secondItem="YVf-Ii-e0A" secondAttribute="bottom" id="hnH-8i-ZSZ"/>
+                <constraint firstItem="YVf-Ii-e0A" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="NgI-GM-sg0"/>
                 <constraint firstItem="jbX-r8-Opn" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="qPD-NF-crm"/>
                 <constraint firstItem="VAI-Yh-EkV" firstAttribute="top" secondItem="jbX-r8-Opn" secondAttribute="bottom" id="rGC-Kp-oe0"/>
-                <constraint firstItem="YVf-Ii-e0A" firstAttribute="top" secondItem="VAI-Yh-EkV" secondAttribute="bottom" id="vKK-wn-Ykf"/>
+                <constraint firstItem="YVf-Ii-e0A" firstAttribute="top" secondItem="VAI-Yh-EkV" secondAttribute="bottom" id="uQC-ej-u21"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="285" height="423"/>
@@ -70,6 +71,7 @@
                 <outlet property="cellHeaderView" destination="jbX-r8-Opn" id="Lew-7R-GnI"/>
                 <outlet property="headerLabel" destination="l8z-gF-F08" id="q9b-I3-v2Z"/>
                 <outlet property="issueTableView" destination="VAI-Yh-EkV" id="O0U-4R-tdB"/>
+                <outlet property="tableViewHeightConstraint" destination="kEh-i1-gwC" id="BtQ-5q-zHM"/>
             </connections>
             <point key="canvasLocation" x="-30.399999999999999" y="74.212893553223395"/>
         </collectionViewCell>

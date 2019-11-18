@@ -72,13 +72,39 @@ class BoardViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
-        print("Collection view did load subviews")
         
         if let flowLayout = issueCollectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
 
             let screenSize = UIScreen.main.bounds
 
-            flowLayout.estimatedItemSize = CGSize(width: screenSize.width - 40, height: issueCollectionView.frame.height)
+            flowLayout.estimatedItemSize = CGSize(width: screenSize.width - 40, height: issueCollectionView.frame.height )
+        }
+    }
+    
+    func fitTheCell(cell: IssueCollectionViewCell) {
+        
+        guard cell.cellIsFit == false else { return }
+        
+        cell.issueTableView.tableHeightConstraint.constant = cell.tableEstimatedHeight
+               
+        UIView.animate(withDuration: 0, animations: {
+            cell.issueTableView.layoutIfNeeded()
+            }) { (complete) in
+                var heightOfTableView: CGFloat = 0.0
+                // Get visible cells and sum up their heights
+                let cells = cell.issueTableView.visibleCells
+                for cell in cells {
+                    heightOfTableView += cell.frame.height
+                }
+                
+                cell.cellIsFit = true
+
+                heightOfTableView = heightOfTableView < cell.tableEstimatedHeight ? heightOfTableView : cell.tableEstimatedHeight
+                
+                cell.issueTableView.tableHeightConstraint.constant = heightOfTableView
+                
+                cell.layoutIfNeeded()
+                
         }
     }
 
@@ -94,13 +120,13 @@ extension BoardViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        print("Load Collection Cell")
-                
+                        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifier.IssueCollectionViewCell, for: indexPath) as! IssueCollectionViewCell
         
         cell.issueTableViewController?.issueList = collectionData[indexPath.row]
-        cell.collectionView = issueCollectionView
+        
+        // Make the cell fit its content
+        fitTheCell(cell: cell)
         
         return cell
     }
