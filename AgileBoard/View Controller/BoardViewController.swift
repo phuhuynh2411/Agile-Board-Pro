@@ -106,6 +106,7 @@ class BoardViewController: UIViewController {
                 cell.layoutIfNeeded()
                 
         }
+        
     }
 
 }

@@ -52,7 +52,6 @@
                     </tableView>
                 </subviews>
             </view>
-            <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="jbX-r8-Opn" secondAttribute="trailing" id="0wh-3x-BQb"/>
                 <constraint firstItem="jbX-r8-Opn" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="139-nl-w2t"/>

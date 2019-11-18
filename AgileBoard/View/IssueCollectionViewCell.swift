@@ -47,10 +47,11 @@ class IssueCollectionViewCell: UICollectionViewCell {
         // Round the header and footer
         cellHeaderView.layer.cornerRadius = 5.0
         cellHeaderView.layer.masksToBounds = true
+        cellHeaderView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner] // Top right corner, Top left corner respectively
         
         cellFooterView.layer.cornerRadius = 5.0
         cellFooterView.layer.masksToBounds = true
-        
+        cellFooterView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner] // bottom left corner, bottom right corner respectively
     }
     
 }
