@@ -40,7 +40,6 @@ class BoardViewController: UIViewController {
     ]
     var collectionData = [[Issue]]()
     
-    
     // MARK: - Outlets
     
     @IBOutlet weak var pageControl: UIPageControl!
@@ -68,16 +67,23 @@ class BoardViewController: UIViewController {
         // Register custom cell for UICollectionView
         let nib = UINib(nibName: Identifier.IssueCollectionViewCell, bundle: .main)
         issueCollectionView.register(nib, forCellWithReuseIdentifier: Identifier.IssueCollectionViewCell)
-        
+                
     }
     
     override func viewDidLayoutSubviews() {
         
+        setCellSize()
+        
+    }
+    
+    func setCellSize() {
+        
         if let flowLayout = issueCollectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
-
-            let screenSize = UIScreen.main.bounds
-
-            flowLayout.estimatedItemSize = CGSize(width: screenSize.width - 40, height: issueCollectionView.frame.height )
+            
+            let frame = issueCollectionView.frame
+            
+            flowLayout.itemSize = CGSize(width: frame.width - 40, height: frame.height )
+            
         }
     }
     
@@ -110,7 +116,6 @@ class BoardViewController: UIViewController {
     }
 
 }
-    
 
 // MARK: - Collection Data Source
 
@@ -133,59 +138,3 @@ extension BoardViewController: UICollectionViewDataSource {
     }
     
 }
-
-// MARK: - Collection View Delegate
-
-extension BoardViewController: UICollectionViewDelegate {
-    
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        
-        // Refresh the current page for the page control
-        self.pageControl.currentPage = indexPath.section
-                
-    }
-    
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        pageControl.currentPage = Int(scrollView.contentOffset.x) / Int(scrollView.frame.width)
-    }
-
-}
-
-// MARK: - UICollectionViewDelegateFolowLayout
-
-extension BoardViewController: UICollectionViewDelegateFlowLayout {
-    
-//    func collectionView(_ collectionView: UICollectionView,
-//                        layout collectionViewLayout: UICollectionViewLayout,
-//                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-//
-//        print("See height for collection cell")
-//        
-//        let screenSize: CGRect = UIScreen.main.bounds
-//        var height = collectionView.frame.height
-//
-//        if let cell = collectionView.cellForItem(at: indexPath) as? IssueCollectionViewCell{
-//            let tableView = cell.issueTableView
-//            height  = tableView!.contentSize.height
-//        }
-//
-//
-//        return CGSize(width: screenSize.width - 40, height: height )
-//
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView,
-//                        layout collectionViewLayout: UICollectionViewLayout,
-//                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-//        return 1.0
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout
-//        collectionViewLayout: UICollectionViewLayout,
-//                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        return 10.0
-//    }
-    
-}
-
-

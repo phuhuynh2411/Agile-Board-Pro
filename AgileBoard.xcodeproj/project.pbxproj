@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		841B42F223844275000871F6 /* IssueCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841B42F123844275000871F6 /* IssueCollectionViewLayout.swift */; };
 		8420628C237AFD7E0076CDAC /* Issue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8420628B237AFD7E0076CDAC /* Issue.swift */; };
 		843C8984237AE7460050586E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843C8983237AE7460050586E /* AppDelegate.swift */; };
 		843C8988237AE7460050586E /* BoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843C8987237AE7460050586E /* BoardViewController.swift */; };
@@ -19,7 +20,6 @@
 		8442DC40237E7DF8008C88C6 /* IssueTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8442DC3E237E7DF8008C88C6 /* IssueTableViewCell.xib */; };
 		8442DC42237E969C008C88C6 /* Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8442DC41237E969C008C88C6 /* Identifier.swift */; };
 		8458B443237CF98500D6D473 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8458B442237CF98500D6D473 /* ShadowView.swift */; };
-		84757B8D23824C730097D700 /* TopAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84757B8C23824C730097D700 /* TopAlignedCollectionViewFlowLayout.swift */; };
 		84A51AC0237AF8DD00477B75 /* IssueTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A51ABF237AF8DD00477B75 /* IssueTableViewController.swift */; };
 		84BF40C1237D47C800600AE7 /* UIPanGestureRecognizer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BF40C0237D47C800600AE7 /* UIPanGestureRecognizer+Extension.swift */; };
 		84DB1E02237B0EFA008BB31A /* IssueTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DB1E01237B0EFA008BB31A /* IssueTableView.swift */; };
@@ -27,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		841B42F123844275000871F6 /* IssueCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueCollectionViewLayout.swift; sourceTree = "<group>"; };
 		8420628B237AFD7E0076CDAC /* Issue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Issue.swift; sourceTree = "<group>"; };
 		843C8980237AE7460050586E /* AgileBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AgileBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		843C8983237AE7460050586E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -41,7 +42,6 @@
 		8442DC3E237E7DF8008C88C6 /* IssueTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = IssueTableViewCell.xib; path = AgileBoard/View/IssueTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		8442DC41237E969C008C88C6 /* Identifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifier.swift; sourceTree = "<group>"; };
 		8458B442237CF98500D6D473 /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
-		84757B8C23824C730097D700 /* TopAlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopAlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		84A51ABF237AF8DD00477B75 /* IssueTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueTableViewController.swift; sourceTree = "<group>"; };
 		84BF40C0237D47C800600AE7 /* UIPanGestureRecognizer+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIPanGestureRecognizer+Extension.swift"; sourceTree = SOURCE_ROOT; };
 		84DB1E01237B0EFA008BB31A /* IssueTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueTableView.swift; sourceTree = "<group>"; };
@@ -71,7 +71,6 @@
 			isa = PBXGroup;
 			children = (
 				843C8987237AE7460050586E /* BoardViewController.swift */,
-				84757B8C23824C730097D700 /* TopAlignedCollectionViewFlowLayout.swift */,
 				84A51ABF237AF8DD00477B75 /* IssueTableViewController.swift */,
 			);
 			path = "View Controller";
@@ -85,6 +84,7 @@
 				84DB1E01237B0EFA008BB31A /* IssueTableView.swift */,
 				84206291237AFED20076CDAC /* Custom Cell */,
 				8458B442237CF98500D6D473 /* ShadowView.swift */,
+				841B42F123844275000871F6 /* IssueCollectionViewLayout.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -222,9 +222,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8458B443237CF98500D6D473 /* ShadowView.swift in Sources */,
+				841B42F223844275000871F6 /* IssueCollectionViewLayout.swift in Sources */,
 				84F56A05237C5B56007E6C68 /* UIColor+Extention.swift in Sources */,
 				843C8988237AE7460050586E /* BoardViewController.swift in Sources */,
-				84757B8D23824C730097D700 /* TopAlignedCollectionViewFlowLayout.swift in Sources */,
 				8442DC3F237E7DF8008C88C6 /* IssueTableViewCell.swift in Sources */,
 				8442DC42237E969C008C88C6 /* Identifier.swift in Sources */,
 				84DB1E02237B0EFA008BB31A /* IssueTableView.swift in Sources */,

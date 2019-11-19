@@ -33,7 +33,7 @@
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="iRk-iY-qyH">
                                         <rect key="frame" x="0.0" y="317" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="UfJ-LF-Wu5">
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="UfJ-LF-Wu5">
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </collectionViewCellContentView>
@@ -52,16 +52,11 @@
                                 <color key="pageIndicatorTintColor" red="0.92156862745098034" green="0.92549019607843142" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="currentPageIndicatorTintColor" red="0.6470588235294118" green="0.67843137254901964" blue="0.72941176470588232" alpha="1" colorSpace="calibratedRGB"/>
                             </pageControl>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ude-ek-oj3" userLabel="Issue Collection View">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ude-ek-oj3" userLabel="Issue Collection View">
                                 <rect key="frame" x="0.0" y="124" width="375" height="457"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <gestureRecognizers/>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="QHg-Yw-wsn">
-                                    <size key="itemSize" width="50" height="50"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
+                                <collectionViewLayout key="collectionViewLayout" id="fED-GC-6yZ" customClass="IssueCollectionViewFlowLayout" customModule="AgileBoard" customModuleProvider="target"/>
                                 <cells/>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="BCE-3m-aQL"/>
@@ -73,10 +68,8 @@
                         <constraints>
                             <constraint firstItem="S2E-3z-RmC" firstAttribute="top" secondItem="Ude-ek-oj3" secondAttribute="bottom" id="2Z1-2d-NfD"/>
                             <constraint firstItem="fng-Fx-CoA" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="507-IQ-Arv"/>
-                            <constraint firstItem="Ude-ek-oj3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="98G-MD-PYc"/>
                             <constraint firstItem="fng-Fx-CoA" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="NZH-qe-Iq3"/>
                             <constraint firstItem="S2E-3z-RmC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Sr3-Gs-gnc"/>
-                            <constraint firstItem="Ude-ek-oj3" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="UyW-GT-VfU"/>
                             <constraint firstItem="S2E-3z-RmC" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="a9k-nd-KEn"/>
                             <constraint firstItem="Ude-ek-oj3" firstAttribute="top" secondItem="fng-Fx-CoA" secondAttribute="bottom" id="btc-Lt-OL9"/>
                             <constraint firstItem="fng-Fx-CoA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="fW6-9C-G20"/>

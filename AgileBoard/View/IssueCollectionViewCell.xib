@@ -17,51 +17,63 @@
                 <rect key="frame" x="0.0" y="0.0" width="336" height="317"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jbX-r8-Opn" userLabel="Header View">
-                        <rect key="frame" x="0.0" y="0.0" width="336" height="40"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NSA-nv-f1k" userLabel="Main View">
+                        <rect key="frame" x="0.0" y="0.0" width="336" height="317"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TO DO (3)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l8z-gF-F08">
-                                <rect key="frame" x="8" y="11.5" width="67" height="17"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jbX-r8-Opn" userLabel="Header View">
+                                <rect key="frame" x="0.0" y="0.0" width="336" height="40"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TO DO (3)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l8z-gF-F08">
+                                        <rect key="frame" x="8" y="11.5" width="67" height="17"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="17" id="jsu-ZA-Fbt"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.95686274510000002" green="0.96078431369999995" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="17" id="jsu-ZA-Fbt"/>
+                                    <constraint firstItem="l8z-gF-F08" firstAttribute="leading" secondItem="jbX-r8-Opn" secondAttribute="leading" constant="8" id="1z7-g2-LDJ"/>
+                                    <constraint firstAttribute="height" constant="40" id="BhJ-Rn-5fy"/>
+                                    <constraint firstItem="l8z-gF-F08" firstAttribute="centerY" secondItem="jbX-r8-Opn" secondAttribute="centerY" id="fph-Tl-Xf1"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YVf-Ii-e0A" userLabel="Footer View">
+                                <rect key="frame" x="0.0" y="267" width="336" height="50"/>
+                                <color key="backgroundColor" red="0.95686274510000002" green="0.96078431369999995" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="foV-3t-6rY"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VAI-Yh-EkV" customClass="IssueTableView" customModule="AgileBoard" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="40" width="336" height="227"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="227" identifier="tableHeightConstraint" id="kEh-i1-gwC"/>
+                                </constraints>
+                            </tableView>
                         </subviews>
-                        <color key="backgroundColor" red="0.95686274510000002" green="0.96078431369999995" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="l8z-gF-F08" firstAttribute="leading" secondItem="jbX-r8-Opn" secondAttribute="leading" constant="8" id="1z7-g2-LDJ"/>
-                            <constraint firstAttribute="height" constant="40" id="OY4-7g-MUV"/>
-                            <constraint firstItem="l8z-gF-F08" firstAttribute="centerY" secondItem="jbX-r8-Opn" secondAttribute="centerY" id="lOr-Ld-cZB"/>
+                            <constraint firstItem="VAI-Yh-EkV" firstAttribute="leading" secondItem="NSA-nv-f1k" secondAttribute="leading" id="2EQ-oa-VOH"/>
+                            <constraint firstAttribute="trailing" secondItem="YVf-Ii-e0A" secondAttribute="trailing" id="7Ra-ol-KTN"/>
+                            <constraint firstItem="jbX-r8-Opn" firstAttribute="leading" secondItem="NSA-nv-f1k" secondAttribute="leading" id="7g0-en-NPO"/>
+                            <constraint firstItem="YVf-Ii-e0A" firstAttribute="top" secondItem="VAI-Yh-EkV" secondAttribute="bottom" id="Gzu-bt-LRh"/>
+                            <constraint firstItem="VAI-Yh-EkV" firstAttribute="top" secondItem="jbX-r8-Opn" secondAttribute="bottom" id="WtE-sL-hHJ"/>
+                            <constraint firstAttribute="trailing" secondItem="jbX-r8-Opn" secondAttribute="trailing" id="XBC-zv-g1L"/>
+                            <constraint firstItem="YVf-Ii-e0A" firstAttribute="leading" secondItem="NSA-nv-f1k" secondAttribute="leading" id="YJD-vS-C2z"/>
+                            <constraint firstAttribute="trailing" secondItem="VAI-Yh-EkV" secondAttribute="trailing" id="bgB-a3-jpq"/>
+                            <constraint firstItem="jbX-r8-Opn" firstAttribute="top" secondItem="NSA-nv-f1k" secondAttribute="top" id="oCF-RQ-Lgc"/>
                         </constraints>
                     </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YVf-Ii-e0A" userLabel="Footer View">
-                        <rect key="frame" x="0.0" y="267" width="336" height="50"/>
-                        <color key="backgroundColor" red="0.95686274510000002" green="0.96078431369999995" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="50" id="foV-3t-6rY"/>
-                        </constraints>
-                    </view>
-                    <tableView clipsSubviews="YES" contentMode="scaleToFill" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VAI-Yh-EkV" customClass="IssueTableView" customModule="AgileBoard" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="40" width="336" height="227"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="227" identifier="tableHeightConstraint" id="kEh-i1-gwC"/>
-                        </constraints>
-                    </tableView>
                 </subviews>
             </view>
+            <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="jbX-r8-Opn" secondAttribute="trailing" id="0wh-3x-BQb"/>
-                <constraint firstItem="jbX-r8-Opn" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="139-nl-w2t"/>
-                <constraint firstAttribute="trailing" secondItem="YVf-Ii-e0A" secondAttribute="trailing" id="9NZ-Ix-z8a"/>
-                <constraint firstItem="VAI-Yh-EkV" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="FgT-Ft-uJk"/>
-                <constraint firstAttribute="trailing" secondItem="VAI-Yh-EkV" secondAttribute="trailing" id="NTn-xQ-RLr"/>
-                <constraint firstItem="YVf-Ii-e0A" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="NgI-GM-sg0"/>
-                <constraint firstItem="jbX-r8-Opn" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="qPD-NF-crm"/>
-                <constraint firstItem="VAI-Yh-EkV" firstAttribute="top" secondItem="jbX-r8-Opn" secondAttribute="bottom" id="rGC-Kp-oe0"/>
-                <constraint firstItem="YVf-Ii-e0A" firstAttribute="top" secondItem="VAI-Yh-EkV" secondAttribute="bottom" id="uQC-ej-u21"/>
+                <constraint firstAttribute="trailing" secondItem="NSA-nv-f1k" secondAttribute="trailing" id="Tpd-ax-iBs"/>
+                <constraint firstAttribute="bottom" secondItem="NSA-nv-f1k" secondAttribute="bottom" id="V1p-Hh-ewy"/>
+                <constraint firstItem="NSA-nv-f1k" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="aZ6-hl-6UU"/>
+                <constraint firstItem="NSA-nv-f1k" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="qs5-Qm-xfw"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="285" height="423"/>
