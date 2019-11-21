@@ -18,19 +18,17 @@ class IssueTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        // Make the view background round
         cellBackgroundView.layer.cornerRadius = 7.0
         cellBackgroundView.layer.masksToBounds = true
         
+        // remove cell's selection style
         selectionStyle = .none
-        //self.backgroundColor = UIColor(displayP3Red: 255, green: 255, blue: 255, alpha: 0.1)
+        
+        // Make the cell round
         self.backgroundColor = .none
         self.layer.cornerRadius = 7.0
         self.layer.masksToBounds = true
-        
-
-        // Adjust selected cell's background view
-        // self.selectedBackgroundView?.layer.cornerRadius = 7.0
-        // self.selectedBackgroundView?.layer.masksToBounds = true
                 
     }
     

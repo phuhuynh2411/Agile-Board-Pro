@@ -87,7 +87,7 @@ class BoardViewController: UIViewController {
         }
     }
     
-    func fitTheCell(cell: IssueCollectionViewCell) {
+    func makeCellFitTableHeight(cell: IssueCollectionViewCell) {
         
         guard cell.cellIsFit == false else { return }
         
@@ -132,7 +132,8 @@ extension BoardViewController: UICollectionViewDataSource {
         cell.issueTableViewController?.issueList = collectionData[indexPath.row] as? NSMutableArray
         
         // Make the cell fit its content
-        fitTheCell(cell: cell)
+        cell.setTableViewInitialHeight()
+        cell.issueTableView.makeCellFitTableHeight(animated: false)
         
         return cell
     }

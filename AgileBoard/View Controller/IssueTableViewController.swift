@@ -268,25 +268,32 @@ extension IssueTableViewController: UITableViewDropDelegate {
         
         guard let destinationIndexPath = coordinator.destinationIndexPath else { return }
         
+       
+        
         for item in coordinator.items {
             
             guard let dragIssueItem = item.dragItem.localObject as? DragIssueItem else { return }
             
             let sourceIssueList = dragIssueItem.issueList
             let sourceIndexPath = dragIssueItem.indexPath
-            let sourceTableView = dragIssueItem.tableView
+            let sourceTableView = dragIssueItem.tableView as! IssueTableView
+            // Get source table view's cell
+            let cell = sourceTableView.cellForRow(at: sourceIndexPath)
             
             // Add drag item to the destination
             let issue = sourceIssueList![sourceIndexPath.row]
             issueList?.insert(issue, at: destinationIndexPath.row)
+            tableView.insertRows(at: [destinationIndexPath], with: .automatic)
 
             // Remove the drag item from the source
-        
-            
             sourceIssueList?.remove(issue)
             sourceTableView.deleteRows(at: [sourceIndexPath], with: .automatic)
-
-            tableView.reloadData()
+            sourceTableView.makeCellFitTableHeight(animated: true)
+            
+            // Reload the destination table view
+            let destinationTableView = tableView as! IssueTableView
+            destinationTableView.increaseTableHeight(with: cell!.frame.height)
+            
         }
         
     }

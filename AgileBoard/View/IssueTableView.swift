@@ -12,8 +12,10 @@ class IssueTableView: UITableView{
     
     var initialCenter = CGPoint()
     var panGesture: UIPanGestureRecognizer?
-    
-    var visibleCellHeight: CGFloat?
+        
+    // Table view initial height and minimum height
+    var initialHeight: CGFloat?
+    var minHeight: CGFloat?
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -73,6 +75,67 @@ class IssueTableView: UITableView{
           // On cancellation, return the piece to its original location.
           //piece.center = initialCenter
        }
+    }
+    
+    ///
+    /// Make the collection cell fit the table view height
+    ///
+    func makeCellFitTableHeight(animated:Bool = false) {
+        
+        guard let initialHeight = self.initialHeight else { return }
+        
+        UIView.animate(withDuration: 0, animations: {
+            self.layoutIfNeeded()
+            }) { (complete) in
+                var visibelCellHeight: CGFloat = 0.0
+                // Get visible cells and sum up their heights
+                let cells = self.visibleCells
+                for cell in cells {
+                    visibelCellHeight += cell.frame.height
+                }
+                
+                visibelCellHeight = visibelCellHeight < initialHeight ? visibelCellHeight : initialHeight
+                
+                self.tableHeightConstraint.constant = visibelCellHeight
+                
+                if animated {
+                    UIView.animate(withDuration: 0.5) {
+                        self.superview?.layoutIfNeeded()
+                    }
+                }
+                else {
+                    self.superview?.layoutIfNeeded()
+                }
+                
+                
+                print("Visible cell height \(visibelCellHeight)")
+        }
+        
+    }
+    
+    ///
+    /// Increase the table height's constraint
+    ///
+    func increaseTableHeight(with height: CGFloat) {
+        
+        var newHeight = tableHeightConstraint.constant + height
+        newHeight = newHeight < initialHeight! ? newHeight : initialHeight!
+        
+        tableHeightConstraint.constant = newHeight
+        
+        UIView.animate(withDuration: 0.5) {
+            self.superview?.layoutIfNeeded()
+        }
+    }
+    
+    ///
+    /// Set inital height for the table view
+    ///
+    func setInitialHeightConstraint(height: CGFloat) {
+        
+        tableHeightConstraint.constant = height
+        initialHeight = height
+        
     }
     
 }

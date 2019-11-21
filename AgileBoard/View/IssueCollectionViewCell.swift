@@ -58,6 +58,20 @@ class IssueCollectionViewCell: UICollectionViewCell {
         cellFooterView.layer.cornerRadius = 5.0
         cellFooterView.layer.masksToBounds = true
         cellFooterView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner] // bottom left corner, bottom right corner respectively
+        
+        // Set estimated height for the table view
+        print("Collection cell height: \(self.tableEstimatedHeight)")
+        issueTableView.initialHeight = self.tableEstimatedHeight
+        issueTableView.tableHeightConstraint.constant = self.tableEstimatedHeight
+        issueTableView.layoutIfNeeded()
+    }
+    
+    ///
+    /// Set inital height for the table view
+    ///
+    func setTableViewInitialHeight() {
+        issueTableView.initialHeight = tableEstimatedHeight
+        issueTableView.tableHeightConstraint.constant = tableEstimatedHeight
     }
     
 }
