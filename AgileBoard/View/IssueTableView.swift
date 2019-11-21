@@ -20,6 +20,7 @@ class IssueTableView: UITableView{
         
         // Enable drag operation
         self.dragInteractionEnabled = true
+        
     }
     
     var tableHeightConstraint: NSLayoutConstraint {

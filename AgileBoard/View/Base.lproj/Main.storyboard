@@ -50,7 +50,7 @@
                             </pageControl>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ude-ek-oj3" userLabel="Issue Collection View">
                                 <rect key="frame" x="0.0" y="124" width="375" height="457"/>
-                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <gestureRecognizers/>
                                 <collectionViewLayout key="collectionViewLayout" id="fED-GC-6yZ" customClass="IssueCollectionViewFlowLayout" customModule="AgileBoard" customModuleProvider="target"/>
                                 <cells/>

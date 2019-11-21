@@ -160,10 +160,7 @@ class IssueTableViewController: UITableViewController {
         
         let issue = issueList?[indexPath.row] as! Issue
         cell.summaryLabel.text = issue.summary
-        
-        //print(Unmanaged.passUnretained(issueList[0]!).toOpaque())
-                
-        print("Table view cell is loading")
+                    
         return cell
     }
     
@@ -232,6 +229,26 @@ extension IssueTableViewController: UITableViewDragDelegate {
         
     }
     
+    func tableView(_ tableView: UITableView, dragPreviewParametersForRowAt indexPath: IndexPath) -> UIDragPreviewParameters? {
+        
+        // Get cell at index path
+        let cell = tableView.cellForRow(at: indexPath)
+        
+        let previewParameter = UIDragPreviewParameters()
+        
+        // Change the background color
+        previewParameter.backgroundColor = .none
+        
+        // make the cell round when draging
+        let padding: CGFloat = 7.0
+        let bounds = cell!.bounds
+        let rect = CGRect(x: padding, y: padding, width: bounds.width - padding * 2, height: bounds.height - padding * 2)
+        
+        previewParameter.visiblePath = UIBezierPath(roundedRect: rect, cornerRadius: 7.0)
+        
+        return previewParameter
+    }
+    
 }
 
 // MARK: - UITableViewDropDelegate
@@ -268,11 +285,30 @@ extension IssueTableViewController: UITableViewDropDelegate {
             
             sourceIssueList?.remove(issue)
             sourceTableView.deleteRows(at: [sourceIndexPath], with: .automatic)
-            //sourceTableView.reloadData()
 
             tableView.reloadData()
         }
         
+    }
+    
+    func tableView(_ tableView: UITableView, dropPreviewParametersForRowAt indexPath: IndexPath) -> UIDragPreviewParameters? {
+        
+        // Get cell at index path
+        let cell = tableView.cellForRow(at: indexPath)
+        
+        let previewParameter = UIDragPreviewParameters()
+        
+        // Change the background color
+        previewParameter.backgroundColor = .none
+        
+        // make the cell round when draging
+        let padding: CGFloat = 7.0
+        let bounds = cell!.bounds
+        let rect = CGRect(x: padding, y: padding, width: bounds.width - padding * 2, height: bounds.height - padding * 2)
+        
+        previewParameter.visiblePath = UIBezierPath(roundedRect: rect, cornerRadius: 7.0)
+        
+        return previewParameter
     }
     
 }

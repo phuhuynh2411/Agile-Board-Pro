@@ -22,13 +22,16 @@ class IssueTableViewCell: UITableViewCell {
         cellBackgroundView.layer.masksToBounds = true
         
         selectionStyle = .none
+        //self.backgroundColor = UIColor(displayP3Red: 255, green: 255, blue: 255, alpha: 0.1)
+        self.backgroundColor = .none
+        self.layer.cornerRadius = 7.0
+        self.layer.masksToBounds = true
+        
+
+        // Adjust selected cell's background view
+        // self.selectedBackgroundView?.layer.cornerRadius = 7.0
+        // self.selectedBackgroundView?.layer.masksToBounds = true
                 
     }
-
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//
-//        // Configure the view for the selected state
-//    }
     
 }

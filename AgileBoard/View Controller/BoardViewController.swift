@@ -134,7 +134,6 @@ extension BoardViewController: UICollectionViewDataSource {
         // Make the cell fit its content
         fitTheCell(cell: cell)
         
-        print("Collection cell: Loaded")
         return cell
     }
     

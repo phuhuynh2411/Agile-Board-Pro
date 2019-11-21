@@ -49,6 +49,7 @@
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VAI-Yh-EkV" customClass="IssueTableView" customModule="AgileBoard" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="40" width="336" height="227"/>
+                                <color key="backgroundColor" red="0.95686274510000002" green="0.96078431369999995" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="227" identifier="tableHeightConstraint" id="kEh-i1-gwC"/>
                                 </constraints>
@@ -68,7 +69,6 @@
                     </view>
                 </subviews>
             </view>
-            <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="NSA-nv-f1k" secondAttribute="trailing" id="Tpd-ax-iBs"/>
                 <constraint firstAttribute="bottom" secondItem="NSA-nv-f1k" secondAttribute="bottom" id="V1p-Hh-ewy"/>
