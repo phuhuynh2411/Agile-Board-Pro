@@ -38,10 +38,16 @@ class IssueCollectionViewCell: UICollectionViewCell {
         
         // Initilize the issue table view controller
         issueTableViewController = IssueTableViewController(style: .plain)
+        issueTableViewController?.issueTableView = issueTableView
         
         // Set data source and delegate to the table view
         issueTableView.dataSource = issueTableViewController
         issueTableView.delegate = issueTableViewController
+        issueTableViewController?.tableView = issueTableView
+        
+        // Set table view drag and dropx delegate
+        issueTableView.dragDelegate = issueTableViewController
+        issueTableView.dropDelegate = issueTableViewController
         
         
         // Round the header and footer

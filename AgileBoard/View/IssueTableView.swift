@@ -17,6 +17,9 @@ class IssueTableView: UITableView{
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        
+        // Enable drag operation
+        self.dragInteractionEnabled = true
     }
     
     var tableHeightConstraint: NSLayoutConstraint {

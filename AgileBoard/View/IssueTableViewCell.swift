@@ -20,13 +20,15 @@ class IssueTableViewCell: UITableViewCell {
         
         cellBackgroundView.layer.cornerRadius = 7.0
         cellBackgroundView.layer.masksToBounds = true
+        
+        selectionStyle = .none
                 
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
+//    override func setSelected(_ selected: Bool, animated: Bool) {
+//        super.setSelected(selected, animated: animated)
+//
+//        // Configure the view for the selected state
+//    }
     
 }

@@ -12,7 +12,7 @@ class BoardViewController: UIViewController {
     
     // MARK: - Properties
     
-    let dataList1 = [
+    var dataList1: NSMutableArray = [
         Issue(summary: "Sed posuere consectetur est at lobortis."),
         Issue(summary: "Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit."),
         Issue(summary: "Aenean lacinia bibendum nulla sed consectetur."),
@@ -27,18 +27,18 @@ class BoardViewController: UIViewController {
         Issue(summary: "Aenean lacinia bibendum nulla sed consectetur.")
     ]
     
-    let dataList2 = [
+    var dataList2: NSMutableArray = [
            Issue(summary: "Sed posuere consectetur est at lobortis."),
            Issue(summary: "Morbi leo risus, porta ac consectetur ac, vestibulum at eros."),
            Issue(summary: "Integer posuere erat a ante venenatis dapibus posuere velit aliquet.")
     ]
-    let dataList3 = [
+    var dataList3: NSMutableArray = [
            Issue(summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."),
            Issue(summary: "Donec ullamcorper nulla non metus auctor fringilla."),
            Issue(summary: "Donec sed odio dui."),
            Issue(summary: "Integer posuere erat a ante venenatis dapibus posuere velit aliquet.")
     ]
-    var collectionData = [[Issue]]()
+    var collectionData = NSMutableArray()
     
     // MARK: - Outlets
     
@@ -52,9 +52,9 @@ class BoardViewController: UIViewController {
     
     override func viewDidLoad() {
                 
-        collectionData.append(dataList1)
-        collectionData.append(dataList2)
-        collectionData.append(dataList3)
+        collectionData.add(dataList1)
+        collectionData.add(dataList2)
+        collectionData.add(dataList3)
         
         // Set the number of pages for the page control
         self.pageControl.numberOfPages = collectionData.count
@@ -129,11 +129,12 @@ extension BoardViewController: UICollectionViewDataSource {
                         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifier.IssueCollectionViewCell, for: indexPath) as! IssueCollectionViewCell
         
-        cell.issueTableViewController?.issueList = collectionData[indexPath.row]
+        cell.issueTableViewController?.issueList = collectionData[indexPath.row] as? NSMutableArray
         
         // Make the cell fit its content
         fitTheCell(cell: cell)
         
+        print("Collection cell: Loaded")
         return cell
     }
     
