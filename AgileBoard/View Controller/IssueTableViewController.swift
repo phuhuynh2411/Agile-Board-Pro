@@ -224,6 +224,7 @@ extension IssueTableViewController: UITableViewDragDelegate {
         let dragItem = UIDragItem(itemProvider: itemProvider)
         let dragIssue = DragIssueItem(issueList: issueList, indexPath: indexPath, tableView: tableView)
         dragItem.localObject = dragIssue
+        session.localContext = dragIssue
         
         return [dragItem]
         
@@ -256,6 +257,17 @@ extension IssueTableViewController: UITableViewDragDelegate {
 extension IssueTableViewController: UITableViewDropDelegate {
     
     func tableView(_ tableView: UITableView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UITableViewDropProposal {
+        
+        // Add an animation when dragging through an empty table view
+        if  tableView.numberOfRows(inSection: 0) == 0 {
+            let dragIssueItem = session.localDragSession?.localContext as! DragIssueItem
+            let sourceTableView = dragIssueItem.tableView
+            let cell = sourceTableView.cellForRow(at: dragIssueItem.indexPath)
+            
+            let issueTableView = tableView as! IssueTableView
+            issueTableView.setTableViewHeight(height: cell!.frame.height, animated: true)
+            issueTableView.addDashedBorder()
+        }
 
         if session.localDragSession != nil { // Drag originated from the same app.
             return UITableViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
@@ -263,12 +275,17 @@ extension IssueTableViewController: UITableViewDropDelegate {
 
         return UITableViewDropProposal(operation: .cancel, intent: .unspecified)
     }
+    
+    func tableView(_ tableView: UITableView, dropSessionDidEnd session: UIDropSession) {
+            
+        let issueTableView = tableView as! IssueTableView
+        issueTableView.removeDashedBorder()
+        issueTableView.makeCellFitTableHeight(animated: true)
+        
+    }
 
     func tableView(_ tableView: UITableView, performDropWith coordinator: UITableViewDropCoordinator) {
         
-        guard let destinationIndexPath = coordinator.destinationIndexPath else { return }
-        
-       
         
         for item in coordinator.items {
             
@@ -279,12 +296,21 @@ extension IssueTableViewController: UITableViewDropDelegate {
             let sourceTableView = dragIssueItem.tableView as! IssueTableView
             // Get source table view's cell
             let cell = sourceTableView.cellForRow(at: sourceIndexPath)
-            
-            // Add drag item to the destination
             let issue = sourceIssueList![sourceIndexPath.row]
-            issueList?.insert(issue, at: destinationIndexPath.row)
-            tableView.insertRows(at: [destinationIndexPath], with: .automatic)
 
+            if let destinationIndexPath = coordinator.destinationIndexPath{
+                
+                // Add drag item to the destination
+                issueList?.insert(issue, at: destinationIndexPath.row)
+                tableView.insertRows(at: [destinationIndexPath], with: .automatic)
+                
+            }
+            // Draging an issue into an empty table view
+            else {
+                issueList?.add(issue)
+                tableView.reloadData()
+            }
+            
             // Remove the drag item from the source
             sourceIssueList?.remove(issue)
             sourceTableView.deleteRows(at: [sourceIndexPath], with: .automatic)
@@ -292,7 +318,11 @@ extension IssueTableViewController: UITableViewDropDelegate {
             
             // Reload the destination table view
             let destinationTableView = tableView as! IssueTableView
-            destinationTableView.increaseTableHeight(with: cell!.frame.height)
+            destinationTableView.reloadData()
+            // Only increase the cell height if the number of rows is greater than one
+            if destinationTableView.numberOfRows(inSection: 0) > 1 {
+                destinationTableView.increaseTableHeight(with: cell!.frame.height)
+            }
             
         }
         
@@ -317,5 +347,26 @@ extension IssueTableViewController: UITableViewDropDelegate {
         
         return previewParameter
     }
+    
+//    func tableView(_ tableView: UITableView, dropSessionDidEnter session: UIDropSession) {
+//
+//        // Only add this animation if the table view is empty
+//        guard  tableView.numberOfRows(inSection: 0) == 0 else { return }
+//
+//        print("Drop section did enter \(tableView.numberOfRows(inSection: 0)))")
+//
+//        let issueTableView = tableView as! IssueTableView
+//        issueTableView.increaseTableHeight(with: 30.0)
+//
+//    }
+//
+//    func tableView(_ tableView: UITableView, dropSessionDidExit session: UIDropSession) {
+//
+//        guard  tableView.numberOfRows(inSection: 0) == 0 else { return }
+//        print("Drop exit")
+//        let issueTableView = tableView as! IssueTableView
+//        issueTableView.makeCellFitTableHeight()
+//
+//    }
     
 }

@@ -18,16 +18,16 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zE3-Lu-VIF" userLabel="Background View">
-                        <rect key="frame" x="7" y="7" width="361" height="109"/>
+                        <rect key="frame" x="8" y="4" width="359" height="115"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mdx-f7-mAs">
-                                <rect key="frame" x="8" y="8" width="307" height="65"/>
+                                <rect key="frame" x="8" y="8" width="305" height="71"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3Ph-GR-asg">
-                                <rect key="frame" x="323" y="8" width="30" height="30"/>
+                                <rect key="frame" x="321" y="8" width="30" height="30"/>
                                 <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="AmT-GQ-A2M"/>
@@ -35,7 +35,7 @@
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="25u-fb-9Dj">
-                                <rect key="frame" x="8" y="81" width="20" height="20"/>
+                                <rect key="frame" x="8" y="87" width="20" height="20"/>
                                 <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="O8t-dJ-kbg"/>
@@ -57,10 +57,10 @@
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="zE3-Lu-VIF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="0jz-r8-mv8"/>
-                    <constraint firstAttribute="bottom" secondItem="zE3-Lu-VIF" secondAttribute="bottom" constant="7" id="2cC-Aa-2Ve"/>
-                    <constraint firstItem="zE3-Lu-VIF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="7" id="Rhk-EG-fGM"/>
-                    <constraint firstAttribute="trailing" secondItem="zE3-Lu-VIF" secondAttribute="trailing" constant="7" id="S9A-sJ-AzU"/>
+                    <constraint firstItem="zE3-Lu-VIF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="0jz-r8-mv8"/>
+                    <constraint firstAttribute="bottom" secondItem="zE3-Lu-VIF" secondAttribute="bottom" constant="4" id="2cC-Aa-2Ve"/>
+                    <constraint firstItem="zE3-Lu-VIF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="Rhk-EG-fGM"/>
+                    <constraint firstAttribute="trailing" secondItem="zE3-Lu-VIF" secondAttribute="trailing" constant="8" id="S9A-sJ-AzU"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
