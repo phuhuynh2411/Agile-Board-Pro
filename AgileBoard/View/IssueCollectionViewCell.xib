@@ -23,13 +23,22 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jbX-r8-Opn" userLabel="Header View">
                                 <rect key="frame" x="0.0" y="0.0" width="336" height="40"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TO DO (3)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l8z-gF-F08">
-                                        <rect key="frame" x="8" y="11.5" width="67" height="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TO DO" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l8z-gF-F08">
+                                        <rect key="frame" x="8" y="11.5" width="50" height="17"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="17" id="jsu-ZA-Fbt"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                        <color key="textColor" red="0.088295377790000004" green="0.1492104232" blue="0.2823681831" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="33" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G6e-jD-lpj">
+                                        <rect key="frame" x="66" y="10" width="21" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="u3Z-mI-bUg"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                        <color key="textColor" red="0.65988522770000002" green="0.685388267" blue="0.72941917180000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -37,6 +46,8 @@
                                 <constraints>
                                     <constraint firstItem="l8z-gF-F08" firstAttribute="leading" secondItem="jbX-r8-Opn" secondAttribute="leading" constant="8" id="1z7-g2-LDJ"/>
                                     <constraint firstAttribute="height" constant="40" id="BhJ-Rn-5fy"/>
+                                    <constraint firstItem="G6e-jD-lpj" firstAttribute="leading" secondItem="l8z-gF-F08" secondAttribute="trailing" constant="8" id="M9X-G5-8eE"/>
+                                    <constraint firstItem="G6e-jD-lpj" firstAttribute="centerY" secondItem="jbX-r8-Opn" secondAttribute="centerY" id="dzW-P6-o0A"/>
                                     <constraint firstItem="l8z-gF-F08" firstAttribute="centerY" secondItem="jbX-r8-Opn" secondAttribute="centerY" id="fph-Tl-Xf1"/>
                                 </constraints>
                             </view>
@@ -80,6 +91,7 @@
             <connections>
                 <outlet property="cellFooterView" destination="YVf-Ii-e0A" id="51V-mo-bcR"/>
                 <outlet property="cellHeaderView" destination="jbX-r8-Opn" id="Lew-7R-GnI"/>
+                <outlet property="countLabel" destination="G6e-jD-lpj" id="8Gi-Kh-adk"/>
                 <outlet property="headerLabel" destination="l8z-gF-F08" id="q9b-I3-v2Z"/>
                 <outlet property="issueTableView" destination="VAI-Yh-EkV" id="O0U-4R-tdB"/>
                 <outlet property="tableViewHeightConstraint" destination="kEh-i1-gwC" id="BtQ-5q-zHM"/>

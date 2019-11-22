@@ -66,7 +66,11 @@ class IssueTableViewController: UITableViewController {
     // MARK: - Table View Data Source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return issueList?.count ?? 0
+        
+        let numberOfRow = issueList?.count ?? 0
+        issueTableView?.countLabel?.text = "\(numberOfRow)"
+        return numberOfRow
+        
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -282,6 +286,7 @@ extension IssueTableViewController: UITableViewDropDelegate {
         previewParameter.visiblePath = UIBezierPath(roundedRect: rect, cornerRadius: 7.0)
 
         return previewParameter
+        
     }
 
     

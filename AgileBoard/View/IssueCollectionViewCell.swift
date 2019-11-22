@@ -15,7 +15,8 @@ class IssueCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var cellHeaderView: UIView!
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var cellFooterView: UIView!
-        
+    @IBOutlet weak var countLabel: UILabel!
+    
     @IBOutlet weak var tableViewHeightConstraint: NSLayoutConstraint!
         
     var issueTableViewController: IssueTableViewController?
@@ -65,6 +66,9 @@ class IssueCollectionViewCell: UICollectionViewCell {
         issueTableView.initialHeight = self.tableEstimatedHeight
         issueTableView.tableHeightConstraint.constant = self.tableEstimatedHeight
         issueTableView.layoutIfNeeded()
+        
+        // Pass Collection Cell's Count Label to the table view
+        issueTableView.countLabel = countLabel
     }
     
     ///

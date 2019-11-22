@@ -126,10 +126,10 @@ extension BoardViewController: UICollectionViewDataSource {
         
         // Get all issues by status
         let issues = project?.issues.filter("status = %@", status!)
-    
         
         cell.setUpTableView(issueList: issues!, column: columns?[indexPath.row])
         cell.headerLabel.text = columns?[indexPath.row].name
+        cell.countLabel.text = "\(issues!.count)"
         
         // Make the cell fit its content
         cell.setTableViewInitialHeight()

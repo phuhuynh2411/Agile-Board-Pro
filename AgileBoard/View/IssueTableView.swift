@@ -18,7 +18,10 @@ class IssueTableView: UITableView{
     var minHeight: CGFloat?
     
     // Dashed border
-    var shapeLayer: CAShapeLayer?
+    fileprivate var shapeLayer: CAShapeLayer?
+    
+    // Collection Cell's Count Label
+    var countLabel: UILabel?
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
