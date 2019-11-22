@@ -139,3 +139,18 @@ extension BoardViewController: UICollectionViewDataSource {
     }
     
 }
+
+// MARK: - Collection Delegate
+
+extension BoardViewController: UICollectionViewDelegate {
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        
+        // Calculate the current page number based on the scroll view offset
+        let pageWidth = scrollView.frame.size.width
+        let pageNumber: Int = Int(floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1)
+        pageControl.currentPage = pageNumber
+        
+    }
+    
+}
