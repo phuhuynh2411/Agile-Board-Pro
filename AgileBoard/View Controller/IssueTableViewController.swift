@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class IssueTableViewController: UITableViewController {
     
@@ -16,7 +17,8 @@ class IssueTableViewController: UITableViewController {
     
     // MARK: - Properties
     
-    var issueList: NSMutableArray?
+    var issueList: Results<Issue>?
+    var collumn: Column?
     
     var columnIndexPath: IndexPath?
     
@@ -59,95 +61,6 @@ class IssueTableViewController: UITableViewController {
         
     }
     
-    // MARK: - Drag and Drop Zone
-    
-//    @objc func longPressGestureRecognized(gestureRecognizer: UIGestureRecognizer) {
-//
-//        print("Long press recognized")
-//
-//        let longpress = gestureRecognizer as! UILongPressGestureRecognizer
-//        let state = longpress.state
-//        let locationInView = longpress.location(in: self.tableView)
-//        let indexPath = self.tableView.indexPathForRow(at: locationInView)
-//
-//        switch state {
-//        case .began:
-//            if indexPath != nil {
-//                Path.initialIndexPath = indexPath
-//                let cell = self.tableView.cellForRow(at: indexPath!) as! IssueTableViewCell
-//                My.cellSnapShot = snapshopOfCell(inputView: cell)
-//                var center = cell.center
-//                My.cellSnapShot?.center = center
-//                My.cellSnapShot?.alpha = 0.0
-//                self.tableView.addSubview(My.cellSnapShot!)
-//
-//                UIView.animate(withDuration: 0.25, animations: {
-//                    center.y = locationInView.y
-//                    My.cellSnapShot?.center = center
-//                    My.cellSnapShot?.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
-//                    My.cellSnapShot?.alpha = 0.98
-//                    cell.alpha = 0.0
-//                }, completion: { (finished) -> Void in
-//                    if finished {
-//                        cell.isHidden = true
-//                    }
-//                })
-//            }
-//
-//        case .changed:
-//            var center = My.cellSnapShot?.center
-//            center?.y = locationInView.y
-//            My.cellSnapShot?.center = center!
-//            if ((indexPath != nil) && (indexPath != Path.initialIndexPath)) {
-//
-//                self.issueList?.swapAt((indexPath?.row)!, (Path.initialIndexPath?.row)!)
-//                //swap(&self.wayPoints[(indexPath?.row)!], &self.wayPoints[(Path.initialIndexPath?.row)!])
-//                self.tableView.moveRow(at: Path.initialIndexPath!, to: indexPath!)
-//                Path.initialIndexPath = indexPath
-//            }
-//
-//        default:
-//            let cell = self.tableView.cellForRow(at: Path.initialIndexPath!) as! IssueTableViewCell
-//            cell.isHidden = false
-//            cell.alpha = 0.0
-//            UIView.animate(withDuration: 0.25, animations: {
-//                My.cellSnapShot?.center = cell.center
-//                My.cellSnapShot?.transform = .identity
-//                My.cellSnapShot?.alpha = 0.0
-//                cell.alpha = 1.0
-//            }, completion: { (finished) -> Void in
-//                if finished {
-//                    Path.initialIndexPath = nil
-//                    My.cellSnapShot?.removeFromSuperview()
-//                    My.cellSnapShot = nil
-//                }
-//            })
-//        }
-//    }
-//
-//    func snapshopOfCell(inputView: UIView) -> UIView {
-//
-//        UIGraphicsBeginImageContextWithOptions(inputView.bounds.size, false, 0.0)
-//        inputView.layer.render(in: UIGraphicsGetCurrentContext()!)
-//        let image = UIGraphicsGetImageFromCurrentImageContext()!
-//        UIGraphicsEndImageContext()
-//        let cellSnapshot : UIView = UIImageView(image: image)
-//        cellSnapshot.layer.masksToBounds = false
-//        cellSnapshot.layer.cornerRadius = 0.0
-//        cellSnapshot.layer.shadowOffset = CGSize(width: -5.0, height: 0.0)
-//        cellSnapshot.layer.shadowRadius = 5.0
-//        cellSnapshot.layer.shadowOpacity = 0.4
-//        return cellSnapshot
-//    }
-//
-//    struct My {
-//        static var cellSnapShot: UIView? = nil
-//    }
-//
-//    struct Path {
-//        static var initialIndexPath: IndexPath? = nil
-//    }
-    
     // MARK: - Table View Data Source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -158,8 +71,9 @@ class IssueTableViewController: UITableViewController {
                 
         let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.IssueTableViewCell, for: indexPath) as! IssueTableViewCell
         
-        let issue = issueList?[indexPath.row] as! Issue
-        cell.summaryLabel.text = issue.summary
+        let issue = issueList?[indexPath.row]
+        
+        cell.summaryLabel.text = issue?.summary
                     
         return cell
     }
@@ -217,9 +131,7 @@ extension IssueTableViewController {
 extension IssueTableViewController: UITableViewDragDelegate {
     
     func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
-        
-        //let issue = issueList?[indexPath.row]
-        
+                
         let itemProvider = NSItemProvider()
         let dragItem = UIDragItem(itemProvider: itemProvider)
         let dragIssue = DragIssueItem(issueList: issueList, indexPath: indexPath, tableView: tableView)
@@ -260,6 +172,7 @@ extension IssueTableViewController: UITableViewDropDelegate {
         
         // Add an animation when dragging through an empty table view
         if  tableView.numberOfRows(inSection: 0) == 0 {
+            
             let dragIssueItem = session.localDragSession?.localContext as! DragIssueItem
             let sourceTableView = dragIssueItem.tableView
             let cell = sourceTableView.cellForRow(at: dragIssueItem.indexPath)
@@ -267,6 +180,7 @@ extension IssueTableViewController: UITableViewDropDelegate {
             let issueTableView = tableView as! IssueTableView
             issueTableView.setTableViewHeight(height: cell!.frame.height, animated: true)
             issueTableView.addDashedBorder()
+            
         }
 
         if session.localDragSession != nil { // Drag originated from the same app.
@@ -297,22 +211,32 @@ extension IssueTableViewController: UITableViewDropDelegate {
             // Get source table view's cell
             let cell = sourceTableView.cellForRow(at: sourceIndexPath)
             let issue = sourceIssueList![sourceIndexPath.row]
+            
 
             if let destinationIndexPath = coordinator.destinationIndexPath{
-                
                 // Add drag item to the destination
-                issueList?.insert(issue, at: destinationIndexPath.row)
+                let realm = try! Realm()
+                try! realm.write {
+                    issue.status = collumn?.status
+                    
+                }
+                // issueList?.insert(issue, at: destinationIndexPath.row)
                 tableView.insertRows(at: [destinationIndexPath], with: .automatic)
                 
             }
             // Draging an issue into an empty table view
             else {
-                issueList?.add(issue)
+                let realm = try! Realm()
+                try! realm.write {
+                    issue.status = collumn?.status
+                    
+                }
+                // issueList?.add(issue)
                 tableView.reloadData()
             }
             
             // Remove the drag item from the source
-            sourceIssueList?.remove(issue)
+            // sourceIssueList?.remove(issue)
             sourceTableView.deleteRows(at: [sourceIndexPath], with: .automatic)
             sourceTableView.makeCellFitTableHeight(animated: true)
             
@@ -348,25 +272,5 @@ extension IssueTableViewController: UITableViewDropDelegate {
         return previewParameter
     }
     
-//    func tableView(_ tableView: UITableView, dropSessionDidEnter session: UIDropSession) {
-//
-//        // Only add this animation if the table view is empty
-//        guard  tableView.numberOfRows(inSection: 0) == 0 else { return }
-//
-//        print("Drop section did enter \(tableView.numberOfRows(inSection: 0)))")
-//
-//        let issueTableView = tableView as! IssueTableView
-//        issueTableView.increaseTableHeight(with: 30.0)
-//
-//    }
-//
-//    func tableView(_ tableView: UITableView, dropSessionDidExit session: UIDropSession) {
-//
-//        guard  tableView.numberOfRows(inSection: 0) == 0 else { return }
-//        print("Drop exit")
-//        let issueTableView = tableView as! IssueTableView
-//        issueTableView.makeCellFitTableHeight()
-//
-//    }
     
 }

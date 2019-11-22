@@ -7,38 +7,9 @@
 //
 
 import UIKit
+import RealmSwift
 
 class BoardViewController: UIViewController {
-    
-    // MARK: - Properties
-    
-    var dataList1: NSMutableArray = [
-        Issue(summary: "Sed posuere consectetur est at lobortis."),
-        Issue(summary: "Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit."),
-        Issue(summary: "Aenean lacinia bibendum nulla sed consectetur."),
-        Issue(summary: "Sed posuere consectetur est at lobortis."),
-        Issue(summary: "Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit."),
-        Issue(summary: "Aenean lacinia bibendum nulla sed consectetur."),
-        Issue(summary: "Sed posuere consectetur est at lobortis."),
-        Issue(summary: "Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit."),
-        Issue(summary: "Aenean lacinia bibendum nulla sed consectetur."),
-        Issue(summary: "Sed posuere consectetur est at lobortis."),
-        Issue(summary: "Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit."),
-        Issue(summary: "Aenean lacinia bibendum nulla sed consectetur.")
-    ]
-    
-    var dataList2: NSMutableArray = [
-           Issue(summary: "Sed posuere consectetur est at lobortis."),
-           Issue(summary: "Morbi leo risus, porta ac consectetur ac, vestibulum at eros."),
-           Issue(summary: "Integer posuere erat a ante venenatis dapibus posuere velit aliquet.")
-    ]
-    var dataList3: NSMutableArray = [
-           Issue(summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."),
-           Issue(summary: "Donec ullamcorper nulla non metus auctor fringilla."),
-           Issue(summary: "Donec sed odio dui."),
-           Issue(summary: "Integer posuere erat a ante venenatis dapibus posuere velit aliquet.")
-    ]
-    var collectionData = NSMutableArray()
     
     // MARK: - Outlets
     
@@ -49,15 +20,31 @@ class BoardViewController: UIViewController {
     // Issue table view controller
     @IBOutlet var issueTableViewController: IssueTableViewController!
     
+    // Project
+    var project: Project?
     
     override func viewDidLoad() {
-                
-        collectionData.add(dataList1)
-        collectionData.add(dataList2)
-        collectionData.add(dataList3)
+        
+        // Load project sample data
+        project = ProjectManager.loadProjectSampleData()
+        
+        // Get the default Realm
+        let realm = try! Realm()
+        
+        
+        // Clean the previous data
+        try! realm.write {
+            realm.deleteAll()
+        }
+        
+        // Add th project to realm inside a transaction
+        try! realm.write {
+            realm.add(project!)
+        }
         
         // Set the number of pages for the page control
-        self.pageControl.numberOfPages = collectionData.count
+        let columns = project?.boards.first?.columns
+        self.pageControl.numberOfPages = columns!.count
         
         // Remove navigation border
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for:.default)
@@ -122,14 +109,27 @@ class BoardViewController: UIViewController {
 extension BoardViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return collectionData.count
+        
+        let columns = project?.boards.first?.columns
+        
+        return columns?.count ?? 0
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
                         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifier.IssueCollectionViewCell, for: indexPath) as! IssueCollectionViewCell
         
-        cell.issueTableViewController?.issueList = collectionData[indexPath.row] as? NSMutableArray
+        // The columns of the first board
+        let columns = project?.boards.first?.columns
+        let status = columns?[indexPath.row].status
+        
+        // Get all issues by status
+        let issues = project?.issues.filter("status = %@", status!)
+        
+        cell.issueTableViewController?.issueList = issues
+        cell.issueTableViewController?.collumn  = columns?[indexPath.row]
+        cell.headerLabel.text = columns?[indexPath.row].name
         
         // Make the cell fit its content
         cell.setTableViewInitialHeight()

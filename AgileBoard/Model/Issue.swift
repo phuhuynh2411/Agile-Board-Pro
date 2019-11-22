@@ -6,12 +6,17 @@
 //  Copyright © 2019 Filesoft. All rights reserved.
 //
 
-import UIKit
-class Issue {
-    var summary: String = ""
-    var assignee: UIImage?
+import RealmSwift
+
+class Issue: Object {
     
-    init(summary: String){
-        self.summary = summary
-    }
+    @objc dynamic var id = UUID().uuidString
+    @objc dynamic var summary = ""
+    @objc dynamic var assignee: String?
+    
+    // A issue belongs to either one or more projects
+    let projectOwners = LinkingObjects(fromType: Project.self, property: "issues")
+    
+    // A issue only has one status
+    @objc dynamic var status: Status?
 }

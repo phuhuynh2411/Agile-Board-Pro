@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import RealmSwift
 
 class DragIssueItem {
-    var issueList: NSMutableArray?
+    var issueList: Results<Issue>?
     let indexPath: IndexPath
     let tableView: UITableView
     
-    init(issueList: NSMutableArray?, indexPath: IndexPath, tableView: UITableView){
+    init(issueList: Results<Issue>?, indexPath: IndexPath, tableView: UITableView){
         self.issueList = issueList
         self.indexPath = indexPath
         self.tableView = tableView

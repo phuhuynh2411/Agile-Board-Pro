@@ -1,5 +1,5 @@
 //
-//  Project.swift
+//  Column.swift
 //  AgileBoard
 //
 //  Created by Huynh Tan Phu on 11/22/19.
@@ -8,14 +8,12 @@
 
 import RealmSwift
 
-class Project: Object {
+class Column: Object {
     
     @objc dynamic var id = UUID().uuidString
     @objc dynamic var name = ""
+    @objc dynamic var status: Status?
     
-    // A project has many boards
-    let boards = List<Board>()
-    // A project has many issues
-    let issues = List<Issue>()
-    
+    // A column belongs to either one or more boards
+    var boardOwners = LinkingObjects(fromType: Board.self, property: "columns")
 }
