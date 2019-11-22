@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class IssueCollectionViewCell: UICollectionViewCell {
 
@@ -74,4 +75,16 @@ class IssueCollectionViewCell: UICollectionViewCell {
         issueTableView.tableHeightConstraint.constant = tableEstimatedHeight
     }
     
+    ///
+    /// Initilize the data for the table view
+    ///
+    func setUpTableView(issueList: Results<Issue>, column: Column?) {
+        
+        if issueTableViewController?.issueList == nil {
+            issueTableViewController?.issueList = List<Issue>()
+            issueTableViewController?.issueList?.append(objectsIn: issueList)
+        }
+        issueTableViewController?.collumn = column
+        
+    }
 }
