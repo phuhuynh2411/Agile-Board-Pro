@@ -241,9 +241,9 @@ extension IssueTableViewController: UITableViewDragDelegate {
         previewParameter.backgroundColor = .none
         
         // make the cell round when draging
-        let padding: CGFloat = 7.0
+        let padding: CGFloat = 8.0
         let bounds = cell!.bounds
-        let rect = CGRect(x: padding, y: padding, width: bounds.width - padding * 2, height: bounds.height - padding * 2)
+        let rect = CGRect(x: padding, y: padding/2, width: bounds.width - padding * 2, height: bounds.height - padding)
         
         previewParameter.visiblePath = UIBezierPath(roundedRect: rect, cornerRadius: 7.0)
         

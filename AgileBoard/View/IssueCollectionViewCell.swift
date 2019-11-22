@@ -30,6 +30,7 @@ class IssueCollectionViewCell: UICollectionViewCell {
     }
         
     override func awakeFromNib() {
+        
         super.awakeFromNib()
         
         // Register custom cell for the issue table view
@@ -60,7 +61,6 @@ class IssueCollectionViewCell: UICollectionViewCell {
         cellFooterView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner] // bottom left corner, bottom right corner respectively
         
         // Set estimated height for the table view
-        print("Collection cell height: \(self.tableEstimatedHeight)")
         issueTableView.initialHeight = self.tableEstimatedHeight
         issueTableView.tableHeightConstraint.constant = self.tableEstimatedHeight
         issueTableView.layoutIfNeeded()
