@@ -230,14 +230,14 @@ extension IssueTableViewController: UITableViewDropDelegate {
             }
             // MOVE AN ITEM TO ANOTHER TABLE VIEW
             // When users drag the item after the last item
-            else if let desIndexPath = destinationIndexPath {
+            else if let desIndexPath = destinationIndexPath, let sourceCell = cell {
                 
                 let lastIndexPath = IndexPath(item: desIndexPath.row - 1, section: desIndexPath.section)
                 
                 if let lastCell = tableView.cellForRow(at: lastIndexPath) {
                     let height = lastCell.frame.height
                     let newY = lastCell.frame.maxY
-                    let frame = CGRect(x: cell!.frame.minX, y: newY, width: cell!.frame.width, height: height)
+                    let frame = CGRect(x: sourceCell.frame.minX, y: newY, width: sourceCell.frame.width, height: height)
                     issueTableView.addDashedBorder(at: frame)
                 }
                 
@@ -250,14 +250,6 @@ extension IssueTableViewController: UITableViewDropDelegate {
         }
 
         return UITableViewDropProposal(operation: .cancel, intent: .unspecified)
-    }
-
-    func tableView(_ tableView: UITableView, dropSessionDidEnd session: UIDropSession) {
-
-        let issueTableView = tableView as! IssueTableView
-        // issueTableView.removeDashedBorder()
-        issueTableView.makeCellFitTableHeight(animated: true)
-
     }
 
     func tableView(_ tableView: UITableView, performDropWith coordinator: UITableViewDropCoordinator) {
@@ -307,14 +299,16 @@ extension IssueTableViewController: UITableViewDropDelegate {
             }
             sourceTableView.deleteRows(at: [sourceIndexPath], with: .automatic)
             sourceTableView.makeCellFitTableHeight(animated: true)
+            sourceTableView.reloadData()
 
             // Reload the destination table view
             let destinationTableView = tableView as! IssueTableView
-            destinationTableView.reloadData()
+            
             // Only increase the cell height if the number of rows is greater than one
             if destinationTableView.numberOfRows(inSection: 0) > 1 {
                 destinationTableView.increaseTableHeight(with: cell!.frame.height)
             }
+            destinationTableView.reloadData()
 
         }
 

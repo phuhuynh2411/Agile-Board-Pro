@@ -22,7 +22,7 @@ class BoardViewController: UIViewController {
     
     // Project
     var project: Project?
-    
+        
     override func viewDidLoad() {
         
         // Set the number of pages for the page control
@@ -42,47 +42,52 @@ class BoardViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         
+        // Auto calculate the collecition view cell's width and height
         setCellSize()
         
+        // Show or Hide the page control
+        showHidePageControl()
+        
     }
     
+    ///
+    /// Set the collection view cell's width and height
+    ///
     func setCellSize() {
         
-        if let flowLayout = issueCollectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
-            
-            let frame = issueCollectionView.frame
-            
-            flowLayout.itemSize = CGSize(width: frame.width - 40, height: frame.height )
-            
+        let frame = issueCollectionView.frame
+        var width: CGFloat = 0.0
+        let height: CGFloat = frame.height
+        
+        // Portrait mode
+        if UIDevice.current.orientation.isPortrait {
+            width = UIScreen.main.bounds.width - 40
         }
+            // Landscape mode
+        else {
+            width = UIScreen.main.bounds.height - 40
+        }
+        
+        if let flowLayout = issueCollectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
+            flowLayout.itemSize = CGSize(width: width, height: height )
+        }
+        
     }
     
-    func makeCellFitTableHeight(cell: IssueCollectionViewCell) {
-        
-        guard cell.cellIsFit == false else { return }
-        
-        cell.issueTableView.tableHeightConstraint.constant = cell.tableEstimatedHeight
-               
-        UIView.animate(withDuration: 0, animations: {
-            cell.issueTableView.layoutIfNeeded()
-            }) { (complete) in
-                var heightOfTableView: CGFloat = 0.0
-                // Get visible cells and sum up their heights
-                let cells = cell.issueTableView.visibleCells
-                for cell in cells {
-                    heightOfTableView += cell.frame.height
-                }
-                
-                cell.cellIsFit = true
-
-                heightOfTableView = heightOfTableView < cell.tableEstimatedHeight ? heightOfTableView : cell.tableEstimatedHeight
-                
-                cell.issueTableView.tableHeightConstraint.constant = heightOfTableView
-                
-                cell.layoutIfNeeded()
-                
+    ///
+    /// Show/hide the page control
+    /// Hide the page control if the orientation is Landscape
+    /// Show the page control if the orientation is Portrait
+    ///
+    func showHidePageControl() {
+        // Portrait mode
+        if UIDevice.current.orientation.isPortrait {
+            pageControl.isHidden = false
         }
-        
+        // Landscape mode
+        else {
+            pageControl.isHidden = true
+        }
     }
 
 }
@@ -117,7 +122,7 @@ extension BoardViewController: UICollectionViewDataSource {
         // Make the cell fit its content
         cell.setTableViewInitialHeight()
         cell.issueTableView.makeCellFitTableHeight(animated: false)
-        
+                        
         return cell
     }
     
@@ -130,10 +135,52 @@ extension BoardViewController: UICollectionViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         
         // Calculate the current page number based on the scroll view offset
-        let pageWidth = scrollView.frame.size.width
-        let pageNumber: Int = Int(floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1)
-        pageControl.currentPage = pageNumber
+//        let pageWidth = scrollView.frame.size.width
+//        let pageNumber: Int = Int(floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1)
+//        pageControl.currentPage = pageNumber
         
     }
     
+}
+
+// MARK: - Orientation Changes
+
+extension BoardViewController {
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        
+        // Reload the collection data when users change the orientation
+        // Portait/Landscape mode
+        issueCollectionView.reloadData()
+        
+    }
+    
+}
+
+// MARK: - UIScrollViewDelegate
+
+extension BoardViewController: UIScrollViewDelegate {
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        
+        // Stop scrollView sliding:
+        targetContentOffset.pointee = scrollView.contentOffset
+        
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        
+        // Re-calculate the paging
+        let pageWidth = scrollView.frame.size.width
+        let pageNumber: Int = Int(floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1)
+        
+        let newX = CGFloat(pageNumber) * pageWidth - 30
+        
+        let rect = CGRect(x: newX, y: 0, width: scrollView.frame.width, height: scrollView.frame.height)
+        scrollView.scrollRectToVisible(rect, animated: true)
+        
+        // Update the page number
+        pageControl.currentPage = pageNumber
+        
+    }
 }
