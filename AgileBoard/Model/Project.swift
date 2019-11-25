@@ -12,6 +12,7 @@ class Project: Object {
     
     @objc dynamic var id = UUID().uuidString
     @objc dynamic var name = ""
+    @objc dynamic var projectDescription = ""
     
     // A project has many boards
     let boards = List<Board>()

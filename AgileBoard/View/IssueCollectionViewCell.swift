@@ -86,7 +86,16 @@ class IssueCollectionViewCell: UICollectionViewCell {
         
         if issueTableViewController?.issueList == nil {
             issueTableViewController?.issueList = List<Issue>()
-            issueTableViewController?.issueList?.append(objectsIn: issueList)
+            
+            let realm = try! Realm()
+            do{
+                try realm.write {
+                    issueTableViewController?.issueList?.append(objectsIn: issueList)
+                }
+            }catch let error as NSError {
+                print(error.description)
+            }
+           
         }
         issueTableViewController?.collumn = column
         

@@ -25,26 +25,9 @@ class BoardViewController: UIViewController {
     
     override func viewDidLoad() {
         
-        // Load project sample data
-        project = ProjectManager.loadProjectSampleData()
-        
-        // Get the default Realm
-        let realm = try! Realm()
-        
-        
-        // Clean the previous data
-        try! realm.write {
-            realm.deleteAll()
-        }
-        
-        // Add th project to realm inside a transaction
-        try! realm.write {
-            realm.add(project!)
-        }
-        
         // Set the number of pages for the page control
         let columns = project?.boards.first?.columns
-        self.pageControl.numberOfPages = columns!.count
+        self.pageControl.numberOfPages = columns?.count ?? 0
         
         // Remove navigation border
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for:.default)

@@ -9,6 +9,9 @@
 import Foundation
 
 class Identifier {
+    
     static let IssueTableViewCell = "IssueTableViewCell"
     static let IssueCollectionViewCell = "IssueCollectionViewCell"
+    static let BoardViewControllerSegue = "BoardViewControllerSegue"
+    
 }

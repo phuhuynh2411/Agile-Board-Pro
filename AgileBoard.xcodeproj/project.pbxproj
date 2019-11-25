@@ -28,6 +28,8 @@
 		847A781823878AEC00911851 /* ProjectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847A781723878AEC00911851 /* ProjectManager.swift */; };
 		84A51AC0237AF8DD00477B75 /* IssueTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A51ABF237AF8DD00477B75 /* IssueTableViewController.swift */; };
 		84BF40C1237D47C800600AE7 /* UIPanGestureRecognizer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BF40C0237D47C800600AE7 /* UIPanGestureRecognizer+Extension.swift */; };
+		84C340E42388361D00C65AC9 /* ProjectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C340E32388361D00C65AC9 /* ProjectTableViewController.swift */; };
+		84C340E62388368900C65AC9 /* ProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C340E52388368900C65AC9 /* ProjectTableViewCell.swift */; };
 		84DB1E02237B0EFA008BB31A /* IssueTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DB1E01237B0EFA008BB31A /* IssueTableView.swift */; };
 		84F56A05237C5B56007E6C68 /* UIColor+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F56A04237C5B56007E6C68 /* UIColor+Extention.swift */; };
 		84F5FF9C238538FB00F2E966 /* DragIssueItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F5FF9B238538FB00F2E966 /* DragIssueItem.swift */; };
@@ -56,6 +58,8 @@
 		847A781723878AEC00911851 /* ProjectManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectManager.swift; sourceTree = "<group>"; };
 		84A51ABF237AF8DD00477B75 /* IssueTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueTableViewController.swift; sourceTree = "<group>"; };
 		84BF40C0237D47C800600AE7 /* UIPanGestureRecognizer+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIPanGestureRecognizer+Extension.swift"; sourceTree = SOURCE_ROOT; };
+		84C340E32388361D00C65AC9 /* ProjectTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTableViewController.swift; sourceTree = "<group>"; };
+		84C340E52388368900C65AC9 /* ProjectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTableViewCell.swift; sourceTree = "<group>"; };
 		84DB1E01237B0EFA008BB31A /* IssueTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueTableView.swift; sourceTree = "<group>"; };
 		84F56A04237C5B56007E6C68 /* UIColor+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIColor+Extention.swift"; path = "AgileBoard/View/UIColor+Extention.swift"; sourceTree = SOURCE_ROOT; };
 		84F5FF9B238538FB00F2E966 /* DragIssueItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragIssueItem.swift; sourceTree = "<group>"; };
@@ -109,6 +113,7 @@
 		8420628D237AFE950076CDAC /* View Controller */ = {
 			isa = PBXGroup;
 			children = (
+				84C340E32388361D00C65AC9 /* ProjectTableViewController.swift */,
 				843C8987237AE7460050586E /* BoardViewController.swift */,
 				84A51ABF237AF8DD00477B75 /* IssueTableViewController.swift */,
 				84F5FF9B238538FB00F2E966 /* DragIssueItem.swift */,
@@ -149,6 +154,7 @@
 		84206291237AFED20076CDAC /* Custom Cell */ = {
 			isa = PBXGroup;
 			children = (
+				84C340E52388368900C65AC9 /* ProjectTableViewCell.swift */,
 				8442DC3D237E7DF8008C88C6 /* IssueTableViewCell.swift */,
 				8442DC3E237E7DF8008C88C6 /* IssueTableViewCell.xib */,
 				8442DC39237E7B92008C88C6 /* IssueCollectionViewCell.swift */,
@@ -322,8 +328,10 @@
 				84A51AC0237AF8DD00477B75 /* IssueTableViewController.swift in Sources */,
 				847A781823878AEC00911851 /* ProjectManager.swift in Sources */,
 				8442DC3B237E7B92008C88C6 /* IssueCollectionViewCell.swift in Sources */,
+				84C340E62388368900C65AC9 /* ProjectTableViewCell.swift in Sources */,
 				8420628C237AFD7E0076CDAC /* Issue.swift in Sources */,
 				847A781623877FB500911851 /* Column.swift in Sources */,
+				84C340E42388361D00C65AC9 /* ProjectTableViewController.swift in Sources */,
 				847A78142387758F00911851 /* Project.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

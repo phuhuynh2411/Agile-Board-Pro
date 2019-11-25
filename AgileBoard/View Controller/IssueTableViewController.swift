@@ -45,7 +45,8 @@ class IssueTableViewController: UITableViewController {
         // Register custome cell
         let nibName = UINib(nibName: Identifier.IssueTableViewCell, bundle: .main)
         tableView.register(nibName, forCellReuseIdentifier: Identifier.IssueTableViewCell)
-       
+        
+     
     }
     
     override func viewDidLayoutSubviews() {
@@ -127,15 +128,21 @@ class IssueTableViewController: UITableViewController {
 extension IssueTableViewController {
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        
+        // Remove the dashed rectangle if any
+        let issueTableView = tableView as! IssueTableView
+        issueTableView.removeDashedBorder()
+        
         print("Move row at \(sourceIndexPath) to \(destinationIndexPath)")
+       // let sourceIssue = issueList[sourceIndexPath.row]
         do{
             try realm.write {
-                 issueList?.move(from: sourceIndexPath.row, to: destinationIndexPath.row)
+                 //issueList?.move(from: sourceIndexPath.row, to: destinationIndexPath.row)
+                issueList?.swapAt(sourceIndexPath.row, destinationIndexPath.row)
             }
         }catch let error as NSError {
             print(error.description)
         }
-       
     }
     
 }
@@ -183,18 +190,59 @@ extension IssueTableViewController: UITableViewDragDelegate {
 extension IssueTableViewController: UITableViewDropDelegate {
 
     func tableView(_ tableView: UITableView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UITableViewDropProposal {
-
+        
+        let dragIssueItem = session.localDragSession?.localContext as! DragIssueItem
+        let sourceTableView = dragIssueItem.tableView
+        let cell = sourceTableView.cellForRow(at: dragIssueItem.indexPath)
+        let issueTableView = tableView as! IssueTableView
+        let sourceInDexPath = dragIssueItem.indexPath
+        
         // Add an animation when dragging through an empty table view
         if  tableView.numberOfRows(inSection: 0) == 0 {
-
-            let dragIssueItem = session.localDragSession?.localContext as! DragIssueItem
-            let sourceTableView = dragIssueItem.tableView
-            let cell = sourceTableView.cellForRow(at: dragIssueItem.indexPath)
-
-            let issueTableView = tableView as! IssueTableView
             issueTableView.setTableViewHeight(height: cell!.frame.height, animated: true)
             issueTableView.addDashedBorder()
 
+        }
+        // Add a dashed rectangle at the drop position
+        else {
+            if let desIndexPath = destinationIndexPath, let desCell = tableView.cellForRow(at: desIndexPath) {
+                
+                // MOVE AN ITEM INSIDE THE TABLE VIEW
+                // Change the frame's height based on the drop possition
+                var newY = desIndexPath < sourceInDexPath ? desCell.frame.minY - cell!.frame.height : desCell.frame.maxY
+                var height = cell!.frame.height
+                // Revert the frame's height if draging and dropping at the same position
+                if sourceInDexPath == desIndexPath {
+                    newY = desCell.frame.minY
+                }
+                
+                // MOVE AN ITEM FROM A TABLE VIEW TO ANOTHER ONE
+                if sourceTableView != tableView {
+                    // Recalculate the Y position
+                    newY = desCell.frame.minY - desCell.frame.height
+                    height = desCell.frame.height
+                }
+                
+                let frame = CGRect(x: desCell.frame.minX, y: newY, width: cell!.frame.width, height: height)
+                issueTableView.addDashedBorder(at: frame)
+                
+
+            }
+            // MOVE AN ITEM TO ANOTHER TABLE VIEW
+            // When users drag the item after the last item
+            else if let desIndexPath = destinationIndexPath {
+                
+                let lastIndexPath = IndexPath(item: desIndexPath.row - 1, section: desIndexPath.section)
+                
+                if let lastCell = tableView.cellForRow(at: lastIndexPath) {
+                    let height = lastCell.frame.height
+                    let newY = lastCell.frame.maxY
+                    let frame = CGRect(x: cell!.frame.minX, y: newY, width: cell!.frame.width, height: height)
+                    issueTableView.addDashedBorder(at: frame)
+                }
+                
+            }
+            
         }
 
         if session.localDragSession != nil { // Drag originated from the same app.
@@ -207,12 +255,16 @@ extension IssueTableViewController: UITableViewDropDelegate {
     func tableView(_ tableView: UITableView, dropSessionDidEnd session: UIDropSession) {
 
         let issueTableView = tableView as! IssueTableView
-        issueTableView.removeDashedBorder()
+        // issueTableView.removeDashedBorder()
         issueTableView.makeCellFitTableHeight(animated: true)
 
     }
 
     func tableView(_ tableView: UITableView, performDropWith coordinator: UITableViewDropCoordinator) {
+        
+        // Remove the dashed rectangle if any
+        let issueTableView = tableView as! IssueTableView
+        issueTableView.removeDashedBorder()
 
         for item in coordinator.items {
 
@@ -286,6 +338,15 @@ extension IssueTableViewController: UITableViewDropDelegate {
         previewParameter.visiblePath = UIBezierPath(roundedRect: rect, cornerRadius: 7.0)
 
         return previewParameter
+        
+    }
+    
+    func tableView(_ tableView: UITableView, dropSessionDidExit session: UIDropSession) {
+        
+        // Remove the dashed rectangle if users drag the item
+        // outside of the table view
+        let issueTableView = tableView as! IssueTableView
+        issueTableView.removeDashedBorder()
         
     }
 
