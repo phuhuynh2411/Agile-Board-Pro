@@ -155,7 +155,8 @@ extension IssueTableViewController: UITableViewDragDelegate {
 
         let itemProvider = NSItemProvider()
         let dragItem = UIDragItem(itemProvider: itemProvider)
-        let dragIssue = DragIssueItem(issueList: issueList!, indexPath: indexPath, tableView: tableView)
+        let cell = tableView.cellForRow(at: indexPath)
+        let dragIssue = DragIssueItem(issueList: issueList!, indexPath: indexPath, tableView: tableView, cell: cell!)
         dragItem.localObject = dragIssue
         session.localContext = dragIssue
 
@@ -193,13 +194,16 @@ extension IssueTableViewController: UITableViewDropDelegate {
         
         let dragIssueItem = session.localDragSession?.localContext as! DragIssueItem
         let sourceTableView = dragIssueItem.tableView
-        let cell = sourceTableView.cellForRow(at: dragIssueItem.indexPath)
+        let cell = dragIssueItem.cell
         let issueTableView = tableView as! IssueTableView
         let sourceInDexPath = dragIssueItem.indexPath
         
+        // Remove dashed border
+        issueTableView.removeDashedBorder()
+        
         // Add an animation when dragging through an empty table view
-        if  tableView.numberOfRows(inSection: 0) == 0 {
-            issueTableView.setTableViewHeight(height: cell!.frame.height, animated: true)
+        if  tableView.numberOfRows(inSection: 0) == 0{
+            issueTableView.setTableViewHeight(height: cell.frame.height, animated: true)
             issueTableView.addDashedBorder()
 
         }
@@ -209,38 +213,40 @@ extension IssueTableViewController: UITableViewDropDelegate {
                 
                 // MOVE AN ITEM INSIDE THE TABLE VIEW
                 // Change the frame's height based on the drop possition
-                var newY = desIndexPath < sourceInDexPath ? desCell.frame.minY - cell!.frame.height : desCell.frame.maxY
-                var height = cell!.frame.height
-                // Revert the frame's height if draging and dropping at the same position
-                if sourceInDexPath == desIndexPath {
-                    newY = desCell.frame.minY
-                }
+                var minY = desIndexPath < sourceInDexPath ? desCell.frame.minY - cell.frame.height : desCell.frame.maxY
+                // If dragging and dropping at the same index path
+                // The minY should be equal to the source cell's min Y
+                minY = desIndexPath == sourceInDexPath ? cell.frame.minY : minY
+                
+                var height = cell.frame.height
                 
                 // MOVE AN ITEM FROM A TABLE VIEW TO ANOTHER ONE
                 if sourceTableView != tableView {
                     // Recalculate the Y position
-                    newY = desCell.frame.minY - desCell.frame.height
+                    minY = desCell.frame.minY - desCell.frame.height
                     height = desCell.frame.height
                 }
                 
-                let frame = CGRect(x: desCell.frame.minX, y: newY, width: cell!.frame.width, height: height)
+                let frame = CGRect(x: desCell.frame.minX, y: minY, width: cell.frame.width, height: height)
                 issueTableView.addDashedBorder(at: frame)
                 
-
             }
             // MOVE AN ITEM TO ANOTHER TABLE VIEW
             // When users drag the item after the last item
-            else if let desIndexPath = destinationIndexPath, let sourceCell = cell {
+            else if let desIndexPath = destinationIndexPath{
                 
                 let lastIndexPath = IndexPath(item: desIndexPath.row - 1, section: desIndexPath.section)
                 
                 if let lastCell = tableView.cellForRow(at: lastIndexPath) {
                     let height = lastCell.frame.height
                     let newY = lastCell.frame.maxY
-                    let frame = CGRect(x: sourceCell.frame.minX, y: newY, width: sourceCell.frame.width, height: height)
+                    let frame = CGRect(x: cell.frame.minX, y: newY, width: cell.frame.width, height: height)
                     issueTableView.addDashedBorder(at: frame)
                 }
                 
+            }
+            else {
+                print("New case which has not been handel by code yet!!!")
             }
             
         }

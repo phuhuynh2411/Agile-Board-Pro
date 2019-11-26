@@ -22,12 +22,17 @@ class ProjectTableViewController: UITableViewController {
         super.viewDidLoad()
         
         // Load project sample data
-        //let project = ProjectManager.loadProjectSampleData()
+        let project = ProjectManager.loadProjectSampleData()
+        
+        // Clear previous data
+        try! realm.write {
+            realm.deleteAll()
+        }
 
         // Add th project to realm inside a transaction
-//        try! realm.write {
-//            realm.add(project)
-//        }
+        try! realm.write {
+            realm.add(project)
+        }
         
         // Get all projects from Realm database
         projectList = realm.objects(Project.self)

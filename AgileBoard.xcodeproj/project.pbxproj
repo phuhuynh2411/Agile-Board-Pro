@@ -21,6 +21,7 @@
 		8442DC40237E7DF8008C88C6 /* IssueTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8442DC3E237E7DF8008C88C6 /* IssueTableViewCell.xib */; };
 		8442DC42237E969C008C88C6 /* Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8442DC41237E969C008C88C6 /* Identifier.swift */; };
 		8458B443237CF98500D6D473 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8458B442237CF98500D6D473 /* ShadowView.swift */; };
+		846B6A8C238CCA7600569BC2 /* IssuePageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846B6A8B238CCA7600569BC2 /* IssuePageControl.swift */; };
 		847A78102387711600911851 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847A780F2387711600911851 /* Status.swift */; };
 		847A78122387745D00911851 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847A78112387745D00911851 /* Board.swift */; };
 		847A78142387758F00911851 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847A78132387758F00911851 /* Project.swift */; };
@@ -51,6 +52,7 @@
 		8442DC3E237E7DF8008C88C6 /* IssueTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = IssueTableViewCell.xib; path = AgileBoard/View/IssueTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		8442DC41237E969C008C88C6 /* Identifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifier.swift; sourceTree = "<group>"; };
 		8458B442237CF98500D6D473 /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
+		846B6A8B238CCA7600569BC2 /* IssuePageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssuePageControl.swift; sourceTree = "<group>"; };
 		847A780F2387711600911851 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		847A78112387745D00911851 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		847A78132387758F00911851 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				84206291237AFED20076CDAC /* Custom Cell */,
 				8458B442237CF98500D6D473 /* ShadowView.swift */,
 				841B42F123844275000871F6 /* IssueCollectionViewLayout.swift */,
+				846B6A8B238CCA7600569BC2 /* IssuePageControl.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 				84BF40C1237D47C800600AE7 /* UIPanGestureRecognizer+Extension.swift in Sources */,
 				84A51AC0237AF8DD00477B75 /* IssueTableViewController.swift in Sources */,
 				847A781823878AEC00911851 /* ProjectManager.swift in Sources */,
+				846B6A8C238CCA7600569BC2 /* IssuePageControl.swift in Sources */,
 				8442DC3B237E7B92008C88C6 /* IssueCollectionViewCell.swift in Sources */,
 				84C340E62388368900C65AC9 /* ProjectTableViewCell.swift in Sources */,
 				8420628C237AFD7E0076CDAC /* Issue.swift in Sources */,

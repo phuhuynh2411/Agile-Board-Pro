@@ -14,9 +14,12 @@ class DragIssueItem {
     let indexPath: IndexPath
     let tableView: UITableView
     
-    init(issueList: List<Issue>, indexPath: IndexPath, tableView: UITableView){
+    var cell: UITableViewCell
+    
+    init(issueList: List<Issue>, indexPath: IndexPath, tableView: UITableView, cell: UITableViewCell){
         self.issueList = issueList
         self.indexPath = indexPath
         self.tableView = tableView
+        self.cell = cell
     }
 }

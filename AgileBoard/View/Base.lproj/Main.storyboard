@@ -16,10 +16,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="S2E-3z-RmC">
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="S2E-3z-RmC" customClass="IssuePageControl" customModule="AgileBoard" customModuleProvider="target">
                                 <rect key="frame" x="16" y="581" width="343" height="37"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="37" id="Kga-hZ-QSD"/>
+                                    <constraint firstAttribute="height" constant="37" identifier="heightConstrant" id="Kga-hZ-QSD"/>
                                 </constraints>
                                 <color key="pageIndicatorTintColor" red="0.92156862745098034" green="0.92549019607843142" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="currentPageIndicatorTintColor" red="0.6470588235294118" green="0.67843137254901964" blue="0.72941176470588232" alpha="1" colorSpace="calibratedRGB"/>
@@ -38,7 +38,6 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="S2E-3z-RmC" firstAttribute="top" secondItem="Ude-ek-oj3" secondAttribute="bottom" id="2Z1-2d-NfD"/>
                             <constraint firstItem="S2E-3z-RmC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Sr3-Gs-gnc"/>
                             <constraint firstItem="S2E-3z-RmC" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="a9k-nd-KEn"/>
                             <constraint firstItem="Ude-ek-oj3" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="aMn-DK-1vP"/>
@@ -46,7 +45,6 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="S2E-3z-RmC" secondAttribute="trailing" constant="16" id="int-Mj-e8W"/>
                             <constraint firstItem="Ude-ek-oj3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="jts-bh-Zps"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Ude-ek-oj3" secondAttribute="trailing" id="myj-j6-jFw"/>
-                            <constraint firstItem="S2E-3z-RmC" firstAttribute="top" secondItem="Ude-ek-oj3" secondAttribute="bottom" id="zVL-zN-2dF"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

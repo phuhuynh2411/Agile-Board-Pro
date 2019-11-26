@@ -219,7 +219,6 @@ class IssueTableView: UITableView{
         shapeLayer?.lineDashPattern = [9,6]
         shapeLayer?.path = UIBezierPath(roundedRect: CGRect(x: frame.minX + 8, y: frame.minY + 4, width: shapeRect.width - 16, height: shapeRect.height - 8), cornerRadius: 7).cgPath
 
-       
         self.layer.addSublayer(self.shapeLayer!)
         
     }

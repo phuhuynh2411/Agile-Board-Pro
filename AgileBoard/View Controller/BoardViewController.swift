@@ -48,6 +48,9 @@ class BoardViewController: UIViewController {
         // Show or Hide the page control
         showHidePageControl()
         
+        // Adjust Paging based the portrait and landscape mode
+        adjustPaging()
+        
     }
     
     ///
@@ -80,15 +83,32 @@ class BoardViewController: UIViewController {
     /// Show the page control if the orientation is Portrait
     ///
     func showHidePageControl() {
+        
+        let issuePageControl = pageControl as! IssuePageControl
         // Portrait mode
         if UIDevice.current.orientation.isPortrait {
-            pageControl.isHidden = false
+            issuePageControl.setVisible(state: true, with: 37)
         }
         // Landscape mode
         else {
-            pageControl.isHidden = true
+            issuePageControl.setVisible(state: false, with: 10)
         }
     }
+    
+    /**
+        Enables the paging in portrait mode and disables the paging in landscape mode
+     */
+    func adjustPaging() {
+        
+        if UIDevice.current.orientation.isPortrait {
+            issueCollectionView.isPagingEnabled = true
+        }
+        else {
+            issueCollectionView.isPagingEnabled = false
+        }
+        
+    }
+    
 
 }
 
@@ -128,27 +148,18 @@ extension BoardViewController: UICollectionViewDataSource {
     
 }
 
-// MARK: - Collection Delegate
-
-extension BoardViewController: UICollectionViewDelegate {
-    
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        
-        // Calculate the current page number based on the scroll view offset
-//        let pageWidth = scrollView.frame.size.width
-//        let pageNumber: Int = Int(floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1)
-//        pageControl.currentPage = pageNumber
-        
-    }
-    
-}
-
 // MARK: - Orientation Changes
 
 extension BoardViewController {
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         
+        // Adjusts the paging of the collection view
+        adjustPaging()
+        
+        // Show or hide the page control
+        showHidePageControl()
+
         // Reload the collection data when users change the orientation
         // Portait/Landscape mode
         issueCollectionView.reloadData()
@@ -163,6 +174,8 @@ extension BoardViewController: UIScrollViewDelegate {
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         
+        // Only perform the following lines in portrait mode
+        guard UIDevice.current.orientation.isPortrait else { return }
         // Stop scrollView sliding:
         targetContentOffset.pointee = scrollView.contentOffset
         
@@ -170,11 +183,14 @@ extension BoardViewController: UIScrollViewDelegate {
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         
+        // Only perform the following lines in portrait mode
+        guard UIDevice.current.orientation.isPortrait else { return }
+        
         // Re-calculate the paging
         let pageWidth = scrollView.frame.size.width
         let pageNumber: Int = Int(floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1)
         
-        let newX = CGFloat(pageNumber) * pageWidth - 30
+        let newX = CGFloat(pageNumber) * pageWidth - CGFloat(30 * pageNumber)
         
         let rect = CGRect(x: newX, y: 0, width: scrollView.frame.width, height: scrollView.frame.height)
         scrollView.scrollRectToVisible(rect, animated: true)
