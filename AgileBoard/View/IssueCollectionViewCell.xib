@@ -62,7 +62,7 @@
                                 <rect key="frame" x="0.0" y="40" width="336" height="227"/>
                                 <color key="backgroundColor" red="0.95686274510000002" green="0.96078431369999995" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="227" identifier="tableHeightConstraint" id="kEh-i1-gwC"/>
+                                    <constraint firstAttribute="height" constant="227" identifier="heightConstraint" id="1a3-1b-MYV"/>
                                 </constraints>
                             </tableView>
                         </subviews>
@@ -80,6 +80,7 @@
                     </view>
                 </subviews>
             </view>
+            <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="NSA-nv-f1k" secondAttribute="trailing" id="Tpd-ax-iBs"/>
                 <constraint firstAttribute="bottom" secondItem="NSA-nv-f1k" secondAttribute="bottom" id="V1p-Hh-ewy"/>
@@ -94,7 +95,6 @@
                 <outlet property="countLabel" destination="G6e-jD-lpj" id="8Gi-Kh-adk"/>
                 <outlet property="headerLabel" destination="l8z-gF-F08" id="q9b-I3-v2Z"/>
                 <outlet property="issueTableView" destination="VAI-Yh-EkV" id="O0U-4R-tdB"/>
-                <outlet property="tableViewHeightConstraint" destination="kEh-i1-gwC" id="BtQ-5q-zHM"/>
             </connections>
             <point key="canvasLocation" x="-30.399999999999999" y="74.212893553223395"/>
         </collectionViewCell>

@@ -10,86 +10,76 @@ import UIKit
 
 class IssueTableView: UITableView{
     
-    var initialCenter = CGPoint()
-    var panGesture: UIPanGestureRecognizer?
-        
-    // Table view initial height and minimum height
-    var initialHeight: CGFloat?
-    var minHeight: CGFloat?
-    
-    // Dashed border
+    /// Dashed border
     fileprivate var shapeLayer: CAShapeLayer?
     
-    // Collection Cell's Count Label
-    var countLabel: UILabel?
-        
+    /// Table View Controller
+    var controller: IssueTableViewController?
+    
+    /// Table view height constraint
+    var heightConstraint: NSLayoutConstraint {
+        self.constraints.first { $0.identifier == "heightConstraint" }!
+    }
+    
+    /// The maximum height of the table view. It cannnot exceed this height
+    var maxHeight: CGFloat?
+    
+    /// Number of issue label. Passed from the collection view cell
+    var issueCountLabel: UILabel?
+            
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         
         // Enable drag operation
         self.dragInteractionEnabled = true
         
-    }
-    
-    var tableHeightConstraint: NSLayoutConstraint {
-        return self.constraints.first { $0.identifier == "tableHeightConstraint" }!
-    }
-    
-    func addPadGesture() {
-        panGesture = UIPanGestureRecognizer(target: self, action: #selector(panAction(gestureRecognizer:)))
-        self.addGestureRecognizer(panGesture!)
-    }
-    
-    func removePadGesture() {
-        self.removeGestureRecognizer(panGesture!)
-    }
-    
-    @objc func panAction(gestureRecognizer: UIPanGestureRecognizer) {
-        print("Pan gesture recognizer started!")
+        // Configure table view
+        configureTableView()
         
-        guard gestureRecognizer.view != nil else {return}
-       let piece = gestureRecognizer.view!
-   
-       // Get the changes in the X and Y directions relative to
-       // the superview's coordinate space.
-       let translation = gestureRecognizer.translation(in: piece)
-       if gestureRecognizer.state == .began {
-          // Save the view's original position.
-          //self.initialCenter = piece.center
-       }
-          // Update the position for the .began, .changed, and .ended states
-       if gestureRecognizer.state != .cancelled {
-           
-           if gestureRecognizer.verticalDirection(target: piece) == .Down || gestureRecognizer.verticalDirection(target: piece) == .Up {
-               // Add the X and Y translation to the view's original position.
-            let newCenter = CGPoint(x: piece.center.x, y: initialCenter.y + translation.y)
-            piece.center = newCenter
-            //gestureRecognizer.setTranslation(CGPoint.zero, in: piece)
-            
-           }
-            if gestureRecognizer.horizontalDirection(target: piece) == .Right {
-               print("Right Pan")
-                //removePadGesture()
-           }
-           if gestureRecognizer.horizontalDirection(target: piece) == .Left {
-               print("Left Pan")
-           }
-           
-         
-       }
-       else {
-          // On cancellation, return the piece to its original location.
-          //piece.center = initialCenter
-       }
     }
     
-    ///
-    /// Make the collection cell fit the table view height
-    ///
-    func makeCellFitTableHeight(animated:Bool = false) {
+    func configureTableView() {
         
-        guard let initialHeight = self.initialHeight else { return }
+        // Initilize the issue table view controller
+        controller = IssueTableViewController(style: .plain)
+        controller?.tableView = self
         
+        // Set data source and delegate to the table view
+        dataSource = controller
+        delegate = controller
+        
+        // Set table view drag and drop delegate
+        dragDelegate = controller
+        dropDelegate = controller
+        
+        let nib = UINib(nibName: Identifier.IssueTableViewCell, bundle: .main)
+        register(nib, forCellReuseIdentifier: Identifier.IssueTableViewCell)
+        
+    }
+    
+    /**
+     Resize the table view height to fit the visible cell height
+     - Parameters:
+        -   animated: adjusts the height with an animation within 0.5 second.
+        -   maxHeight: uses max height if the visible cell's height is greater than max height
+        -   minHeight: A minimum height of the table view.
+     - Returns: Do not return any value
+     */
+    func fitVisibleCellHeight(maxHeight: CGFloat = 0, minHeight: CGFloat = 0, animated: Bool = false) {
+        
+        // If the maxHeight is equal zero, make sure that the default table view
+        // maximum height was set up
+        if maxHeight == 0, self.maxHeight == nil{
+            fatalError("Need to set the maximum height for the table view")
+        }
+        
+        // Use the table view maximum height if the maxHeight is 0
+        let mHeight = maxHeight == 0 ? self.maxHeight! : maxHeight
+        
+        // Increase the table view to the max height before adjusting it to fit
+        heightConstraint.constant = mHeight
+        //self.layoutIfNeeded()
+                
         UIView.animate(withDuration: 0, animations: {
             self.layoutIfNeeded()
             }) { (complete) in
@@ -100,14 +90,10 @@ class IssueTableView: UITableView{
                     visibelCellHeight += cell.frame.height
                 }
                 
-                visibelCellHeight = visibelCellHeight < initialHeight ? visibelCellHeight : initialHeight
+                visibelCellHeight = visibelCellHeight < mHeight ? visibelCellHeight : mHeight
+                visibelCellHeight = visibelCellHeight < minHeight ? minHeight : visibelCellHeight
                 
-                if visibelCellHeight <= 0.0 {
-                    visibelCellHeight = 30
-                    self.minHeight = 30
-                }
-                
-                self.tableHeightConstraint.constant = visibelCellHeight
+                self.heightConstraint.constant = visibelCellHeight
                 
                 if animated {
                     UIView.animate(withDuration: 0.5) {
@@ -117,86 +103,83 @@ class IssueTableView: UITableView{
                 else {
                     self.superview?.layoutIfNeeded()
                 }
-                
         }
         
     }
     
-    ///
-    /// Increase the table height's constraint
-    ///
-    func increaseTableHeight(with height: CGFloat) {
+    /**
+     Increase table view's height
+     - Parameters:
+        - height: A height that will be added to the table view's height
+        - animated: indicate whether adding an animation when increasing the table view's height. The default value is true.
+     */
+    func increaseHeight(with height: CGFloat, animated: Bool = true) {
         
-        var newHeight = tableHeightConstraint.constant + height
-        newHeight = newHeight < initialHeight! ? newHeight : initialHeight!
-        
-        // Decrease the new height by min height if any
-        if let min = minHeight {
-            newHeight -= min
-            minHeight = nil
+        guard let maxHeight = self.maxHeight else {
+            fatalError("Need to set the maximum height for the table view before increasing the height")
         }
         
-        tableHeightConstraint.constant = newHeight
+        var newHeight = heightConstraint.constant + height
+        newHeight = newHeight < maxHeight ? newHeight : maxHeight
         
-        UIView.animate(withDuration: 0.5) {
-            self.superview?.layoutIfNeeded()
-        }
+        heightConstraint.constant = newHeight
         
-    }
-    
-    ///
-    /// Set inital height for the table view
-    ///
-    func setInitialHeightConstraint(height: CGFloat) {
-        
-        tableHeightConstraint.constant = height
-        initialHeight = height
-        
-    }
-    
-    ///
-    /// Update the table view height's constraint with animation
-    ///
-    func setTableViewHeight(height: CGFloat, animated: Bool = true) {
-        
-        tableHeightConstraint.constant = height
         if animated {
             UIView.animate(withDuration: 0.5) {
                 self.superview?.layoutIfNeeded()
             }
         }
-        
-        // Set min height to nil
-        minHeight = nil
-        
-    }
-    
-    ///
-    /// Add dashed border around the table view
-    ///
-    func addDashedBorder() {
-        
-        guard shapeLayer == nil else { return }
-
-        let color = UIColor.lightGray.cgColor
-
-        shapeLayer = CAShapeLayer()
-        let frameSize = self.frame.size
-        let shapeRect = CGRect(x: 0, y: 0, width: frameSize.width, height: frameSize.height)
-
-        shapeLayer?.bounds = shapeRect
-        shapeLayer?.position = CGPoint(x: frameSize.width/2, y: frameSize.height/2)
-        shapeLayer?.fillColor = UIColor.clear.cgColor
-        shapeLayer?.strokeColor = color
-        shapeLayer?.lineWidth = 2.0
-        shapeLayer?.lineJoin = CAShapeLayerLineJoin.round
-        shapeLayer?.lineDashPattern = [9,6]
-        shapeLayer?.path = UIBezierPath(roundedRect: CGRect(x: 8, y: 4, width: shapeRect.width - 16, height: shapeRect.height - 8), cornerRadius: 7).cgPath
-
-        self.layer.addSublayer(shapeLayer!)
+        else {
+            self.superview?.layoutIfNeeded()
+        }
         
     }
     
+    /**
+     Decrease the table view's height
+     - Parameters:
+        - height: the height that the table view height subtracts
+        - minHeight: the minimum height of the table view after subtracting
+        - animated: indicates whether adding an animation when descreasing the table view's height
+     */
+    func decreaseHeight(height: CGFloat, minHeight: CGFloat = 0, animated: Bool = true) {
+        
+        var newHeight = heightConstraint.constant - height
+        newHeight = newHeight < minHeight ? minHeight : newHeight
+        
+        heightConstraint.constant = newHeight
+        
+        if animated {
+            UIView.animate(withDuration: 0.5) {
+                self.superview?.layoutIfNeeded()
+            }
+        }
+        else {
+            self.superview?.layoutIfNeeded()
+        }
+    }
+    
+    /**
+     Set table view height
+     - Parameters:
+        - height: table view height
+        - animated: indicates whether adding an animation when increasing the table view's height. The default value is true.
+     */
+    func height(height: CGFloat, animated: Bool = true) {
+        
+        heightConstraint.constant = height
+        if animated {
+            UIView.animate(withDuration: 0.5) {
+                self.superview?.layoutIfNeeded()
+            }
+        }
+    }
+    
+    /**
+     Add a dashed border rectangle onto the table view
+     - Parameters:
+        - frame: the frame in which the dashed border rectangle is drawed
+     */
     func addDashedBorder(at frame: CGRect) {
         
         removeDashedBorder()
@@ -223,9 +206,9 @@ class IssueTableView: UITableView{
         
     }
     
-    ///
-    /// Remove the dashed border around the table view
-    ///
+    /**
+     Remove the dashed border rectangle on the table view
+     */
     func removeDashedBorder() {
         
         if shapeLayer != nil {
@@ -234,4 +217,5 @@ class IssueTableView: UITableView{
         }
         
     }
+    
 }

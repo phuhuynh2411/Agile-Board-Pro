@@ -11,22 +11,11 @@ import RealmSwift
 
 class IssueTableViewController: UITableViewController {
     
-    // MARK: - Outlets
-    @IBOutlet weak var issueCollectionView: UICollectionView!
-    @IBOutlet weak var assigneeCollectionView: UICollectionView!
-    
     // MARK: - Properties
     
     var issueList: List<Issue>?
-    var collumn: Column?
-    
-    var columnIndexPath: IndexPath?
-    
-    // a initial frame of Issue Collection View
-    var initialFrame: CGRect?
-    
-    var issueTableView: IssueTableView?
-    
+    var column: Column?
+            
     lazy var realm = try! Realm()
     
     // MARK: - Init Methods
@@ -45,23 +34,7 @@ class IssueTableViewController: UITableViewController {
         // Register custome cell
         let nibName = UINib(nibName: Identifier.IssueTableViewCell, bundle: .main)
         tableView.register(nibName, forCellReuseIdentifier: Identifier.IssueTableViewCell)
-        
      
-    }
-    
-    override func viewDidLayoutSubviews() {
-        
-        // Because creating the UITableViewController programaticaly,
-        // the tableView properity is nil by default
-        // Need to assign this property to IssueTableView
-        if let tbView = issueTableView {
-            tableView = tbView
-        }
-        
-        // Add long gesture to the tableview in order to perfrom drag and drop operation
-        // let longpress = UILongPressGestureRecognizer(target: self, action: #selector(longPressGestureRecognized(gestureRecognizer:)))
-        // self.tableView.addGestureRecognizer(longpress)
-        
     }
     
     // MARK: - Table View Data Source
@@ -69,7 +42,11 @@ class IssueTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         let numberOfRow = issueList?.count ?? 0
-        issueTableView?.countLabel?.text = "\(numberOfRow)"
+        
+        // Update the number of issues
+        let issueTableView = tableView as! IssueTableView
+        issueTableView.issueCountLabel?.text = "\(numberOfRow)"
+        
         return numberOfRow
         
     }
@@ -85,42 +62,16 @@ class IssueTableViewController: UITableViewController {
         return cell
     }
     
-    // MARK: - Pan Gesture
-    
-    @objc func panAction(gestureRecognizer: UIPanGestureRecognizer) {
+    func dataForTableView(with issueList: Results<Issue>?,and column: Column) {
         
-        guard gestureRecognizer.view != nil else {return}
-        //let view = gestureRecognizer.view!
+        guard let issues = issueList else { return }
         
-        if gestureRecognizer.state == .began || gestureRecognizer.state == .changed {
-            
-            let translation = gestureRecognizer.translation(in: self.view)
-            
-            // Move the issue collection view up or down
-            let center = issueCollectionView.center
-            issueCollectionView.center = CGPoint(x: center.x, y: center.y + translation.y)
-            
-            // Issue Collection Frame
-            let minY = issueCollectionView.frame.minY
-            let minX = issueCollectionView.frame.minX
-            let with = issueCollectionView.frame.width
-            let height = issueCollectionView.frame.height
-            
-            // If issue collection's frame y is less than or equal to assign collection's frame y
-            // Set issue collection y to assignee collection y
-            if minY <= assigneeCollectionView.frame.minY {
-                issueCollectionView.frame = CGRect(x: minX, y: assigneeCollectionView.frame.minY, width: with, height: height)
-            }
-            
-            // If issue collection's frame y is greater than or equal to the its initial frame
-            // Set its current y to its initial y
-            if minY >= initialFrame!.minY {
-                issueCollectionView.frame = initialFrame!
-            }
-                        
-            gestureRecognizer.setTranslation(CGPoint.zero, in: issueCollectionView)
-        }
+        self.issueList = List<Issue>()
+        self.issueList?.append(objectsIn: issues)
+        self.column = column
+        
     }
+    
 }
 
 // MARK: - UITableView Delegate
@@ -203,8 +154,8 @@ extension IssueTableViewController: UITableViewDropDelegate {
         
         // Add an animation when dragging through an empty table view
         if  tableView.numberOfRows(inSection: 0) == 0{
-            issueTableView.setTableViewHeight(height: cell.frame.height, animated: true)
-            issueTableView.addDashedBorder()
+            issueTableView.height(height: cell.frame.height, animated: true)
+            issueTableView.addDashedBorder(at: cell.frame)
 
         }
         // Add a dashed rectangle at the drop position
@@ -279,22 +230,20 @@ extension IssueTableViewController: UITableViewDropDelegate {
             if let destinationIndexPath = coordinator.destinationIndexPath{
                 // Add drag item to the destination
                 try! realm.write {
-                    issue.status = collumn?.status
+                    issue.status = column?.status
                     issueList?.insert(issue, at: destinationIndexPath.row)
 
                 }
-                // issueList?.insert(issue, at: destinationIndexPath.row)
                 tableView.insertRows(at: [destinationIndexPath], with: .automatic)
 
             }
             // Draging an issue into an empty table view
             else {
                 try! realm.write {
-                    issue.status = collumn?.status
+                    issue.status = column?.status
                     issueList?.append(issue)
 
                 }
-                // issueList?.add(issue)
                 tableView.reloadData()
             }
 
@@ -304,7 +253,7 @@ extension IssueTableViewController: UITableViewDropDelegate {
                 sourceIssueList.remove(at: sourceIndexPath.row)
             }
             sourceTableView.deleteRows(at: [sourceIndexPath], with: .automatic)
-            sourceTableView.makeCellFitTableHeight(animated: true)
+            sourceTableView.decreaseHeight(height: cell!.frame.height, minHeight: 40, animated: true)
             sourceTableView.reloadData()
 
             // Reload the destination table view
@@ -312,7 +261,7 @@ extension IssueTableViewController: UITableViewDropDelegate {
             
             // Only increase the cell height if the number of rows is greater than one
             if destinationTableView.numberOfRows(inSection: 0) > 1 {
-                destinationTableView.increaseTableHeight(with: cell!.frame.height)
+                destinationTableView.increaseHeight(with: cell!.frame.height)
             }
             destinationTableView.reloadData()
 
@@ -350,5 +299,4 @@ extension IssueTableViewController: UITableViewDropDelegate {
         
     }
 
-    
 }

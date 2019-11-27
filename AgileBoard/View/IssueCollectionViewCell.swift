@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RealmSwift
 
 class IssueCollectionViewCell: UICollectionViewCell {
 
@@ -16,42 +15,20 @@ class IssueCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var cellFooterView: UIView!
     @IBOutlet weak var countLabel: UILabel!
-    
-    @IBOutlet weak var tableViewHeightConstraint: NSLayoutConstraint!
-        
-    var issueTableViewController: IssueTableViewController?
-    
-    var cellIsFit = false
-    
+     
+    /// A height of the cell's header and footer
     var headerFooterHeight: CGFloat {
         return cellHeaderView.frame.height + cellFooterView.frame.height
     }
     
-    var tableEstimatedHeight: CGFloat {
-        self.frame.height - self.headerFooterHeight
-    }
-        
     override func awakeFromNib() {
-        
         super.awakeFromNib()
         
-        // Register custom cell for the issue table view
-        let nibName = UINib(nibName: Identifier.IssueTableViewCell, bundle: .main)
-        issueTableView.register(nibName, forCellReuseIdentifier: Identifier.IssueTableViewCell)
-        
-        // Initilize the issue table view controller
-        issueTableViewController = IssueTableViewController(style: .plain)
-        issueTableViewController?.issueTableView = issueTableView
-        
-        // Set data source and delegate to the table view
-        issueTableView.dataSource = issueTableViewController
-        issueTableView.delegate = issueTableViewController
-        issueTableViewController?.tableView = issueTableView
-        
-        // Set table view drag and dropx delegate
-        issueTableView.dragDelegate = issueTableViewController
-        issueTableView.dropDelegate = issueTableViewController
-        
+        // Configure the appearance of the cell
+        configureCell()
+    }
+    
+    fileprivate func configureCell() {
         
         // Round the header and footer
         cellHeaderView.layer.cornerRadius = 5.0
@@ -62,42 +39,9 @@ class IssueCollectionViewCell: UICollectionViewCell {
         cellFooterView.layer.masksToBounds = true
         cellFooterView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner] // bottom left corner, bottom right corner respectively
         
-        // Set estimated height for the table view
-        issueTableView.initialHeight = self.tableEstimatedHeight
-        issueTableView.tableHeightConstraint.constant = self.tableEstimatedHeight
-        issueTableView.layoutIfNeeded()
+        // Pass the issue count label to the table view
+        issueTableView.issueCountLabel = countLabel
         
-        // Pass Collection Cell's Count Label to the table view
-        issueTableView.countLabel = countLabel
     }
     
-    ///
-    /// Set inital height for the table view
-    ///
-    func setTableViewInitialHeight() {
-        issueTableView.initialHeight = tableEstimatedHeight
-        issueTableView.tableHeightConstraint.constant = tableEstimatedHeight
-    }
-    
-    ///
-    /// Initilize the data for the table view
-    ///
-    func setUpTableView(issueList: Results<Issue>, column: Column?) {
-        
-        if issueTableViewController?.issueList == nil {
-            issueTableViewController?.issueList = List<Issue>()
-            
-            let realm = try! Realm()
-            do{
-                try realm.write {
-                    issueTableViewController?.issueList?.append(objectsIn: issueList)
-                }
-            }catch let error as NSError {
-                print(error.description)
-            }
-           
-        }
-        issueTableViewController?.collumn = column
-        
-    }
 }

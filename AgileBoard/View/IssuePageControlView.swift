@@ -8,7 +8,7 @@
 
 import UIKit
 
-class IssuePageControl: UIPageControl {
+class IssuePageControlView: UIPageControl {
 
     var heightConstrait: NSLayoutConstraint {
         return self.constraints.first { $0.identifier == "heightConstrant" }!
