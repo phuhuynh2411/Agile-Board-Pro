@@ -28,12 +28,15 @@
 		84584E27238ED999000408AE /* AddIssueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84584E26238ED999000408AE /* AddIssueViewController.swift */; };
 		84584E29238EDBDD000408AE /* SearchProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84584E28238EDBDD000408AE /* SearchProjectViewController.swift */; };
 		8458B443237CF98500D6D473 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8458B442237CF98500D6D473 /* ShadowView.swift */; };
+		8468D494238FA69F006B02D4 /* IssueType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468D493238FA69F006B02D4 /* IssueType.swift */; };
+		8468D497238FA76E006B02D4 /* IssueTypeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468D496238FA76E006B02D4 /* IssueTypeController.swift */; };
+		8468D499238FBD71006B02D4 /* StatusController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468D498238FBD71006B02D4 /* StatusController.swift */; };
 		846B6A8C238CCA7600569BC2 /* IssuePageControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846B6A8B238CCA7600569BC2 /* IssuePageControlView.swift */; };
 		847A78102387711600911851 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847A780F2387711600911851 /* Status.swift */; };
 		847A78122387745D00911851 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847A78112387745D00911851 /* Board.swift */; };
 		847A78142387758F00911851 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847A78132387758F00911851 /* Project.swift */; };
 		847A781623877FB500911851 /* Column.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847A781523877FB500911851 /* Column.swift */; };
-		847A781823878AEC00911851 /* ProjectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847A781723878AEC00911851 /* ProjectManager.swift */; };
+		847A781823878AEC00911851 /* ProjectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847A781723878AEC00911851 /* ProjectController.swift */; };
 		84A51AC0237AF8DD00477B75 /* IssueTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A51ABF237AF8DD00477B75 /* IssueTableViewController.swift */; };
 		84B5F72F238F647F00D344C3 /* SearchProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B5F72E238F647F00D344C3 /* SearchProjectTableViewCell.swift */; };
 		84B5F731238F806B00D344C3 /* SelectIssueTypeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B5F730238F806B00D344C3 /* SelectIssueTypeTableViewController.swift */; };
@@ -71,12 +74,15 @@
 		84584E26238ED999000408AE /* AddIssueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIssueViewController.swift; sourceTree = "<group>"; };
 		84584E28238EDBDD000408AE /* SearchProjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchProjectViewController.swift; sourceTree = "<group>"; };
 		8458B442237CF98500D6D473 /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
+		8468D493238FA69F006B02D4 /* IssueType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueType.swift; sourceTree = "<group>"; };
+		8468D496238FA76E006B02D4 /* IssueTypeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueTypeController.swift; sourceTree = "<group>"; };
+		8468D498238FBD71006B02D4 /* StatusController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusController.swift; sourceTree = "<group>"; };
 		846B6A8B238CCA7600569BC2 /* IssuePageControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssuePageControlView.swift; sourceTree = "<group>"; };
 		847A780F2387711600911851 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		847A78112387745D00911851 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		847A78132387758F00911851 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		847A781523877FB500911851 /* Column.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Column.swift; sourceTree = "<group>"; };
-		847A781723878AEC00911851 /* ProjectManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectManager.swift; sourceTree = "<group>"; };
+		847A781723878AEC00911851 /* ProjectController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectController.swift; sourceTree = "<group>"; };
 		84A51ABF237AF8DD00477B75 /* IssueTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueTableViewController.swift; sourceTree = "<group>"; };
 		84B5F72E238F647F00D344C3 /* SearchProjectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchProjectTableViewCell.swift; sourceTree = "<group>"; };
 		84B5F730238F806B00D344C3 /* SelectIssueTypeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectIssueTypeTableViewController.swift; sourceTree = "<group>"; };
@@ -132,7 +138,7 @@
 				847A78112387745D00911851 /* Board.swift */,
 				847A78132387758F00911851 /* Project.swift */,
 				847A781523877FB500911851 /* Column.swift */,
-				847A781723878AEC00911851 /* ProjectManager.swift */,
+				8468D493238FA69F006B02D4 /* IssueType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -228,11 +234,22 @@
 				8420628F237AFEA20076CDAC /* Extention */,
 				8420628E237AFE9C0076CDAC /* View */,
 				8420628D237AFE950076CDAC /* View Controller */,
+				8468D495238FA755006B02D4 /* Model Controller */,
 				8420628A237AFD690076CDAC /* Model */,
 				843C898C237AE7480050586E /* Assets.xcassets */,
 				843C8991237AE7480050586E /* Info.plist */,
 			);
 			path = AgileBoard;
+			sourceTree = "<group>";
+		};
+		8468D495238FA755006B02D4 /* Model Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8468D496238FA76E006B02D4 /* IssueTypeController.swift */,
+				847A781723878AEC00911851 /* ProjectController.swift */,
+				8468D498238FBD71006B02D4 /* StatusController.swift */,
+			);
+			path = "Model Controller";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -357,6 +374,7 @@
 				847A78122387745D00911851 /* Board.swift in Sources */,
 				84F56A05237C5B56007E6C68 /* UIColor+Extention.swift in Sources */,
 				845227CF238CFC61000607A8 /* IssueCollectionViewController.swift in Sources */,
+				8468D497238FA76E006B02D4 /* IssueTypeController.swift in Sources */,
 				84245EBC238E551300AE479E /* Sprint.swift in Sources */,
 				847A78102387711600911851 /* Status.swift in Sources */,
 				84F49ABC238E4D04002B8B93 /* AssigneeImageView.swift in Sources */,
@@ -371,10 +389,12 @@
 				84A51AC0237AF8DD00477B75 /* IssueTableViewController.swift in Sources */,
 				845227D1238D22FE000607A8 /* IssueCollectionView.swift in Sources */,
 				84B5F733238F860C00D344C3 /* IssueTypeTableViewCell.swift in Sources */,
-				847A781823878AEC00911851 /* ProjectManager.swift in Sources */,
+				847A781823878AEC00911851 /* ProjectController.swift in Sources */,
 				84F49ABA238E4C72002B8B93 /* CircleImageView.swift in Sources */,
+				8468D494238FA69F006B02D4 /* IssueType.swift in Sources */,
 				84584E29238EDBDD000408AE /* SearchProjectViewController.swift in Sources */,
 				84B5F731238F806B00D344C3 /* SelectIssueTypeTableViewController.swift in Sources */,
+				8468D499238FBD71006B02D4 /* StatusController.swift in Sources */,
 				846B6A8C238CCA7600569BC2 /* IssuePageControlView.swift in Sources */,
 				841D97A9238E674300483928 /* AppNavigationController.swift in Sources */,
 				8442DC3B237E7B92008C88C6 /* IssueCollectionViewCell.swift in Sources */,

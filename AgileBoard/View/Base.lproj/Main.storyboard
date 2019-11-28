@@ -115,7 +115,7 @@
                                                 <rect key="frame" x="187.5" y="0.0" width="187.5" height="60"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Type" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w95-BW-r7v">
-                                                        <rect key="frame" x="16" y="13" width="35.5" height="34"/>
+                                                        <rect key="frame" x="46" y="13" width="35.5" height="34"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="34" id="RnH-CE-cun"/>
                                                         </constraints>
@@ -123,21 +123,32 @@
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="navigation_arrow_down" translatesAutoresizingMaskIntoConstraints="NO" id="KeO-4N-Q9b">
-                                                        <rect key="frame" x="59.5" y="25" width="10" height="10"/>
+                                                        <rect key="frame" x="89.5" y="25" width="10" height="10"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="10" id="UNZ-dn-TTQ"/>
                                                             <constraint firstAttribute="height" constant="10" id="qy0-KF-Mrd"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JLB-pF-ueO" customClass="CircleImageView" customModule="AgileBoard" customModuleProvider="target">
+                                                        <rect key="frame" x="8" y="15" width="30" height="30"/>
+                                                        <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="30" identifier="widthConstraint" id="WrE-Ow-965"/>
+                                                            <constraint firstAttribute="height" constant="30" identifier="heightConstraint" id="ky6-F6-UTI"/>
                                                         </constraints>
                                                     </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <gestureRecognizers/>
                                                 <constraints>
+                                                    <constraint firstItem="JLB-pF-ueO" firstAttribute="leading" secondItem="6Do-x7-RZu" secondAttribute="leading" constant="8" id="5EQ-54-kD3"/>
                                                     <constraint firstItem="KeO-4N-Q9b" firstAttribute="centerY" secondItem="w95-BW-r7v" secondAttribute="centerY" id="DaY-Za-Kuh"/>
+                                                    <constraint firstItem="w95-BW-r7v" firstAttribute="leading" secondItem="6Do-x7-RZu" secondAttribute="leading" priority="999" constant="8" id="EOk-b9-QJa"/>
+                                                    <constraint firstItem="JLB-pF-ueO" firstAttribute="centerY" secondItem="6Do-x7-RZu" secondAttribute="centerY" id="PQa-Q6-yrC"/>
                                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="KeO-4N-Q9b" secondAttribute="trailing" constant="8" id="QmO-bB-NQo"/>
                                                     <constraint firstItem="w95-BW-r7v" firstAttribute="centerY" secondItem="6Do-x7-RZu" secondAttribute="centerY" id="R9x-pm-qXO"/>
+                                                    <constraint firstItem="w95-BW-r7v" firstAttribute="leading" secondItem="JLB-pF-ueO" secondAttribute="trailing" constant="8" id="jz8-FW-al6"/>
                                                     <constraint firstItem="KeO-4N-Q9b" firstAttribute="leading" secondItem="w95-BW-r7v" secondAttribute="trailing" constant="8" id="nx3-Xw-IAK"/>
-                                                    <constraint firstItem="w95-BW-r7v" firstAttribute="leading" secondItem="6Do-x7-RZu" secondAttribute="leading" constant="16" id="yi2-Gs-TI4"/>
                                                 </constraints>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="5Ck-Gh-U5T" appends="YES" id="gWm-u9-dmK"/>
@@ -172,6 +183,12 @@
                                             <outlet property="delegate" destination="0MR-bK-1FC" id="Qnq-Dc-PqI"/>
                                         </connections>
                                     </textView>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mP5-RB-FIR">
+                                        <rect key="frame" x="16" y="231" width="343" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="7Qd-sz-6WN" firstAttribute="centerX" secondItem="se5-rl-Wef" secondAttribute="centerX" id="DE9-vR-q6J"/>
@@ -207,11 +224,17 @@
                                 <action selector="closeButtonPressed:" destination="0MR-bK-1FC" id="5Oi-dQ-E4V"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Create" id="FAh-CZ-4Lp"/>
+                        <barButtonItem key="rightBarButtonItem" title="Create" id="FAh-CZ-4Lp">
+                            <connections>
+                                <action selector="createButtonPressed:" destination="0MR-bK-1FC" id="gJV-cy-FpA"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="createButton" destination="FAh-CZ-4Lp" id="nkD-Mg-Iqm"/>
                         <outlet property="projectTextField" destination="WxR-NF-LQt" id="Roi-np-X2a"/>
+                        <outlet property="summaryTextView" destination="rCK-72-1oA" id="AJg-08-qXS"/>
+                        <outlet property="typeImageView" destination="JLB-pF-ueO" id="FzH-dM-S6x"/>
                         <outlet property="typeTextField" destination="w95-BW-r7v" id="bVE-Rb-VIj"/>
                         <segue destination="9LN-Ru-sBz" kind="showDetail" identifier="SearchProjectSegue" id="exD-cO-ouh"/>
                         <segue destination="7FK-TJ-0A0" kind="showDetail" identifier="SelectIssueTypeSegue" id="hpg-yI-q9f"/>
@@ -229,7 +252,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3143" y="618"/>
+            <point key="canvasLocation" x="3141.5999999999999" y="617.54122938530736"/>
         </scene>
         <!--Project-->
         <scene sceneID="IdJ-hJ-yja">
@@ -325,7 +348,7 @@
             </objects>
             <point key="canvasLocation" x="4682" y="618"/>
         </scene>
-        <!--Select Issue Type Table View Controller-->
+        <!--Issue Type-->
         <scene sceneID="ffp-bI-akS">
             <objects>
                 <tableViewController id="rWX-Eh-5UE" customClass="SelectIssueTypeTableViewController" customModule="AgileBoard" customModuleProvider="target" sceneMemberID="viewController">
@@ -333,6 +356,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <inset key="separatorInset" minX="46" minY="0.0" maxX="16" maxY="0.0"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="BNb-NB-ggB" customClass="IssueTypeTableViewCell" customModule="AgileBoard" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="70"/>
@@ -361,7 +385,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Issue Type for user story." lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s8a-6f-AGU">
                                             <rect key="frame" x="54" y="39" width="305" height="20"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <nil key="textColor"/>
+                                            <color key="textColor" systemColor="placeholderTextColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -389,7 +413,7 @@
                             <outlet property="delegate" destination="rWX-Eh-5UE" id="Apz-Yd-cU6"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="hiQ-hP-Wlf">
+                    <navigationItem key="navigationItem" title="Issue Type" id="hiQ-hP-Wlf">
                         <barButtonItem key="leftBarButtonItem" title="Close" id="f4k-83-tqa">
                             <connections>
                                 <action selector="closeButtonPressed:" destination="rWX-Eh-5UE" id="NXJ-3B-PU6"/>
@@ -399,7 +423,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sI1-g3-7Cx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4616.8000000000002" y="1381.2593703148427"/>
+            <point key="canvasLocation" x="4681" y="1366"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="NE3-x4-Hrs">

@@ -21,38 +21,42 @@ class ProjectTableViewController: UITableViewController {
         
         super.viewDidLoad()
         
-        // Load project sample data
-        let project1 = ProjectManager.loadProjectSampleData(projectName: "New Project")
-        let project2 = ProjectManager.loadProjectSampleData(projectName: "Tristique Sollicitudin Nibh")
-        let project3 = ProjectManager.loadProjectSampleData(projectName: "Customer Relationship Management")
-        let project4 = ProjectManager.loadProjectSampleData(projectName: "Malesuada Dapibus Vehicula Fusce")
-        
         // Clear previous data
         try! realm.write {
             realm.deleteAll()
         }
-
+        
+        // Load project sample data
+        let project1 = ProjectController.loadProjectSampleData(projectName: "New Project")
+        
         // Add th project to realm inside a transaction
         try! realm.write {
             realm.add(project1)
+        }
+        let project2 = ProjectController.loadProjectSampleData(projectName: "Tristique Sollicitudin Nibh")
+        
+        // Add th project to realm inside a transaction
+        try! realm.write {
             realm.add(project2)
+        }
+        let project3 = ProjectController.loadProjectSampleData(projectName: "Customer Relationship Management")
+        
+        // Add th project to realm inside a transaction
+        try! realm.write {
             realm.add(project3)
+        }
+        let project4 = ProjectController.loadProjectSampleData(projectName: "Malesuada Dapibus Vehicula Fusce")
+        
+        // Add th project to realm inside a transaction
+        try! realm.write {
             realm.add(project4)
         }
         
         // Get all projects from Realm database
         projectList = realm.objects(Project.self)
-//        
-//        let issue7 = Issue()
-//        issue7.summary = "Go shopping on Sunday"
-//        let done = Status()
-//        done.name = "Done"
-//        issue7.status = done
-//        issue7.orderNumber = Issue.incrementID()
-//        try! realm.write {
-//            project.issues.append(issue7)
-//        }
         
+        let issueTypeController = IssueTypeController()
+        issueTypeController.createSampleIssueTypes()
 
     }
 

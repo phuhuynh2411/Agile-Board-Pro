@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-protocol SelectProjectProtocol {
+protocol SelectProjectDelegate {
     
     // User did selecte a project at a index path
     func didSelectdProject(project: Project?)
@@ -27,7 +27,7 @@ class SearchProjectViewController: UIViewController {
     
     var selectedProject: Project?
     
-    var delegate: SelectProjectProtocol?
+    var delegate: SelectProjectDelegate?
     
     let searchController = UISearchController(searchResultsController: nil)
     

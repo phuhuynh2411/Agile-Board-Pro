@@ -91,6 +91,7 @@ class BoardViewController: UIViewController {
             let addIssueViewController =  navigationController.topViewController as! AddIssueViewController
             
             addIssueViewController.project = project
+            addIssueViewController.delegate = self
             
         }
     }
@@ -116,6 +117,17 @@ extension BoardViewController {
         // Portait/Landscape mode
         // collectionView.reloadData()
         
+    }
+    
+}
+
+// MARK: - Add Issue Delegate
+
+extension BoardViewController: AddIssueDelegate {
+    
+    func didAddIssue(with issue: Issue) {
+        // Reload the collection view
+        collectionView.reloadData()
     }
     
 }

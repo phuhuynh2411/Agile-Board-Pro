@@ -7,9 +7,11 @@
 //
 
 import Foundation
+import RealmSwift
 
-class ProjectManager {
+class ProjectController {
     
+    lazy var realm = try! Realm()
     ///
     /// Load sample data for the project
     ///
@@ -20,15 +22,12 @@ class ProjectManager {
         project.name = projectName
         
         // 2. Create statuses
-        let todo = Status()
-        todo.name = "To Do"
-        let inprogress = Status()
-        inprogress.name = "In Progress"
-        let done = Status()
-        done.name = "Done"
-        
-        let completed = Status()
-        done.name = "Completed"
+        let statusController = StatusController()
+
+        let todo = statusController.status(name: "TO DO")
+        let inprogress = statusController.status(name: "IN PROGRESS")
+        let done = statusController.status(name: "DONE")
+        let completed = statusController.status(name: "COMPLETED")
         
         // 3. Create issues
         let issue1 = Issue()
@@ -110,6 +109,18 @@ class ProjectManager {
         project.boards.append(board)
         
         return project
+        
+    }
+    
+    func add(issue: Issue, to project: Project) {
+        
+        do {
+            try realm.write {
+                project.issues.append(issue)
+            }
+        } catch let error as NSError {
+            print(error.description)
+        }
         
     }
     

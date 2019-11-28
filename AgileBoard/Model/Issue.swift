@@ -21,6 +21,9 @@ class Issue: Object {
     // A issue only has one status
     @objc dynamic var status: Status?
     
+    // A issue only has one issue type
+    @objc dynamic var type: IssueType?
+    
     static func incrementID() -> Int {
         
         let realm = try! Realm()
