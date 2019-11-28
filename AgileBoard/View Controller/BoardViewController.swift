@@ -25,11 +25,6 @@ class BoardViewController: UIViewController {
         // Set the number of pages for the page control
         let columns = project?.boards.first?.columns
         self.pageControl.numberOfPages = columns?.count ?? 0
-        
-        // Remove navigation border
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for:.default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.layoutIfNeeded()
 
     }
     
@@ -38,9 +33,6 @@ class BoardViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
-        
-        // Adjust collection view cell
-        collectionView.adjustCellSize()
         
         // Pass the page control through the collection view
         collectionView.controller?.pageControl = pageControl
@@ -51,7 +43,10 @@ class BoardViewController: UIViewController {
         // Adjust Paging based the portrait and landscape mode
         adjustPaging()
         
+        // Adjust collection view cell
+        collectionView.adjustCellSize()
         collectionView.reloadData()
+        
     }
     
     func showHidePageControl() {
@@ -78,7 +73,29 @@ class BoardViewController: UIViewController {
             collectionView.isPagingEnabled = false
         }
     }
-
+    
+    // MARK: - IB Actions
+    
+    @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: Identifier.AddIssueTableViewControllerSegue, sender: self)
+    }
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // Pass the current project to the Add Issue View Controller
+        if segue.identifier == Identifier.AddIssueTableViewControllerSegue {
+            
+            let navigationController = segue.destination as! UINavigationController
+            let addIssueViewController =  navigationController.topViewController as! AddIssueViewController
+            
+            addIssueViewController.project = project
+            
+        }
+    }
+    
+    
 }
 
 // MARK: - Orientation Changes

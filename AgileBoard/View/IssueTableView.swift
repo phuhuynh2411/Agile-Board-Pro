@@ -63,9 +63,10 @@ class IssueTableView: UITableView{
         -   animated: adjusts the height with an animation within 0.5 second.
         -   maxHeight: uses max height if the visible cell's height is greater than max height
         -   minHeight: A minimum height of the table view.
+        -   full: resize the table height to the maximum height before fitting the height
      - Returns: Do not return any value
      */
-    func fitVisibleCellHeight(maxHeight: CGFloat = 0, minHeight: CGFloat = 0, animated: Bool = false) {
+    func fitVisibleCellHeight(maxHeight: CGFloat = 0, minHeight: CGFloat = 0, animated: Bool = false, full: Bool = true) {
         
         // If the maxHeight is equal zero, make sure that the default table view
         // maximum height was set up
@@ -77,8 +78,10 @@ class IssueTableView: UITableView{
         let mHeight = maxHeight == 0 ? self.maxHeight! : maxHeight
         
         // Increase the table view to the max height before adjusting it to fit
-        heightConstraint.constant = mHeight
-        //self.layoutIfNeeded()
+        if full {
+            heightConstraint.constant = mHeight
+            self.layoutIfNeeded()
+        }
                 
         UIView.animate(withDuration: 0, animations: {
             self.layoutIfNeeded()
@@ -144,10 +147,15 @@ class IssueTableView: UITableView{
      */
     func decreaseHeight(height: CGFloat, minHeight: CGFloat = 0, animated: Bool = true) {
         
+        print("Current table height: \(heightConstraint.constant)")
         var newHeight = heightConstraint.constant - height
         newHeight = newHeight < minHeight ? minHeight : newHeight
         
         heightConstraint.constant = newHeight
+        
+        print("New Height \(newHeight)")
+        print("Height: \(height)")
+        print("Min Height: \(minHeight)")
         
         if animated {
             UIView.animate(withDuration: 0.5) {
@@ -165,7 +173,7 @@ class IssueTableView: UITableView{
         - height: table view height
         - animated: indicates whether adding an animation when increasing the table view's height. The default value is true.
      */
-    func height(height: CGFloat, animated: Bool = true) {
+    func setHeight(height: CGFloat, animated: Bool = true) {
         
         heightConstraint.constant = height
         if animated {

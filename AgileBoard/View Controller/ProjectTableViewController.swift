@@ -22,7 +22,10 @@ class ProjectTableViewController: UITableViewController {
         super.viewDidLoad()
         
         // Load project sample data
-        let project = ProjectManager.loadProjectSampleData()
+        let project1 = ProjectManager.loadProjectSampleData(projectName: "New Project")
+        let project2 = ProjectManager.loadProjectSampleData(projectName: "Tristique Sollicitudin Nibh")
+        let project3 = ProjectManager.loadProjectSampleData(projectName: "Customer Relationship Management")
+        let project4 = ProjectManager.loadProjectSampleData(projectName: "Malesuada Dapibus Vehicula Fusce")
         
         // Clear previous data
         try! realm.write {
@@ -31,7 +34,10 @@ class ProjectTableViewController: UITableViewController {
 
         // Add th project to realm inside a transaction
         try! realm.write {
-            realm.add(project)
+            realm.add(project1)
+            realm.add(project2)
+            realm.add(project3)
+            realm.add(project4)
         }
         
         // Get all projects from Realm database

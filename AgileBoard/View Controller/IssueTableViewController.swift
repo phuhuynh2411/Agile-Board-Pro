@@ -154,7 +154,7 @@ extension IssueTableViewController: UITableViewDropDelegate {
         
         // Add an animation when dragging through an empty table view
         if  tableView.numberOfRows(inSection: 0) == 0{
-            issueTableView.height(height: cell.frame.height, animated: true)
+            issueTableView.setHeight(height: cell.frame.height, animated: true)
             issueTableView.addDashedBorder(at: cell.frame)
 
         }
@@ -253,7 +253,7 @@ extension IssueTableViewController: UITableViewDropDelegate {
                 sourceIssueList.remove(at: sourceIndexPath.row)
             }
             sourceTableView.deleteRows(at: [sourceIndexPath], with: .automatic)
-            sourceTableView.decreaseHeight(height: cell!.frame.height, minHeight: 40, animated: true)
+            sourceTableView.fitVisibleCellHeight(minHeight: 40, animated: true, full: false)
             sourceTableView.reloadData()
 
             // Reload the destination table view

@@ -19,4 +19,7 @@ class Project: Object {
     // A project has many issues
     let issues = List<Issue>()
     
+    // A project has many sprints
+    let sprints = List<Sprint>()
+    
 }

@@ -13,11 +13,11 @@ class ProjectManager {
     ///
     /// Load sample data for the project
     ///
-    static func loadProjectSampleData() -> Project {
+    static func loadProjectSampleData(projectName: String) -> Project {
         
         // 1. Create a new project
         let project = Project()
-        project.name = "New Project"
+        project.name = projectName
         
         // 2. Create statuses
         let todo = Status()

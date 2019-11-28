@@ -80,7 +80,6 @@
                     </view>
                 </subviews>
             </view>
-            <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="NSA-nv-f1k" secondAttribute="trailing" id="Tpd-ax-iBs"/>
                 <constraint firstAttribute="bottom" secondItem="NSA-nv-f1k" secondAttribute="bottom" id="V1p-Hh-ewy"/>

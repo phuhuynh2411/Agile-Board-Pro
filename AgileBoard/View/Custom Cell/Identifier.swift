@@ -13,5 +13,8 @@ class Identifier {
     static let IssueTableViewCell = "IssueTableViewCell"
     static let IssueCollectionViewCell = "IssueCollectionViewCell"
     static let BoardViewControllerSegue = "BoardViewControllerSegue"
-    
+    static let AddIssueTableViewControllerSegue = "AddIssueTableViewControllerSegue"
+    static let SearchProjectTableViewControllerSegue = "SearchProjectTableViewControllerSegue"
+    static let SearchProjectSegue = "SearchProjectSegue"
+    static let SelectIssueTypeSegue = "SelectIssueTypeSegue"
 }
