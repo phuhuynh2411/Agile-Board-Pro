@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import SwipeCellKit
 
 class ProjectTableViewController: UITableViewController {
     
@@ -21,47 +22,15 @@ class ProjectTableViewController: UITableViewController {
     
     let searchController = UISearchController(searchResultsController: nil)
     
+    let projectController = ProjectController()
+    
     override func viewDidLoad() {
-        
+
         super.viewDidLoad()
-        
-        // Clear previous data
-        try! realm.write {
-            realm.deleteAll()
-        }
-        
-        // Load project sample data
-        let project1 = ProjectController.loadProjectSampleData(projectName: "New Project")
-        
-        // Add th project to realm inside a transaction
-        try! realm.write {
-            realm.add(project1)
-        }
-        let project2 = ProjectController.loadProjectSampleData(projectName: "Tristique Sollicitudin Nibh")
-        
-        // Add th project to realm inside a transaction
-        try! realm.write {
-            realm.add(project2)
-        }
-        let project3 = ProjectController.loadProjectSampleData(projectName: "Customer Relationship Management")
-        
-        // Add th project to realm inside a transaction
-        try! realm.write {
-            realm.add(project3)
-        }
-        let project4 = ProjectController.loadProjectSampleData(projectName: "Malesuada Dapibus Vehicula Fusce")
-        
-        // Add th project to realm inside a transaction
-        try! realm.write {
-            realm.add(project4)
-        }
         
         // Get all projects from Realm database
         projectList = realm.objects(Project.self)
-        
-        let issueTypeController = IssueTypeController()
-        issueTypeController.createSampleIssueTypes()
-        
+       
         // Configure search view controller
         configureSearchViewController()
         
@@ -92,6 +61,13 @@ class ProjectTableViewController: UITableViewController {
         // Remove the extra separators in the table view
         tableView.tableFooterView = UIView()
     }
+    
+    // MARK: - IB Actions
+    
+    @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: Identifier.AddProjectSegue, sender: self)
+    }
+    
 
     // MARK: - Table view data source
 
@@ -104,6 +80,7 @@ class ProjectTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! ProjectTableViewCell
+        cell.delegate = self
         
         let project = !isFiltering() ? projectList?[indexPath.row] : filteredProjectList?[indexPath.row]
         cell.projectNameLabel.text = project?.name
@@ -171,6 +148,47 @@ extension ProjectTableViewController: UISearchResultsUpdating {
         
         filterContentForSearchText(searchText: searchController.searchBar.text!)
         
+    }
+    
+}
+
+// MARK: - SwipeTableViewCellDelegate
+
+extension ProjectTableViewController: SwipeTableViewCellDelegate {
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        // guard orientation == .right else { return nil }
+
+        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
+            // handle action by updating model with deletion
+            let project = self.projectList?[indexPath.row]
+            ProjectController.delete(project: project!)
+        }
+        
+        let editAction = SwipeAction(style: .default, title: "Edit") { (action, indexPath) in
+            
+        }
+
+        // customize the action appearance
+        deleteAction.image = UIImage(named: "delete")
+        
+        return orientation == .right ? [deleteAction] : [editAction]
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeOptions {
+        var options = SwipeOptions()
+        
+        // Delete project
+        if orientation == .right {
+            options.expansionStyle = .destructive
+            options.transitionStyle = .border
+        }
+        // Edit project
+        else {
+            options.expansionStyle = .selection
+            options.transitionStyle = .border
+        }
+        return options
     }
     
 }

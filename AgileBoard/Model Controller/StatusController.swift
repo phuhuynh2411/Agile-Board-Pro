@@ -10,9 +10,9 @@ import Foundation
 import RealmSwift
 
 class StatusController {
-    lazy var realm = try! Realm()
+    static let realm = try! Realm()
     
-    func status(name: String) -> Status {
+    static func status(name: String) -> Status {
         
         if let status = realm.objects(Status.self).filter({ (status) -> Bool in
             status.name.lowercased() == name.lowercased()

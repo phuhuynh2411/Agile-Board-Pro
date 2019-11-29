@@ -24,8 +24,7 @@ class SelectIssueTypeTableViewController: UITableViewController {
         super.viewDidLoad()
         
         // Load all issue type
-        let issueTypeController = IssueTypeController()
-        issueTypeList = issueTypeController.all()
+        issueTypeList = IssueTypeController.all()
         
         // Remove extra seperators
         tableView.tableFooterView = UIView()

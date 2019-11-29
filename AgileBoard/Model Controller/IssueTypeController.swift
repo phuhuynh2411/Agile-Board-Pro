@@ -11,9 +11,9 @@ import RealmSwift
 
 class IssueTypeController {
     
-    lazy var realm = try! Realm()
+    static let realm = try! Realm()
 
-    func createSampleIssueTypes() {
+    static func createSampleIssueTypes() {
         
         let issueType1 = IssueType()
         issueType1.name = "Story"
@@ -49,7 +49,7 @@ class IssueTypeController {
         
     }
     
-    func all()-> Results<IssueType> {
+    static func all()-> Results<IssueType> {
         return realm.objects(IssueType.self)
     }
 }

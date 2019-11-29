@@ -11,23 +11,35 @@ import RealmSwift
 
 class ProjectController {
     
-    lazy var realm = try! Realm()
+    static let realm = try! Realm()
     ///
     /// Load sample data for the project
     ///
-    static func loadProjectSampleData(projectName: String) -> Project {
+    static func createSampleProjects() {
+        
+        let projectController = ProjectController()
+        
+        projectController.sampleProject(with: "New Project")
+        projectController.sampleProject(with: "Parturient Ipsum Elit")
+        projectController.sampleProject(with: "Aenean Pharetra Risus")
+        projectController.sampleProject(with: "Sit Euismod")
+        projectController.sampleProject(with: "Ornare Purus")
+        projectController.sampleProject(with: "Vehicula Elit")
+        
+    }
+    
+    func sampleProject(with name: String) {
         
         // 1. Create a new project
-        let project = Project()
-        project.name = projectName
+        let project1 = Project()
+        project1.name = name
         
         // 2. Create statuses
-        let statusController = StatusController()
 
-        let todo = statusController.status(name: "TO DO")
-        let inprogress = statusController.status(name: "IN PROGRESS")
-        let done = statusController.status(name: "DONE")
-        let completed = statusController.status(name: "COMPLETED")
+        let todo = StatusController.status(name: "TO DO")
+        let inprogress = StatusController.status(name: "IN PROGRESS")
+        let done = StatusController.status(name: "DONE")
+        let completed = StatusController.status(name: "COMPLETED")
         
         // 3. Create issues
         let issue1 = Issue()
@@ -71,14 +83,14 @@ class ProjectController {
         issue8.orderNumber = 7
         
         // 4. Add issues to the project
-        project.issues.append(issue1)
-        project.issues.append(issue2)
-        project.issues.append(issue3)
-        project.issues.append(issue4)
-        project.issues.append(issue5)
-        project.issues.append(issue6)
-        project.issues.append(issue7)
-        project.issues.append(issue8)
+        project1.issues.append(issue1)
+        project1.issues.append(issue2)
+        project1.issues.append(issue3)
+        project1.issues.append(issue4)
+        project1.issues.append(issue5)
+        project1.issues.append(issue6)
+        project1.issues.append(issue7)
+        project1.issues.append(issue8)
         
         // 5. Create columns
         let column1 = Column()
@@ -106,17 +118,41 @@ class ProjectController {
         board.columns.append(column4)
         
         // 7. Add board to the project
-        project.boards.append(board)
+        project1.boards.append(board)
         
-        return project
-        
+        let realm = try! Realm()
+        do {
+            try realm.write {
+                realm.add(project1)
+            }
+        } catch let error as NSError {
+            print(error.description)
+        }
+    
     }
     
-    func add(issue: Issue, to project: Project) {
+    static func add(issue: Issue, to project: Project) {
         
         do {
             try realm.write {
                 project.issues.append(issue)
+            }
+        } catch let error as NSError {
+            print(error.description)
+        }
+        
+    }
+    
+    static func delete(project: Project) {
+        
+        do {
+            try realm.write {
+                // Delete all referenced objects
+                realm.delete(project.issues)
+                realm.delete(project.boards)
+                realm.delete(project.sprints)
+                // Finally delete the project
+                realm.delete(project)
             }
         } catch let error as NSError {
             print(error.description)

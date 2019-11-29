@@ -17,4 +17,5 @@ class Identifier {
     static let SearchProjectTableViewControllerSegue = "SearchProjectTableViewControllerSegue"
     static let SearchProjectSegue = "SearchProjectSegue"
     static let SelectIssueTypeSegue = "SelectIssueTypeSegue"
+    static let AddProjectSegue = "AddProjectSegue"
 }

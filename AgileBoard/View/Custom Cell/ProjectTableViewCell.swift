@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import SwipeCellKit
 
-class ProjectTableViewCell: UITableViewCell {
+class ProjectTableViewCell: SwipeTableViewCell {
 
     @IBOutlet weak var projectImageView: UIImageView!
     @IBOutlet weak var projectNameLabel: UILabel!

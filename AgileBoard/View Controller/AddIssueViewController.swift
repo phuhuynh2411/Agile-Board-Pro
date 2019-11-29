@@ -48,15 +48,13 @@ class AddIssueViewController: UIViewController {
     
     @IBAction func createButtonPressed(_ sender: UIBarButtonItem) {
         
-        let statusController = StatusController()
-        let status = statusController.status(name: "TO DO")
+        let status = StatusController.status(name: "TO DO")
         let issue = Issue()
         issue.summary = summaryTextView.text
         issue.status = status
         issue.type = selectedIssueType
         
-        let projectController = ProjectController()
-        projectController.add(issue: issue, to: project!)
+        ProjectController.add(issue: issue, to: project!)
         
         delegate?.didAddIssue(with: issue)
         
