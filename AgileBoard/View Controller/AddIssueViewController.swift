@@ -164,11 +164,17 @@ extension AddIssueViewController: UITextViewDelegate {
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         
+        let fixedWidth = textView.frame.size.width
+        let newSize = textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
+        textView.frame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
+        
         // Dismiss the keyboard when pressing on the return key
-        if text == "\n" {
+        // Only apply for the summary field
+        if text == "\n", textView.tag == 1{
             textView.resignFirstResponder()
             return false
         }
+        
         return true
     }
     

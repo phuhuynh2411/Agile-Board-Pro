@@ -167,43 +167,52 @@
                                             <constraint firstAttribute="width" constant="0.5" id="xpz-k7-6Xa"/>
                                         </constraints>
                                     </view>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="rCK-72-1oA" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
-                                        <rect key="frame" x="16" y="68.5" width="343" height="155"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="155" id="XVl-pN-T3o"/>
-                                        </constraints>
-                                        <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Issue Summary"/>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <outlet property="delegate" destination="0MR-bK-1FC" id="Qnq-Dc-PqI"/>
-                                        </connections>
-                                    </textView>
-                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mP5-RB-FIR">
-                                        <rect key="frame" x="16" y="231" width="343" height="34"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="12B-1U-3Nq">
+                                        <rect key="frame" x="16" y="68.5" width="343" height="73"/>
+                                        <subviews>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="rCK-72-1oA" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="37.5"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Issue Summary"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="delegate" destination="0MR-bK-1FC" id="Qnq-Dc-PqI"/>
+                                                </connections>
+                                            </textView>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="2" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ZQ9-lT-bXa" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
+                                                <rect key="frame" x="0.0" y="37.5" width="343" height="35.5"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Description"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="delegate" destination="0MR-bK-1FC" id="DYq-8G-dsV"/>
+                                                </connections>
+                                            </textView>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="7Qd-sz-6WN" firstAttribute="centerX" secondItem="se5-rl-Wef" secondAttribute="centerX" id="DE9-vR-q6J"/>
-                                    <constraint firstItem="rCK-72-1oA" firstAttribute="leading" secondItem="REV-nh-NBk" secondAttribute="leading" constant="16" id="DbA-8J-c5b"/>
                                     <constraint firstItem="fLf-BB-nK8" firstAttribute="top" secondItem="se5-rl-Wef" secondAttribute="bottom" id="FQ4-sU-h5a"/>
                                     <constraint firstItem="REV-nh-NBk" firstAttribute="trailing" secondItem="fLf-BB-nK8" secondAttribute="trailing" constant="16" id="KlK-7k-v6X"/>
                                     <constraint firstItem="fLf-BB-nK8" firstAttribute="leading" secondItem="REV-nh-NBk" secondAttribute="leading" constant="16" id="QB1-xr-6LO"/>
                                     <constraint firstItem="se5-rl-Wef" firstAttribute="top" secondItem="rUr-hd-wK8" secondAttribute="top" id="Rvg-aN-xC8"/>
+                                    <constraint firstItem="12B-1U-3Nq" firstAttribute="leading" secondItem="NZc-ev-JA1" secondAttribute="leading" constant="16" id="Ux0-Pc-B6C"/>
+                                    <constraint firstItem="12B-1U-3Nq" firstAttribute="top" secondItem="fLf-BB-nK8" secondAttribute="bottom" constant="8" id="WII-Cc-c6t"/>
                                     <constraint firstItem="7Qd-sz-6WN" firstAttribute="centerY" secondItem="se5-rl-Wef" secondAttribute="centerY" id="XA4-61-ALc"/>
                                     <constraint firstItem="7Qd-sz-6WN" firstAttribute="centerX" secondItem="fLf-BB-nK8" secondAttribute="centerX" id="hfd-nO-YDE"/>
-                                    <constraint firstItem="rCK-72-1oA" firstAttribute="top" secondItem="fLf-BB-nK8" secondAttribute="bottom" constant="8" id="kgg-Tu-Bma"/>
                                     <constraint firstAttribute="trailing" secondItem="se5-rl-Wef" secondAttribute="trailing" id="mEq-bU-uHW"/>
+                                    <constraint firstItem="NZc-ev-JA1" firstAttribute="trailing" secondItem="12B-1U-3Nq" secondAttribute="trailing" constant="16" id="oy0-du-sM6"/>
                                     <constraint firstAttribute="bottom" secondItem="se5-rl-Wef" secondAttribute="bottom" constant="531" id="vVu-Ul-YtE"/>
                                     <constraint firstItem="se5-rl-Wef" firstAttribute="leading" secondItem="rUr-hd-wK8" secondAttribute="leading" id="wdq-3M-AqH"/>
-                                    <constraint firstItem="REV-nh-NBk" firstAttribute="trailing" secondItem="rCK-72-1oA" secondAttribute="trailing" constant="16" id="xkI-Ta-BbN"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="NZc-ev-JA1"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="REV-nh-NBk"/>
