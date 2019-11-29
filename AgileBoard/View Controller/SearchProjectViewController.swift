@@ -47,16 +47,30 @@ class SearchProjectViewController: UIViewController {
         navigationItem.searchController = searchController
         // 5
         definesPresentationContext = true
+        
+        // Configure table view
+        configureTableView()
+        
     }
     
     // MARK: - IB Actions
+    
     @IBAction func closeButtonPressed(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK: - Configure table view
+    
+    func configureTableView() {
+        
+        // Remove the extra separators in the table view
+        tableView.tableFooterView = UIView()
     }
 
 }
 
 // MARK: - UI Table View data source
+
 extension SearchProjectViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -107,6 +121,8 @@ extension SearchProjectViewController: UITableViewDelegate {
         dismiss(animated: true, completion: nil)
     }
 }
+
+// MARK: - UISearchResultsUpdating
 
 extension SearchProjectViewController: UISearchResultsUpdating {
     

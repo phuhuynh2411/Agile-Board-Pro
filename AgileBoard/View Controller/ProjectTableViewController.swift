@@ -13,9 +13,13 @@ class ProjectTableViewController: UITableViewController {
     
     var projectList: Results<Project>?
     
+    var filteredProjectList: LazyFilterSequence<Results<Project>>?
+    
     lazy var realm = try! Realm()
     
     var selectedProject: Project?
+    
+    let searchController = UISearchController(searchResultsController: nil)
     
     override func viewDidLoad() {
         
@@ -57,20 +61,51 @@ class ProjectTableViewController: UITableViewController {
         
         let issueTypeController = IssueTypeController()
         issueTypeController.createSampleIssueTypes()
+        
+        // Configure search view controller
+        configureSearchViewController()
+        
+        // Configure table view
+        configureTableView()
 
+    }
+    
+    // MARK: - Configure Search View Controller
+    
+    func configureSearchViewController() {
+        // 1
+        searchController.searchResultsUpdater = self
+        // 2
+        searchController.obscuresBackgroundDuringPresentation = false
+        // 3
+        searchController.searchBar.placeholder = "Search project"
+        // 4
+        navigationItem.searchController = searchController
+        // 5
+        definesPresentationContext = true
+    }
+    
+    // MARK: - Configure Table View
+    
+    func configureTableView() {
+        
+        // Remove the extra separators in the table view
+        tableView.tableFooterView = UIView()
     }
 
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return projectList?.count ?? 0
+        
+        let numberOfRows = !isFiltering() ? projectList?.count : filteredProjectList?.count
+        return numberOfRows ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! ProjectTableViewCell
         
-        let project = projectList?[indexPath.row]
+        let project = !isFiltering() ? projectList?[indexPath.row] : filteredProjectList?[indexPath.row]
         cell.projectNameLabel.text = project?.name
         cell.projectDescriptionLabel.text = project?.projectDescription
 
@@ -87,7 +122,7 @@ class ProjectTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         // Initialize a selected project at index path
-        selectedProject = projectList?[indexPath.row]
+        selectedProject = !isFiltering() ? projectList?[indexPath.row] : filteredProjectList?[indexPath.row]
         
         performSegue(withIdentifier: Identifier.BoardViewControllerSegue, sender: self)
         
@@ -109,4 +144,33 @@ class ProjectTableViewController: UITableViewController {
     }
     
 
+}
+
+// MARK: - UISearchResultsUpdating
+
+extension ProjectTableViewController: UISearchResultsUpdating {
+    
+    func isFiltering() -> Bool {
+        return searchController.isActive && !isEmptySearchBar()
+    }
+    
+    func isEmptySearchBar() -> Bool {
+        return searchController.searchBar.text!.isEmpty
+    }
+    
+    func filterContentForSearchText(searchText: String) {
+        
+        filteredProjectList = projectList?.filter({ (project) -> Bool in
+            project.name.lowercased().contains(searchText.lowercased())
+        })
+        
+        tableView.reloadData()
+
+    }
+    func updateSearchResults(for searchController: UISearchController) {
+        
+        filterContentForSearchText(searchText: searchController.searchBar.text!)
+        
+    }
+    
 }

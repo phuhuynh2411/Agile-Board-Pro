@@ -17,7 +17,6 @@ class StatusController {
         if let status = realm.objects(Status.self).filter({ (status) -> Bool in
             status.name.lowercased() == name.lowercased()
         }).first {
-            print("Reuse status")
             return status
         }
         else {

@@ -25,6 +25,9 @@ class BoardViewController: UIViewController {
         // Set the number of pages for the page control
         let columns = project?.boards.first?.columns
         self.pageControl.numberOfPages = columns?.count ?? 0
+        
+        // Set the navigation item title to the project name
+        navigationItem.title = project?.name
 
     }
     
