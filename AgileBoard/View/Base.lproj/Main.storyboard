@@ -541,7 +541,7 @@
                                                     <color key="textColor" systemColor="placeholderTextColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phoenix" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iNg-6R-jbg">
+                                                <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phoenix" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iNg-6R-jbg" customClass="ProjectNameTextField" customModule="AgileBoard" customModuleProvider="target">
                                                     <rect key="frame" x="16" y="11" width="343" height="34"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="34" id="8wA-gn-6Cu"/>
@@ -575,7 +575,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="73"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="PHN" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Q3G-0n-VWG">
+                                                <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="PHN" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Q3G-0n-VWG" customClass="ProjectKeyTextField" customModule="AgileBoard" customModuleProvider="target">
                                                     <rect key="frame" x="16" y="5" width="343" height="34"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="34" id="UCG-sa-vRR"/>

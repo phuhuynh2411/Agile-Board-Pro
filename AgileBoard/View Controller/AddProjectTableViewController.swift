@@ -15,18 +15,16 @@ protocol AddProjectDelegate {
 
 class AddProjectTableViewController: UITableViewController {
     
-    @IBOutlet weak var projectNameTextField: UITextField!
+    // MARK: IBOutlets
     
+    @IBOutlet weak var projectNameTextField: ProjectNameTextField!
     @IBOutlet weak var projectIconImageView: RoundImageView!
-    
-    @IBOutlet weak var keyTextField: UITextField!
-    
+    @IBOutlet weak var keyTextField: ProjectKeyTextField!
     @IBOutlet weak var projectDescriptionTextView: KMPlaceholderTextView!
-    
     @IBOutlet weak var descriptionCell: UITableViewCell!
-    
     @IBOutlet weak var createOrSaveButton: UIBarButtonItem!
     
+    // MARK: Properties
     
     var tableViewOriginalHeight: CGFloat?
     var textViewOriginalHeight: CGFloat?
@@ -79,12 +77,15 @@ class AddProjectTableViewController: UITableViewController {
     
     func shouldEnableCreateOrSaveButton() {
         
-        if !projectNameTextField.text!.isEmpty && !keyTextField.text!.isEmpty {
+        do{
+            try projectNameTextField.isValid()
+            try keyTextField.isValid()
             createOrSaveButton.isEnabled = true
-        }
-        else {
+        }catch{
+            print((error as! ValidatorError).description)
             createOrSaveButton.isEnabled = false
         }
+        
     }
     
     /**

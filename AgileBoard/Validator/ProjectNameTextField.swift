@@ -12,25 +12,32 @@ class ProjectNameTextField: UITextField {
     
     /// Maximum characters of the project name
     let maxLength = 80
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-    }
     
     /**
      Validate the project name. The text is not empty and its length must be
      less than or equal maxLength
      */
-    func isValid() throws -> Bool{
-        if text!.count >= maxLength && !text!.isEmpty {
-            return true
+    func isValid(returnValue: Bool) throws -> String {
+        do{
+            try validate()
+            return text!
+        }catch{
+            throw error
         }
+    }
+    
+    func isValid() throws {
+        do {
+            try validate()
+        }catch{
+            throw error
+        }
+    }
+
+    fileprivate func validate() throws {
+        guard  text!.count <= maxLength && !text!.isEmpty
         else {
-            throw ValidatorError(message: "Invalid project name.")
+            throw ValidatorError(description: "Invalid project name.")
         }
     }
 

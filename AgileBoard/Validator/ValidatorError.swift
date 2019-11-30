@@ -9,9 +9,9 @@
 import Foundation
 
 struct ValidatorError: Error{
-    var message: String
+    var description: String
     
-    init(message: String) {
-        self.message = message
+    init(description: String) {
+        self.description = description
     }
 }
