@@ -28,7 +28,8 @@ class BoardViewController: UIViewController {
         
         // Set the navigation item title to the project name
         navigationItem.title = project?.name
-
+        
+        //self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
     }
     
     override func viewWillAppear(_ animated: Bool) {

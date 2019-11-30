@@ -85,6 +85,9 @@ class ProjectTableViewController: UITableViewController {
         let project = !isFiltering() ? projectList?[indexPath.row] : filteredProjectList?[indexPath.row]
         cell.projectNameLabel.text = project?.name
         cell.projectDescriptionLabel.text = project?.projectDescription
+        if let icon = project?.icon {
+            cell.projectImageView.image = UIImage(named: icon.name)
+        }
 
         return cell
     }
@@ -111,12 +114,24 @@ class ProjectTableViewController: UITableViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        // Make sure the segue is about to go to board view controller
-        guard segue.identifier == Identifier.BoardViewControllerSegue else { return }
-        
-        // Pass the selected project through the board view controller
-        let boardViewController = segue.destination as! BoardViewController
-        boardViewController.project = selectedProject
+        if segue.identifier == Identifier.BoardViewControllerSegue {
+            // Pass the selected project through the board view controller
+            let boardViewController = segue.destination as! BoardViewController
+            boardViewController.project = selectedProject
+        }
+        else if segue.identifier == Identifier.EditProjectSegue {
+            let navigationController = segue.destination as! UINavigationController
+            let addProjectTableViewController = navigationController.topViewController as! AddProjectTableViewController
+            
+            addProjectTableViewController.project = selectedProject
+            addProjectTableViewController.delegate = self
+        }
+        else if segue.identifier == Identifier.AddProjectSegue {
+            let navigationController = segue.destination as! UINavigationController
+            let addProjectTableViewController = navigationController.topViewController as! AddProjectTableViewController
+            
+            addProjectTableViewController.delegate = self
+        }
      
     }
     
@@ -166,7 +181,8 @@ extension ProjectTableViewController: SwipeTableViewCellDelegate {
         }
         
         let editAction = SwipeAction(style: .default, title: "Edit") { (action, indexPath) in
-            
+            self.selectedProject = self.projectList?[indexPath.row]
+            self.performSegue(withIdentifier: Identifier.EditProjectSegue, sender: self)
         }
 
         // customize the action appearance
@@ -191,4 +207,13 @@ extension ProjectTableViewController: SwipeTableViewCellDelegate {
         return options
     }
     
+}
+
+// MARK: - Add Project Delegate
+
+extension ProjectTableViewController: AddProjectDelegate {
+    
+    func didAddProject(project: Project?) {
+        tableView.reloadData()
+    }
 }

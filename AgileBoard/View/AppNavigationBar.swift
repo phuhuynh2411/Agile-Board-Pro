@@ -21,8 +21,11 @@ class AppNavigationBar: UINavigationBar {
     }
 
     func comomInit() {
-        setBackgroundImage(UIImage(), for:.default)
-        shadowImage = UIImage()
-        layoutIfNeeded()
+//        setBackgroundImage(UIImage(), for:.default)
+//        shadowImage = UIImage()
+//
+//        layoutIfNeeded()
+        self.setValue(true, forKey: "hidesShadow")
+
     }
 }

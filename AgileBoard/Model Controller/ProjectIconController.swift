@@ -64,4 +64,23 @@ class ProjectIconController {
             print(error.description)
         }
     }
+    
+    static func all() -> Results<ProjectIcon>{
+        return realm.objects(ProjectIcon.self)
+    }
+    
+    static func icon(name: String) -> ProjectIcon {
+        
+        if let icon = realm.objects(ProjectIcon.self).filter({ (icon) -> Bool in
+            icon.name.lowercased() == name.lowercased()
+        }).first {
+            return icon
+        }
+        else {
+            let icon = ProjectIcon()
+            icon.name = name
+            return icon
+        }
+        
+    }
 }

@@ -18,4 +18,6 @@ class Identifier {
     static let SearchProjectSegue = "SearchProjectSegue"
     static let SelectIssueTypeSegue = "SelectIssueTypeSegue"
     static let AddProjectSegue = "AddProjectSegue"
+    static let EditProjectSegue = "EditProjectSegue"
+    static let SelectIconSegue = "SelectIconSegue"
 }

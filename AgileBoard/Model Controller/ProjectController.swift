@@ -19,20 +19,27 @@ class ProjectController {
         
         let projectController = ProjectController()
         
-        projectController.sampleProject(with: "New Project")
-        projectController.sampleProject(with: "Parturient Ipsum Elit")
-        projectController.sampleProject(with: "Aenean Pharetra Risus")
-        projectController.sampleProject(with: "Sit Euismod")
-        projectController.sampleProject(with: "Ornare Purus")
-        projectController.sampleProject(with: "Vehicula Elit")
+        projectController.sampleProject(with: "New Project", key: "NP", icon: "project_email")
+        projectController.sampleProject(with: "Parturient Ipsum Elit", key: "PIE", icon: "project_alarm")
+        projectController.sampleProject(with: "Aenean Pharetra Risus", key: "APR", icon: "project_cloud")
+        projectController.sampleProject(with: "Sit Euismod", key: "SE", icon: "default_project_icon")
+        projectController.sampleProject(with: "Ornare Purus", key: "OR", icon: "project_photo")
+        projectController.sampleProject(with: "Vehicula Elit", key: "VE", icon: "project_photo2")
         
     }
     
-    func sampleProject(with name: String) {
+    func sampleProject(with name: String, key: String, icon: String) {
         
         // 1. Create a new project
         let project1 = Project()
         project1.name = name
+        project1.key = key
+        project1.projectDescription = "Maecenas faucibus mollis interdum. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Sed posuere consectetur est at lobortis. Sed posuere consectetur est at lobortis."
+        
+        let projectIcon = ProjectIcon()
+        projectIcon.name = icon
+        
+        project1.icon = projectIcon
         
         // 2. Create statuses
 
@@ -158,6 +165,31 @@ class ProjectController {
             print(error.description)
         }
         
+    }
+    
+    static func add(project: Project){
+        
+        do {
+            try realm.write {
+                realm.add(project)
+            }
+        } catch let error as NSError {
+            print(error.description)
+        }
+        
+    }
+    
+    static func update(project: Project, by anotherProject: Project) {
+        do {
+            try realm.write {
+                project.key = anotherProject.key
+                project.projectDescription = anotherProject.projectDescription
+                project.name = anotherProject.name
+                project.icon = anotherProject.icon
+            }
+        } catch let error as NSError {
+            print(error.description)
+        }
     }
     
 }
