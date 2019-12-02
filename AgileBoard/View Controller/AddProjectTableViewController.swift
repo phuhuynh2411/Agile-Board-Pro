@@ -8,6 +8,7 @@
 
 import UIKit
 import KMPlaceholderTextView
+import SwiftValidator
 
 protocol AddProjectDelegate {
     func didAddProject(project: Project?)
@@ -17,92 +18,115 @@ class AddProjectTableViewController: UITableViewController {
     
     // MARK: IBOutlets
     
-    @IBOutlet weak var projectNameTextField: ProjectNameTextField!
-    @IBOutlet weak var projectIconImageView: RoundImageView!
+    @IBOutlet weak var nameTextField: ProjectNameTextField!
+    @IBOutlet weak var iconImageView: RoundImageView!
     @IBOutlet weak var keyTextField: ProjectKeyTextField!
-    @IBOutlet weak var projectDescriptionTextView: KMPlaceholderTextView!
+    @IBOutlet weak var descriptionTextView: KMPlaceholderTextView!
     @IBOutlet weak var descriptionCell: UITableViewCell!
-    @IBOutlet weak var createOrSaveButton: UIBarButtonItem!
+    @IBOutlet weak var doneButton: UIBarButtonItem!
     
     // MARK: Properties
     
-    var tableViewOriginalHeight: CGFloat?
-    var textViewOriginalHeight: CGFloat?
+    private var tabbleViewInitialHeight: CGFloat?
+    private var textViewInitalHeight: CGFloat?
     
     var project: Project?
     var selectedIcon: ProjectIcon?
     var delegate: AddProjectDelegate?
+    
+    /// Validation
+    let validator = Validator()
+    /// Determine where the user's input is validated or not.
+    var validated = false
 
+    // MARK: View Methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Close keyboard
-        projectNameTextField.resignFirstResponder()
-        
-        // Pre-populate data for new project
-        if project == nil {
-            projectNameTextField.text = "New Project"
-            projectIconImageView.image = UIImage(named: "default_project_icon")
-            selectedIcon = ProjectIconController.icon(name: "default_project_icon")
-            navigationItem.rightBarButtonItem?.isEnabled = false
-            navigationItem.title = "New Project"
-        }
-        // Load existing project data
-        else {
-            projectNameTextField.text = project?.name
-            keyTextField.text = project?.key
-            projectDescriptionTextView.text = project?.projectDescription
-            selectedIcon = project?.icon
-            
-            // Rename the right button bar button and disable it
-            navigationItem.rightBarButtonItem?.title = "Save"
-            navigationItem.rightBarButtonItem?.isEnabled = false
-            navigationItem.title = "Edit Project"
-        }
-        
-        updateUI()
-                
+        setUpView()
     }
     
     override func viewDidLayoutSubviews() {
-       tableViewContentSize()
+        
+        if tabbleViewInitialHeight == nil {
+            // Get table view's initial height
+            tabbleViewInitialHeight = tableView.contentSize.height
+            // Get text view's inital height
+            textViewInitalHeight = descriptionTextView.frame.height
+        }
+        
+        fitTableViewSize()
+        
     }
     
-    func updateUI() {
+    private func setUpView() {
         
+        // Change the navigation item's title
+        navigationItem.title = isEditing() ? "Edit Project" : "New Project"
+        // Change the right button bar text
+        navigationItem.rightBarButtonItem?.title = isEditing() ? "Save" : "Create"
+        
+        // Hide the done button by default
+        doneButton.isEnabled = false
+        
+        // Load project data
+        nameTextField.text = project?.name
+        keyTextField.text = project?.key
+        descriptionTextView.text = project?.projectDescription
+        selectedIcon = isEditing() ? project?.icon : ProjectIconController.defaultIcon()
+        
+        // Load Icon
+        loadIcon()
+        
+        // Register fields for validation
+        registerFieldsForValidation()
+
+    }
+    
+    private func updateView() {
+        loadIcon()
+    }
+    
+    // MARK: Helper methods
+    
+    private func loadIcon() {
+        // Display the project's icon
         if let projectIcon = selectedIcon {
-            projectIconImageView.image = UIImage(named: projectIcon.name)
+            iconImageView.image = UIImage(named: projectIcon.name)
         }
-    }
-    
-    func shouldEnableCreateOrSaveButton() {
-        
-        do{
-            try projectNameTextField.isValid()
-            try keyTextField.isValid()
-            createOrSaveButton.isEnabled = true
-        }catch{
-            print((error as! ValidatorError).description)
-            createOrSaveButton.isEnabled = false
-        }
-        
     }
     
     /**
      Recalculate the table view content height based on the text view
      */
-    func tableViewContentSize() {
+    func fitTableViewSize() {
         
-        // Get the table view orininal height after loading the view
-        if tableViewOriginalHeight == nil {
-        tableViewOriginalHeight = tableView.contentSize.height
-            textViewOriginalHeight = projectDescriptionTextView.frame.size.height
-        }
+        fitTextViewSize(textView: descriptionTextView)
         
-        // Update the the height for description cell and table view content size's height.
-        descriptionCell.frame.size = CGSize(width: descriptionCell.frame.size.width, height: sizeOfTextView().height)
-        tableView.contentSize.height = tableViewOriginalHeight! + sizeOfTextView().height
+        descriptionCell.frame.size = CGSize(width: descriptionCell.frame.size.width, height: descriptionTextView.frame.height + CGFloat(12))
+        
+        tableView.contentSize.height = tabbleViewInitialHeight! + descriptionTextView.frame.height - textViewInitalHeight!
+        
+    }
     
+    /**
+     A best fitting size for text view
+     */
+    private func fitTextViewSize(textView: UITextView){
+        
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        let fixedWidth = textView.frame.size.width
+        let newSize = textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
+        
+        textView.frame.size =  CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
+    }
+           
+    /**
+     - Returns: `true` if the project is exist, otherwise ``false`
+     */
+    private func isEditing() -> Bool {
+        return project == nil ? false : true
     }
     
     // MARK: - IB Actions
@@ -112,37 +136,41 @@ class AddProjectTableViewController: UITableViewController {
     }
     
     @IBAction func projectNameDidChange(_ sender: UITextField) {
-        shouldEnableCreateOrSaveButton()
+        validator.validate(self)
     }
     
     @IBAction func projectKeyDidChange(_ sender: UITextField) {
-        shouldEnableCreateOrSaveButton()
+        validator.validate(self)
     }
     
-    @IBAction func createButtonPressed(_ sender: UIBarButtonItem) {
+    @IBAction func doneButtonPressed(_ sender: UIBarButtonItem) {
+        
+        // Make sure the user's input is validated
+        guard validated else { return }
         
         // If user is creating a new project
         if project == nil {
             project = Project()
-            project?.name = projectNameTextField.text!
+            project?.name = nameTextField.text!
             project?.icon = selectedIcon
-            project?.projectDescription = projectDescriptionTextView.text
+            project?.projectDescription = descriptionTextView.text
             project?.key = keyTextField.text!
             
             ProjectController.add(project: project!)
         }
-        // User is updating an existing project
+            // User is updating an existing project
         else {
             let modifiedProject = Project()
-            modifiedProject.name = projectNameTextField.text!
+            modifiedProject.name = nameTextField.text!
             modifiedProject.icon = selectedIcon
-            modifiedProject.projectDescription = projectDescriptionTextView.text
+            modifiedProject.projectDescription = descriptionTextView.text
             modifiedProject.key = keyTextField.text!
             
             ProjectController.update(project: project!, by: modifiedProject)
         }
         delegate?.didAddProject(project: project)
         dismiss(animated: true, completion: nil)
+        
     }
     
     @IBAction func tapedOnIconImageView(_ sender: UITapGestureRecognizer) {
@@ -160,54 +188,30 @@ class AddProjectTableViewController: UITableViewController {
         }
         
     }
-    
+
 }
 
 // MARK: - UI TextView Delegate
 
 extension AddProjectTableViewController: UITextViewDelegate {
     
-    func sizeOfTextView() -> CGSize {
-        
-        let fixedWidth = projectDescriptionTextView.frame.size.width
-        let newSize = projectDescriptionTextView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
-        
-        return CGSize(width: max(newSize.width, fixedWidth), height: newSize.height + 12)
-                
-    }
-    
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        
-        // Detects changes and enable the create or save button
-        shouldEnableCreateOrSaveButton()
-        
-        let fixedWidth = textView.frame.size.width
-        let newSize = textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
-        textView.frame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
-        
-        descriptionCell.frame.size = CGSize(width: descriptionCell.frame.size.width, height: sizeOfTextView().height)
-
-        tableView.contentSize.height = tableViewOriginalHeight! + sizeOfTextView().height - textViewOriginalHeight!
-        
-        return true
-    }
-    
     func textViewDidChange(_ textView: UITextView) {
-       updateUI()
+        fitTableViewSize()
     }
-    
+
 }
 
 // MARK: - Select Icon Delegate
 
 extension AddProjectTableViewController: SelectIconDelegate {
+    
     func didSelectIcon(icon: ProjectIcon?) {
         selectedIcon = icon
+        validator.validate(self)
         
-        updateUI()
-        
-        shouldEnableCreateOrSaveButton()
+        updateView()
     }
+    
 }
 
 // MARK: - UI TextField Delegate
@@ -226,15 +230,49 @@ extension AddProjectTableViewController: UITextFieldDelegate {
         // add their new text to the existing text
         let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
 
-        // PROJECT NAME
-        // make sure it is less than or equal 80 characters
-        if textField.tag == 1 {
-            return updatedText.count <= 80
+        // Validate project's name
+        if textField == nameTextField {
+            return updatedText.count <= 30
+        }
+        // Validate project's key
+        else if textField == keyTextField {
+            return updatedText.count <= 5
         }
         
-        // PROJECT KEY
-        // make sure it is less than or equal 5 characters
-        return updatedText.count <= 5
+        return true
     }
 
+}
+
+// MARK: - Validator
+
+extension AddProjectTableViewController: ValidationDelegate {
+    
+    // MARK: Validation successful
+    
+    func validationSuccessful() {
+        doneButton.isEnabled = true
+        validated = true
+    }
+    
+    // MARK: Validation failed
+    
+    func validationFailed(_ errors: [(Validatable, ValidationError)]) {
+        doneButton.isEnabled = false
+        validated = false
+    }
+    
+    // MARK: Helper Methods
+    private func registerFieldsForValidation() {
+        
+        // The project name is required and its maximum characters is 30.
+        let nameRules: [Rule] = [RequiredRule(), MaxLengthRule(length: 30)]
+        validator.registerField(nameTextField, rules: nameRules)
+        
+        // The key is required and limited 5 characters.
+        let keyRules: [Rule] = [RequiredRule(), MaxLengthRule(length: 5)]
+        validator.registerField(keyTextField, rules: keyRules)
+        
+    }
+    
 }

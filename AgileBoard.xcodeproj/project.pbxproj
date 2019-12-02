@@ -45,6 +45,8 @@
 		847A781623877FB500911851 /* Column.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847A781523877FB500911851 /* Column.swift */; };
 		847A781823878AEC00911851 /* ProjectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847A781723878AEC00911851 /* ProjectController.swift */; };
 		84A51AC0237AF8DD00477B75 /* IssueTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A51ABF237AF8DD00477B75 /* IssueTableViewController.swift */; };
+		84B3010D2394BF0300D4BBA8 /* AddProjecTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B3010C2394BF0300D4BBA8 /* AddProjecTableViewControllerTests.swift */; };
+		84B301142394C17500D4BBA8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 843C8989237AE7460050586E /* Main.storyboard */; };
 		84B5F72F238F647F00D344C3 /* SearchProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B5F72E238F647F00D344C3 /* SearchProjectTableViewCell.swift */; };
 		84B5F731238F806B00D344C3 /* SelectIssueTypeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B5F730238F806B00D344C3 /* SelectIssueTypeTableViewController.swift */; };
 		84B5F733238F860C00D344C3 /* IssueTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B5F732238F860C00D344C3 /* IssueTypeTableViewCell.swift */; };
@@ -52,7 +54,6 @@
 		84C340E42388361D00C65AC9 /* ProjectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C340E32388361D00C65AC9 /* ProjectTableViewController.swift */; };
 		84C340E62388368900C65AC9 /* ProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C340E52388368900C65AC9 /* ProjectTableViewCell.swift */; };
 		84DB1E02237B0EFA008BB31A /* IssueTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DB1E01237B0EFA008BB31A /* IssueTableView.swift */; };
-		84E59160239250AA006FBA5E /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E5915F239250AA006FBA5E /* Validator.swift */; };
 		84E59162239251A2006FBA5E /* ProjectNameTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E59161239251A2006FBA5E /* ProjectNameTextField.swift */; };
 		84E59164239253D3006FBA5E /* ValidatorError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E59163239253D3006FBA5E /* ValidatorError.swift */; };
 		84E5916623925C86006FBA5E /* ProjectKeyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E5916523925C86006FBA5E /* ProjectKeyTextField.swift */; };
@@ -61,6 +62,16 @@
 		84F56A05237C5B56007E6C68 /* UIColor+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F56A04237C5B56007E6C68 /* UIColor+Extention.swift */; };
 		84F5FF9C238538FB00F2E966 /* DragIssueItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F5FF9B238538FB00F2E966 /* DragIssueItem.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		84B3010F2394BF0300D4BBA8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 843C8978237AE7460050586E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 843C897F237AE7460050586E;
+			remoteInfo = AgileBoard;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		840409B9239171290006829F /* IconCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconCollectionViewController.swift; sourceTree = "<group>"; };
@@ -102,6 +113,9 @@
 		847A781523877FB500911851 /* Column.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Column.swift; sourceTree = "<group>"; };
 		847A781723878AEC00911851 /* ProjectController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectController.swift; sourceTree = "<group>"; };
 		84A51ABF237AF8DD00477B75 /* IssueTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueTableViewController.swift; sourceTree = "<group>"; };
+		84B3010A2394BF0300D4BBA8 /* AgileBoardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AgileBoardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		84B3010C2394BF0300D4BBA8 /* AddProjecTableViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProjecTableViewControllerTests.swift; sourceTree = "<group>"; };
+		84B3010E2394BF0300D4BBA8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84B5F72E238F647F00D344C3 /* SearchProjectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchProjectTableViewCell.swift; sourceTree = "<group>"; };
 		84B5F730238F806B00D344C3 /* SelectIssueTypeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectIssueTypeTableViewController.swift; sourceTree = "<group>"; };
 		84B5F732238F860C00D344C3 /* IssueTypeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueTypeTableViewCell.swift; sourceTree = "<group>"; };
@@ -109,7 +123,6 @@
 		84C340E32388361D00C65AC9 /* ProjectTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTableViewController.swift; sourceTree = "<group>"; };
 		84C340E52388368900C65AC9 /* ProjectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTableViewCell.swift; sourceTree = "<group>"; };
 		84DB1E01237B0EFA008BB31A /* IssueTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueTableView.swift; sourceTree = "<group>"; };
-		84E5915F239250AA006FBA5E /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		84E59161239251A2006FBA5E /* ProjectNameTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNameTextField.swift; sourceTree = "<group>"; };
 		84E59163239253D3006FBA5E /* ValidatorError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatorError.swift; sourceTree = "<group>"; };
 		84E5916523925C86006FBA5E /* ProjectKeyTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectKeyTextField.swift; sourceTree = "<group>"; };
@@ -128,6 +141,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B4C0C8507FD361917057F21 /* Pods_AgileBoard.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84B301072394BF0300D4BBA8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,6 +260,7 @@
 			isa = PBXGroup;
 			children = (
 				843C8982237AE7460050586E /* AgileBoard */,
+				84B3010B2394BF0300D4BBA8 /* AgileBoardTests */,
 				843C8981237AE7460050586E /* Products */,
 				79FD8BA0861C60C87775EE90 /* Pods */,
 				46A71542EFECC73ABABC71F3 /* Frameworks */,
@@ -250,6 +271,7 @@
 			isa = PBXGroup;
 			children = (
 				843C8980237AE7460050586E /* AgileBoard.app */,
+				84B3010A2394BF0300D4BBA8 /* AgileBoardTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -282,10 +304,18 @@
 			path = "Model Controller";
 			sourceTree = "<group>";
 		};
+		84B3010B2394BF0300D4BBA8 /* AgileBoardTests */ = {
+			isa = PBXGroup;
+			children = (
+				84B3010C2394BF0300D4BBA8 /* AddProjecTableViewControllerTests.swift */,
+				84B3010E2394BF0300D4BBA8 /* Info.plist */,
+			);
+			path = AgileBoardTests;
+			sourceTree = "<group>";
+		};
 		84E5915E2392508B006FBA5E /* Validator */ = {
 			isa = PBXGroup;
 			children = (
-				84E5915F239250AA006FBA5E /* Validator.swift */,
 				84E59161239251A2006FBA5E /* ProjectNameTextField.swift */,
 				84E5916523925C86006FBA5E /* ProjectKeyTextField.swift */,
 				84E59163239253D3006FBA5E /* ValidatorError.swift */,
@@ -315,6 +345,24 @@
 			productReference = 843C8980237AE7460050586E /* AgileBoard.app */;
 			productType = "com.apple.product-type.application";
 		};
+		84B301092394BF0300D4BBA8 /* AgileBoardTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 84B301112394BF0300D4BBA8 /* Build configuration list for PBXNativeTarget "AgileBoardTests" */;
+			buildPhases = (
+				84B301062394BF0300D4BBA8 /* Sources */,
+				84B301072394BF0300D4BBA8 /* Frameworks */,
+				84B301082394BF0300D4BBA8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				84B301102394BF0300D4BBA8 /* PBXTargetDependency */,
+			);
+			name = AgileBoardTests;
+			productName = AgileBoardTests;
+			productReference = 84B3010A2394BF0300D4BBA8 /* AgileBoardTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -327,6 +375,10 @@
 				TargetAttributes = {
 					843C897F237AE7460050586E = {
 						CreatedOnToolsVersion = 11.2;
+					};
+					84B301092394BF0300D4BBA8 = {
+						CreatedOnToolsVersion = 11.2.1;
+						TestTargetID = 843C897F237AE7460050586E;
 					};
 				};
 			};
@@ -344,6 +396,7 @@
 			projectRoot = "";
 			targets = (
 				843C897F237AE7460050586E /* AgileBoard */,
+				84B301092394BF0300D4BBA8 /* AgileBoardTests */,
 			);
 		};
 /* End PBXProject section */
@@ -358,6 +411,14 @@
 				843C8990237AE7480050586E /* LaunchScreen.storyboard in Resources */,
 				843C898D237AE7480050586E /* Assets.xcassets in Resources */,
 				843C898B237AE7460050586E /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84B301082394BF0300D4BBA8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84B301142394C17500D4BBA8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -428,7 +489,6 @@
 				8442DC3F237E7DF8008C88C6 /* IssueTableViewCell.swift in Sources */,
 				84F5FF9C238538FB00F2E966 /* DragIssueItem.swift in Sources */,
 				8442DC42237E969C008C88C6 /* Identifier.swift in Sources */,
-				84E59160239250AA006FBA5E /* Validator.swift in Sources */,
 				843C58C52390FFB600F5FAB5 /* ProjectIcon.swift in Sources */,
 				843C58CB2391073800F5FAB5 /* AddProjectTableViewController.swift in Sources */,
 				84DB1E02237B0EFA008BB31A /* IssueTableView.swift in Sources */,
@@ -460,7 +520,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		84B301062394BF0300D4BBA8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84B3010D2394BF0300D4BBA8 /* AddProjecTableViewControllerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		84B301102394BF0300D4BBA8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 843C897F237AE7460050586E /* AgileBoard */;
+			targetProxy = 84B3010F2394BF0300D4BBA8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		843C8989237AE7460050586E /* Main.storyboard */ = {
@@ -532,7 +608,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -586,7 +662,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -636,6 +712,48 @@
 			};
 			name = Release;
 		};
+		84B301122394BF0300D4BBA8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9RUFVFAF79;
+				INFOPLIST_FILE = AgileBoardTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = filesoft.co.AgileBoardTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AgileBoard.app/AgileBoard";
+			};
+			name = Debug;
+		};
+		84B301132394BF0300D4BBA8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9RUFVFAF79;
+				INFOPLIST_FILE = AgileBoardTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = filesoft.co.AgileBoardTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AgileBoard.app/AgileBoard";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -653,6 +771,15 @@
 			buildConfigurations = (
 				843C8995237AE7480050586E /* Debug */,
 				843C8996237AE7480050586E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		84B301112394BF0300D4BBA8 /* Build configuration list for PBXNativeTarget "AgileBoardTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84B301122394BF0300D4BBA8 /* Debug */,
+				84B301132394BF0300D4BBA8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

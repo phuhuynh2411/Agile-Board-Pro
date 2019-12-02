@@ -83,4 +83,10 @@ class ProjectIconController {
         }
         
     }
+    
+    static func defaultIcon() -> ProjectIcon {
+        let icon = ProjectIcon()
+        icon.name = "default_project_icon"
+        return icon
+    }
 }
