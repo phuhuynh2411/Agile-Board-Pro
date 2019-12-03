@@ -32,6 +32,7 @@
 		8442DC42237E969C008C88C6 /* Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8442DC41237E969C008C88C6 /* Identifier.swift */; };
 		845227CF238CFC61000607A8 /* IssueCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845227CE238CFC61000607A8 /* IssueCollectionViewController.swift */; };
 		845227D1238D22FE000607A8 /* IssueCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845227D0238D22FE000607A8 /* IssueCollectionView.swift */; };
+		84579E602396412A009575E4 /* ProjectControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84579E5F2396412A009575E4 /* ProjectControllerMock.swift */; };
 		84584E27238ED999000408AE /* AddIssueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84584E26238ED999000408AE /* AddIssueViewController.swift */; };
 		84584E29238EDBDD000408AE /* SearchProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84584E28238EDBDD000408AE /* SearchProjectViewController.swift */; };
 		8458B443237CF98500D6D473 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8458B442237CF98500D6D473 /* ShadowView.swift */; };
@@ -111,6 +112,7 @@
 		8442DC41237E969C008C88C6 /* Identifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifier.swift; sourceTree = "<group>"; };
 		845227CE238CFC61000607A8 /* IssueCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueCollectionViewController.swift; sourceTree = "<group>"; };
 		845227D0238D22FE000607A8 /* IssueCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueCollectionView.swift; sourceTree = "<group>"; };
+		84579E5F2396412A009575E4 /* ProjectControllerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectControllerMock.swift; sourceTree = "<group>"; };
 		84584E26238ED999000408AE /* AddIssueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIssueViewController.swift; sourceTree = "<group>"; };
 		84584E28238EDBDD000408AE /* SearchProjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchProjectViewController.swift; sourceTree = "<group>"; };
 		8458B442237CF98500D6D473 /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
@@ -328,10 +330,19 @@
 				8468D495238FA755006B02D4 /* Model Controller */,
 				8420628A237AFD690076CDAC /* Model */,
 				84E5915E2392508B006FBA5E /* Validator */,
+				84579E5E23964107009575E4 /* Mock */,
 				843C898C237AE7480050586E /* Assets.xcassets */,
 				843C8991237AE7480050586E /* Info.plist */,
 			);
 			path = AgileBoard;
+			sourceTree = "<group>";
+		};
+		84579E5E23964107009575E4 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				84579E5F2396412A009575E4 /* ProjectControllerMock.swift */,
+			);
+			path = Mock;
 			sourceTree = "<group>";
 		};
 		8468D495238FA755006B02D4 /* Model Controller */ = {
@@ -619,6 +630,7 @@
 				84BF40C1237D47C800600AE7 /* UIPanGestureRecognizer+Extension.swift in Sources */,
 				84A51AC0237AF8DD00477B75 /* IssueTableViewController.swift in Sources */,
 				845227D1238D22FE000607A8 /* IssueCollectionView.swift in Sources */,
+				84579E602396412A009575E4 /* ProjectControllerMock.swift in Sources */,
 				84B5F733238F860C00D344C3 /* IssueTypeTableViewCell.swift in Sources */,
 				847A781823878AEC00911851 /* ProjectController.swift in Sources */,
 				84F49ABA238E4C72002B8B93 /* CircleImageView.swift in Sources */,

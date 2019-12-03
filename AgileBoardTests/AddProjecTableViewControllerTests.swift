@@ -22,15 +22,17 @@ class AddProjecTableViewControllerTests: XCTestCase {
         sut = storyBoard.instantiateViewController(withIdentifier: "addProjectTableViewController") as? AddProjectTableViewController
         sut.loadView()
         sut.viewDidLoad()
+        sut.viewDidLayoutSubviews()
     
     }
     
-    func setUpRealm(name: String) {
+    func setUpRealm(name: String, readOnly: Bool = false) {
         // Use an in-memory Realm identified by the name of the current test.
         // This ensures that each test can't accidentally access or modify the data
         // from other tests or the application itself, and because they're in-memory,
         // there's nothing that needs to be cleaned up.
         Realm.Configuration.defaultConfiguration.inMemoryIdentifier = name
+        Realm.Configuration.defaultConfiguration.readOnly = readOnly
     }
 
     override func tearDown() {
@@ -226,4 +228,59 @@ class AddProjecTableViewControllerTests: XCTestCase {
            
            XCTAssertEqual(sut.project!.projectDescription , editedProject.projectDescription, "The project description was not properly modified.")
        }
+    
+    // MARK: - Failed creating or modifying project
+
+    func testFailedCreatingProject() {
+        
+        setUpRealm(name: "modifyProjectRealm")
+        let realm = try! Realm()
+        
+        ProjectController.shared = ProjectControllerMock()
+                        
+        // Prepare the project data
+        sut.nameTextField.text = "Valid Project Name"
+        sut.descriptionTextView.text = "Short description of the project"
+        sut.keyTextField.text = "ABC"
+        
+        // Make sure it passes the validation
+        sut.validated = true
+        
+        sut.doneButtonPressed(UIBarButtonItem())
+        
+        let addedProject = realm.objects(Project.self).first
+        
+        XCTAssertNil(addedProject, "The project was added to realm.")
+        
+    }
+    
+    func testFailedUpdatingProject() {
+        
+        setUpRealm(name: "modifyProjectRealm")
+        let realm = try! Realm()
+        
+        let project = Project()
+        project.name = "Valid Project Name"
+        project.projectDescription = "Short description of the project"
+        project.key = "ABC"
+        sut.project = project
+        sut.viewDidLoad()
+        
+        ProjectController.shared = ProjectControllerMock()
+                        
+        // Prepare the project data
+        sut.nameTextField.text = "Modifed project name"
+        sut.descriptionTextView.text = "Short description of the project"
+        sut.keyTextField.text = "ABC"
+        
+        // Make sure it passes the validation
+        sut.validated = true
+        
+        sut.doneButtonPressed(UIBarButtonItem())
+        
+        let editedProject = realm.objects(Project.self).first
+        
+        XCTAssertNil(editedProject, "The project was edited to realm.")
+        
+    }
 }

@@ -11,11 +11,13 @@ import RealmSwift
 
 class ProjectController {
     
-    private var realm: Realm
+    public var realm: Realm
     
     init(realm: Realm = try! Realm()) {
         self.realm = realm
     }
+    
+    static var shared = ProjectController()
     
     ///
     /// Load sample data for the project
@@ -180,10 +182,9 @@ class ProjectController {
                 callback(nil)
             }
         } catch let error as NSError {
-            print(error.description)
+            print("Failed adding project with error \(error.description)")
             callback(error)
         }
-        print("Project controller: \(realm)")
         
     }
     
@@ -198,7 +199,7 @@ class ProjectController {
                 callback(nil)
             }
         } catch let error as NSError {
-            print(error.description)
+            print("Failed updating project with error \(error.description)")
             callback(error)
         }
     }

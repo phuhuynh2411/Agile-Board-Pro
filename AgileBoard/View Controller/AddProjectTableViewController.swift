@@ -131,8 +131,6 @@ class AddProjectTableViewController: UITableViewController {
     
     private func createOrUpdateProject(callback: (_ error: NSError?)->Void) {
         
-        let projectController = ProjectController()
-        
         guard let name = nameTextField.text else { return }
         guard let key = keyTextField.text else { return }
         let description = descriptionTextView.text!
@@ -144,7 +142,7 @@ class AddProjectTableViewController: UITableViewController {
             editedProject.projectDescription = description
             editedProject.key = key
             
-            projectController.update(project: project!, by: editedProject, callback)
+            ProjectController.shared.update(project: project!, by: editedProject, callback)
             
         }
         else {
@@ -153,8 +151,7 @@ class AddProjectTableViewController: UITableViewController {
             project?.icon = selectedIcon
             project?.projectDescription = description
             project?.key = key
-            
-            projectController.add(project: project!, callback)
+            ProjectController.shared.add(project: project!, callback)
         }
        
     }
@@ -180,7 +177,7 @@ class AddProjectTableViewController: UITableViewController {
         
         createOrUpdateProject { (error) in
             if let error = error {
-                print("Failed creating or updating project with error \(error.description)")
+                print("Failed creating or updating project with error \(error)")
             }
             else {
                 delegate?.didAddProject(project: project)
