@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3B4C0C8507FD361917057F21 /* Pods_AgileBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D35B2E4913DD45A6D1CE3DCE /* Pods_AgileBoard.framework */; };
+		486C249EE880005C62F1DCCF /* Pods_AgileBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8470DBBF2395FB8E00B146BD /* Pods_AgileBoard.framework */; };
 		840409BA239171290006829F /* IconCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840409B9239171290006829F /* IconCollectionViewController.swift */; };
 		840409BC239173070006829F /* IconCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840409BB239173070006829F /* IconCollectionViewCell.swift */; };
 		841B42F223844275000871F6 /* IssueCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841B42F123844275000871F6 /* IssueCollectionViewLayout.swift */; };
@@ -39,6 +40,7 @@
 		8468D497238FA76E006B02D4 /* IssueTypeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468D496238FA76E006B02D4 /* IssueTypeController.swift */; };
 		8468D499238FBD71006B02D4 /* StatusController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468D498238FBD71006B02D4 /* StatusController.swift */; };
 		846B6A8C238CCA7600569BC2 /* IssuePageControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846B6A8B238CCA7600569BC2 /* IssuePageControlView.swift */; };
+		8470DBD223960A3A00B146BD /* AddProjectTableViewControllerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8470DBD123960A3A00B146BD /* AddProjectTableViewControllerUITests.swift */; };
 		847A78102387711600911851 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847A780F2387711600911851 /* Status.swift */; };
 		847A78122387745D00911851 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847A78112387745D00911851 /* Board.swift */; };
 		847A78142387758F00911851 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847A78132387758F00911851 /* Project.swift */; };
@@ -61,9 +63,17 @@
 		84F49ABC238E4D04002B8B93 /* AssigneeImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F49ABB238E4D04002B8B93 /* AssigneeImageView.swift */; };
 		84F56A05237C5B56007E6C68 /* UIColor+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F56A04237C5B56007E6C68 /* UIColor+Extention.swift */; };
 		84F5FF9C238538FB00F2E966 /* DragIssueItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F5FF9B238538FB00F2E966 /* DragIssueItem.swift */; };
+		F9C8AE98AB57360C36ADD4AE /* Pods_AgileBoardTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 631EB82B934CE67D5CF381F4 /* Pods_AgileBoardTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		8470DBD423960A3A00B146BD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 843C8978237AE7460050586E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 843C897F237AE7460050586E;
+			remoteInfo = AgileBoard;
+		};
 		84B3010F2394BF0300D4BBA8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 843C8978237AE7460050586E /* Project object */;
@@ -74,6 +84,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		631EB82B934CE67D5CF381F4 /* Pods_AgileBoardTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AgileBoardTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		760D95FF4FC9DB8BC409AD08 /* Pods-AgileBoardTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgileBoardTests.release.xcconfig"; path = "Target Support Files/Pods-AgileBoardTests/Pods-AgileBoardTests.release.xcconfig"; sourceTree = "<group>"; };
 		840409B9239171290006829F /* IconCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconCollectionViewController.swift; sourceTree = "<group>"; };
 		840409BB239173070006829F /* IconCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconCollectionViewCell.swift; sourceTree = "<group>"; };
 		841B42F123844275000871F6 /* IssueCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueCollectionViewLayout.swift; sourceTree = "<group>"; };
@@ -107,6 +119,15 @@
 		8468D496238FA76E006B02D4 /* IssueTypeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueTypeController.swift; sourceTree = "<group>"; };
 		8468D498238FBD71006B02D4 /* StatusController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusController.swift; sourceTree = "<group>"; };
 		846B6A8B238CCA7600569BC2 /* IssuePageControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssuePageControlView.swift; sourceTree = "<group>"; };
+		8470DBBF2395FB8E00B146BD /* Pods_AgileBoard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_AgileBoard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8470DBC12395FBC000B146BD /* KMPlaceholderTextView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KMPlaceholderTextView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8470DBC32395FBC000B146BD /* Realm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Realm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8470DBC52395FBC000B146BD /* RealmSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8470DBC72395FBC000B146BD /* SwiftValidator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftValidator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8470DBC92395FBC000B146BD /* SwipeCellKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwipeCellKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8470DBCF23960A3A00B146BD /* AgileBoardUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AgileBoardUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8470DBD123960A3A00B146BD /* AddProjectTableViewControllerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProjectTableViewControllerUITests.swift; sourceTree = "<group>"; };
+		8470DBD323960A3A00B146BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		847A780F2387711600911851 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		847A78112387745D00911851 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		847A78132387758F00911851 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
@@ -131,6 +152,7 @@
 		84F56A04237C5B56007E6C68 /* UIColor+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIColor+Extention.swift"; path = "AgileBoard/View/UIColor+Extention.swift"; sourceTree = SOURCE_ROOT; };
 		84F5FF9B238538FB00F2E966 /* DragIssueItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragIssueItem.swift; sourceTree = "<group>"; };
 		9A81CE3668EF1D469EACE232 /* Pods-AgileBoard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgileBoard.release.xcconfig"; path = "Target Support Files/Pods-AgileBoard/Pods-AgileBoard.release.xcconfig"; sourceTree = "<group>"; };
+		A2F83FB1AE62F811DF0DB076 /* Pods-AgileBoardTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgileBoardTests.debug.xcconfig"; path = "Target Support Files/Pods-AgileBoardTests/Pods-AgileBoardTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C50DE2C26859733515BCE587 /* Pods-AgileBoard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgileBoard.debug.xcconfig"; path = "Target Support Files/Pods-AgileBoard/Pods-AgileBoard.debug.xcconfig"; sourceTree = "<group>"; };
 		D35B2E4913DD45A6D1CE3DCE /* Pods_AgileBoard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AgileBoard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -141,6 +163,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B4C0C8507FD361917057F21 /* Pods_AgileBoard.framework in Frameworks */,
+				486C249EE880005C62F1DCCF /* Pods_AgileBoard.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8470DBCC23960A3A00B146BD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,6 +178,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9C8AE98AB57360C36ADD4AE /* Pods_AgileBoardTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,7 +188,14 @@
 		46A71542EFECC73ABABC71F3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8470DBC12395FBC000B146BD /* KMPlaceholderTextView.framework */,
+				8470DBC32395FBC000B146BD /* Realm.framework */,
+				8470DBC52395FBC000B146BD /* RealmSwift.framework */,
+				8470DBC72395FBC000B146BD /* SwiftValidator.framework */,
+				8470DBC92395FBC000B146BD /* SwipeCellKit.framework */,
+				8470DBBF2395FB8E00B146BD /* Pods_AgileBoard.framework */,
 				D35B2E4913DD45A6D1CE3DCE /* Pods_AgileBoard.framework */,
+				631EB82B934CE67D5CF381F4 /* Pods_AgileBoardTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -167,6 +205,8 @@
 			children = (
 				C50DE2C26859733515BCE587 /* Pods-AgileBoard.debug.xcconfig */,
 				9A81CE3668EF1D469EACE232 /* Pods-AgileBoard.release.xcconfig */,
+				A2F83FB1AE62F811DF0DB076 /* Pods-AgileBoardTests.debug.xcconfig */,
+				760D95FF4FC9DB8BC409AD08 /* Pods-AgileBoardTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -261,6 +301,7 @@
 			children = (
 				843C8982237AE7460050586E /* AgileBoard */,
 				84B3010B2394BF0300D4BBA8 /* AgileBoardTests */,
+				8470DBD023960A3A00B146BD /* AgileBoardUITests */,
 				843C8981237AE7460050586E /* Products */,
 				79FD8BA0861C60C87775EE90 /* Pods */,
 				46A71542EFECC73ABABC71F3 /* Frameworks */,
@@ -272,6 +313,7 @@
 			children = (
 				843C8980237AE7460050586E /* AgileBoard.app */,
 				84B3010A2394BF0300D4BBA8 /* AgileBoardTests.xctest */,
+				8470DBCF23960A3A00B146BD /* AgileBoardUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -302,6 +344,15 @@
 				843C58C62390FFF800F5FAB5 /* ProjectIconController.swift */,
 			);
 			path = "Model Controller";
+			sourceTree = "<group>";
+		};
+		8470DBD023960A3A00B146BD /* AgileBoardUITests */ = {
+			isa = PBXGroup;
+			children = (
+				8470DBD123960A3A00B146BD /* AddProjectTableViewControllerUITests.swift */,
+				8470DBD323960A3A00B146BD /* Info.plist */,
+			);
+			path = AgileBoardUITests;
 			sourceTree = "<group>";
 		};
 		84B3010B2394BF0300D4BBA8 /* AgileBoardTests */ = {
@@ -345,13 +396,33 @@
 			productReference = 843C8980237AE7460050586E /* AgileBoard.app */;
 			productType = "com.apple.product-type.application";
 		};
+		8470DBCE23960A3A00B146BD /* AgileBoardUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8470DBD623960A3A00B146BD /* Build configuration list for PBXNativeTarget "AgileBoardUITests" */;
+			buildPhases = (
+				8470DBCB23960A3A00B146BD /* Sources */,
+				8470DBCC23960A3A00B146BD /* Frameworks */,
+				8470DBCD23960A3A00B146BD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8470DBD523960A3A00B146BD /* PBXTargetDependency */,
+			);
+			name = AgileBoardUITests;
+			productName = AgileBoardUITests;
+			productReference = 8470DBCF23960A3A00B146BD /* AgileBoardUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		84B301092394BF0300D4BBA8 /* AgileBoardTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 84B301112394BF0300D4BBA8 /* Build configuration list for PBXNativeTarget "AgileBoardTests" */;
 			buildPhases = (
+				4B8DEBCCA39AF04A9AD97F0B /* [CP] Check Pods Manifest.lock */,
 				84B301062394BF0300D4BBA8 /* Sources */,
 				84B301072394BF0300D4BBA8 /* Frameworks */,
 				84B301082394BF0300D4BBA8 /* Resources */,
+				5D957DD923B42F3C0D492437 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -376,6 +447,10 @@
 					843C897F237AE7460050586E = {
 						CreatedOnToolsVersion = 11.2;
 					};
+					8470DBCE23960A3A00B146BD = {
+						CreatedOnToolsVersion = 11.2.1;
+						TestTargetID = 843C897F237AE7460050586E;
+					};
 					84B301092394BF0300D4BBA8 = {
 						CreatedOnToolsVersion = 11.2.1;
 						TestTargetID = 843C897F237AE7460050586E;
@@ -397,6 +472,7 @@
 			targets = (
 				843C897F237AE7460050586E /* AgileBoard */,
 				84B301092394BF0300D4BBA8 /* AgileBoardTests */,
+				8470DBCE23960A3A00B146BD /* AgileBoardUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -414,6 +490,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8470DBCD23960A3A00B146BD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		84B301082394BF0300D4BBA8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -425,6 +508,45 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		4B8DEBCCA39AF04A9AD97F0B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AgileBoardTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5D957DD923B42F3C0D492437 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AgileBoardTests/Pods-AgileBoardTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AgileBoardTests/Pods-AgileBoardTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AgileBoardTests/Pods-AgileBoardTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		D7AA17458AC21CB5EF08EA29 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -520,6 +642,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8470DBCB23960A3A00B146BD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8470DBD223960A3A00B146BD /* AddProjectTableViewControllerUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		84B301062394BF0300D4BBA8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -531,6 +661,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		8470DBD523960A3A00B146BD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 843C897F237AE7460050586E /* AgileBoard */;
+			targetProxy = 8470DBD423960A3A00B146BD /* PBXContainerItemProxy */;
+		};
 		84B301102394BF0300D4BBA8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 843C897F237AE7460050586E /* AgileBoard */;
@@ -712,12 +847,62 @@
 			};
 			name = Release;
 		};
+		8470DBD723960A3A00B146BD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9RUFVFAF79;
+				INFOPLIST_FILE = AgileBoardUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = filesoft.co.AgileBoardUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = AgileBoard;
+			};
+			name = Debug;
+		};
+		8470DBD823960A3A00B146BD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9RUFVFAF79;
+				INFOPLIST_FILE = AgileBoardUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = filesoft.co.AgileBoardUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = AgileBoard;
+			};
+			name = Release;
+		};
 		84B301122394BF0300D4BBA8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A2F83FB1AE62F811DF0DB076 /* Pods-AgileBoardTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9RUFVFAF79;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/KMPlaceholderTextView\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Realm\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RealmSwift\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SwiftValidator\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SwiftValidator\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SwipeCellKit\"",
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = AgileBoardTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -735,6 +920,7 @@
 		};
 		84B301132394BF0300D4BBA8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 760D95FF4FC9DB8BC409AD08 /* Pods-AgileBoardTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -771,6 +957,15 @@
 			buildConfigurations = (
 				843C8995237AE7480050586E /* Debug */,
 				843C8996237AE7480050586E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8470DBD623960A3A00B146BD /* Build configuration list for PBXNativeTarget "AgileBoardUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8470DBD723960A3A00B146BD /* Debug */,
+				8470DBD823960A3A00B146BD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

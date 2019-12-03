@@ -56,7 +56,7 @@ class AddProjectTableViewController: UITableViewController {
             textViewInitalHeight = descriptionTextView.frame.height
         }
         
-        fitTableViewSize()
+        viewFitsTextView()
         
     }
     
@@ -86,6 +86,7 @@ class AddProjectTableViewController: UITableViewController {
     
     private func updateView() {
         loadIcon()
+        doneButton.isEnabled = validated
     }
     
     // MARK: Helper methods
@@ -100,14 +101,13 @@ class AddProjectTableViewController: UITableViewController {
     /**
      Recalculate the table view content height based on the text view
      */
-    func fitTableViewSize() {
-        
+    private func viewFitsTextView() {
+        // Adjust the text view's height to fit its content
         fitTextViewSize(textView: descriptionTextView)
-        
+        // Adjust the table view cell to fit the text view
         descriptionCell.frame.size = CGSize(width: descriptionCell.frame.size.width, height: descriptionTextView.frame.height + CGFloat(12))
-        
+        // Adjust the table view content size to fit the cell
         tableView.contentSize.height = tabbleViewInitialHeight! + descriptionTextView.frame.height - textViewInitalHeight!
-        
     }
     
     /**
@@ -129,17 +129,47 @@ class AddProjectTableViewController: UITableViewController {
         return project == nil ? false : true
     }
     
+    private func createOrUpdateProject(callback: (_ error: NSError?)->Void) {
+        
+        let projectController = ProjectController()
+        
+        guard let name = nameTextField.text else { return }
+        guard let key = keyTextField.text else { return }
+        let description = descriptionTextView.text!
+        
+        if isEditing() {
+            let editedProject = Project()
+            editedProject.name = name
+            editedProject.icon = selectedIcon
+            editedProject.projectDescription = description
+            editedProject.key = key
+            
+            projectController.update(project: project!, by: editedProject, callback)
+            
+        }
+        else {
+            project = Project()
+            project?.name = name
+            project?.icon = selectedIcon
+            project?.projectDescription = description
+            project?.key = key
+            
+            projectController.add(project: project!, callback)
+        }
+       
+    }
+    
     // MARK: - IB Actions
     
     @IBAction func closeButtonPressed(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func projectNameDidChange(_ sender: UITextField) {
+    @IBAction func nameDidChange(_ sender: UITextField) {
         validator.validate(self)
     }
     
-    @IBAction func projectKeyDidChange(_ sender: UITextField) {
+    @IBAction func keyDidChange(_ sender: UITextField) {
         validator.validate(self)
     }
     
@@ -148,28 +178,15 @@ class AddProjectTableViewController: UITableViewController {
         // Make sure the user's input is validated
         guard validated else { return }
         
-        // If user is creating a new project
-        if project == nil {
-            project = Project()
-            project?.name = nameTextField.text!
-            project?.icon = selectedIcon
-            project?.projectDescription = descriptionTextView.text
-            project?.key = keyTextField.text!
-            
-            ProjectController.add(project: project!)
+        createOrUpdateProject { (error) in
+            if let error = error {
+                print("Failed creating or updating project with error \(error.description)")
+            }
+            else {
+                delegate?.didAddProject(project: project)
+                dismiss(animated: true, completion: nil)
+            }
         }
-            // User is updating an existing project
-        else {
-            let modifiedProject = Project()
-            modifiedProject.name = nameTextField.text!
-            modifiedProject.icon = selectedIcon
-            modifiedProject.projectDescription = descriptionTextView.text
-            modifiedProject.key = keyTextField.text!
-            
-            ProjectController.update(project: project!, by: modifiedProject)
-        }
-        delegate?.didAddProject(project: project)
-        dismiss(animated: true, completion: nil)
         
     }
     
@@ -196,7 +213,9 @@ class AddProjectTableViewController: UITableViewController {
 extension AddProjectTableViewController: UITextViewDelegate {
     
     func textViewDidChange(_ textView: UITextView) {
-        fitTableViewSize()
+        viewFitsTextView()
+        // Validate the data and enable the Save/Create button
+        validator.validate(self)
     }
 
 }
@@ -251,15 +270,15 @@ extension AddProjectTableViewController: ValidationDelegate {
     // MARK: Validation successful
     
     func validationSuccessful() {
-        doneButton.isEnabled = true
         validated = true
+        updateView()
     }
     
     // MARK: Validation failed
     
     func validationFailed(_ errors: [(Validatable, ValidationError)]) {
-        doneButton.isEnabled = false
         validated = false
+        updateView()
     }
     
     // MARK: Helper Methods

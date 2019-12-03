@@ -549,7 +549,7 @@
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                                     <connections>
-                                                        <action selector="projectNameDidChange:" destination="Gmb-pi-FYd" eventType="editingChanged" id="yvD-Mz-T3m"/>
+                                                        <action selector="nameDidChange:" destination="Gmb-pi-FYd" eventType="editingChanged" id="yvD-Mz-T3m"/>
                                                         <outlet property="delegate" destination="Gmb-pi-FYd" id="MvE-B7-dag"/>
                                                     </connections>
                                                 </textField>
@@ -583,7 +583,7 @@
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                                                     <connections>
-                                                        <action selector="projectKeyDidChange:" destination="Gmb-pi-FYd" eventType="editingChanged" id="Gc2-oy-NIc"/>
+                                                        <action selector="keyDidChange:" destination="Gmb-pi-FYd" eventType="editingChanged" id="Gc2-oy-NIc"/>
                                                         <outlet property="delegate" destination="Gmb-pi-FYd" id="Dhj-eb-lMn"/>
                                                     </connections>
                                                 </textField>

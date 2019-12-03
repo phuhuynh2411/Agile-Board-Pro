@@ -54,7 +54,8 @@ class AddIssueViewController: UIViewController {
         issue.status = status
         issue.type = selectedIssueType
         
-        ProjectController.add(issue: issue, to: project!)
+        let projectController = ProjectController()
+        projectController.add(issue: issue, to: project!)
         
         delegate?.didAddIssue(with: issue)
         

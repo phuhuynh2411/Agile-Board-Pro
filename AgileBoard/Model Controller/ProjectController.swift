@@ -11,11 +11,16 @@ import RealmSwift
 
 class ProjectController {
     
-    static let realm = try! Realm()
+    private var realm: Realm
+    
+    init(realm: Realm = try! Realm()) {
+        self.realm = realm
+    }
+    
     ///
     /// Load sample data for the project
     ///
-    static func createSampleProjects() {
+    func createSampleProjects() {
         
         let projectController = ProjectController()
         
@@ -138,7 +143,7 @@ class ProjectController {
     
     }
     
-    static func add(issue: Issue, to project: Project) {
+    func add(issue: Issue, to project: Project) {
         
         do {
             try realm.write {
@@ -150,7 +155,7 @@ class ProjectController {
         
     }
     
-    static func delete(project: Project) {
+    func delete(project: Project) {
         
         do {
             try realm.write {
@@ -167,28 +172,34 @@ class ProjectController {
         
     }
     
-    static func add(project: Project){
+    func add(project: Project, _ callback: (_ error: NSError?)->Void){
         
         do {
             try realm.write {
                 realm.add(project)
+                callback(nil)
             }
         } catch let error as NSError {
             print(error.description)
+            callback(error)
         }
+        print("Project controller: \(realm)")
         
     }
     
-    static func update(project: Project, by anotherProject: Project) {
+    func update(project: Project, by anotherProject: Project, _ callback: (_ error: NSError?)->Void) {
         do {
             try realm.write {
                 project.key = anotherProject.key
                 project.projectDescription = anotherProject.projectDescription
                 project.name = anotherProject.name
                 project.icon = anotherProject.icon
+                
+                callback(nil)
             }
         } catch let error as NSError {
             print(error.description)
+            callback(error)
         }
     }
     

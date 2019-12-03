@@ -177,7 +177,8 @@ extension ProjectTableViewController: SwipeTableViewCellDelegate {
         let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
             // handle action by updating model with deletion
             let project = self.projectList?[indexPath.row]
-            ProjectController.delete(project: project!)
+            let projectController = ProjectController()
+            projectController.delete(project: project!)
         }
         
         let editAction = SwipeAction(style: .default, title: "Edit") { (action, indexPath) in

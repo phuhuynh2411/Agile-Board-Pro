@@ -25,6 +25,7 @@ class AppDataController {
         // Create sample Project Icons
         ProjectIconController.createSampleIcons()
         // Create sample Projects
-        ProjectController.createSampleProjects()
+        let projectController = ProjectController()
+        projectController.createSampleProjects()
     }
 }
