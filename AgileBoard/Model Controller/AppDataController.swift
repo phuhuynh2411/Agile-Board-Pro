@@ -27,5 +27,7 @@ class AppDataController {
         // Create sample Projects
         let projectController = ProjectController()
         projectController.createSampleProjects()
+        // Create sample priorities
+        PriorityController.shared.createSamplePriorities()
     }
 }

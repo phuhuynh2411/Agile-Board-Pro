@@ -23,7 +23,10 @@ class AddIssueViewController: UIViewController {
     
     @IBOutlet weak var summaryTextView: KMPlaceholderTextView!
     
+    @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var tableViewHeightConstraint: NSLayoutConstraint!
+
     /// current project
     var project: Project?
     
@@ -169,7 +172,7 @@ extension AddIssueViewController: UITextViewDelegate {
         
         // Dismiss the keyboard when pressing on the return key
         // Only apply for the summary field
-        if text == "\n", textView.tag == 1{
+        if text == "\n", textView.tag == 1 {
             textView.resignFirstResponder()
             return false
         }
@@ -179,6 +182,11 @@ extension AddIssueViewController: UITextViewDelegate {
     
     func textViewDidChange(_ textView: UITextView) {
        updateUI()
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+    
+        tableViewHeightConstraint.constant += 216
     }
     
 }

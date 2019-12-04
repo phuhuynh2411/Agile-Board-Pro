@@ -24,5 +24,5 @@ class Project: Object {
     let sprints = List<Sprint>()
     
     @objc dynamic var icon: ProjectIcon?
-    
+  
 }

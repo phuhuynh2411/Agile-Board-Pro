@@ -20,4 +20,8 @@ class Identifier {
     static let AddProjectSegue = "AddProjectSegue"
     static let EditProjectSegue = "EditProjectSegue"
     static let SelectIconSegue = "SelectIconSegue"
+    static let SelectPrioritySegue = "SelectPrioritySegue"
+    static let SelectProjectOrTypeCell = "SelectProjectOrTypeCell"
+    static let SummaryCell = "SummaryCell"
+    static let DescriptionCell = "DescriptionCell"
 }

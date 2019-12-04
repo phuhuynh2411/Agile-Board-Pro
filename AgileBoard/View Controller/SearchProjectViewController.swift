@@ -88,7 +88,10 @@ extension SearchProjectViewController: UITableViewDataSource {
         let project = !isFiltering() ? projectList?[indexPath.row] : filteredProjectList?[indexPath.row]
         
         cell.projectNameLabel.text = project?.name
-        cell.projectIdLabel.text = "(FT-9999)"
+        cell.projectDescription.text = project?.projectDescription
+        if let imageName = project?.icon?.name {
+            cell.projectImageView.image = UIImage(named: imageName)
+        }
         
         // Mark the project as selected one
         if project?.id == selectedProject?.id {

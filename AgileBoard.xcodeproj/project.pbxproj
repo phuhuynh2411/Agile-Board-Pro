@@ -33,6 +33,11 @@
 		845227CF238CFC61000607A8 /* IssueCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845227CE238CFC61000607A8 /* IssueCollectionViewController.swift */; };
 		845227D1238D22FE000607A8 /* IssueCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845227D0238D22FE000607A8 /* IssueCollectionView.swift */; };
 		84579E602396412A009575E4 /* ProjectControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84579E5F2396412A009575E4 /* ProjectControllerMock.swift */; };
+		84579E6223965068009575E4 /* Priority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84579E6123965068009575E4 /* Priority.swift */; };
+		84579E642396513B009575E4 /* PriorityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84579E632396513B009575E4 /* PriorityController.swift */; };
+		84579E66239656E1009575E4 /* PriorityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84579E65239656E1009575E4 /* PriorityTableViewController.swift */; };
+		84579E6823965CD4009575E4 /* PriorityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84579E6723965CD4009575E4 /* PriorityTableViewCell.swift */; };
+		84579E6A239664FB009575E4 /* AddIssueTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84579E69239664FB009575E4 /* AddIssueTableViewController.swift */; };
 		84584E27238ED999000408AE /* AddIssueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84584E26238ED999000408AE /* AddIssueViewController.swift */; };
 		84584E29238EDBDD000408AE /* SearchProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84584E28238EDBDD000408AE /* SearchProjectViewController.swift */; };
 		8458B443237CF98500D6D473 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8458B442237CF98500D6D473 /* ShadowView.swift */; };
@@ -113,6 +118,11 @@
 		845227CE238CFC61000607A8 /* IssueCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueCollectionViewController.swift; sourceTree = "<group>"; };
 		845227D0238D22FE000607A8 /* IssueCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueCollectionView.swift; sourceTree = "<group>"; };
 		84579E5F2396412A009575E4 /* ProjectControllerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectControllerMock.swift; sourceTree = "<group>"; };
+		84579E6123965068009575E4 /* Priority.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Priority.swift; sourceTree = "<group>"; };
+		84579E632396513B009575E4 /* PriorityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityController.swift; sourceTree = "<group>"; };
+		84579E65239656E1009575E4 /* PriorityTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityTableViewController.swift; sourceTree = "<group>"; };
+		84579E6723965CD4009575E4 /* PriorityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityTableViewCell.swift; sourceTree = "<group>"; };
+		84579E69239664FB009575E4 /* AddIssueTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIssueTableViewController.swift; sourceTree = "<group>"; };
 		84584E26238ED999000408AE /* AddIssueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIssueViewController.swift; sourceTree = "<group>"; };
 		84584E28238EDBDD000408AE /* SearchProjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchProjectViewController.swift; sourceTree = "<group>"; };
 		8458B442237CF98500D6D473 /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
@@ -224,6 +234,7 @@
 				847A781523877FB500911851 /* Column.swift */,
 				8468D493238FA69F006B02D4 /* IssueType.swift */,
 				843C58C42390FFB600F5FAB5 /* ProjectIcon.swift */,
+				84579E6123965068009575E4 /* Priority.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -231,6 +242,7 @@
 		8420628D237AFE950076CDAC /* View Controller */ = {
 			isa = PBXGroup;
 			children = (
+				84579E65239656E1009575E4 /* PriorityTableViewController.swift */,
 				840409B9239171290006829F /* IconCollectionViewController.swift */,
 				843C58CA2391073800F5FAB5 /* AddProjectTableViewController.swift */,
 				84B5F730238F806B00D344C3 /* SelectIssueTypeTableViewController.swift */,
@@ -242,6 +254,7 @@
 				84A51ABF237AF8DD00477B75 /* IssueTableViewController.swift */,
 				84F5FF9B238538FB00F2E966 /* DragIssueItem.swift */,
 				841D97A8238E674300483928 /* AppNavigationController.swift */,
+				84579E69239664FB009575E4 /* AddIssueTableViewController.swift */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -294,6 +307,7 @@
 				8442DC39237E7B92008C88C6 /* IssueCollectionViewCell.swift */,
 				8442DC3A237E7B92008C88C6 /* IssueCollectionViewCell.xib */,
 				8442DC41237E969C008C88C6 /* Identifier.swift */,
+				84579E6723965CD4009575E4 /* PriorityTableViewCell.swift */,
 			);
 			path = "Custom Cell";
 			sourceTree = "<group>";
@@ -353,6 +367,7 @@
 				843C58C82391049400F5FAB5 /* AppDataController.swift */,
 				8468D498238FBD71006B02D4 /* StatusController.swift */,
 				843C58C62390FFF800F5FAB5 /* ProjectIconController.swift */,
+				84579E632396513B009575E4 /* PriorityController.swift */,
 			);
 			path = "Model Controller";
 			sourceTree = "<group>";
@@ -615,6 +630,7 @@
 				8468D497238FA76E006B02D4 /* IssueTypeController.swift in Sources */,
 				84245EBC238E551300AE479E /* Sprint.swift in Sources */,
 				847A78102387711600911851 /* Status.swift in Sources */,
+				84579E6223965068009575E4 /* Priority.swift in Sources */,
 				84F49ABC238E4D04002B8B93 /* AssigneeImageView.swift in Sources */,
 				84E5916623925C86006FBA5E /* ProjectKeyTextField.swift in Sources */,
 				843C8988237AE7460050586E /* BoardViewController.swift in Sources */,
@@ -630,6 +646,8 @@
 				84BF40C1237D47C800600AE7 /* UIPanGestureRecognizer+Extension.swift in Sources */,
 				84A51AC0237AF8DD00477B75 /* IssueTableViewController.swift in Sources */,
 				845227D1238D22FE000607A8 /* IssueCollectionView.swift in Sources */,
+				84579E642396513B009575E4 /* PriorityController.swift in Sources */,
+				84579E6823965CD4009575E4 /* PriorityTableViewCell.swift in Sources */,
 				84579E602396412A009575E4 /* ProjectControllerMock.swift in Sources */,
 				84B5F733238F860C00D344C3 /* IssueTypeTableViewCell.swift in Sources */,
 				847A781823878AEC00911851 /* ProjectController.swift in Sources */,
@@ -640,7 +658,9 @@
 				84B5F731238F806B00D344C3 /* SelectIssueTypeTableViewController.swift in Sources */,
 				8468D499238FBD71006B02D4 /* StatusController.swift in Sources */,
 				846B6A8C238CCA7600569BC2 /* IssuePageControlView.swift in Sources */,
+				84579E6A239664FB009575E4 /* AddIssueTableViewController.swift in Sources */,
 				841D97A9238E674300483928 /* AppNavigationController.swift in Sources */,
+				84579E66239656E1009575E4 /* PriorityTableViewController.swift in Sources */,
 				8442DC3B237E7B92008C88C6 /* IssueCollectionViewCell.swift in Sources */,
 				843C58C72390FFF800F5FAB5 /* ProjectIconController.swift in Sources */,
 				84B5F72F238F647F00D344C3 /* SearchProjectTableViewCell.swift in Sources */,

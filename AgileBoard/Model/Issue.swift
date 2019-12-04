@@ -24,6 +24,9 @@ class Issue: Object {
     // A issue only has one issue type
     @objc dynamic var type: IssueType?
     
+    // Issue's priority
+    @objc dynamic var priority: Priority?
+    
     static func incrementID() -> Int {
         
         let realm = try! Realm()
