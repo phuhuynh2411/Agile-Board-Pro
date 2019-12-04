@@ -66,4 +66,10 @@ class PriorityController {
     func all() -> Results<Priority>? {
         return realm?.objects(Priority.self)
     }
+    
+    func getDefault() -> Priority?{
+        return realm?.objects(Priority.self).filter({ (priority) -> Bool in
+            priority.asDefault == true
+            }).first
+    }
 }

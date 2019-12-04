@@ -34,6 +34,8 @@ class AddIssueViewController: UIViewController {
     
     var keyboardHeight: CGFloat?
     
+    var selectedPriority: Priority?
+    
     // MARK: View Methods
     
     override func viewDidLoad() {
@@ -63,7 +65,8 @@ class AddIssueViewController: UIViewController {
     }
     
     func setUpView() {
-        
+        // Create default priority
+        selectedPriority = PriorityController.shared.getDefault()
     }
     
     // MARK: - IB Actions
@@ -93,12 +96,14 @@ class AddIssueViewController: UIViewController {
     @IBAction func showMoreButtonPressed(_ sender: UIButton) {
         print("Show more button pressed")
         
-        let priorityView = PriorityRowView()
+        let priorityView = PriorityRowView(priority: selectedPriority)
+        priorityView.delegate = self
+       //  priorityView.priority = selectedPriority
         
         stackView.addArrangedSubview(priorityView)
-        
+       // self.stackView.layoutIfNeeded()
         UIView.animate(withDuration: 0.5) {
-            self.stackView.layoutIfNeeded()
+            self.view.layoutIfNeeded()
         }
     }
     
@@ -193,6 +198,11 @@ class AddIssueViewController: UIViewController {
             selectIssueTypeTableViewController.delegate = self
         }
         
+        if segue.identifier == Identifier.SelectPrioritySegue {
+            let priorityTableController = segue.destination as! PriorityTableViewController
+            priorityTableController.selectedPriority = selectedPriority
+        }
+        
     }
     
 }
@@ -254,4 +264,14 @@ extension AddIssueViewController: SelectIssueTypeDelegate {
                 
         updateUI()
     }
+}
+
+// MARK: - Priority View Delegate
+
+extension AddIssueViewController: PriorityViewDelegate {
+    
+    func didSelectPriority() {
+        performSegue(withIdentifier: Identifier.SelectPrioritySegue, sender: self)
+    }
+    
 }
