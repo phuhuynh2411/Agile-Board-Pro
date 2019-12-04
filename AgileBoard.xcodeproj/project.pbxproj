@@ -15,6 +15,7 @@
 		841D97A9238E674300483928 /* AppNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841D97A8238E674300483928 /* AppNavigationController.swift */; };
 		841D97AB238E685200483928 /* AppNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841D97AA238E685200483928 /* AppNavigationBar.swift */; };
 		8420628C237AFD7E0076CDAC /* Issue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8420628B237AFD7E0076CDAC /* Issue.swift */; };
+		8421F66B23974D3C001DF5D9 /* PriorityRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8421F66A23974D3C001DF5D9 /* PriorityRowView.swift */; };
 		84245EBC238E551300AE479E /* Sprint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84245EBB238E551300AE479E /* Sprint.swift */; };
 		843C58C52390FFB600F5FAB5 /* ProjectIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843C58C42390FFB600F5FAB5 /* ProjectIcon.swift */; };
 		843C58C72390FFF800F5FAB5 /* ProjectIconController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843C58C62390FFF800F5FAB5 /* ProjectIconController.swift */; };
@@ -98,6 +99,7 @@
 		841D97A8238E674300483928 /* AppNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigationController.swift; sourceTree = "<group>"; };
 		841D97AA238E685200483928 /* AppNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigationBar.swift; sourceTree = "<group>"; };
 		8420628B237AFD7E0076CDAC /* Issue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Issue.swift; sourceTree = "<group>"; };
+		8421F66A23974D3C001DF5D9 /* PriorityRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityRowView.swift; sourceTree = "<group>"; };
 		84245EBB238E551300AE479E /* Sprint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sprint.swift; sourceTree = "<group>"; };
 		843C58C42390FFB600F5FAB5 /* ProjectIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectIcon.swift; sourceTree = "<group>"; };
 		843C58C62390FFF800F5FAB5 /* ProjectIconController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectIconController.swift; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 				84F49ABB238E4D04002B8B93 /* AssigneeImageView.swift */,
 				841D97AA238E685200483928 /* AppNavigationBar.swift */,
 				846757A12390AF0F009BD2DE /* RoundImageView.swift */,
+				8421F66A23974D3C001DF5D9 /* PriorityRowView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -644,6 +647,7 @@
 				843C8984237AE7460050586E /* AppDelegate.swift in Sources */,
 				840409BC239173070006829F /* IconCollectionViewCell.swift in Sources */,
 				84BF40C1237D47C800600AE7 /* UIPanGestureRecognizer+Extension.swift in Sources */,
+				8421F66B23974D3C001DF5D9 /* PriorityRowView.swift in Sources */,
 				84A51AC0237AF8DD00477B75 /* IssueTableViewController.swift in Sources */,
 				845227D1238D22FE000607A8 /* IssueCollectionView.swift in Sources */,
 				84579E642396513B009575E4 /* PriorityController.swift in Sources */,

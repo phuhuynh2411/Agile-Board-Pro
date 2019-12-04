@@ -18,15 +18,12 @@ class AddIssueViewController: UIViewController {
     @IBOutlet weak var createButton: UIBarButtonItem!
     @IBOutlet weak var typeTextField: UITextField!
     @IBOutlet weak var projectTextField: UITextField!
-    
     @IBOutlet weak var typeImageView: CircleImageView!
-    
     @IBOutlet weak var summaryTextView: KMPlaceholderTextView!
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var stackView: UIStackView!
+    @IBOutlet weak var scrollViewBottom: NSLayoutConstraint!
     
-    @IBOutlet weak var tableViewHeightConstraint: NSLayoutConstraint!
-
     /// current project
     var project: Project?
     
@@ -35,11 +32,38 @@ class AddIssueViewController: UIViewController {
     
     var delegate: AddIssueDelegate?
     
-        
+    var keyboardHeight: CGFloat?
+    
+    // MARK: View Methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setUpView()
+        
         updateUI()
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
+    }
+    
+    @objc func keyboardWillShow(_ notification: Notification) {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            keyboardHeight = keyboardRectangle.height
+        }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        //setUpView()
+    }
+    
+    func setUpView() {
+        
     }
     
     // MARK: - IB Actions
@@ -65,6 +89,19 @@ class AddIssueViewController: UIViewController {
         dismiss(animated: true, completion: nil)
         
     }
+    
+    @IBAction func showMoreButtonPressed(_ sender: UIButton) {
+        print("Show more button pressed")
+        
+        let priorityView = PriorityRowView()
+        
+        stackView.addArrangedSubview(priorityView)
+        
+        UIView.animate(withDuration: 0.5) {
+            self.stackView.layoutIfNeeded()
+        }
+    }
+    
     
     // MARK: - Update UI
     
@@ -185,8 +222,12 @@ extension AddIssueViewController: UITextViewDelegate {
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
+        
+        scrollViewBottom.constant = keyboardHeight!
+    }
     
-        tableViewHeightConstraint.constant += 216
+    func textViewDidEndEditing(_ textView: UITextView) {
+        scrollViewBottom.constant = 0
     }
     
 }
