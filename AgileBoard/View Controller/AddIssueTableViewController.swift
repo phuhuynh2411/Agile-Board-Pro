@@ -36,7 +36,6 @@ class AddIssueTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
         
         setUpView()
     }
@@ -299,6 +298,17 @@ extension AddIssueTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if cellList?[indexPath.row] == .priority {
             performSegue(withIdentifier: Identifier.SelectPrioritySegue, sender: self)
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch cellList?[indexPath.row] {
+        case .priority:
+            return 60
+        case .attachment:
+            return 99
+        default:
+            return 44
         }
     }
     

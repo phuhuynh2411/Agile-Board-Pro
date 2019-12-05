@@ -35,6 +35,8 @@ class PriorityTableViewController: UITableViewController {
         
         // Remove extra seperators
         tableView.tableFooterView = UIView()
+        
+        tableView.rowHeight = 60
     }
 
     // MARK: - Table view data source
