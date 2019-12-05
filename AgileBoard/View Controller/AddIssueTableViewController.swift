@@ -8,115 +8,207 @@
 
 import UIKit
 
+enum AvailableTableCell {
+    case priority
+    case attachment
+}
+
 class AddIssueTableViewController: UITableViewController {
 
+    // MARK: Properites
+    
+    var headerView: AddIssueHeaderView?
+    
+    /// current project
+    var project: Project?
+    
+    /// Selected Issue Type
+    var selectedIssueType: IssueType?
+    
+    var delegate: AddIssueDelegate?
+        
+    var selectedPriority: Priority?
+    
+    var cellList: [AvailableTableCell]?
+    var selectedCellList: [AvailableTableCell]?
+    
     // MARK: View Methods
-    var heightConstraint: NSLayoutConstraint?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    
         
-        //let frame = CGRect(x: 0, y: 0, width: tableView.frame.width, height: 100)
-        //let headerView = UIView(frame: frame)
-        
-        //headerView.translatesAutoresizingMaskIntoConstraints = false
-        //let textView = UITextView()
-        //textView.backgroundColor = .red
-        //textView.translatesAutoresizingMaskIntoConstraints = false
-        //textView.delegate = self
-        //headerView.addSubview(textView)
-        //headerView.backgroundColor = .blue
-        
-        //textView.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        //textView.widthAnchor.constraint(equalToConstant: 100).isActive = true
-       // textView.isScrollEnabled = false
-
-        
-        //tableView.tableHeaderView = headerView
-        //heightConstraint = headerView.heightAnchor.constraint(equalToConstant: 300)
-        //heightConstraint?.isActive = true
-        
-        //headerView.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        
-        // tableView.sectionHeaderHeight = 200
-        
-        let nib = UINib(nibName: "AddIssueHeaderView", bundle: .main)
-        let headerView = nib.instantiate(withOwner: self, options: nil).first as! AddIssueHeaderView
-        headerView.translatesAutoresizingMaskIntoConstraints = false
-        
-       //headerView.heightAnchor.constraint(equalToConstant: 150).isActive = true
-//        headerView.leadingAnchor.constraint(equalTo: tableView.leadingAnchor, constant: 0.0).isActive = true
-//        headerView.trailingAnchor.constraint(equalTo: tableView.trailingAnchor, constant: 0.0).isActive = false
-        
-        //headerView.widthAnchor.constraint(equalToConstant: 500).isActive = true
-        
-       
-        let label = UILabel()
-        label.text = "testing..."
-        label.backgroundColor = .red
-        label.frame = CGRect(x: 0, y: 0, width: 0, height: 30)
-        
-        headerView.frame = CGRect(x: 0, y: 0, width: 0, height: 300 )
-        
-//        let anotherView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 300))
-//        anotherView.backgroundColor = .red
-//        anotherView.addSubview(headerView)
-//        headerView.trailingAnchor.constraint(equalTo: anotherView.trailingAnchor).isActive = true
-//        headerView.leadingAnchor.constraint(equalTo: anotherView.leadingAnchor).isActive = true
-        
-
-        tableView.tableHeaderView = headerView
-        
-        
-       // self.view.layoutIfNeeded()
+        setUpView()
     }
     
-    // MARK: Helper Methods
-    
-    private func cellAt(indexPath: IndexPath) -> UITableViewCell? {
-        var identifer = ""
+    private func setUpView() {
+        setUpHeader()
+        projectData()
+        issueTypeData()
+        setUpCell()
         
-        switch indexPath.row {
-        case 0:
-            identifer = Identifier.SelectProjectOrTypeCell
-            break
-        case 1:
-            identifer = Identifier.SummaryCell
-            break
-        case 2:
-            identifer = Identifier.DescriptionCell
-            break
-        default:
-            identifer = ""
+        // Create a medium priority as the default one
+        selectedPriority = PriorityController.shared.getDefault()
+    }
+    
+    private func updateView() {
+        projectData()
+        issueTypeData()
+        
+        tableView.reloadData()
+    }
+    
+    private func projectData() {
+        // Update project name
+        let projectButton = headerView?.projectButton
+        if let projectName = project?.name {
+            projectButton?.isSelected = true
+            projectButton?.setTitle(projectName, for: .selected)
+        }
+    }
+    
+    private func issueTypeData() {
+        // Update issue type
+        let typeButton = headerView?.typeButton
+        if let issueType = selectedIssueType?.name {
+            typeButton?.isSelected = true
+            typeButton?.setTitle(issueType, for: .selected)
         }
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: identifer)
+        if let issueImageName = selectedIssueType?.imageName {
+            headerView?.typeImageView.image = UIImage(named: issueImageName)
+            headerView?.showTypeIcon = true
+        }
+        else {
+            headerView?.showTypeIcon = false
+        }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        //headerFitTextView()
+    }
+    
+    // MARK: - Set Up table view header view
+    
+    private func setUpHeader() {
+        
+        let nib = UINib(nibName: "AddIssueHeaderView", bundle: .main)
+        headerView = nib.instantiate(withOwner: self, options: nil).first as? AddIssueHeaderView
+        headerView?.translatesAutoresizingMaskIntoConstraints = false
+        headerView?.summaryTextView.delegate = self
+        headerView?.descriptionTextView.delegate = self
+        
+        let parentView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: headerView!.frame.height))
+        parentView.addSubview(headerView!)
+        headerView?.trailingAnchor.constraint(equalTo: parentView.trailingAnchor).isActive = true
+        headerView?.leadingAnchor.constraint(equalTo: parentView.leadingAnchor).isActive = true
+        headerView?.topAnchor.constraint(equalTo: parentView.topAnchor).isActive = true
+        headerView?.bottomAnchor.constraint(equalTo: parentView.bottomAnchor).isActive = true
+  
+        tableView.tableHeaderView = parentView
+        
+        // Set up actions
+        headerView?.projectButton.addTarget(self, action: #selector(selectProjectPressed(sender:)), for: .touchUpInside)
+        headerView?.typeButton.addTarget(self, action: #selector(selectTypePressed(sender:)), for: .touchUpInside)
+        headerView?.showMoreButton.addTarget(self, action: #selector(showMoreButtonPress(sender:)), for: .touchUpInside)
+    }
+    
+    // MARK: - Setup table view cell
+    
+    private func setUpCell() {
+        selectedCellList = [AvailableTableCell]()
+        selectedCellList?.append(.priority)
+        selectedCellList?.append(.attachment)
+    }
+    
+    // MARK: - Helper Methods
+    
+    private func cellAt(indexPath: IndexPath) -> UITableViewCell? {
+        var cell: UITableViewCell?
+        
+        switch selectedCellList?[indexPath.row] {
+        case .priority:
+            cell = tableView.dequeueReusableCell(withIdentifier: "PriorityCell", for: indexPath)
+            break
+        case .attachment:
+            cell = tableView.dequeueReusableCell(withIdentifier: "AttachmentCell", for: indexPath)
+            break
+        default: break
+        }
+        
+        // Add data to priority cell
+        if let priorityCell = cell as? IssuePriorityTableViewCell {
+            priorityCell.priorityNameLabel?.text = selectedPriority?.name
+            if let imageName = selectedPriority?.imageName {
+                priorityCell.priorityImageView.image = UIImage(named: imageName)
+            }
+        }
         
         return cell
     }
     
+    /**
+     A best fitting size for text view
+     */
+    private func fitTextViewSize(textView: UITextView){
+        
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        let fixedWidth = textView.frame.size.width
+        let newSize = textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
+        
+        textView.frame.size =  CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
+    }
+    
+    /**
+     Adjusts the table view header to fit the text view height
+     */
+    private func headerFitTextView() {
+        let size = tableView.frame.size
+        tableView.tableHeaderView?.frame.size = CGSize(width: size.width, height: headerView!.viewHeight())
+        tableView.reloadData()
+    }
+    
     // MARK: - IB Actions
     
-    @IBAction func selectProjectPressed(_ sender: Any) {
-        print("Select project")
+    @objc func selectProjectPressed(sender: UIButton) {
+        performSegue(withIdentifier: Identifier.SearchProjectSegue, sender: self)
     }
     
-    @IBAction func selectTypePressed(_ sender: UITapGestureRecognizer) {
-        print("Select type pressed")
+    @objc func selectTypePressed(sender: UIButton) {
+        performSegue(withIdentifier: Identifier.SelectIssueTypeSegue, sender: self)
     }
     
-    
+    @objc func showMoreButtonPress(sender: UIButton) {
+        let indexPaths = selectedCellList?.enumerated().compactMap{ IndexPath(row: $0.offset, section: 0)}
+        if headerView!.showMoreField {
+            cellList = nil
+            tableView.deleteRows(at: indexPaths!, with: .automatic)
+        }
+        else {
+            cellList = selectedCellList
+            tableView.insertRows(at: indexPaths!, with: .automatic)
+        }
+        tableView.reloadData()
+    }
 
+    @IBAction func closeButtonPressed(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func createButtonPressed(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return cellList?.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")!
-        cell.textLabel?.text = "Testing..."
-
+        let cell = cellAt(indexPath: indexPath)!
+        
         return cell
     }
     
@@ -128,11 +220,9 @@ extension AddIssueTableViewController: UITextViewDelegate {
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         
-       
-        
         // Dismiss the keyboard when pressing on the return key
         // Only apply for the summary field
-        if text == "\n", textView.tag == 1{
+        if text == "\n", textView == headerView?.summaryTextView {
             textView.resignFirstResponder()
             return false
         }
@@ -141,24 +231,85 @@ extension AddIssueTableViewController: UITextViewDelegate {
     }
     
     func textViewDidChange(_ textView: UITextView) {
-        let fixedWidth = textView.frame.size.width
-        let newSize = textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
-        textView.frame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
-        
-        heightConstraint?.constant = newSize.height
-        tableView.reloadData()
-        //self.view.layoutIfNeeded()
-        // tableView.sizeToFit()
-        
-        if let indexPath = tableView.indexPathForSelectedRow {
-            let cell = tableView.cellForRow(at: indexPath)
-            cell?.frame.size =  CGSize(width: cell!.frame.size.width, height: newSize.height + CGFloat(12) )
-            // tableView.reloadRows(at: [indexPath], with: .automatic)
-            tableView.rowHeight = newSize.height + CGFloat(12)
-        }
-        
-        print("Text view did change")
-        
+        fitTextViewSize(textView: textView)
+        headerFitTextView()
     }
     
+}
+
+// MARK: - SelectProjectProtocol
+
+extension AddIssueTableViewController: SelectProjectDelegate {
+    
+    func didSelectdProject(project: Project?) {
+        self.project = project
+        
+        // Reload the UI
+        updateView()
+    }
+    
+}
+
+// MARK: - Navigation
+
+extension AddIssueTableViewController {
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // Pass the selected project to the Serach Project View Controller
+        if segue.identifier == Identifier.SearchProjectSegue {
+            let navigationController = segue.destination as! UINavigationController
+            let searchProjectViewController = navigationController.topViewController as! SearchProjectViewController
+            searchProjectViewController.selectedProject = project
+            searchProjectViewController.delegate = self
+        }
+        
+        if segue.identifier == Identifier.SelectIssueTypeSegue {
+            let navigationController = segue.destination as! UINavigationController
+            let selectIssueTypeTableViewController = navigationController.topViewController as! SelectIssueTypeTableViewController
+            
+            selectIssueTypeTableViewController.selectedIssueType = selectedIssueType
+            selectIssueTypeTableViewController.delegate = self
+        }
+        
+        if segue.identifier == Identifier.SelectPrioritySegue {
+            let priorityTableController = segue.destination as! PriorityTableViewController
+            priorityTableController.selectedPriority = selectedPriority
+            priorityTableController.delegate = self
+        }
+        
+    }
+}
+
+// MARK: - SelectIssueType Delegate
+
+extension AddIssueTableViewController: SelectIssueTypeDelegate {
+    
+    func didSelectIssueType(issueType: IssueType?) {
+        self.selectedIssueType = issueType
+                
+        updateView()
+    }
+}
+
+// MARK: - UI Table View Delegate
+
+extension AddIssueTableViewController {
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if cellList?[indexPath.row] == .priority {
+            performSegue(withIdentifier: Identifier.SelectPrioritySegue, sender: self)
+        }
+    }
+    
+}
+
+// MARK: - Select Priority Delegate
+
+extension AddIssueTableViewController: SelectPriorityDelegate {
+    
+    func didSelectPriority(priority: Priority) {
+        selectedPriority = priority
+        updateView()
+    }
 }

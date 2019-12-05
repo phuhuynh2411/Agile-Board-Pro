@@ -92,10 +92,10 @@ class BoardViewController: UIViewController {
         if segue.identifier == Identifier.AddIssueTableViewControllerSegue {
             
             let navigationController = segue.destination as! UINavigationController
-            let addIssueViewController =  navigationController.topViewController as! AddIssueViewController
+            let addIssueTableViewController =  navigationController.topViewController as! AddIssueTableViewController
             
-            addIssueViewController.project = project
-            addIssueViewController.delegate = self
+            addIssueTableViewController.project = project
+            addIssueTableViewController.delegate = self
             
         }
     }

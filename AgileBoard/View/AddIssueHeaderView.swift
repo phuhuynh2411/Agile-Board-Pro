@@ -7,15 +7,56 @@
 //
 
 import UIKit
+import KMPlaceholderTextView
 
 class AddIssueHeaderView: UIView {
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    @IBOutlet weak var topStackView: UIStackView!
+    @IBOutlet weak var summaryTextView: KMPlaceholderTextView!
+    @IBOutlet weak var descriptionTextView: KMPlaceholderTextView!
+    
+    @IBOutlet weak var typeButton: UIButton!
+    @IBOutlet weak var projectButton: UIButton!
+    @IBOutlet weak var stackView: UIStackView!
+    @IBOutlet weak var showMoreButton: UIButton!
+    
+    @IBOutlet weak var typeImageView: UIImageView!
+    
+    /// Show or hide the isuse type icon
+    var showTypeIcon: Bool = false {
+        willSet {
+            let widthConstraint = typeImageView.constraints.first { $0.identifier == "imageWidthConstraint" }!
+            if newValue {
+                widthConstraint.constant = 20
+            }
+            else {
+                widthConstraint.constant = 0
+            }
+        }
     }
-    */
-
+    
+    var showMoreField: Bool = false {
+        willSet{
+            let buttonTitle = newValue ? "Show less fields" : "Show more fields"
+            showMoreButton.setTitle(buttonTitle, for: .normal)
+        }
+    }
+    
+    override func draw(_ rect: CGRect) {
+        showMoreButton.addTarget(self, action: #selector(showMoreButtonPressed(sender:)), for: .touchUpInside)
+    }
+    
+    func viewHeight() -> CGFloat {
+        let numberOfViews = self.stackView.arrangedSubviews.count
+        let stackViewHeight = CGFloat(numberOfViews - 1 ) * stackView.spacing
+        
+        let height = topStackView.frame.height + summaryTextView.frame.height +
+            descriptionTextView.frame.height + stackViewHeight + showMoreButton.frame.height
+        
+        return height
+    }
+    
+    @objc func showMoreButtonPressed(sender: UIButton) {
+        showMoreField = !showMoreField
+    }
 }

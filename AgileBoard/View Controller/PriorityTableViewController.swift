@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-protocol SelectPriority {
+protocol SelectPriorityDelegate {
     func didSelectPriority(priority: Priority)
 }
 
@@ -19,7 +19,7 @@ class PriorityTableViewController: UITableViewController {
     
     var priorityList: Results<Priority>?
     var selectedPriority: Priority?
-    var delegate: SelectPriority?
+    var delegate: SelectPriorityDelegate?
 
     // MARK: View Methods
     
@@ -46,7 +46,7 @@ class PriorityTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! PriorityTableViewCell
         let priority = priorityList?[indexPath.row]
-        cell.nameLabel.text = priority?.name
+        cell.priorityNameLabel.text = priority?.name
         if let imageName = priority?.imageName {
              cell.iconImageView.image = UIImage(named: imageName)
         }
@@ -61,6 +61,16 @@ class PriorityTableViewController: UITableViewController {
         }
         
         return cell
+    }
+    
+    // MARK: - UI Table View Delegate
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        selectedPriority = priorityList?[indexPath.row]
+        
+        delegate?.didSelectPriority(priority: selectedPriority!)
+        navigationController?.popViewController(animated: true)
     }
     
 }

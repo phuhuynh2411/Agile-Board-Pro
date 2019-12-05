@@ -17,6 +17,7 @@
 		8420628C237AFD7E0076CDAC /* Issue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8420628B237AFD7E0076CDAC /* Issue.swift */; };
 		8421F66B23974D3C001DF5D9 /* PriorityRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8421F66A23974D3C001DF5D9 /* PriorityRowView.swift */; };
 		84245EBC238E551300AE479E /* Sprint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84245EBB238E551300AE479E /* Sprint.swift */; };
+		84299FD32398FD9900432A66 /* IssuePriorityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84299FD22398FD9900432A66 /* IssuePriorityTableViewCell.swift */; };
 		843C58C52390FFB600F5FAB5 /* ProjectIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843C58C42390FFB600F5FAB5 /* ProjectIcon.swift */; };
 		843C58C72390FFF800F5FAB5 /* ProjectIconController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843C58C62390FFF800F5FAB5 /* ProjectIconController.swift */; };
 		843C58C92391049400F5FAB5 /* AppDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843C58C82391049400F5FAB5 /* AppDataController.swift */; };
@@ -103,6 +104,7 @@
 		8420628B237AFD7E0076CDAC /* Issue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Issue.swift; sourceTree = "<group>"; };
 		8421F66A23974D3C001DF5D9 /* PriorityRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityRowView.swift; sourceTree = "<group>"; };
 		84245EBB238E551300AE479E /* Sprint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sprint.swift; sourceTree = "<group>"; };
+		84299FD22398FD9900432A66 /* IssuePriorityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssuePriorityTableViewCell.swift; sourceTree = "<group>"; };
 		843C58C42390FFB600F5FAB5 /* ProjectIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectIcon.swift; sourceTree = "<group>"; };
 		843C58C62390FFF800F5FAB5 /* ProjectIconController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectIconController.swift; sourceTree = "<group>"; };
 		843C58C82391049400F5FAB5 /* AppDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDataController.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 		8420628E237AFE9C0076CDAC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				84299FD22398FD9900432A66 /* IssuePriorityTableViewCell.swift */,
 				843C8989237AE7460050586E /* Main.storyboard */,
 				843C898E237AE7480050586E /* LaunchScreen.storyboard */,
 				84206291237AFED20076CDAC /* Custom Cell */,
@@ -642,6 +645,7 @@
 				847A78102387711600911851 /* Status.swift in Sources */,
 				84579E6223965068009575E4 /* Priority.swift in Sources */,
 				84F49ABC238E4D04002B8B93 /* AssigneeImageView.swift in Sources */,
+				84299FD32398FD9900432A66 /* IssuePriorityTableViewCell.swift in Sources */,
 				84E5916623925C86006FBA5E /* ProjectKeyTextField.swift in Sources */,
 				843C8988237AE7460050586E /* BoardViewController.swift in Sources */,
 				84584E27238ED999000408AE /* AddIssueViewController.swift in Sources */,

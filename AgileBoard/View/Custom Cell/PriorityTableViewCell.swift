@@ -10,7 +10,7 @@ import UIKit
 
 class PriorityTableViewCell: UITableViewCell {
     @IBOutlet weak var iconImageView: RoundImageView!
-    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var priorityNameLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
