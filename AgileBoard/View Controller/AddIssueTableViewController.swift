@@ -143,6 +143,10 @@ class AddIssueTableViewController: UITableViewController {
             }
         }
         
+        if let attachmentCell = cell as? AttachmentTableViewCell {
+            attachmentCell.collectionView.numberLabel = attachmentCell.numberLabel
+        }
+        
         return cell
     }
     
@@ -306,7 +310,7 @@ extension AddIssueTableViewController {
         case .priority:
             return 60
         case .attachment:
-            return 99
+            return 150
         default:
             return 44
         }

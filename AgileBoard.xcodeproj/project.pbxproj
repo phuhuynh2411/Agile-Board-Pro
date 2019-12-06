@@ -23,6 +23,8 @@
 		84299FD32398FD9900432A66 /* IssuePriorityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84299FD22398FD9900432A66 /* IssuePriorityTableViewCell.swift */; };
 		84299FD523990B8E00432A66 /* AttachmentCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84299FD423990B8E00432A66 /* AttachmentCollectionView.swift */; };
 		84299FD723990BB800432A66 /* AttachmentCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84299FD623990BB800432A66 /* AttachmentCollectionViewController.swift */; };
+		843BF016239A4C9C005F798D /* AttachmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843BF015239A4C9C005F798D /* AttachmentTableViewCell.swift */; };
+		843BF018239A61EE005F798D /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843BF017239A61EE005F798D /* PhotoViewController.swift */; };
 		843C58C52390FFB600F5FAB5 /* ProjectIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843C58C42390FFB600F5FAB5 /* ProjectIcon.swift */; };
 		843C58C72390FFF800F5FAB5 /* ProjectIconController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843C58C62390FFF800F5FAB5 /* ProjectIconController.swift */; };
 		843C58C92391049400F5FAB5 /* AppDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843C58C82391049400F5FAB5 /* AppDataController.swift */; };
@@ -118,6 +120,8 @@
 		84299FD22398FD9900432A66 /* IssuePriorityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssuePriorityTableViewCell.swift; sourceTree = "<group>"; };
 		84299FD423990B8E00432A66 /* AttachmentCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentCollectionView.swift; sourceTree = "<group>"; };
 		84299FD623990BB800432A66 /* AttachmentCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentCollectionViewController.swift; sourceTree = "<group>"; };
+		843BF015239A4C9C005F798D /* AttachmentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentTableViewCell.swift; sourceTree = "<group>"; };
+		843BF017239A61EE005F798D /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		843C58C42390FFB600F5FAB5 /* ProjectIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectIcon.swift; sourceTree = "<group>"; };
 		843C58C62390FFF800F5FAB5 /* ProjectIconController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectIconController.swift; sourceTree = "<group>"; };
 		843C58C82391049400F5FAB5 /* AppDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDataController.swift; sourceTree = "<group>"; };
@@ -279,6 +283,7 @@
 				841D97A8238E674300483928 /* AppNavigationController.swift */,
 				84579E69239664FB009575E4 /* AddIssueTableViewController.swift */,
 				84299FD623990BB800432A66 /* AttachmentCollectionViewController.swift */,
+				843BF017239A61EE005F798D /* PhotoViewController.swift */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -341,6 +346,7 @@
 				8442DC41237E969C008C88C6 /* Identifier.swift */,
 				84579E6723965CD4009575E4 /* PriorityTableViewCell.swift */,
 				842686F323995E7E00B981D7 /* AttachmentCollectionViewCell.swift */,
+				843BF015239A4C9C005F798D /* AttachmentTableViewCell.swift */,
 			);
 			path = "Custom Cell";
 			sourceTree = "<group>";
@@ -658,6 +664,7 @@
 				840409BA239171290006829F /* IconCollectionViewController.swift in Sources */,
 				843C58C92391049400F5FAB5 /* AppDataController.swift in Sources */,
 				841B42F223844275000871F6 /* IssueCollectionViewFlowLayout.swift in Sources */,
+				843BF016239A4C9C005F798D /* AttachmentTableViewCell.swift in Sources */,
 				847A78122387745D00911851 /* Board.swift in Sources */,
 				84F56A05237C5B56007E6C68 /* UIColor+Extention.swift in Sources */,
 				845227CF238CFC61000607A8 /* IssueCollectionViewController.swift in Sources */,
@@ -717,6 +724,7 @@
 				841D97AB238E685200483928 /* AppNavigationBar.swift in Sources */,
 				84C340E42388361D00C65AC9 /* ProjectTableViewController.swift in Sources */,
 				847A78142387758F00911851 /* Project.swift in Sources */,
+				843BF018239A61EE005F798D /* PhotoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

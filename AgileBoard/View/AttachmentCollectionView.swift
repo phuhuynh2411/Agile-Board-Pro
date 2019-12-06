@@ -12,6 +12,9 @@ class AttachmentCollectionView: UICollectionView {
     
     var controller: AttachmentCollectionViewController?
     
+    // The number of attachments
+    var numberLabel: UILabel?
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         print("Collection view was initiated.")

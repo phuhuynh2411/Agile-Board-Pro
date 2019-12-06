@@ -36,13 +36,13 @@ class AttachmentCollectionViewController: UICollectionViewController {
     @objc func addAttachment(sender: UIButton) {
         print("Add attachment pressed")
         
-        let alert = UIAlertController(title: "", message: "Select the following options to add the attachments.", preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: "", message: "Select the following options to add the attachments. Press OK if there are any message prompts out.", preferredStyle: .actionSheet)
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
             print("Cancel pressed")
         }
         let cameraAction = UIAlertAction(title: "Camera", style: .default) { (action) in
-            print("Camera pressed")
+            self.takePhoto()
         }
         let photoAction = UIAlertAction(title: "Photo Library", style: .default) { (action) in
             self.selectPhoto()
@@ -61,6 +61,7 @@ class AttachmentCollectionViewController: UICollectionViewController {
     private func selectPhoto() {
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
+         imagePickerController.sourceType = .photoLibrary
         
         // Veriry the photo library
         guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else {
@@ -69,11 +70,30 @@ class AttachmentCollectionViewController: UICollectionViewController {
         }
        topController?.present(imagePickerController, animated: true, completion: nil)
     }
+    
+    private func takePhoto() {
+        print("Take photo")
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = .camera
+         
+         // Veriry the photo library
+        guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
+             print("The Cammera is not available")
+             return
+         }
+        topController?.present(imagePickerController, animated: true, completion: nil)
+    }
 
     // MARK: UICollectionViewDataSource
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return attachmentList?.count ?? 0
+        let count = attachmentList?.count ?? 0
+        // Update the number of attachments
+        let attachmentCollectionView = collectionView as! AttachmentCollectionView
+        attachmentCollectionView.numberLabel?.text = "\(count)"
+        
+        return count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -100,7 +120,14 @@ class AttachmentCollectionViewController: UICollectionViewController {
         
         return view
         
-       }
+    }
+    
+    // MARK: UICollectionViewDelegate
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("Did select image at indexpath \(indexPath)")
+        
+    }
     
 }
 
@@ -110,29 +137,32 @@ extension AttachmentCollectionViewController: UIImagePickerControllerDelegate, U
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
-        let imageURL = info[.imageURL] as! NSURL
-        let stringURL = imageURL.absoluteString
-        let imageName = imageURL.lastPathComponent ?? "unknow.jpg"
+        // Selected a photo from the Photo Library
+        if let imageURL = info[.imageURL] as? NSURL {
+            let stringURL = imageURL.absoluteString
+            let imageName = imageURL.lastPathComponent ?? "unknow.jpg"
+            
+            let attachment = Attachment()
+            attachment.name = imageName
+            attachment.url = stringURL!
+            
+            attachmentList?.append(attachment)
+        }
+        // Captured a photo from camera
+        else {
+            let originalImage = info[.originalImage] as! UIImage
+            // Save the captured image to temporary folder
+            let attachment = Attachment()
+            attachment.name = attachment.id
+            let stringURL = AttachmentController.shared.cache(image: originalImage, name: attachment.name)?.absoluteString
+            attachment.url = stringURL!
+            
+            attachmentList?.append(attachment)
+        }
         
-        let attachment = Attachment()
-        attachment.name = imageName
-        attachment.url = stringURL!
-        
-        attachmentList?.append(attachment)
         collectionView.reloadData()
         
         topController?.dismiss(animated: true, completion: nil)
     }
-    
-//    print("Did select photo")
-//    let originalImage = info[.originalImage] as! UIImage
-//    // let editedImage = info[.editedImage] as! UIImage
-//    let imageURL = info[.imageURL] as! NSURL
-//    print(imageURL.absoluteString)
-//
-//    let attachment = Attachment()
-//    attachment.name = imageURL.lastPathComponent ?? "unknow.jpg"
-//
-//    AttachmentController.shared.add(attachment: attachment, image: originalImage)
 }
 

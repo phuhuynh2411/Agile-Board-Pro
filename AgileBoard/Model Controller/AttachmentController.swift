@@ -19,6 +19,10 @@ class AttachmentController {
         return documentFolerPath.appendingPathComponent("attachments", isDirectory: true)
     }
     
+    var tempFolderPath: URL {
+        return NSURL(fileURLWithPath: NSTemporaryDirectory(), isDirectory: true).filePathURL!
+    }
+    
     var realm: Realm?
     
     init() {
@@ -58,6 +62,22 @@ class AttachmentController {
             print("Image was not saved with error \(error)")
         }
     
+    }
+    
+    func cache(image: UIImage, name: String) -> URL? {
+    
+        let fileURL = tempFolderPath.appendingPathComponent(name).appendingPathExtension("jpeg")
+        let jpegData = image.jpegData(compressionQuality: 1.0)
+        
+        // Write the image to the fileURL
+        do{
+            try jpegData?.write(to: fileURL)
+            print("The image was saved at path \(fileURL.absoluteString)")
+        }catch {
+            print("Image was not saved with error \(error)")
+            return nil
+        }
+        return fileURL
     }
     
 }

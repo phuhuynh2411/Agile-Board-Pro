@@ -141,15 +141,15 @@
                                     <outlet property="priorityNameLabel" destination="5g9-gd-9uE" id="46h-fh-PjA"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AttachmentCell" rowHeight="99" id="60S-Lh-2bL" customClass="PriorityTableViewCell" customModule="AgileBoard" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="88" width="375" height="99"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AttachmentCell" rowHeight="150" id="60S-Lh-2bL" customClass="AttachmentTableViewCell" customModule="AgileBoard" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="88" width="375" height="150"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="60S-Lh-2bL" id="bP1-lt-CDo">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="disclosure" translatesAutoresizingMaskIntoConstraints="NO" id="MSS-nF-O4D">
-                                            <rect key="frame" x="349" y="11" width="10" height="14"/>
+                                            <rect key="frame" x="349" y="14" width="10" height="14"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="14" id="AnI-fn-ozs"/>
                                                 <constraint firstAttribute="width" constant="10" id="C5K-2f-ZWZ"/>
@@ -162,33 +162,33 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uHz-Qx-aYS">
-                                            <rect key="frame" x="331" y="8" width="10" height="21"/>
+                                            <rect key="frame" x="331" y="10.5" width="10" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" systemColor="placeholderTextColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="UeS-cD-46D" customClass="AttachmentCollectionView" customModule="AgileBoard" customModuleProvider="target">
-                                            <rect key="frame" x="16" y="38.5" width="343" height="50"/>
+                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="UeS-cD-46D" customClass="AttachmentCollectionView" customModule="AgileBoard" customModuleProvider="target">
+                                            <rect key="frame" x="16" y="38.5" width="343" height="100"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="50" id="aUA-dJ-OIw"/>
+                                                <constraint firstAttribute="height" constant="100" id="aUA-dJ-OIw"/>
                                             </constraints>
                                             <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ObD-sZ-15U">
-                                                <size key="itemSize" width="50" height="50"/>
+                                                <size key="itemSize" width="100" height="100"/>
                                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                                <size key="footerReferenceSize" width="50" height="50"/>
-                                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <size key="footerReferenceSize" width="100" height="100"/>
+                                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
                                             </collectionViewFlowLayout>
                                             <cells>
                                                 <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="Nfx-Ow-aEJ" customClass="AttachmentCollectionViewCell" customModule="AgileBoard" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="FUJ-BP-L0K">
-                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="llZ-o8-J3j">
-                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="llZ-o8-J3j">
+                                                                <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                             </imageView>
                                                         </subviews>
                                                         <constraints>
@@ -198,19 +198,18 @@
                                                             <constraint firstItem="llZ-o8-J3j" firstAttribute="leading" secondItem="FUJ-BP-L0K" secondAttribute="leading" id="jrG-GI-Ajm"/>
                                                         </constraints>
                                                     </collectionViewCellContentView>
-                                                    <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <connections>
                                                         <outlet property="attachmentImageView" destination="llZ-o8-J3j" id="DhV-sO-SAN"/>
                                                     </connections>
                                                 </collectionViewCell>
                                             </cells>
                                             <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="Footer" id="uKm-Ro-UTw">
-                                                <rect key="frame" x="50" y="0.0" width="50" height="50"/>
+                                                <rect key="frame" x="110" y="0.0" width="100" height="100"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TsO-Wu-XaS">
-                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                        <state key="normal" title="Button"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TsO-Wu-XaS">
+                                                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                                        <state key="normal" image="addAttachment"/>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
@@ -229,13 +228,18 @@
                                         <constraint firstItem="MSS-nF-O4D" firstAttribute="trailing" secondItem="bP1-lt-CDo" secondAttribute="trailingMargin" id="NgK-xt-fVH"/>
                                         <constraint firstItem="UeS-cD-46D" firstAttribute="trailing" secondItem="bP1-lt-CDo" secondAttribute="trailingMargin" id="fsM-iC-axa"/>
                                         <constraint firstItem="uHz-Qx-aYS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="heD-6X-Rn3" secondAttribute="trailing" constant="8" symbolic="YES" id="il0-Fy-EB3"/>
-                                        <constraint firstItem="MSS-nF-O4D" firstAttribute="top" secondItem="bP1-lt-CDo" secondAttribute="topMargin" id="lZa-13-9Qp"/>
-                                        <constraint firstItem="uHz-Qx-aYS" firstAttribute="top" secondItem="bP1-lt-CDo" secondAttribute="top" constant="8" id="mfL-tB-kQp"/>
+                                        <constraint firstItem="MSS-nF-O4D" firstAttribute="centerY" secondItem="uHz-Qx-aYS" secondAttribute="centerY" id="jNa-jl-jaT"/>
                                         <constraint firstItem="heD-6X-Rn3" firstAttribute="leading" secondItem="bP1-lt-CDo" secondAttribute="leadingMargin" id="rZ1-oY-0qH"/>
+                                        <constraint firstItem="uHz-Qx-aYS" firstAttribute="centerY" secondItem="heD-6X-Rn3" secondAttribute="centerY" id="uCA-yO-oCV"/>
                                         <constraint firstItem="MSS-nF-O4D" firstAttribute="leading" secondItem="uHz-Qx-aYS" secondAttribute="trailing" constant="8" id="z2g-HI-xng"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <connections>
+                                    <outlet property="collectionView" destination="UeS-cD-46D" id="DVL-M3-HJ4"/>
+                                    <outlet property="numberLabel" destination="uHz-Qx-aYS" id="cGT-OS-1Tg"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -914,6 +918,21 @@
             </objects>
             <point key="canvasLocation" x="4174" y="681"/>
         </scene>
+        <!--Photo View Controller-->
+        <scene sceneID="CgV-qU-rgj">
+            <objects>
+                <viewController id="86O-EC-8WL" customClass="PhotoViewController" customModule="AgileBoard" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jJw-Oi-5pI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="SR7-Qk-bdz"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bhf-gk-UE0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3350" y="1460"/>
+        </scene>
         <!--App Navigation Controller-->
         <scene sceneID="dRL-wq-7fG">
             <objects>
@@ -974,6 +993,7 @@
     </scenes>
     <resources>
         <image name="Accepted" width="23" height="22"/>
+        <image name="addAttachment" width="100" height="100"/>
         <image name="default_project_icon" width="81" height="71"/>
         <image name="disclosure" width="10" height="16"/>
         <image name="priority_lowest" width="12" height="10"/>
