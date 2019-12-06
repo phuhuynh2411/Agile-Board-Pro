@@ -52,6 +52,7 @@
 		8468D494238FA69F006B02D4 /* IssueType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468D493238FA69F006B02D4 /* IssueType.swift */; };
 		8468D497238FA76E006B02D4 /* IssueTypeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468D496238FA76E006B02D4 /* IssueTypeController.swift */; };
 		8468D499238FBD71006B02D4 /* StatusController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468D498238FBD71006B02D4 /* StatusController.swift */; };
+		84694E0E239A1199004BC18D /* UIApplication+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84694E0D239A1199004BC18D /* UIApplication+Extention.swift */; };
 		846B6A8C238CCA7600569BC2 /* IssuePageControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846B6A8B238CCA7600569BC2 /* IssuePageControlView.swift */; };
 		8470DBD223960A3A00B146BD /* AddProjectTableViewControllerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8470DBD123960A3A00B146BD /* AddProjectTableViewControllerUITests.swift */; };
 		847A78102387711600911851 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847A780F2387711600911851 /* Status.swift */; };
@@ -67,6 +68,7 @@
 		84B5F72F238F647F00D344C3 /* SearchProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B5F72E238F647F00D344C3 /* SearchProjectTableViewCell.swift */; };
 		84B5F731238F806B00D344C3 /* SelectIssueTypeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B5F730238F806B00D344C3 /* SelectIssueTypeTableViewController.swift */; };
 		84B5F733238F860C00D344C3 /* IssueTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B5F732238F860C00D344C3 /* IssueTypeTableViewCell.swift */; };
+		84B7EE0B239A40D10011BBD9 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B7EE0A239A40D10011BBD9 /* UIImageExtension.swift */; };
 		84BF40C1237D47C800600AE7 /* UIPanGestureRecognizer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BF40C0237D47C800600AE7 /* UIPanGestureRecognizer+Extension.swift */; };
 		84C340E42388361D00C65AC9 /* ProjectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C340E32388361D00C65AC9 /* ProjectTableViewController.swift */; };
 		84C340E62388368900C65AC9 /* ProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C340E52388368900C65AC9 /* ProjectTableViewCell.swift */; };
@@ -147,6 +149,7 @@
 		8468D493238FA69F006B02D4 /* IssueType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueType.swift; sourceTree = "<group>"; };
 		8468D496238FA76E006B02D4 /* IssueTypeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueTypeController.swift; sourceTree = "<group>"; };
 		8468D498238FBD71006B02D4 /* StatusController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusController.swift; sourceTree = "<group>"; };
+		84694E0D239A1199004BC18D /* UIApplication+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIApplication+Extention.swift"; path = "AgileBoard/Model Controller/UIApplication+Extention.swift"; sourceTree = SOURCE_ROOT; };
 		846B6A8B238CCA7600569BC2 /* IssuePageControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssuePageControlView.swift; sourceTree = "<group>"; };
 		8470DBBF2395FB8E00B146BD /* Pods_AgileBoard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_AgileBoard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8470DBC12395FBC000B146BD /* KMPlaceholderTextView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KMPlaceholderTextView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -171,6 +174,7 @@
 		84B5F72E238F647F00D344C3 /* SearchProjectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchProjectTableViewCell.swift; sourceTree = "<group>"; };
 		84B5F730238F806B00D344C3 /* SelectIssueTypeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectIssueTypeTableViewController.swift; sourceTree = "<group>"; };
 		84B5F732238F860C00D344C3 /* IssueTypeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueTypeTableViewCell.swift; sourceTree = "<group>"; };
+		84B7EE0A239A40D10011BBD9 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		84BF40C0237D47C800600AE7 /* UIPanGestureRecognizer+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIPanGestureRecognizer+Extension.swift"; sourceTree = SOURCE_ROOT; };
 		84C340E32388361D00C65AC9 /* ProjectTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTableViewController.swift; sourceTree = "<group>"; };
 		84C340E52388368900C65AC9 /* ProjectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTableViewCell.swift; sourceTree = "<group>"; };
@@ -304,13 +308,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		8420628F237AFEA20076CDAC /* Extention */ = {
+		8420628F237AFEA20076CDAC /* Extension */ = {
 			isa = PBXGroup;
 			children = (
 				84BF40C0237D47C800600AE7 /* UIPanGestureRecognizer+Extension.swift */,
+				84694E0D239A1199004BC18D /* UIApplication+Extention.swift */,
 				84F56A04237C5B56007E6C68 /* UIColor+Extention.swift */,
+				84B7EE0A239A40D10011BBD9 /* UIImageExtension.swift */,
 			);
-			path = Extention;
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		84206290237AFEBB0076CDAC /* App */ = {
@@ -365,7 +371,7 @@
 			isa = PBXGroup;
 			children = (
 				84206290237AFEBB0076CDAC /* App */,
-				8420628F237AFEA20076CDAC /* Extention */,
+				8420628F237AFEA20076CDAC /* Extension */,
 				8420628E237AFE9C0076CDAC /* View */,
 				8420628D237AFE950076CDAC /* View Controller */,
 				8468D495238FA755006B02D4 /* Model Controller */,
@@ -671,6 +677,7 @@
 				8442DC42237E969C008C88C6 /* Identifier.swift in Sources */,
 				843C58C52390FFB600F5FAB5 /* ProjectIcon.swift in Sources */,
 				843C58CB2391073800F5FAB5 /* AddProjectTableViewController.swift in Sources */,
+				84B7EE0B239A40D10011BBD9 /* UIImageExtension.swift in Sources */,
 				84DB1E02237B0EFA008BB31A /* IssueTableView.swift in Sources */,
 				843C8984237AE7460050586E /* AppDelegate.swift in Sources */,
 				840409BC239173070006829F /* IconCollectionViewCell.swift in Sources */,
@@ -693,6 +700,7 @@
 				84B5F731238F806B00D344C3 /* SelectIssueTypeTableViewController.swift in Sources */,
 				8468D499238FBD71006B02D4 /* StatusController.swift in Sources */,
 				846B6A8C238CCA7600569BC2 /* IssuePageControlView.swift in Sources */,
+				84694E0E239A1199004BC18D /* UIApplication+Extention.swift in Sources */,
 				84579E6A239664FB009575E4 /* AddIssueTableViewController.swift in Sources */,
 				842686F223995BE900B981D7 /* Attachment.swift in Sources */,
 				841D97A9238E674300483928 /* AppNavigationController.swift in Sources */,
