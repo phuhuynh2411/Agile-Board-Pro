@@ -11,13 +11,29 @@ import UIKit
 class AttachmentTableViewCell: UITableViewCell {
 
     @IBOutlet weak var numberLabel: UILabel!
-    @IBOutlet weak var collectionView: AttachmentCollectionView!
-    
+    @IBOutlet weak var disclosureImageView: UIImageView!
+    var isTransform = false
+        
     override func awakeFromNib() {
         super.awakeFromNib()
-        selectionStyle = .none
     }
 
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        
+        // Animate collapsable or expandable row
+        if isTransform {
+            UIView.animate(withDuration: 1) {
+                self.layoutIfNeeded()
+                self.disclosureImageView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi/2))
+            }
 
-
+        }else {
+            UIView.animate(withDuration: 1) {
+                self.layoutIfNeeded()
+                self.disclosureImageView.transform = CGAffineTransform(rotationAngle: 0)
+            }
+        }
+    }
+    
 }

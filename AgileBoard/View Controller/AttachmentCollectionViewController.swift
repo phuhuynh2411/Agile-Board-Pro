@@ -18,6 +18,8 @@ class AttachmentCollectionViewController: UICollectionViewController {
     var attachmentList: List<Attachment>?
     
     var topController = UIApplication.getTopViewController()
+    
+    var selectedAttachment: Attachment?
 
     // MARK: Init Methods
     
@@ -36,7 +38,7 @@ class AttachmentCollectionViewController: UICollectionViewController {
     @objc func addAttachment(sender: UIButton) {
         print("Add attachment pressed")
         
-        let alert = UIAlertController(title: "", message: "Select the following options to add the attachments. Press OK if there are any message prompts out.", preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: "", message: "Select the following options to add the attachments. Press OK if there is any message prompts out.", preferredStyle: .actionSheet)
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
             print("Cancel pressed")
@@ -84,6 +86,9 @@ class AttachmentCollectionViewController: UICollectionViewController {
          }
         topController?.present(imagePickerController, animated: true, completion: nil)
     }
+    
+    // MARK: Navigation
+
 
     // MARK: UICollectionViewDataSource
 
@@ -125,8 +130,16 @@ class AttachmentCollectionViewController: UICollectionViewController {
     // MARK: UICollectionViewDelegate
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Did select image at indexpath \(indexPath)")
         
+        print("Did select row at index path \(indexPath)")
+        selectedAttachment = attachmentList?[indexPath.row]
+        let nav = topController?.navigationController
+        let storyBoardInstant = UIStoryboard(name: "Main", bundle: .main)
+        let photoViewController = storyBoardInstant.instantiateViewController(withIdentifier: "PhotoViewController") as? PhotoViewController
+        photoViewController?.attachment = selectedAttachment
+        if let vc = photoViewController {
+             nav?.pushViewController(vc, animated: true)
+        }
     }
     
 }

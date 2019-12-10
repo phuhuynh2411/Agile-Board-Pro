@@ -24,4 +24,5 @@ class Identifier {
     static let SelectProjectOrTypeCell = "SelectProjectOrTypeCell"
     static let SummaryCell = "SummaryCell"
     static let DescriptionCell = "DescriptionCell"
+    static let PhotoViewControllerSegue = "PhotoViewControllerSegue"
 }

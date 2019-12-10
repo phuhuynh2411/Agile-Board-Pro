@@ -9,22 +9,34 @@
 import UIKit
 
 class PhotoViewController: UIViewController {
+    
+    @IBOutlet weak var photoImageView: UIImageView!
+    
+    // MARK: Properties
+    
+    var attachment: Attachment?
 
+    // MARK: View methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        setUpView()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func setUpView() {
+        
+        if let imageURL = attachment?.url {
+            photoImageView.image = UIImage.image(filePath: imageURL)
+        }
     }
-    */
+    
+}
+
+extension PhotoViewController: UIScrollViewDelegate {
+    
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return photoImageView
+    }
 
 }

@@ -11,6 +11,7 @@ import UIKit
 enum AvailableTableCell {
     case priority
     case attachment
+    case collection
 }
 
 class AddIssueTableViewController: UITableViewController {
@@ -32,6 +33,9 @@ class AddIssueTableViewController: UITableViewController {
     var cellList: [AvailableTableCell]?
     var selectedCellList: [AvailableTableCell]?
     
+    /// A UILable of number of attachments
+    var numberOfAttachments: UILabel?
+    
     // MARK: View Methods
     
     override func viewDidLoad() {
@@ -48,6 +52,7 @@ class AddIssueTableViewController: UITableViewController {
         
         // Create a medium priority as the default one
         selectedPriority = PriorityController.shared.getDefault()
+        
     }
     
     private func updateView() {
@@ -118,6 +123,7 @@ class AddIssueTableViewController: UITableViewController {
         selectedCellList = [AvailableTableCell]()
         selectedCellList?.append(.priority)
         selectedCellList?.append(.attachment)
+        selectedCellList?.append(.collection)
     }
     
     // MARK: - Helper Methods
@@ -125,12 +131,15 @@ class AddIssueTableViewController: UITableViewController {
     private func cellAt(indexPath: IndexPath) -> UITableViewCell? {
         var cell: UITableViewCell?
         
-        switch selectedCellList?[indexPath.row] {
+        switch cellList?[indexPath.row] {
         case .priority:
             cell = tableView.dequeueReusableCell(withIdentifier: "PriorityCell", for: indexPath)
             break
         case .attachment:
             cell = tableView.dequeueReusableCell(withIdentifier: "AttachmentCell", for: indexPath)
+            break
+        case .collection:
+            cell = tableView.dequeueReusableCell(withIdentifier: "CollectionCell", for: indexPath)
             break
         default: break
         }
@@ -143,8 +152,15 @@ class AddIssueTableViewController: UITableViewController {
             }
         }
         
+        // Attachment Cell
         if let attachmentCell = cell as? AttachmentTableViewCell {
-            attachmentCell.collectionView.numberLabel = attachmentCell.numberLabel
+            numberOfAttachments = attachmentCell.numberLabel
+        }
+        
+        // Collection cell
+        if let collectionCell = cell as? AddIssueCollectionTableViewCell {
+            // Pass the number of attachment UILabel to the collection view
+            collectionCell.collectionView.numberLabel = numberOfAttachments
         }
         
         return cell
@@ -182,12 +198,15 @@ class AddIssueTableViewController: UITableViewController {
     }
     
     @objc func showMoreButtonPress(sender: UIButton) {
-        let indexPaths = selectedCellList?.enumerated().compactMap{ IndexPath(row: $0.offset, section: 0)}
+        // Remove all cell from the table view
         if headerView!.showMoreField {
+            let indexPaths = cellList?.enumerated().compactMap{ IndexPath(row: $0.offset, section: 0)}
             cellList = nil
             tableView.deleteRows(at: indexPaths!, with: .automatic)
         }
+        // Add selected cells to the table view
         else {
+            let indexPaths = selectedCellList?.enumerated().compactMap{ IndexPath(row: $0.offset, section: 0)}
             cellList = selectedCellList
             tableView.insertRows(at: indexPaths!, with: .automatic)
         }
@@ -300,8 +319,30 @@ extension AddIssueTableViewController: SelectIssueTypeDelegate {
 extension AddIssueTableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        // Priority cell
         if cellList?[indexPath.row] == .priority {
             performSegue(withIdentifier: Identifier.SelectPrioritySegue, sender: self)
+        }
+        // Tap on the attachment cell
+        else if cellList?[indexPath.row] == .attachment {
+            
+            // Add or remove collection cell
+            let cell = tableView.cellForRow(at: indexPath) as! AttachmentTableViewCell
+            let nextIndexPath = IndexPath(row: indexPath.row + 1, section: indexPath.section)
+            if cellList!.contains(.collection) {
+                cellList?.removeAll(where: { (cell) -> Bool in
+                    cell == .collection
+                })
+                cell.isTransform = false
+                tableView.deleteRows(at: [nextIndexPath], with: .automatic)
+            } else {
+                cellList?.append(.collection)
+                cell.isTransform = true
+                tableView.insertRows(at: [nextIndexPath], with: .automatic)
+            }
+            tableView.deselectRow(at: indexPath, animated: true)
+
         }
     }
     
@@ -310,7 +351,9 @@ extension AddIssueTableViewController {
         case .priority:
             return 60
         case .attachment:
-            return 150
+            return 44
+        case .collection:
+            return 0
         default:
             return 44
         }
@@ -327,3 +370,8 @@ extension AddIssueTableViewController: SelectPriorityDelegate {
         updateView()
     }
 }
+
+//private enum CellHeight: Int {
+    //case default = 44
+    // case
+//}
