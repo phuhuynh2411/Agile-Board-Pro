@@ -12,8 +12,11 @@ import UIKit
 extension UIImage {
     
     static func image(filePath: String) -> UIImage? {
-        let url = URL(string: filePath)
-        let data = try? Data(contentsOf: url!)
-        return UIImage(data: data!)
+        if let url = URL(string: filePath) {
+            let data = try? Data(contentsOf: url)
+            return UIImage(data: data!)
+        }
+       
+        return nil
     }
 }

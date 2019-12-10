@@ -23,13 +23,13 @@ class AttachmentTableViewCell: UITableViewCell {
         
         // Animate collapsable or expandable row
         if isTransform {
-            UIView.animate(withDuration: 1) {
+            UIView.animate(withDuration: 0.5) {
                 self.layoutIfNeeded()
                 self.disclosureImageView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi/2))
             }
 
         }else {
-            UIView.animate(withDuration: 1) {
+            UIView.animate(withDuration: 0.5) {
                 self.layoutIfNeeded()
                 self.disclosureImageView.transform = CGAffineTransform(rotationAngle: 0)
             }
@@ -37,3 +37,4 @@ class AttachmentTableViewCell: UITableViewCell {
     }
     
 }
+

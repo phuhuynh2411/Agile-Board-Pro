@@ -10,7 +10,7 @@ import UIKit
 
 class AddIssueCollectionTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var collectionView: AttachmentCollectionView!
+    @IBOutlet var collectionView: AttachmentCollectionView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

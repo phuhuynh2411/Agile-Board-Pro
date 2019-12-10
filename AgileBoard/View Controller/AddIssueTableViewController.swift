@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 enum AvailableTableCell {
     case priority
@@ -36,6 +37,8 @@ class AddIssueTableViewController: UITableViewController {
     /// A UILable of number of attachments
     var numberOfAttachments: UILabel?
     
+    var attachmentList: List<Attachment>?
+    
     // MARK: View Methods
     
     override func viewDidLoad() {
@@ -52,6 +55,8 @@ class AddIssueTableViewController: UITableViewController {
         
         // Create a medium priority as the default one
         selectedPriority = PriorityController.shared.getDefault()
+        
+        attachmentList = List<Attachment>()
         
     }
     
@@ -123,7 +128,7 @@ class AddIssueTableViewController: UITableViewController {
         selectedCellList = [AvailableTableCell]()
         selectedCellList?.append(.priority)
         selectedCellList?.append(.attachment)
-        selectedCellList?.append(.collection)
+        //selectedCellList?.append(.collection)
     }
     
     // MARK: - Helper Methods
@@ -154,13 +159,15 @@ class AddIssueTableViewController: UITableViewController {
         
         // Attachment Cell
         if let attachmentCell = cell as? AttachmentTableViewCell {
+            attachmentCell.numberLabel.text = "\(attachmentList?.count ?? 0)"
             numberOfAttachments = attachmentCell.numberLabel
         }
         
         // Collection cell
         if let collectionCell = cell as? AddIssueCollectionTableViewCell {
-            // Pass the number of attachment UILabel to the collection view
-            collectionCell.collectionView.numberLabel = numberOfAttachments
+            let controller = collectionCell.collectionView.controller
+            controller?.attachmentList = attachmentList
+            controller?.numberLabel = numberOfAttachments
         }
         
         return cell
@@ -347,16 +354,18 @@ extension AddIssueTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
         switch cellList?[indexPath.row] {
         case .priority:
-            return 60
+            return 70
         case .attachment:
             return 44
         case .collection:
-            return 0
+            return 116
         default:
             return 44
         }
+        
     }
     
 }
@@ -370,8 +379,3 @@ extension AddIssueTableViewController: SelectPriorityDelegate {
         updateView()
     }
 }
-
-//private enum CellHeight: Int {
-    //case default = 44
-    // case
-//}

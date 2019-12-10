@@ -20,13 +20,15 @@ class AttachmentCollectionViewController: UICollectionViewController {
     var topController = UIApplication.getTopViewController()
     
     var selectedAttachment: Attachment?
+    
+    var numberLabel: UILabel?
 
     // MARK: Init Methods
     
     override init(collectionViewLayout layout: UICollectionViewLayout) {
         super.init(collectionViewLayout: layout)
             
-        attachmentList = List<Attachment>()
+        //attachmentList = List<Attachment>()
     }
     
     required init?(coder: NSCoder) {
@@ -95,9 +97,7 @@ class AttachmentCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let count = attachmentList?.count ?? 0
         // Update the number of attachments
-        let attachmentCollectionView = collectionView as! AttachmentCollectionView
-        attachmentCollectionView.numberLabel?.text = "\(count)"
-        
+        numberLabel?.text = "\(count)"
         return count
     }
 
