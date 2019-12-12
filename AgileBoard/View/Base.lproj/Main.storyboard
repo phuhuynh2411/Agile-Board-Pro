@@ -290,13 +290,22 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aPp-0p-jg9">
+                                            <rect key="frame" x="16" y="25.5" width="67.5" height="19.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" systemColor="placeholderTextColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="1H3-06-iDG" firstAttribute="top" secondItem="iRY-eL-GqP" secondAttribute="bottom" constant="8" id="3QB-DV-KQY"/>
                                         <constraint firstItem="sck-Ek-xbp" firstAttribute="centerY" secondItem="tVk-SD-X33" secondAttribute="centerY" id="6Jc-wH-AGx"/>
                                         <constraint firstItem="sck-Ek-xbp" firstAttribute="trailing" secondItem="tVk-SD-X33" secondAttribute="trailingMargin" id="6VJ-mE-JvT"/>
                                         <constraint firstItem="sck-Ek-xbp" firstAttribute="leading" relation="lessThanOrEqual" secondItem="iRY-eL-GqP" secondAttribute="trailing" constant="284" id="91C-c6-t9v"/>
+                                        <constraint firstItem="sck-Ek-xbp" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="aPp-0p-jg9" secondAttribute="trailing" constant="8" symbolic="YES" id="E9T-Sl-Tqi"/>
+                                        <constraint firstItem="aPp-0p-jg9" firstAttribute="centerY" secondItem="tVk-SD-X33" secondAttribute="centerY" id="JY7-p6-Xex"/>
                                         <constraint firstItem="sck-Ek-xbp" firstAttribute="leading" relation="lessThanOrEqual" secondItem="1H3-06-iDG" secondAttribute="trailing" constant="234" id="MFs-gL-s3q"/>
+                                        <constraint firstItem="aPp-0p-jg9" firstAttribute="leading" secondItem="tVk-SD-X33" secondAttribute="leadingMargin" id="daj-Dn-lpx"/>
                                         <constraint firstItem="iRY-eL-GqP" firstAttribute="top" secondItem="tVk-SD-X33" secondAttribute="topMargin" id="fPc-8p-hQj"/>
                                         <constraint firstItem="iRY-eL-GqP" firstAttribute="leading" secondItem="tVk-SD-X33" secondAttribute="leadingMargin" id="hRX-5f-lDX"/>
                                         <constraint firstItem="1H3-06-iDG" firstAttribute="leading" secondItem="tVk-SD-X33" secondAttribute="leadingMargin" id="wSb-Lm-PuG"/>
@@ -306,6 +315,8 @@
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
                                     <outlet property="dueDateLabel" destination="1H3-06-iDG" id="osq-xQ-92l"/>
+                                    <outlet property="titleLabel1" destination="iRY-eL-GqP" id="4fw-mi-feA"/>
+                                    <outlet property="titleLabel2" destination="aPp-0p-jg9" id="EoX-La-CFK"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -995,16 +1006,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="OTB-R3-0CH">
-                                <rect key="frame" x="0.0" y="56" width="375" height="216"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="216" id="C1n-iH-bJq"/>
-                                </constraints>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="OTB-R3-0CH">
+                                <rect key="frame" x="0.0" y="56" width="375" height="591"/>
                             </datePicker>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="OTB-R3-0CH" firstAttribute="leading" secondItem="30h-Uk-HxM" secondAttribute="leading" id="0ud-k1-YnY"/>
+                            <constraint firstItem="30h-Uk-HxM" firstAttribute="bottom" secondItem="OTB-R3-0CH" secondAttribute="bottom" id="9E8-Qz-kvp"/>
                             <constraint firstItem="OTB-R3-0CH" firstAttribute="top" secondItem="30h-Uk-HxM" secondAttribute="top" id="Sru-un-hN5"/>
                             <constraint firstItem="OTB-R3-0CH" firstAttribute="trailing" secondItem="30h-Uk-HxM" secondAttribute="trailing" id="z0f-i0-9ZY"/>
                         </constraints>
@@ -1022,7 +1031,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="datePicker" destination="OTB-R3-0CH" id="tM4-RZ-sBH"/>
                     </connections>

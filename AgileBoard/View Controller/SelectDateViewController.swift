@@ -8,32 +8,47 @@
 
 import UIKit
 
+protocol SelecteDateDelegate {
+    /**
+     Press the clear button on the navigation bar
+     */
+    func clearDate()
+    /**
+     User selected date on the date picker and pressed the done butotn
+     */
+    func didSelectDate(date: Date)
+}
+
 class SelectDateViewController: UIViewController {
+    
+    // MARK: IB Outlets
     @IBOutlet weak var datePicker: UIDatePicker!
+    
+    // MAKR: Properites
+    var delegate: SelecteDateDelegate?
+    
+    var selectedDate: Date?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        setUpView()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func setUpView() {
+        if let date = selectedDate {
+            datePicker.date = date
+        }
     }
-    */
 
     @IBAction func clearButtonPressed(_ sender: UIBarButtonItem) {
-        
+        delegate?.clearDate()
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func doneButtonPressed(_ sender: UIBarButtonItem) {
+        delegate?.didSelectDate(date: datePicker.date)
+        dismiss(animated: true, completion: nil)
     }
     
 }

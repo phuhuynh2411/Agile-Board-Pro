@@ -68,7 +68,7 @@
 		848FCEB22397980E00CD6334 /* AddIssueHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 848FCEB12397980E00CD6334 /* AddIssueHeaderView.xib */; };
 		848FCEB42397985100CD6334 /* AddIssueHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848FCEB32397985100CD6334 /* AddIssueHeaderView.swift */; };
 		8490889723A1D75500D5DD96 /* DueDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8490889623A1D75500D5DD96 /* DueDateTableViewCell.swift */; };
-		8490889923A1E1B900D5DD96 /* DueDatePresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8490889823A1E1B900D5DD96 /* DueDatePresentationController.swift */; };
+		8490889923A1E1B900D5DD96 /* HalfScreenPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8490889823A1E1B900D5DD96 /* HalfScreenPresentationController.swift */; };
 		84A51AC0237AF8DD00477B75 /* IssueTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A51ABF237AF8DD00477B75 /* IssueTableViewController.swift */; };
 		84B3010D2394BF0300D4BBA8 /* AddProjecTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B3010C2394BF0300D4BBA8 /* AddProjecTableViewControllerTests.swift */; };
 		84B301142394C17500D4BBA8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 843C8989237AE7460050586E /* Main.storyboard */; };
@@ -181,7 +181,7 @@
 		848FCEB12397980E00CD6334 /* AddIssueHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddIssueHeaderView.xib; sourceTree = "<group>"; };
 		848FCEB32397985100CD6334 /* AddIssueHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIssueHeaderView.swift; sourceTree = "<group>"; };
 		8490889623A1D75500D5DD96 /* DueDateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DueDateTableViewCell.swift; sourceTree = "<group>"; };
-		8490889823A1E1B900D5DD96 /* DueDatePresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DueDatePresentationController.swift; sourceTree = "<group>"; };
+		8490889823A1E1B900D5DD96 /* HalfScreenPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfScreenPresentationController.swift; sourceTree = "<group>"; };
 		84A51ABF237AF8DD00477B75 /* IssueTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueTableViewController.swift; sourceTree = "<group>"; };
 		84B3010A2394BF0300D4BBA8 /* AgileBoardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AgileBoardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		84B3010C2394BF0300D4BBA8 /* AddProjecTableViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProjecTableViewControllerTests.swift; sourceTree = "<group>"; };
@@ -451,7 +451,7 @@
 		84C4042B23A2234500A49A8D /* PresentationController */ = {
 			isa = PBXGroup;
 			children = (
-				8490889823A1E1B900D5DD96 /* DueDatePresentationController.swift */,
+				8490889823A1E1B900D5DD96 /* HalfScreenPresentationController.swift */,
 			);
 			path = PresentationController;
 			sourceTree = "<group>";
@@ -736,7 +736,7 @@
 				84B5F731238F806B00D344C3 /* SelectIssueTypeTableViewController.swift in Sources */,
 				8468D499238FBD71006B02D4 /* StatusController.swift in Sources */,
 				846B6A8C238CCA7600569BC2 /* IssuePageControlView.swift in Sources */,
-				8490889923A1E1B900D5DD96 /* DueDatePresentationController.swift in Sources */,
+				8490889923A1E1B900D5DD96 /* HalfScreenPresentationController.swift in Sources */,
 				84694E0E239A1199004BC18D /* UIApplication+Extention.swift in Sources */,
 				84579E6A239664FB009575E4 /* AddIssueTableViewController.swift in Sources */,
 				842686F223995BE900B981D7 /* Attachment.swift in Sources */,

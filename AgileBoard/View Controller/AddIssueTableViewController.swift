@@ -40,6 +40,9 @@ class AddIssueTableViewController: UITableViewController {
     
     var attachmentList: List<Attachment>?
         
+    /// Due date
+    var dueDate: Date?
+    
     // MARK: View Methods
     
     override func viewDidLoad() {
@@ -58,6 +61,8 @@ class AddIssueTableViewController: UITableViewController {
         selectedPriority = PriorityController.shared.getDefault()
         
         attachmentList = List<Attachment>()
+        
+        tableView.keyboardDismissMode = .onDrag
         
     }
     
@@ -177,7 +182,15 @@ class AddIssueTableViewController: UITableViewController {
         
         // Due date cell
         if let dueDateCell = cell as? DueDateTableViewCell {
-            // Do something here
+            if let date = dueDate {
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateStyle = .medium
+                dueDateCell.dueDateLabel.text = dateFormatter.string(from: date)
+            }
+            else {
+                dueDateCell.dueDateLabel.text = ""
+            }
+            dueDateCell.updateCell()
         }
         
         return cell
@@ -317,6 +330,12 @@ extension AddIssueTableViewController {
         }
         
         if segue.identifier == Identifier.DueDateSegue {
+            let navigationController = segue.destination as! UINavigationController
+            let selectDateViewController = navigationController.topViewController as! SelectDateViewController
+            
+            selectDateViewController.delegate = self
+            selectDateViewController.selectedDate = dueDate
+            
             segue.destination.transitioningDelegate  = self
             segue.destination.modalPresentationStyle = .custom
         }
@@ -408,6 +427,26 @@ extension AddIssueTableViewController: SelectPriorityDelegate {
 extension AddIssueTableViewController: UIViewControllerTransitioningDelegate {
     
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-        return HalfScreenPresentationController(presentedViewController: presented, presenting: presenting)
+        
+        let halfScreenPresentationController = HalfScreenPresentationController(presentedViewController: presented, presenting: presenting)
+        
+        halfScreenPresentationController.presentedViewHeight = 230.0
+        
+        return halfScreenPresentationController
+    }
+}
+
+// MARK: - SelectDateDelegate
+
+extension AddIssueTableViewController: SelecteDateDelegate {
+    
+    func clearDate() {
+        dueDate = nil
+        tableView.reloadData()
+    }
+    
+    func didSelectDate(date: Date) {
+        dueDate = date
+        tableView.reloadData()
     }
 }

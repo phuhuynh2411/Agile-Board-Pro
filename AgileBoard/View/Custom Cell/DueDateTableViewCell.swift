@@ -12,15 +12,24 @@ class DueDateTableViewCell: UITableViewCell {
     
     @IBOutlet weak var dueDateLabel: UILabel!
     
+    @IBOutlet weak var titleLabel1: UILabel!
+    
+    @IBOutlet weak var titleLabel2: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    }
+    
+    func updateCell() {
+        let empty = dueDateLabel.text!.isEmpty
+        // Hide the date
+        titleLabel1.isHidden = empty
+        dueDateLabel.isHidden = empty
+        titleLabel2.isHidden = !empty
     }
 
 }
