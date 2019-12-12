@@ -25,4 +25,5 @@ class Identifier {
     static let SummaryCell = "SummaryCell"
     static let DescriptionCell = "DescriptionCell"
     static let PhotoViewControllerSegue = "PhotoViewControllerSegue"
+    static let DueDateSegue = "DueDateSegue"
 }

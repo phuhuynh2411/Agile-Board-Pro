@@ -22,6 +22,8 @@ class AttachmentCollectionViewController: UICollectionViewController {
     var selectedAttachment: Attachment?
     
     var numberLabel: UILabel?
+    
+    var deleteZoneCollectionView: UICollectionView?
 
     // MARK: Init Methods
     
@@ -98,6 +100,13 @@ class AttachmentCollectionViewController: UICollectionViewController {
         let count = attachmentList?.count ?? 0
         // Update the number of attachments
         numberLabel?.text = "\(count)"
+        
+        // Add Inset right with 10 pt
+        if count > 0 {
+            let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+            layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
+        }
+        
         return count
     }
 
@@ -179,3 +188,145 @@ extension AttachmentCollectionViewController: UIImagePickerControllerDelegate, U
     }
 }
 
+// MARK: - UICollectionViewDragDelegate
+
+extension AttachmentCollectionViewController: UICollectionViewDragDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        
+        let itemProvider = NSItemProvider()
+        let dragItem = UIDragItem(itemProvider: itemProvider)
+        let attachment = attachmentList?[indexPath.row]
+        let dragAttachmentItem = DragAttachmentItem(attachment: attachment!, collectionView: collectionView, indexPath: indexPath)
+        dragItem.localObject = dragAttachmentItem
+        session.localContext = dragAttachmentItem
+        
+        return [dragItem]
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, dragPreviewParametersForItemAt indexPath: IndexPath) -> UIDragPreviewParameters? {
+
+        let parameters = UIDragPreviewParameters()
+        parameters.backgroundColor = .red
+        let newX = 25
+        let newY = newX
+        let bezierPath = UIBezierPath(rect: CGRect(x: newX, y: newY, width: 50, height: 50  ))
+        parameters.visiblePath = bezierPath
+
+        return parameters
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, dragSessionWillBegin session: UIDragSession) {
+        addDeleteZone()
+       
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, dragSessionDidEnd session: UIDragSession) {
+        removeDeleteZone()
+    }
+    
+    private func addDeleteZone() {
+        // Get toolbar
+        let toolbar = topController?.navigationController?.toolbar
+        
+        // Setup collection view
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: 200, height: 100)
+        let frame = CGRect(x: 0, y: 0, width: 200, height: 100)
+        deleteZoneCollectionView = UICollectionView(frame: frame, collectionViewLayout: layout)
+        deleteZoneCollectionView?.dragInteractionEnabled = true
+        deleteZoneCollectionView?.backgroundColor = .none
+        deleteZoneCollectionView?.dropDelegate = self
+        //deleteZoneCollectionView?.backgroundColor = .red
+        deleteZoneCollectionView?.translatesAutoresizingMaskIntoConstraints = false
+        
+        let mainView = topController?.view
+        mainView?.addSubview(deleteZoneCollectionView!)
+        
+        deleteZoneCollectionView?.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        deleteZoneCollectionView?.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        deleteZoneCollectionView?.bottomAnchor.constraint(equalTo: toolbar!.topAnchor, constant: -16).isActive = true
+        deleteZoneCollectionView?.centerXAnchor.constraint(equalTo: toolbar!.centerXAnchor).isActive = true
+        // Add delete image to the collection view
+        deleteZoneCollectionView?.backgroundView = imageForDeleteZone(isActive: false)
+        
+        // Redraw the layout
+        topController?.view.layoutIfNeeded()
+    }
+    
+    private func removeDeleteZone() {
+        // Hide toolbar
+        UIView.animate(withDuration: 1.0) {
+            self.topController?.view.layoutIfNeeded()
+            self.deleteZoneCollectionView?.removeFromSuperview()
+        }
+    }
+    
+    
+}
+
+// MARK: - UICollectionDropDelegate
+
+extension AttachmentCollectionViewController: UICollectionViewDropDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, performDropWith coordinator: UICollectionViewDropCoordinator) {
+        
+        for item in coordinator.items {
+            if let dragItem = item.dragItem.localObject as? DragAttachmentItem,
+                collectionView == deleteZoneCollectionView {
+                let sourceCollectionView = dragItem.collectionView
+                let indexPath = dragItem.indexPath
+                
+                attachmentList?.remove(at: indexPath.row)
+                sourceCollectionView.deleteItems(at: [indexPath])
+            }
+        }
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UICollectionViewDropProposal {
+        print("Updating drop section")
+        
+        return UICollectionViewDropProposal(operation: .move, intent: .insertIntoDestinationIndexPath)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, dropSessionDidEnd session: UIDropSession) {
+        print("Drop session did end")
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, dropSessionDidExit session: UIDropSession) {
+        if collectionView == deleteZoneCollectionView {
+            deleteZoneCollectionView?.backgroundView = imageForDeleteZone(isActive: false)
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, dropSessionDidEnter session: UIDropSession) {
+                
+        // Enter the delete zone collection view
+        if collectionView == deleteZoneCollectionView {
+            deleteZoneCollectionView?.backgroundView = imageForDeleteZone(isActive: true)
+            
+            // Animations.requireUserAtencion(on: deleteZoneCollectionView!)
+            let view = deleteZoneCollectionView?.backgroundView
+            UIView.animate(withDuration: 0.5, delay: 0, options: [.repeat, .autoreverse], animations: {
+                view?.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi + 10))
+                view?.transform = CGAffineTransform(rotationAngle: -CGFloat(Double.pi + 10))
+            }) { (complete) in
+            }
+        
+        }
+    }
+    
+    private func imageForDeleteZone(isActive: Bool) -> UIImageView {
+        
+        let imageName = isActive ? "ic_delete_active" : "ic_delete"
+        let deleteImageView = UIImageView()
+        //deleteImageView.translatesAutoresizingMaskIntoConstraints = false
+        deleteImageView.image = UIImage(named: imageName)
+        deleteImageView.contentMode = .bottom
+        
+        return deleteImageView
+    }
+    
+}

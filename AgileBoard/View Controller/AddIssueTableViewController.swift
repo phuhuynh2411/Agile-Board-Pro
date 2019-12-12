@@ -13,6 +13,7 @@ enum AvailableTableCell {
     case priority
     case attachment
     case collection
+    case dueDate
 }
 
 class AddIssueTableViewController: UITableViewController {
@@ -38,7 +39,7 @@ class AddIssueTableViewController: UITableViewController {
     var numberOfAttachments: UILabel?
     
     var attachmentList: List<Attachment>?
-    
+        
     // MARK: View Methods
     
     override func viewDidLoad() {
@@ -128,6 +129,7 @@ class AddIssueTableViewController: UITableViewController {
         selectedCellList = [AvailableTableCell]()
         selectedCellList?.append(.priority)
         selectedCellList?.append(.attachment)
+        selectedCellList?.append(.dueDate)
         //selectedCellList?.append(.collection)
     }
     
@@ -138,13 +140,16 @@ class AddIssueTableViewController: UITableViewController {
         
         switch cellList?[indexPath.row] {
         case .priority:
-            cell = tableView.dequeueReusableCell(withIdentifier: "PriorityCell", for: indexPath)
+            cell = tableView.dequeueReusableCell(withIdentifier: "PriorityCell")
             break
         case .attachment:
-            cell = tableView.dequeueReusableCell(withIdentifier: "AttachmentCell", for: indexPath)
+            cell = tableView.dequeueReusableCell(withIdentifier: "AttachmentCell")
             break
         case .collection:
-            cell = tableView.dequeueReusableCell(withIdentifier: "CollectionCell", for: indexPath)
+            cell = tableView.dequeueReusableCell(withIdentifier: "CollectionCell")
+            break
+        case .dueDate:
+            cell = tableView.dequeueReusableCell(withIdentifier: "DueDateCell")
             break
         default: break
         }
@@ -168,6 +173,11 @@ class AddIssueTableViewController: UITableViewController {
             let controller = collectionCell.collectionView.controller
             controller?.attachmentList = attachmentList
             controller?.numberLabel = numberOfAttachments
+        }
+        
+        // Due date cell
+        if let dueDateCell = cell as? DueDateTableViewCell {
+            // Do something here
         }
         
         return cell
@@ -209,7 +219,7 @@ class AddIssueTableViewController: UITableViewController {
         if headerView!.showMoreField {
             let indexPaths = cellList?.enumerated().compactMap{ IndexPath(row: $0.offset, section: 0)}
             cellList = nil
-            tableView.deleteRows(at: indexPaths!, with: .automatic)
+            tableView.deleteRows(at: indexPaths!, with: .none)
         }
         // Add selected cells to the table view
         else {
@@ -227,7 +237,6 @@ class AddIssueTableViewController: UITableViewController {
     @IBAction func createButtonPressed(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
-    
     
     // MARK: - Table view data source
 
@@ -307,6 +316,11 @@ extension AddIssueTableViewController {
             priorityTableController.delegate = self
         }
         
+        if segue.identifier == Identifier.DueDateSegue {
+            segue.destination.transitioningDelegate  = self
+            segue.destination.modalPresentationStyle = .custom
+        }
+        
     }
 }
 
@@ -342,14 +356,21 @@ extension AddIssueTableViewController {
                     cell == .collection
                 })
                 cell.isTransform = false
+                let nextCell = tableView.cellForRow(at: nextIndexPath)
+                // Hide the cell before removing from the table view
+                nextCell?.isHidden = true
                 tableView.deleteRows(at: [nextIndexPath], with: .automatic)
             } else {
-                cellList?.append(.collection)
+                cellList?.insert(.collection, at: nextIndexPath.row)
                 cell.isTransform = true
                 tableView.insertRows(at: [nextIndexPath], with: .automatic)
             }
             tableView.deselectRow(at: indexPath, animated: true)
-
+            
+           // tableView.reloadData()
+        }
+        else if cellList?[indexPath.row] == .dueDate {
+            performSegue(withIdentifier: Identifier.DueDateSegue, sender: self)
         }
     }
     
@@ -362,6 +383,8 @@ extension AddIssueTableViewController {
             return 44
         case .collection:
             return 116
+        case .dueDate:
+            return 70
         default:
             return 44
         }
@@ -377,5 +400,14 @@ extension AddIssueTableViewController: SelectPriorityDelegate {
     func didSelectPriority(priority: Priority) {
         selectedPriority = priority
         updateView()
+    }
+}
+
+// MARK: - UIViewControllerTransitioningDelegate
+
+extension AddIssueTableViewController: UIViewControllerTransitioningDelegate {
+    
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        return HalfScreenPresentationController(presentedViewController: presented, presenting: presenting)
     }
 }
