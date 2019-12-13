@@ -319,6 +319,128 @@
                                     <outlet property="titleLabel2" destination="aPp-0p-jg9" id="EoX-La-CFK"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StartDateCell" rowHeight="70" id="1Yd-fa-w6m" customClass="StartDateTableViewCell" customModule="AgileBoard" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="328" width="375" height="70"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1Yd-fa-w6m" id="wW6-EB-NLb">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VnJ-Uv-Pzn">
+                                            <rect key="frame" x="16" y="11" width="54" height="14"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="14" id="6Wu-qb-JO8"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" systemColor="placeholderTextColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="disclosure" translatesAutoresizingMaskIntoConstraints="NO" id="t7I-q0-lnk">
+                                            <rect key="frame" x="349" y="28" width="10" height="14"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="10" id="qZm-Y2-vAL"/>
+                                                <constraint firstAttribute="height" constant="14" id="wY6-lC-yMA"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dec, 12, 2019" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mby-ia-jMN">
+                                            <rect key="frame" x="16" y="33" width="99" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="20" id="Qxg-ua-zWy"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aJ4-Zy-L7A">
+                                            <rect key="frame" x="16" y="25" width="74" height="20"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" systemColor="placeholderTextColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Mby-ia-jMN" firstAttribute="leading" secondItem="wW6-EB-NLb" secondAttribute="leadingMargin" id="1iM-mK-arF"/>
+                                        <constraint firstItem="t7I-q0-lnk" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="aJ4-Zy-L7A" secondAttribute="trailing" constant="8" symbolic="YES" id="27z-eb-j53"/>
+                                        <constraint firstItem="t7I-q0-lnk" firstAttribute="trailing" secondItem="wW6-EB-NLb" secondAttribute="trailingMargin" id="5Rw-zd-ET4"/>
+                                        <constraint firstItem="VnJ-Uv-Pzn" firstAttribute="leading" secondItem="wW6-EB-NLb" secondAttribute="leadingMargin" id="Ic1-Ym-jgx"/>
+                                        <constraint firstItem="Mby-ia-jMN" firstAttribute="top" secondItem="VnJ-Uv-Pzn" secondAttribute="bottom" constant="8" id="LcD-BN-5o8"/>
+                                        <constraint firstItem="aJ4-Zy-L7A" firstAttribute="centerY" secondItem="wW6-EB-NLb" secondAttribute="centerY" id="MI9-B1-KXd"/>
+                                        <constraint firstItem="t7I-q0-lnk" firstAttribute="leading" relation="lessThanOrEqual" secondItem="Mby-ia-jMN" secondAttribute="trailing" constant="234" id="Pfz-kQ-f2T"/>
+                                        <constraint firstItem="aJ4-Zy-L7A" firstAttribute="leading" secondItem="wW6-EB-NLb" secondAttribute="leadingMargin" id="kIX-3D-rRK"/>
+                                        <constraint firstItem="t7I-q0-lnk" firstAttribute="leading" relation="lessThanOrEqual" secondItem="VnJ-Uv-Pzn" secondAttribute="trailing" constant="284" id="kIm-un-2jO"/>
+                                        <constraint firstItem="VnJ-Uv-Pzn" firstAttribute="top" secondItem="wW6-EB-NLb" secondAttribute="topMargin" id="nnN-Mj-lEw"/>
+                                        <constraint firstItem="t7I-q0-lnk" firstAttribute="centerY" secondItem="wW6-EB-NLb" secondAttribute="centerY" id="srY-yv-BCV"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <connections>
+                                    <outlet property="startDateLabel" destination="Mby-ia-jMN" id="GEw-FY-vcr"/>
+                                    <outlet property="titleLabel1" destination="VnJ-Uv-Pzn" id="3LW-Zj-auc"/>
+                                    <outlet property="titleLabel2" destination="aJ4-Zy-L7A" id="c59-tp-48H"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EndDateCell" rowHeight="70" id="wZw-3t-Zz9" customClass="EndDateTableViewCell" customModule="AgileBoard" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="398" width="375" height="70"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wZw-3t-Zz9" id="wHq-Rj-BRS">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="End Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DaW-C5-D42">
+                                            <rect key="frame" x="16" y="11" width="49" height="14"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="14" id="Jad-Md-Smk"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" systemColor="placeholderTextColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="disclosure" translatesAutoresizingMaskIntoConstraints="NO" id="Ye1-Hz-xiN">
+                                            <rect key="frame" x="349" y="28" width="10" height="14"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="14" id="4Pq-jL-0mn"/>
+                                                <constraint firstAttribute="width" constant="10" id="bOx-PG-jd9"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dec, 12, 2019" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l06-yc-nUz">
+                                            <rect key="frame" x="16" y="33" width="99" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="20" id="1Aa-wk-5MA"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="End Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zgs-Vj-WI1">
+                                            <rect key="frame" x="16" y="25" width="66" height="20"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" systemColor="placeholderTextColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="DaW-C5-D42" firstAttribute="leading" secondItem="wHq-Rj-BRS" secondAttribute="leadingMargin" id="09p-wS-rR8"/>
+                                        <constraint firstItem="Ye1-Hz-xiN" firstAttribute="leading" relation="lessThanOrEqual" secondItem="DaW-C5-D42" secondAttribute="trailing" constant="284" id="3o7-Fe-1uU"/>
+                                        <constraint firstItem="l06-yc-nUz" firstAttribute="leading" secondItem="wHq-Rj-BRS" secondAttribute="leadingMargin" id="CM1-0l-PX5"/>
+                                        <constraint firstItem="Ye1-Hz-xiN" firstAttribute="trailing" secondItem="wHq-Rj-BRS" secondAttribute="trailingMargin" id="Jmz-ct-gUG"/>
+                                        <constraint firstItem="Ye1-Hz-xiN" firstAttribute="centerY" secondItem="wHq-Rj-BRS" secondAttribute="centerY" id="N1P-FG-gGo"/>
+                                        <constraint firstItem="Ye1-Hz-xiN" firstAttribute="leading" relation="lessThanOrEqual" secondItem="l06-yc-nUz" secondAttribute="trailing" constant="234" id="Na7-lJ-7Lf"/>
+                                        <constraint firstItem="l06-yc-nUz" firstAttribute="top" secondItem="DaW-C5-D42" secondAttribute="bottom" constant="8" id="W9U-Bz-Kw3"/>
+                                        <constraint firstItem="Ye1-Hz-xiN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Zgs-Vj-WI1" secondAttribute="trailing" constant="8" symbolic="YES" id="XgH-xP-TvQ"/>
+                                        <constraint firstItem="Zgs-Vj-WI1" firstAttribute="leading" secondItem="wHq-Rj-BRS" secondAttribute="leadingMargin" id="dz3-Xw-9Oh"/>
+                                        <constraint firstItem="Zgs-Vj-WI1" firstAttribute="centerY" secondItem="wHq-Rj-BRS" secondAttribute="centerY" id="pBY-br-4Ut"/>
+                                        <constraint firstItem="DaW-C5-D42" firstAttribute="top" secondItem="wHq-Rj-BRS" secondAttribute="topMargin" id="tqL-ts-U5K"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <connections>
+                                    <outlet property="endDateLabel" destination="l06-yc-nUz" id="UOl-0h-bQl"/>
+                                    <outlet property="titleLabel1" destination="DaW-C5-D42" id="z1k-ik-9fF"/>
+                                    <outlet property="titleLabel2" destination="Zgs-Vj-WI1" id="MhZ-sW-pKh"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="Tt1-hd-qyE" id="TXM-av-Qof"/>
@@ -343,6 +465,8 @@
                         <segue destination="7FK-TJ-0A0" kind="showDetail" identifier="SelectIssueTypeSegue" id="qsi-xn-vuW"/>
                         <segue destination="86O-EC-8WL" kind="show" identifier="PhotoViewControllerSegue" id="xD5-kW-FQ5"/>
                         <segue destination="CLG-RX-55K" kind="presentation" identifier="DueDateSegue" id="JPT-Wf-Y2G"/>
+                        <segue destination="CLG-RX-55K" kind="presentation" identifier="StartDateSegue" id="h9o-hm-b1I"/>
+                        <segue destination="CLG-RX-55K" kind="presentation" identifier="EndDateSegue" id="U2G-ij-VVg"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3fj-RK-vOE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1172,6 +1296,7 @@
         <image name="priority_medium" width="12" height="8"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="U2G-ij-VVg"/>
         <segue reference="kzU-CZ-19t"/>
     </inferredMetricsTieBreakers>
 </document>

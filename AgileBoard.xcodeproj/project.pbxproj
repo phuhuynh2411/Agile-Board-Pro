@@ -69,6 +69,8 @@
 		848FCEB42397985100CD6334 /* AddIssueHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848FCEB32397985100CD6334 /* AddIssueHeaderView.swift */; };
 		8490889723A1D75500D5DD96 /* DueDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8490889623A1D75500D5DD96 /* DueDateTableViewCell.swift */; };
 		8490889923A1E1B900D5DD96 /* HalfScreenPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8490889823A1E1B900D5DD96 /* HalfScreenPresentationController.swift */; };
+		84A1FC1923A32F1D008648F9 /* StartDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A1FC1823A32F1D008648F9 /* StartDateTableViewCell.swift */; };
+		84A1FC1B23A32F2F008648F9 /* EndDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A1FC1A23A32F2F008648F9 /* EndDateTableViewCell.swift */; };
 		84A51AC0237AF8DD00477B75 /* IssueTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A51ABF237AF8DD00477B75 /* IssueTableViewController.swift */; };
 		84B3010D2394BF0300D4BBA8 /* AddProjecTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B3010C2394BF0300D4BBA8 /* AddProjecTableViewControllerTests.swift */; };
 		84B301142394C17500D4BBA8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 843C8989237AE7460050586E /* Main.storyboard */; };
@@ -182,6 +184,8 @@
 		848FCEB32397985100CD6334 /* AddIssueHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIssueHeaderView.swift; sourceTree = "<group>"; };
 		8490889623A1D75500D5DD96 /* DueDateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DueDateTableViewCell.swift; sourceTree = "<group>"; };
 		8490889823A1E1B900D5DD96 /* HalfScreenPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfScreenPresentationController.swift; sourceTree = "<group>"; };
+		84A1FC1823A32F1D008648F9 /* StartDateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartDateTableViewCell.swift; sourceTree = "<group>"; };
+		84A1FC1A23A32F2F008648F9 /* EndDateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndDateTableViewCell.swift; sourceTree = "<group>"; };
 		84A51ABF237AF8DD00477B75 /* IssueTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueTableViewController.swift; sourceTree = "<group>"; };
 		84B3010A2394BF0300D4BBA8 /* AgileBoardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AgileBoardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		84B3010C2394BF0300D4BBA8 /* AddProjecTableViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProjecTableViewControllerTests.swift; sourceTree = "<group>"; };
@@ -349,6 +353,8 @@
 		84206291237AFED20076CDAC /* Custom Cell */ = {
 			isa = PBXGroup;
 			children = (
+				84A1FC1823A32F1D008648F9 /* StartDateTableViewCell.swift */,
+				84A1FC1A23A32F2F008648F9 /* EndDateTableViewCell.swift */,
 				8490889623A1D75500D5DD96 /* DueDateTableViewCell.swift */,
 				840409BB239173070006829F /* IconCollectionViewCell.swift */,
 				84B5F732238F860C00D344C3 /* IssueTypeTableViewCell.swift */,
@@ -708,6 +714,7 @@
 				84584E27238ED999000408AE /* AddIssueViewController.swift in Sources */,
 				8442DC3F237E7DF8008C88C6 /* IssueTableViewCell.swift in Sources */,
 				84F5FF9C238538FB00F2E966 /* DragIssueItem.swift in Sources */,
+				84A1FC1923A32F1D008648F9 /* StartDateTableViewCell.swift in Sources */,
 				8442DC42237E969C008C88C6 /* Identifier.swift in Sources */,
 				843C58C52390FFB600F5FAB5 /* ProjectIcon.swift in Sources */,
 				843C58CB2391073800F5FAB5 /* AddProjectTableViewController.swift in Sources */,
@@ -721,6 +728,7 @@
 				84A51AC0237AF8DD00477B75 /* IssueTableViewController.swift in Sources */,
 				845227D1238D22FE000607A8 /* IssueCollectionView.swift in Sources */,
 				84579E642396513B009575E4 /* PriorityController.swift in Sources */,
+				84A1FC1B23A32F2F008648F9 /* EndDateTableViewCell.swift in Sources */,
 				84579E6823965CD4009575E4 /* PriorityTableViewCell.swift in Sources */,
 				84579E602396412A009575E4 /* ProjectControllerMock.swift in Sources */,
 				846685F3239F4BCB0033BA1E /* AddIssueCollectionTableViewCell.swift in Sources */,

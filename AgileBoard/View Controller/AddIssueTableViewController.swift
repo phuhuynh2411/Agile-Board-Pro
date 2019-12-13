@@ -14,6 +14,14 @@ enum AvailableTableCell {
     case attachment
     case collection
     case dueDate
+    case startDate
+    case endDate
+}
+
+enum DateType {
+    case dueDate
+    case startDate
+    case endDate
 }
 
 class AddIssueTableViewController: UITableViewController {
@@ -43,6 +51,12 @@ class AddIssueTableViewController: UITableViewController {
     /// Due date
     var dueDate: Date?
     
+    /// Start Date
+    var startDate: Date?
+    
+    /// End Date
+    var endDate: Date?
+        
     // MARK: View Methods
     
     override func viewDidLoad() {
@@ -52,6 +66,7 @@ class AddIssueTableViewController: UITableViewController {
     }
     
     private func setUpView() {
+        
         setUpHeader()
         projectData()
         issueTypeData()
@@ -135,6 +150,8 @@ class AddIssueTableViewController: UITableViewController {
         selectedCellList?.append(.priority)
         selectedCellList?.append(.attachment)
         selectedCellList?.append(.dueDate)
+        selectedCellList?.append(.startDate)
+        selectedCellList?.append(.endDate)
         //selectedCellList?.append(.collection)
     }
     
@@ -156,6 +173,13 @@ class AddIssueTableViewController: UITableViewController {
         case .dueDate:
             cell = tableView.dequeueReusableCell(withIdentifier: "DueDateCell")
             break
+        case .startDate:
+            cell = tableView.dequeueReusableCell(withIdentifier: "StartDateCell")
+            break
+        case .endDate:
+            cell = tableView.dequeueReusableCell(withIdentifier: "EndDateCell")
+            break
+            
         default: break
         }
         
@@ -193,6 +217,32 @@ class AddIssueTableViewController: UITableViewController {
             dueDateCell.updateCell()
         }
         
+        // Start date cell
+        if let startDateCell = cell as? StartDateTableViewCell {
+            if let date = startDate {
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateStyle = .medium
+                startDateCell.startDateLabel.text = dateFormatter.string(from: date)
+            }
+            else {
+                startDateCell.startDateLabel.text = ""
+            }
+            startDateCell.updateCell()
+        }
+        
+        // End date cell
+        if let endDateCell = cell as? EndDateTableViewCell {
+            if let date = endDate {
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateStyle = .medium
+                endDateCell.endDateLabel.text = dateFormatter.string(from: date)
+            }
+            else {
+                endDateCell.endDateLabel.text = ""
+            }
+            endDateCell.updateCell()
+        }
+        
         return cell
     }
     
@@ -215,6 +265,34 @@ class AddIssueTableViewController: UITableViewController {
         let size = tableView.frame.size
         tableView.tableHeaderView?.frame.size = CGSize(width: size.width, height: headerView!.viewHeight())
         tableView.reloadData()
+    }
+    
+    private func prepareForDateCell(segue: UIStoryboardSegue, date: Date?, dateType: DateType) {
+        // Get the selecte date view controller
+        let navigationController = segue.destination as! UINavigationController
+        let selectDateViewController = navigationController.topViewController as! SelectDateViewController
+        // Set SelectDateDelegate
+        selectDateViewController.delegate = DateController(callback: { (selectedDate) in
+            switch dateType{
+            case .dueDate:
+                self.dueDate = selectedDate
+                break
+            case .startDate:
+                self.startDate = selectedDate
+                break
+            case .endDate:
+                self.endDate = selectedDate
+                break
+            }
+            self.tableView.reloadData()
+        })
+        // Displays the previous selected date
+        selectDateViewController.selectedDate = date
+        
+        // Set segue transitioning
+        segue.destination.transitioningDelegate  = self
+        segue.destination.modalPresentationStyle = .custom
+        
     }
     
     // MARK: - IB Actions
@@ -329,15 +407,17 @@ extension AddIssueTableViewController {
             priorityTableController.delegate = self
         }
         
+        // Prepare for due date segue
         if segue.identifier == Identifier.DueDateSegue {
-            let navigationController = segue.destination as! UINavigationController
-            let selectDateViewController = navigationController.topViewController as! SelectDateViewController
-            
-            selectDateViewController.delegate = self
-            selectDateViewController.selectedDate = dueDate
-            
-            segue.destination.transitioningDelegate  = self
-            segue.destination.modalPresentationStyle = .custom
+            prepareForDateCell(segue: segue, date: dueDate, dateType: .dueDate)
+        }
+        // Prepare for start date segue
+        if segue.identifier == Identifier.StartDateSegue {
+            prepareForDateCell(segue: segue, date: startDate, dateType: .startDate)
+        }
+        // Prepare for end date segue
+        if segue.identifier == Identifier.EndDateSegue {
+            prepareForDateCell(segue: segue, date: endDate, dateType: .endDate)
         }
         
     }
@@ -388,8 +468,17 @@ extension AddIssueTableViewController {
             
            // tableView.reloadData()
         }
+        // Tap on due date cell
         else if cellList?[indexPath.row] == .dueDate {
             performSegue(withIdentifier: Identifier.DueDateSegue, sender: self)
+        }
+        // Tapped on start date cell
+        else if cellList?[indexPath.row] == .startDate {
+            performSegue(withIdentifier: Identifier.StartDateSegue, sender: self)
+        }
+        // Tapped on end date cell
+        else if cellList?[indexPath.row] == .endDate {
+            performSegue(withIdentifier: Identifier.EndDateSegue, sender: self)
         }
     }
     
@@ -404,6 +493,11 @@ extension AddIssueTableViewController {
             return 116
         case .dueDate:
             return 70
+        case .startDate:
+            return 70
+        case .endDate:
+            return 70
+            
         default:
             return 44
         }
@@ -449,4 +543,24 @@ extension AddIssueTableViewController: SelecteDateDelegate {
         dueDate = date
         tableView.reloadData()
     }
+    
+    
+}
+
+class DateController: SelecteDateDelegate {
+    
+    var callback: (_ date: Date?)->Void
+    
+    init(callback: @escaping (_ date: Date?)-> Void) {
+        self.callback = callback
+    }
+    
+    func clearDate() {
+        self.callback(nil)
+    }
+    
+    func didSelectDate(date: Date) {
+        self.callback(date)
+    }
+    
 }

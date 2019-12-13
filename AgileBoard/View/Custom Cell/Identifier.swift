@@ -26,4 +26,6 @@ class Identifier {
     static let DescriptionCell = "DescriptionCell"
     static let PhotoViewControllerSegue = "PhotoViewControllerSegue"
     static let DueDateSegue = "DueDateSegue"
+    static let StartDateSegue = "StartDateSegue"
+    static let EndDateSegue = "EndDateSegue"
 }
