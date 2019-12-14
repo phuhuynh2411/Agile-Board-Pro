@@ -9,23 +9,8 @@
 import UIKit
 import RealmSwift
 
-enum AvailableTableCell {
-    case priority
-    case attachment
-    case collection
-    case dueDate
-    case startDate
-    case endDate
-}
-
-enum DateType {
-    case dueDate
-    case startDate
-    case endDate
-}
-
 class AddIssueTableViewController: UITableViewController {
-
+    
     // MARK: Properites
     
     var headerView: AddIssueHeaderView?
@@ -40,13 +25,12 @@ class AddIssueTableViewController: UITableViewController {
         
     var selectedPriority: Priority?
     
-    var cellList: [AvailableTableCell]?
-    var selectedCellList: [AvailableTableCell]?
+    private var Cells: [CellType]?
     
     /// A UILable of number of attachments
     var numberOfAttachments: UILabel?
     
-    var attachmentList: List<Attachment>?
+    var attachments: [Attachment]?
         
     /// Due date
     var dueDate: Date?
@@ -56,7 +40,15 @@ class AddIssueTableViewController: UITableViewController {
     
     /// End Date
     var endDate: Date?
-        
+    
+    /**
+     Determines whether users modifed any data in the form.
+     `isModifed` is equal `true` if the data was modified; otherwise `false`
+    */
+    var isModifed: Bool = false
+    
+    var issue: Issue? { didSet { issueDidChange() }}
+    
     // MARK: View Methods
     
     override func viewDidLoad() {
@@ -70,13 +62,13 @@ class AddIssueTableViewController: UITableViewController {
         setUpHeader()
         projectData()
         issueTypeData()
-        setUpCell()
         
         // Create a medium priority as the default one
         selectedPriority = PriorityController.shared.getDefault()
         
-        attachmentList = List<Attachment>()
-        
+        attachments = []
+    
+        // Dismiss the keyboard when dragging on the table view
         tableView.keyboardDismissMode = .onDrag
         
     }
@@ -114,10 +106,6 @@ class AddIssueTableViewController: UITableViewController {
         }
     }
     
-    override func viewDidLayoutSubviews() {
-        //headerFitTextView()
-    }
-    
     // MARK: - Set Up table view header view
     
     private func setUpHeader() {
@@ -143,41 +131,29 @@ class AddIssueTableViewController: UITableViewController {
         headerView?.showMoreButton.addTarget(self, action: #selector(showMoreButtonPress(sender:)), for: .touchUpInside)
     }
     
-    // MARK: - Setup table view cell
-    
-    private func setUpCell() {
-        selectedCellList = [AvailableTableCell]()
-        selectedCellList?.append(.priority)
-        selectedCellList?.append(.attachment)
-        selectedCellList?.append(.dueDate)
-        selectedCellList?.append(.startDate)
-        selectedCellList?.append(.endDate)
-        //selectedCellList?.append(.collection)
-    }
-    
     // MARK: - Helper Methods
     
     private func cellAt(indexPath: IndexPath) -> UITableViewCell? {
         var cell: UITableViewCell?
         
-        switch cellList?[indexPath.row] {
+        switch Cells?[indexPath.row] {
         case .priority:
-            cell = tableView.dequeueReusableCell(withIdentifier: "PriorityCell")
+            cell = tableView.dequeueReusableCell(withIdentifier: C.prioriy)
             break
         case .attachment:
-            cell = tableView.dequeueReusableCell(withIdentifier: "AttachmentCell")
+            cell = tableView.dequeueReusableCell(withIdentifier: C.attachment)
             break
         case .collection:
-            cell = tableView.dequeueReusableCell(withIdentifier: "CollectionCell")
+            cell = tableView.dequeueReusableCell(withIdentifier: C.collecion)
             break
         case .dueDate:
-            cell = tableView.dequeueReusableCell(withIdentifier: "DueDateCell")
+            cell = tableView.dequeueReusableCell(withIdentifier: C.dueDate)
             break
         case .startDate:
-            cell = tableView.dequeueReusableCell(withIdentifier: "StartDateCell")
+            cell = tableView.dequeueReusableCell(withIdentifier: C.startDate)
             break
         case .endDate:
-            cell = tableView.dequeueReusableCell(withIdentifier: "EndDateCell")
+            cell = tableView.dequeueReusableCell(withIdentifier: C.endDate)
             break
             
         default: break
@@ -193,14 +169,15 @@ class AddIssueTableViewController: UITableViewController {
         
         // Attachment Cell
         if let attachmentCell = cell as? AttachmentTableViewCell {
-            attachmentCell.numberLabel.text = "\(attachmentList?.count ?? 0)"
+            attachmentCell.numberLabel.text = "\(attachments?.count ?? 0)"
             numberOfAttachments = attachmentCell.numberLabel
         }
         
         // Collection cell
         if let collectionCell = cell as? AddIssueCollectionTableViewCell {
             let controller = collectionCell.collectionView.controller
-            controller?.attachmentList = attachmentList
+            // MARK: TODO: -  Need to update here
+            //controller?.attachmentList = attachmentList
             controller?.numberLabel = numberOfAttachments
         }
         
@@ -285,6 +262,7 @@ class AddIssueTableViewController: UITableViewController {
                 break
             }
             self.tableView.reloadData()
+            self.isModifed = true
         })
         // Displays the previous selected date
         selectDateViewController.selectedDate = date
@@ -293,6 +271,25 @@ class AddIssueTableViewController: UITableViewController {
         segue.destination.transitioningDelegate  = self
         segue.destination.modalPresentationStyle = .custom
         
+    }
+    
+    /**
+     Determines whether the user are modifying an exising issue or adding a new one.
+     - Returns: `true` if the use are adding a new issue; otherwise `false`
+     */
+    func isNew() -> Bool{
+        // If realm database does not contain the issue,
+        // it is the new one; otherwise, it is an exsiting issue.
+        if let issue = issue {
+            guard let isExisting = IssueController.shared.contain(issue: issue) else { return true }
+            return !isExisting
+        }else{
+            return true
+        }
+    }
+    
+    func issueDidChange() {
+        print("Issue has been changed.")
     }
     
     // MARK: - IB Actions
@@ -308,21 +305,45 @@ class AddIssueTableViewController: UITableViewController {
     @objc func showMoreButtonPress(sender: UIButton) {
         // Remove all cell from the table view
         if headerView!.showMoreField {
-            let indexPaths = cellList?.enumerated().compactMap{ IndexPath(row: $0.offset, section: 0)}
-            cellList = nil
+            let indexPaths = Cells?.enumerated().compactMap{ IndexPath(row: $0.offset, section: 0)}
+            Cells = nil
             tableView.deleteRows(at: indexPaths!, with: .none)
         }
         // Add selected cells to the table view
         else {
-            let indexPaths = selectedCellList?.enumerated().compactMap{ IndexPath(row: $0.offset, section: 0)}
-            cellList = selectedCellList
-            tableView.insertRows(at: indexPaths!, with: .automatic)
+            Cells = [CellType]()
+            Cells?.append(.priority)
+            Cells?.append(.attachment)
+            Cells?.append(.dueDate)
+            Cells?.append(.startDate)
+            Cells?.append(.endDate)
+            
+            tableView.reloadData()
         }
-        tableView.reloadData()
     }
 
     @IBAction func closeButtonPressed(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
+        // Prevents user lose entered data
+        // Shows a popup to ask user whether they really want to discard the changes
+        if isModifed {
+            let alertController = UIAlertController(title: "", message: "You added data to the form. Do you want to discard the changes? Select Cancel to keep working on it.", preferredStyle: .actionSheet)
+            let discardAction = UIAlertAction(title: "Discard draft", style: .destructive) { (action) in
+                self.dismiss(animated: true, completion: nil)
+            }
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+                //self.dismiss(animated: true, completion: nil)
+            }
+            // Add actions to alert controller
+            alertController.addAction(discardAction)
+            alertController.addAction(cancelAction)
+            
+            // Presents the alert controller
+            present(alertController, animated: true, completion: nil)
+            
+        }
+        else {
+            dismiss(animated: true, completion: nil)
+        }
     }
     
     @IBAction func createButtonPressed(_ sender: UIBarButtonItem) {
@@ -332,7 +353,7 @@ class AddIssueTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cellList?.count ?? 0
+        return Cells?.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -362,6 +383,7 @@ extension AddIssueTableViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         fitTextViewSize(textView: textView)
         headerFitTextView()
+        isModifed = true
     }
     
 }
@@ -372,7 +394,7 @@ extension AddIssueTableViewController: SelectProjectDelegate {
     
     func didSelectdProject(project: Project?) {
         self.project = project
-        
+        self.isModifed = true
         // Reload the UI
         updateView()
     }
@@ -386,14 +408,14 @@ extension AddIssueTableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         // Pass the selected project to the Serach Project View Controller
-        if segue.identifier == Identifier.SearchProjectSegue {
+        if segue.identifier == S.searchProject {
             let navigationController = segue.destination as! UINavigationController
             let searchProjectViewController = navigationController.topViewController as! SearchProjectViewController
             searchProjectViewController.selectedProject = project
             searchProjectViewController.delegate = self
         }
         
-        if segue.identifier == Identifier.SelectIssueTypeSegue {
+        if segue.identifier == S.issueType {
             let navigationController = segue.destination as! UINavigationController
             let selectIssueTypeTableViewController = navigationController.topViewController as! SelectIssueTypeTableViewController
             
@@ -401,22 +423,22 @@ extension AddIssueTableViewController {
             selectIssueTypeTableViewController.delegate = self
         }
         
-        if segue.identifier == Identifier.SelectPrioritySegue {
+        if segue.identifier == S.priority {
             let priorityTableController = segue.destination as! PriorityTableViewController
             priorityTableController.selectedPriority = selectedPriority
             priorityTableController.delegate = self
         }
         
         // Prepare for due date segue
-        if segue.identifier == Identifier.DueDateSegue {
+        if segue.identifier == S.dueDate {
             prepareForDateCell(segue: segue, date: dueDate, dateType: .dueDate)
         }
         // Prepare for start date segue
-        if segue.identifier == Identifier.StartDateSegue {
+        if segue.identifier == S.startDate {
             prepareForDateCell(segue: segue, date: startDate, dateType: .startDate)
         }
         // Prepare for end date segue
-        if segue.identifier == Identifier.EndDateSegue {
+        if segue.identifier == S.endDate {
             prepareForDateCell(segue: segue, date: endDate, dateType: .endDate)
         }
         
@@ -429,7 +451,7 @@ extension AddIssueTableViewController: SelectIssueTypeDelegate {
     
     func didSelectIssueType(issueType: IssueType?) {
         self.selectedIssueType = issueType
-                
+        self.isModifed = true
         updateView()
     }
 }
@@ -441,17 +463,17 @@ extension AddIssueTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         // Priority cell
-        if cellList?[indexPath.row] == .priority {
+        if Cells?[indexPath.row] == .priority {
             performSegue(withIdentifier: Identifier.SelectPrioritySegue, sender: self)
         }
         // Tap on the attachment cell
-        else if cellList?[indexPath.row] == .attachment {
+        else if Cells?[indexPath.row] == .attachment {
             
             // Add or remove collection cell
             let cell = tableView.cellForRow(at: indexPath) as! AttachmentTableViewCell
             let nextIndexPath = IndexPath(row: indexPath.row + 1, section: indexPath.section)
-            if cellList!.contains(.collection) {
-                cellList?.removeAll(where: { (cell) -> Bool in
+            if Cells!.contains(.collection) {
+                Cells?.removeAll(where: { (cell) -> Bool in
                     cell == .collection
                 })
                 cell.isTransform = false
@@ -460,7 +482,7 @@ extension AddIssueTableViewController {
                 nextCell?.isHidden = true
                 tableView.deleteRows(at: [nextIndexPath], with: .automatic)
             } else {
-                cellList?.insert(.collection, at: nextIndexPath.row)
+                Cells?.insert(.collection, at: nextIndexPath.row)
                 cell.isTransform = true
                 tableView.insertRows(at: [nextIndexPath], with: .automatic)
             }
@@ -469,22 +491,22 @@ extension AddIssueTableViewController {
            // tableView.reloadData()
         }
         // Tap on due date cell
-        else if cellList?[indexPath.row] == .dueDate {
-            performSegue(withIdentifier: Identifier.DueDateSegue, sender: self)
+        else if Cells?[indexPath.row] == .dueDate {
+            performSegue(withIdentifier: S.dueDate, sender: self)
         }
         // Tapped on start date cell
-        else if cellList?[indexPath.row] == .startDate {
-            performSegue(withIdentifier: Identifier.StartDateSegue, sender: self)
+        else if Cells?[indexPath.row] == .startDate {
+            performSegue(withIdentifier: S.startDate, sender: self)
         }
         // Tapped on end date cell
-        else if cellList?[indexPath.row] == .endDate {
-            performSegue(withIdentifier: Identifier.EndDateSegue, sender: self)
+        else if Cells?[indexPath.row] == .endDate {
+            performSegue(withIdentifier: S.endDate, sender: self)
         }
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        switch cellList?[indexPath.row] {
+        switch Cells?[indexPath.row] {
         case .priority:
             return 70
         case .attachment:
@@ -512,6 +534,7 @@ extension AddIssueTableViewController: SelectPriorityDelegate {
     
     func didSelectPriority(priority: Priority) {
         selectedPriority = priority
+        self.isModifed = true
         updateView()
     }
 }
@@ -532,21 +555,6 @@ extension AddIssueTableViewController: UIViewControllerTransitioningDelegate {
 
 // MARK: - SelectDateDelegate
 
-extension AddIssueTableViewController: SelecteDateDelegate {
-    
-    func clearDate() {
-        dueDate = nil
-        tableView.reloadData()
-    }
-    
-    func didSelectDate(date: Date) {
-        dueDate = date
-        tableView.reloadData()
-    }
-    
-    
-}
-
 class DateController: SelecteDateDelegate {
     
     var callback: (_ date: Date?)->Void
@@ -563,4 +571,49 @@ class DateController: SelecteDateDelegate {
         self.callback(date)
     }
     
+}
+
+// MARK: - Cell Identifiers, TableCell Emun, DateType Enum
+
+extension AddIssueTableViewController {
+    
+    private struct CellIdentifier {
+        static var prioriy = "PriorityCell"
+        static var attachment = "AttachmentCell"
+        static var collecion = "CollectionCell"
+        static var dueDate = "DueDateCell"
+        static var startDate = "StartDateCell"
+        static var endDate = "EndDateCell"
+    }
+    private typealias C = CellIdentifier
+    
+    private enum CellType {
+        case priority
+        case attachment
+        case collection
+        case dueDate
+        case startDate
+        case endDate
+    }
+
+    private enum DateType {
+        case dueDate
+        case startDate
+        case endDate
+    }
+}
+
+// MARK: - Segue Identifiers
+
+extension AddIssueTableViewController {
+    
+    private struct SegueIdentifier {
+        static let searchProject = "SearchProjectSegue"
+        static let issueType = "SelectIssueTypeSegue"
+        static let priority = "SelectPrioritySegue"
+        static let dueDate = "DueDateSegue"
+        static let startDate = "StartDateSegue"
+        static let endDate = "EndDateSegue"
+    }
+    private typealias S = SegueIdentifier
 }

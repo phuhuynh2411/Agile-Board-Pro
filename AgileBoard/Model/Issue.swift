@@ -27,6 +27,14 @@ class Issue: Object {
     // Issue's priority
     @objc dynamic var priority: Priority?
     
+    // An issue has many attachments
+    let attachments = List<Attachment>()
+    
+    // Due date
+    @objc dynamic var dueDate: Date?
+    @objc dynamic var startDate: Date?
+    @objc dynamic var endDate: Date?
+    
     static func incrementID() -> Int {
         
         let realm = try! Realm()
