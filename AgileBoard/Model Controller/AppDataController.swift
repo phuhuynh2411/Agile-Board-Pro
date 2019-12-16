@@ -21,7 +21,7 @@ class AppDataController {
         }
         
         // Create Sample Issue Types
-        IssueTypeController.createSampleIssueTypes()
+        IssueTypeController.shared.createSampleIssueTypes()
         // Create sample Project Icons
         ProjectIconController.createSampleIcons()
         // Create sample Projects

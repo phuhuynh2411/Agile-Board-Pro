@@ -23,6 +23,8 @@ class SelectDateViewController: UIViewController {
     
     // MARK: IB Outlets
     @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var doneButton: UIBarButtonItem!
+    @IBOutlet weak var clearButton: UIBarButtonItem!
     
     // MAKR: Properites
     var delegate: SelecteDateDelegate?

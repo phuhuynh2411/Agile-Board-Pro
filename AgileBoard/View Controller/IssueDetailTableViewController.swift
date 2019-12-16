@@ -9,37 +9,18 @@
 import UIKit
 import RealmSwift
 
-class AddIssueTableViewController: UITableViewController {
+class IssueDetailTableViewController: UITableViewController {
+    
+    // MARK: - IB Outlets or View
+    
+    private var headerView: AddIssueHeaderView?
     
     // MARK: Properites
-    
-    var headerView: AddIssueHeaderView?
-    
-    /// current project
+        
+    /// The current project
     var project: Project?
-    
-    /// Selected Issue Type
-    var selectedIssueType: IssueType?
-    
-    var delegate: AddIssueDelegate?
-        
-    var selectedPriority: Priority?
-    
+    /// A list of table view's cell
     private var Cells: [CellType]?
-    
-    /// A UILable of number of attachments
-    var numberOfAttachments: UILabel?
-    
-    var attachments: [Attachment]?
-        
-    /// Due date
-    var dueDate: Date?
-    
-    /// Start Date
-    var startDate: Date?
-    
-    /// End Date
-    var endDate: Date?
     
     /**
      Determines whether users modifed any data in the form.
@@ -47,7 +28,45 @@ class AddIssueTableViewController: UITableViewController {
     */
     var isModifed: Bool = false
     
-    var issue: Issue? { didSet { issueDidChange() }}
+    var issue: Issue?
+    
+    // MARK: Delegate
+    
+    var delegate: AddIssueDelegate?
+    
+    // MARK: Init methods
+    
+    /**
+     Call this method when modifying an existing issue
+     
+     - Parameters:
+        - issue: An issue that you want to modify
+        - delegate: Callback functions after adding or modifying an issue
+     */
+    
+    func initView(with issue: Issue, and delegate: AddIssueDelegate?) {
+        self.delegate = delegate
+        self.issue = issue
+    }
+    
+    /**
+     Call this method when you want to add a new issue.
+     
+     - Parameters:
+        - project: Initial project of the issue
+        - issueType: Initial issue type
+        - priority: Initial priority
+        - delegate: Callback functions after adding or modifying an issue
+     */
+    func initView(with project: Project? = nil, issueType: IssueType? = nil, priority: Priority? = nil, startDate: Date?, delegate: AddIssueDelegate? = nil) {
+        issue = Issue()
+        issue?.type = issueType
+        issue?.priority = priority
+        issue?.startDate = startDate
+        
+        self.project = project
+        self.delegate = delegate
+    }
     
     // MARK: View Methods
     
@@ -55,55 +74,56 @@ class AddIssueTableViewController: UITableViewController {
         super.viewDidLoad()
         
         setUpView()
+        
+        updateView(components: [.project, .issueType])
     }
     
     private func setUpView() {
-        
+        // Add tableview's header
         setUpHeader()
-        projectData()
-        issueTypeData()
         
-        // Create a medium priority as the default one
-        selectedPriority = PriorityController.shared.getDefault()
-        
-        attachments = []
-    
         // Dismiss the keyboard when dragging on the table view
         tableView.keyboardDismissMode = .onDrag
-        
     }
     
-    private func updateView() {
-        projectData()
-        issueTypeData()
+    private func updateView(components: [ViewComponent], markAsModified: Bool = false) {
         
-        tableView.reloadData()
-    }
-    
-    private func projectData() {
         // Update project name
-        let projectButton = headerView?.projectButton
-        if let projectName = project?.name {
+        if components.contains(.project), let projectName = project?.name {
+            let projectButton = headerView?.projectButton
             projectButton?.isSelected = true
             projectButton?.setTitle(projectName, for: .selected)
         }
-    }
-    
-    private func issueTypeData() {
+        
         // Update issue type
-        let typeButton = headerView?.typeButton
-        if let issueType = selectedIssueType?.name {
+        if components.contains(.issueType), let issueType = issue?.type?.name {
+            let typeButton = headerView?.typeButton
             typeButton?.isSelected = true
             typeButton?.setTitle(issueType, for: .selected)
+            // Show issue type's icon
+            if let issueImageName = issue?.type?.imageName {
+                headerView?.typeImageView.image = UIImage(named: issueImageName)
+                headerView?.showTypeIcon = true
+            }
+            else {
+                headerView?.showTypeIcon = false
+            }
         }
         
-        if let issueImageName = selectedIssueType?.imageName {
-            headerView?.typeImageView.image = UIImage(named: issueImageName)
-            headerView?.showTypeIcon = true
+        // Reload the table view
+        if components.contains(.tableView) {
+            tableView.reloadData()
         }
-        else {
-            headerView?.showTypeIcon = false
+        
+        // Update header
+        if components.contains(.header) {
+            sizeHeaderToFit()
         }
+        
+        // Marks issue as it was modified.
+        // Only marks it as true if it is false.
+        isModifed = isModifed ? isModifed : markAsModified
+    
     }
     
     // MARK: - Set Up table view header view
@@ -161,29 +181,26 @@ class AddIssueTableViewController: UITableViewController {
         
         // Add data to priority cell
         if let priorityCell = cell as? IssuePriorityTableViewCell {
-            priorityCell.priorityNameLabel?.text = selectedPriority?.name
-            if let imageName = selectedPriority?.imageName {
+            priorityCell.priorityNameLabel?.text = issue?.priority?.name
+            if let imageName = issue?.priority?.imageName {
                 priorityCell.priorityImageView.image = UIImage(named: imageName)
             }
         }
         
         // Attachment Cell
         if let attachmentCell = cell as? AttachmentTableViewCell {
-            attachmentCell.numberLabel.text = "\(attachments?.count ?? 0)"
-            numberOfAttachments = attachmentCell.numberLabel
+            attachmentCell.numberLabel.text = "\(issue?.attachments.count ?? 0)"
         }
         
         // Collection cell
         if let collectionCell = cell as? AddIssueCollectionTableViewCell {
             let controller = collectionCell.collectionView.controller
-            // MARK: TODO: -  Need to update here
-            //controller?.attachmentList = attachmentList
-            controller?.numberLabel = numberOfAttachments
+            controller?.initView(attachments: issue!.attachments, delegate: self)
         }
         
         // Due date cell
         if let dueDateCell = cell as? DueDateTableViewCell {
-            if let date = dueDate {
+            if let date = issue?.dueDate {
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateStyle = .medium
                 dueDateCell.dueDateLabel.text = dateFormatter.string(from: date)
@@ -196,7 +213,7 @@ class AddIssueTableViewController: UITableViewController {
         
         // Start date cell
         if let startDateCell = cell as? StartDateTableViewCell {
-            if let date = startDate {
+            if let date = issue?.startDate {
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateStyle = .medium
                 startDateCell.startDateLabel.text = dateFormatter.string(from: date)
@@ -209,7 +226,7 @@ class AddIssueTableViewController: UITableViewController {
         
         // End date cell
         if let endDateCell = cell as? EndDateTableViewCell {
-            if let date = endDate {
+            if let date = issue?.endDate {
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateStyle = .medium
                 endDateCell.endDateLabel.text = dateFormatter.string(from: date)
@@ -226,7 +243,7 @@ class AddIssueTableViewController: UITableViewController {
     /**
      A best fitting size for text view
      */
-    private func fitTextViewSize(textView: UITextView){
+    private func sizeTextViewToFit(textView: UITextView){
         
         textView.translatesAutoresizingMaskIntoConstraints = false
         let fixedWidth = textView.frame.size.width
@@ -238,7 +255,7 @@ class AddIssueTableViewController: UITableViewController {
     /**
      Adjusts the table view header to fit the text view height
      */
-    private func headerFitTextView() {
+    private func sizeHeaderToFit() {
         let size = tableView.frame.size
         tableView.tableHeaderView?.frame.size = CGSize(width: size.width, height: headerView!.viewHeight())
         tableView.reloadData()
@@ -252,17 +269,16 @@ class AddIssueTableViewController: UITableViewController {
         selectDateViewController.delegate = DateController(callback: { (selectedDate) in
             switch dateType{
             case .dueDate:
-                self.dueDate = selectedDate
+                self.issue?.dueDate = selectedDate
                 break
             case .startDate:
-                self.startDate = selectedDate
+                self.issue?.startDate = selectedDate
                 break
             case .endDate:
-                self.endDate = selectedDate
+                self.issue?.endDate = selectedDate
                 break
             }
-            self.tableView.reloadData()
-            self.isModifed = true
+            self.updateView(components: [.tableView], markAsModified: true)
         })
         // Displays the previous selected date
         selectDateViewController.selectedDate = date
@@ -286,10 +302,6 @@ class AddIssueTableViewController: UITableViewController {
         }else{
             return true
         }
-    }
-    
-    func issueDidChange() {
-        print("Issue has been changed.")
     }
     
     // MARK: - IB Actions
@@ -366,7 +378,7 @@ class AddIssueTableViewController: UITableViewController {
 
 // MARK: - UI TextView Delegate
 
-extension AddIssueTableViewController: UITextViewDelegate {
+extension IssueDetailTableViewController: UITextViewDelegate {
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         
@@ -381,29 +393,26 @@ extension AddIssueTableViewController: UITextViewDelegate {
     }
     
     func textViewDidChange(_ textView: UITextView) {
-        fitTextViewSize(textView: textView)
-        headerFitTextView()
-        isModifed = true
+        sizeTextViewToFit(textView: textView)
+        updateView(components: [.header], markAsModified: true)
     }
     
 }
 
 // MARK: - SelectProjectProtocol
 
-extension AddIssueTableViewController: SelectProjectDelegate {
+extension IssueDetailTableViewController: SelectProjectDelegate {
     
     func didSelectdProject(project: Project?) {
         self.project = project
-        self.isModifed = true
-        // Reload the UI
-        updateView()
+        updateView(components: [.project], markAsModified: true)
     }
     
 }
 
 // MARK: - Navigation
 
-extension AddIssueTableViewController {
+extension IssueDetailTableViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -419,27 +428,27 @@ extension AddIssueTableViewController {
             let navigationController = segue.destination as! UINavigationController
             let selectIssueTypeTableViewController = navigationController.topViewController as! SelectIssueTypeTableViewController
             
-            selectIssueTypeTableViewController.selectedIssueType = selectedIssueType
+            selectIssueTypeTableViewController.selectedIssueType = issue?.type
             selectIssueTypeTableViewController.delegate = self
         }
         
         if segue.identifier == S.priority {
             let priorityTableController = segue.destination as! PriorityTableViewController
-            priorityTableController.selectedPriority = selectedPriority
+            priorityTableController.selectedPriority = issue?.priority
             priorityTableController.delegate = self
         }
         
         // Prepare for due date segue
         if segue.identifier == S.dueDate {
-            prepareForDateCell(segue: segue, date: dueDate, dateType: .dueDate)
+            prepareForDateCell(segue: segue, date: issue?.dueDate, dateType: .dueDate)
         }
         // Prepare for start date segue
         if segue.identifier == S.startDate {
-            prepareForDateCell(segue: segue, date: startDate, dateType: .startDate)
+            prepareForDateCell(segue: segue, date: issue?.startDate, dateType: .startDate)
         }
         // Prepare for end date segue
         if segue.identifier == S.endDate {
-            prepareForDateCell(segue: segue, date: endDate, dateType: .endDate)
+            prepareForDateCell(segue: segue, date: issue?.endDate, dateType: .endDate)
         }
         
     }
@@ -447,18 +456,17 @@ extension AddIssueTableViewController {
 
 // MARK: - SelectIssueType Delegate
 
-extension AddIssueTableViewController: SelectIssueTypeDelegate {
+extension IssueDetailTableViewController: SelectIssueTypeDelegate {
     
     func didSelectIssueType(issueType: IssueType?) {
-        self.selectedIssueType = issueType
-        self.isModifed = true
-        updateView()
+        self.issue?.type = issueType
+        updateView(components: [.issueType], markAsModified: true)
     }
 }
 
 // MARK: - UI Table View Delegate
 
-extension AddIssueTableViewController {
+extension IssueDetailTableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -530,18 +538,17 @@ extension AddIssueTableViewController {
 
 // MARK: - Select Priority Delegate
 
-extension AddIssueTableViewController: SelectPriorityDelegate {
+extension IssueDetailTableViewController: SelectPriorityDelegate {
     
     func didSelectPriority(priority: Priority) {
-        selectedPriority = priority
-        self.isModifed = true
-        updateView()
+        self.issue?.priority = priority
+        updateView(components: [.tableView], markAsModified: true)
     }
 }
 
 // MARK: - UIViewControllerTransitioningDelegate
 
-extension AddIssueTableViewController: UIViewControllerTransitioningDelegate {
+extension IssueDetailTableViewController: UIViewControllerTransitioningDelegate {
     
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
         
@@ -575,7 +582,7 @@ class DateController: SelecteDateDelegate {
 
 // MARK: - Cell Identifiers, TableCell Emun, DateType Enum
 
-extension AddIssueTableViewController {
+extension IssueDetailTableViewController {
     
     private struct CellIdentifier {
         static var prioriy = "PriorityCell"
@@ -605,7 +612,7 @@ extension AddIssueTableViewController {
 
 // MARK: - Segue Identifiers
 
-extension AddIssueTableViewController {
+extension IssueDetailTableViewController {
     
     private struct SegueIdentifier {
         static let searchProject = "SearchProjectSegue"
@@ -616,4 +623,28 @@ extension AddIssueTableViewController {
         static let endDate = "EndDateSegue"
     }
     private typealias S = SegueIdentifier
+}
+
+// MARK: - View Components
+
+extension IssueDetailTableViewController {
+    private enum ViewComponent {
+        case project
+        case issueType
+        case priority
+        case tableView
+        case header
+    }
+}
+
+// MARK: - AttachmentDelegate
+
+extension IssueDetailTableViewController: AttachmentDelegate {
+    func didAddAttachment(attachment: Attachment) {
+        updateView(components: [.tableView], markAsModified: true)
+    }
+    
+    func didDeleteAttachment(attachment: Attachment, at indexPath: IndexPath) {
+        updateView(components: [.tableView], markAsModified: true)
+    }
 }

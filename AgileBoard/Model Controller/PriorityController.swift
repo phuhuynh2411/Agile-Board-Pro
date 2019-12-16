@@ -38,7 +38,7 @@ class PriorityController {
         let priority3 = Priority()
         priority3.name = "Medium"
         priority3.imageName = "priority_medium"
-        priority3.asDefault = true
+        priority3.standard = true
         add(priority3)
         
         let priority4 = Priority()
@@ -67,9 +67,10 @@ class PriorityController {
         return realm?.objects(Priority.self)
     }
     
-    func getDefault() -> Priority?{
+    func `default`() -> Priority?{
         return realm?.objects(Priority.self).filter({ (priority) -> Bool in
-            priority.asDefault == true
+            priority.standard == true
             }).first
     }
+    
 }

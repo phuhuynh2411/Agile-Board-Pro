@@ -11,30 +11,45 @@ import RealmSwift
 
 private let reuseIdentifier = "Cell"
 
+protocol AttachmentDelegate {
+    func didAddAttachment(attachment: Attachment)
+    func didDeleteAttachment(attachment: Attachment, at indexPath: IndexPath)
+}
+
 class AttachmentCollectionViewController: UICollectionViewController {
     
     // MARK: Properities
     
-    var attachmentList: List<Attachment>?
+    private var attachments: List<Attachment>?
     
-    var topController = UIApplication.getTopViewController()
+    private var topController = UIApplication.getTopViewController()
     
-    var selectedAttachment: Attachment?
+    private var selectedAttachment: Attachment?
+        
+    /// Attachment delegate
+    var delegate: AttachmentDelegate?
     
-    var numberLabel: UILabel?
-    
-    var deleteZoneCollectionView: UICollectionView?
+    private var deleteZoneCollectionView: UICollectionView?
 
     // MARK: Init Methods
     
     override init(collectionViewLayout layout: UICollectionViewLayout) {
         super.init(collectionViewLayout: layout)
-            
-        //attachmentList = List<Attachment>()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    /**
+     Initilize the view with or without attachments. If the attachments array is nil, it will create a new empty array; otherwise the attachments array is set to the attachments arrary parameter.
+     - Parameters:
+        - attachments: A attachments array
+        - delegate: Callback functions called after adding a new attachment.
+     */
+    func initView(attachments: List<Attachment>, delegate: AttachmentDelegate? = nil) {
+        self.attachments = attachments
+        self.delegate = delegate
     }
     
     // MARK: IB Actions
@@ -97,11 +112,10 @@ class AttachmentCollectionViewController: UICollectionViewController {
     // MARK: UICollectionViewDataSource
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let count = attachmentList?.count ?? 0
-        // Update the number of attachments
-        numberLabel?.text = "\(count)"
+        let count = attachments?.count ?? 0
         
-        // Add Inset right with 10 pt
+        // If there is no attachment,
+        // add Inset right with 10 pt for the footer (the add button)
         if count > 0 {
             let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
             layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
@@ -114,7 +128,7 @@ class AttachmentCollectionViewController: UICollectionViewController {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! AttachmentCollectionViewCell
         
-        let attachment = attachmentList?[indexPath.row]
+        let attachment = attachments?[indexPath.row]
         if let stringURL = attachment?.url {
             cell.attachmentImageView.image = UIImage.image(filePath: stringURL)
         }
@@ -141,7 +155,7 @@ class AttachmentCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         print("Did select row at index path \(indexPath)")
-        selectedAttachment = attachmentList?[indexPath.row]
+        selectedAttachment = attachments?[indexPath.row]
         let nav = topController?.navigationController
         let storyBoardInstant = UIStoryboard(name: "Main", bundle: .main)
         let photoViewController = storyBoardInstant.instantiateViewController(withIdentifier: "PhotoViewController") as? PhotoViewController
@@ -168,7 +182,8 @@ extension AttachmentCollectionViewController: UIImagePickerControllerDelegate, U
             attachment.name = imageName
             attachment.url = stringURL!
             
-            attachmentList?.append(attachment)
+            attachments?.append(attachment)
+            delegate?.didAddAttachment(attachment: attachment)
         }
         // Captured a photo from camera
         else {
@@ -179,7 +194,8 @@ extension AttachmentCollectionViewController: UIImagePickerControllerDelegate, U
             let stringURL = AttachmentController.shared.cache(image: originalImage, name: attachment.name)?.absoluteString
             attachment.url = stringURL!
             
-            attachmentList?.append(attachment)
+            attachments?.append(attachment)
+            delegate?.didAddAttachment(attachment: attachment)
         }
         
         collectionView.reloadData()
@@ -196,7 +212,7 @@ extension AttachmentCollectionViewController: UICollectionViewDragDelegate {
         
         let itemProvider = NSItemProvider()
         let dragItem = UIDragItem(itemProvider: itemProvider)
-        let attachment = attachmentList?[indexPath.row]
+        let attachment = attachments?[indexPath.row]
         let dragAttachmentItem = DragAttachmentItem(attachment: attachment!, collectionView: collectionView, indexPath: indexPath)
         dragItem.localObject = dragAttachmentItem
         session.localContext = dragAttachmentItem
@@ -278,21 +294,18 @@ extension AttachmentCollectionViewController: UICollectionViewDropDelegate {
                 let sourceCollectionView = dragItem.collectionView
                 let indexPath = dragItem.indexPath
                 
-                attachmentList?.remove(at: indexPath.row)
+                let attachment = attachments![indexPath.row]
+                attachments?.remove(at: indexPath.row)
                 sourceCollectionView.deleteItems(at: [indexPath])
+                delegate?.didDeleteAttachment(attachment: attachment, at: indexPath)
             }
         }
         
     }
     
     func collectionView(_ collectionView: UICollectionView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UICollectionViewDropProposal {
-        print("Updating drop section")
         
         return UICollectionViewDropProposal(operation: .move, intent: .insertIntoDestinationIndexPath)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, dropSessionDidEnd session: UIDropSession) {
-        print("Drop session did end")
     }
     
     func collectionView(_ collectionView: UICollectionView, dropSessionDidExit session: UIDropSession) {

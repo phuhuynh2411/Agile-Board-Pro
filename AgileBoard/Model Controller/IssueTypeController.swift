@@ -11,13 +11,24 @@ import RealmSwift
 
 class IssueTypeController {
     
-    static let realm = try! Realm()
-
-    static func createSampleIssueTypes() {
+    var realm: Realm?
+    
+    init() {
+        do{
+            self.realm  = try Realm()
+        }catch let error as NSError {
+            print(error)
+        }
+    }
+    
+    static var shared = IssueTypeController()
+    
+    func createSampleIssueTypes() {
         
         let issueType1 = IssueType()
         issueType1.name = "Story"
         issueType1.imageName = "issue_story"
+        issueType1.standard = true
         issueType1.typeDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed diam eget risus varius blandit sit amet non magna."
         
         let issueType2 = IssueType()
@@ -36,11 +47,11 @@ class IssueTypeController {
         issueType4.typeDescription = "Donec ullamcorper nulla non metus auctor fringilla."
         
         do {
-            try realm.write {
-                realm.add(issueType1)
-                realm.add(issueType2)
-                realm.add(issueType3)
-                realm.add(issueType4)
+            try realm?.write {
+                realm?.add(issueType1)
+                realm?.add(issueType2)
+                realm?.add(issueType3)
+                realm?.add(issueType4)
             }
         }
         catch let error as NSError {
@@ -49,7 +60,13 @@ class IssueTypeController {
         
     }
     
-    static func all()-> Results<IssueType> {
-        return realm.objects(IssueType.self)
+    func all()-> Results<IssueType>? {
+        return realm?.objects(IssueType.self)
+    }
+    
+    func `default`() -> IssueType?{
+        return realm?.objects(IssueType.self).filter({ (type) -> Bool in
+            type.standard == true
+        }).first
     }
 }

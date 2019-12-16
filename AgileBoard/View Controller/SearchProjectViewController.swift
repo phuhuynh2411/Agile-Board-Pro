@@ -22,9 +22,7 @@ class SearchProjectViewController: UIViewController {
     
     var projectList: Results<Project>?
     var filteredProjectList: LazyFilterSequence<Results<Project>>?
-    
-    lazy var realm = try! Realm()
-    
+        
     var selectedProject: Project?
     
     var delegate: SelectProjectDelegate?
@@ -35,7 +33,7 @@ class SearchProjectViewController: UIViewController {
         super.viewDidLoad()
         
         // Get all projects
-        projectList = realm.objects(Project.self)
+        projectList = ProjectController.shared.all()
         
         // 1
         searchController.searchResultsUpdater = self

@@ -66,7 +66,8 @@ class AddIssueViewController: UIViewController {
     
     func setUpView() {
         // Create default priority
-        selectedPriority = PriorityController.shared.getDefault()
+        selectedPriority = PriorityController.shared.default()
+        
     }
     
     // MARK: - IB Actions

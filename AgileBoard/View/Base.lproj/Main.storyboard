@@ -62,10 +62,10 @@
             </objects>
             <point key="canvasLocation" x="2545" y="-87"/>
         </scene>
-        <!--Add Issue Table View Controller-->
+        <!--Issue Detail Table View Controller-->
         <scene sceneID="Wca-ty-3r1">
             <objects>
-                <tableViewController storyboardIdentifier="AddIssueTableViewController" id="Tt1-hd-qyE" customClass="AddIssueTableViewController" customModule="AgileBoard" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="AddIssueTableViewController" id="Tt1-hd-qyE" customClass="IssueDetailTableViewController" customModule="AgileBoard" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Bln-9A-BI0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1156,7 +1156,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="clearButton" destination="rF5-uP-bzV" id="Lai-LE-r3Q"/>
                         <outlet property="datePicker" destination="OTB-R3-0CH" id="tM4-RZ-sBH"/>
+                        <outlet property="doneButton" destination="1xC-bV-5Bq" id="vgC-1s-pc3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2lX-ea-evS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1296,7 +1298,7 @@
         <image name="priority_medium" width="12" height="8"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="U2G-ij-VVg"/>
+        <segue reference="JPT-Wf-Y2G"/>
         <segue reference="kzU-CZ-19t"/>
     </inferredMetricsTieBreakers>
 </document>

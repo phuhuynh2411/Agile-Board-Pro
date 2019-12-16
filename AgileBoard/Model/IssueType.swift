@@ -15,5 +15,6 @@ class IssueType: Object {
     @objc dynamic var name = ""
     @objc dynamic var imageName = ""
     @objc dynamic var typeDescription = ""
+    @objc dynamic var standard = false
     
 }

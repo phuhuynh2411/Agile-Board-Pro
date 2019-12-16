@@ -14,5 +14,5 @@ class Priority: Object {
     @objc dynamic var id = UUID().uuidString
     @objc dynamic var name = ""
     @objc dynamic var imageName = ""
-    @objc dynamic var asDefault = false
+    @objc dynamic var standard = false
 }

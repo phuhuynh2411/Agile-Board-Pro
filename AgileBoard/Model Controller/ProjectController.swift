@@ -204,5 +204,9 @@ class ProjectController {
         }
     }
     
+    func all()->Results<Project>{
+        return realm.objects(Project.self)
+    }
+    
 }
 
