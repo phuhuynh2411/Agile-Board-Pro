@@ -8,12 +8,19 @@
 
 import UIKit
 import RealmSwift
+import SwiftValidator
+
+protocol IssueDetailDelegate {
+    func didAddIssue(with issue: Issue)
+    func didModidyIssue(issue: Issue)
+}
 
 class IssueDetailTableViewController: UITableViewController {
     
     // MARK: - IB Outlets or View
     
-    private var headerView: AddIssueHeaderView?
+    @IBOutlet weak var createOrSaveButton: UIBarButtonItem!
+    var headerView: IssueDetailHeaderView?
     
     // MARK: Properites
         
@@ -32,7 +39,9 @@ class IssueDetailTableViewController: UITableViewController {
     
     // MARK: Delegate
     
-    var delegate: AddIssueDelegate?
+    var delegate: IssueDetailDelegate?
+    
+    var validator = Validator()
     
     // MARK: Init methods
     
@@ -44,9 +53,10 @@ class IssueDetailTableViewController: UITableViewController {
         - delegate: Callback functions after adding or modifying an issue
      */
     
-    func initView(with issue: Issue, and delegate: AddIssueDelegate?) {
+    func initView(with issue: Issue, and delegate: IssueDetailDelegate?) {
         self.delegate = delegate
         self.issue = issue
+        createOrSaveButton.title = "Save"
     }
     
     /**
@@ -58,14 +68,17 @@ class IssueDetailTableViewController: UITableViewController {
         - priority: Initial priority
         - delegate: Callback functions after adding or modifying an issue
      */
-    func initView(with project: Project? = nil, issueType: IssueType? = nil, priority: Priority? = nil, startDate: Date?, delegate: AddIssueDelegate? = nil) {
+    func initView(with project: Project? = nil, issueType: IssueType? = nil, priority: Priority? = nil, startDate: Date?, status: Status? = nil, delegate: IssueDetailDelegate? = nil) {
         issue = Issue()
         issue?.type = issueType
         issue?.priority = priority
         issue?.startDate = startDate
+        issue?.status = status
         
         self.project = project
         self.delegate = delegate
+        
+        createOrSaveButton.title = "Create"
     }
     
     // MARK: View Methods
@@ -84,6 +97,9 @@ class IssueDetailTableViewController: UITableViewController {
         
         // Dismiss the keyboard when dragging on the table view
         tableView.keyboardDismissMode = .onDrag
+        
+        // Register for Validation
+        registerForValidation()
     }
     
     private func updateView(components: [ViewComponent], markAsModified: Bool = false) {
@@ -124,14 +140,16 @@ class IssueDetailTableViewController: UITableViewController {
         // Only marks it as true if it is false.
         isModifed = isModifed ? isModifed : markAsModified
     
+        // Validate
+        validator.validate(self)
     }
     
     // MARK: - Set Up table view header view
     
     private func setUpHeader() {
         
-        let nib = UINib(nibName: "AddIssueHeaderView", bundle: .main)
-        headerView = nib.instantiate(withOwner: self, options: nil).first as? AddIssueHeaderView
+        let nib = UINib(nibName: "IssueDetailHeaderView", bundle: .main)
+        headerView = nib.instantiate(withOwner: self, options: nil).first as? IssueDetailHeaderView
         headerView?.translatesAutoresizingMaskIntoConstraints = false
         headerView?.summaryTextView.delegate = self
         headerView?.descriptionTextView.delegate = self
@@ -359,6 +377,12 @@ class IssueDetailTableViewController: UITableViewController {
     }
     
     @IBAction func createButtonPressed(_ sender: UIBarButtonItem) {
+        if isNew(), let issue = issue {
+            guard let header = headerView  else { return }
+            issue.summary = header.summaryTextView.text
+            issue.issueDescription = header.descriptionTextView.text
+            delegate?.didAddIssue(with: issue)
+        }
         dismiss(animated: true, completion: nil)
     }
     
@@ -646,5 +670,29 @@ extension IssueDetailTableViewController: AttachmentDelegate {
     
     func didDeleteAttachment(attachment: Attachment, at indexPath: IndexPath) {
         updateView(components: [.tableView], markAsModified: true)
+    }
+}
+
+// MARK: - Validations
+
+extension IssueDetailTableViewController: ValidationDelegate {
+
+    private func registerForValidation() {
+        // The Done button only appears after user inputted the project, issue type and summary
+        
+        if let header = headerView {
+            validator.registerField(header.summaryTextView, rules: [RequiredRule()])
+        }
+        
+    }
+    
+    func validationSuccessful() {
+        // Only enable the button when the validation has been successfully
+        // and the isMofied flag has been marked as modified.
+        createOrSaveButton.isEnabled = isModifed
+    }
+    
+    func validationFailed(_ errors: [(Validatable, ValidationError)]) {
+        createOrSaveButton.isEnabled = false
     }
 }

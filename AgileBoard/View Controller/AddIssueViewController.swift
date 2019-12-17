@@ -9,10 +9,6 @@
 import UIKit
 import KMPlaceholderTextView
 
-protocol AddIssueDelegate {
-    func didAddIssue(with issue: Issue)
-}
-
 class AddIssueViewController: UIViewController {
 
     @IBOutlet weak var createButton: UIBarButtonItem!
@@ -30,7 +26,7 @@ class AddIssueViewController: UIViewController {
     /// Selected Issue Type
     var selectedIssueType: IssueType?
     
-    var delegate: AddIssueDelegate?
+    var delegate: IssueDetailDelegate?
     
     var keyboardHeight: CGFloat?
     

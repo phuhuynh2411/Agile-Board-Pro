@@ -67,8 +67,8 @@
 		847A781623877FB500911851 /* Column.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847A781523877FB500911851 /* Column.swift */; };
 		847A781823878AEC00911851 /* ProjectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847A781723878AEC00911851 /* ProjectController.swift */; };
 		847FD53723A0F49900399145 /* DragAttachmentItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847FD53623A0F49900399145 /* DragAttachmentItem.swift */; };
-		848FCEB22397980E00CD6334 /* AddIssueHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 848FCEB12397980E00CD6334 /* AddIssueHeaderView.xib */; };
-		848FCEB42397985100CD6334 /* AddIssueHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848FCEB32397985100CD6334 /* AddIssueHeaderView.swift */; };
+		848FCEB22397980E00CD6334 /* IssueDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 848FCEB12397980E00CD6334 /* IssueDetailHeaderView.xib */; };
+		848FCEB42397985100CD6334 /* IssueDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848FCEB32397985100CD6334 /* IssueDetailHeaderView.swift */; };
 		8490889723A1D75500D5DD96 /* DueDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8490889623A1D75500D5DD96 /* DueDateTableViewCell.swift */; };
 		8490889923A1E1B900D5DD96 /* HalfScreenPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8490889823A1E1B900D5DD96 /* HalfScreenPresentationController.swift */; };
 		84A1FC1923A32F1D008648F9 /* StartDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A1FC1823A32F1D008648F9 /* StartDateTableViewCell.swift */; };
@@ -184,8 +184,8 @@
 		847A781523877FB500911851 /* Column.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Column.swift; sourceTree = "<group>"; };
 		847A781723878AEC00911851 /* ProjectController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectController.swift; sourceTree = "<group>"; };
 		847FD53623A0F49900399145 /* DragAttachmentItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragAttachmentItem.swift; sourceTree = "<group>"; };
-		848FCEB12397980E00CD6334 /* AddIssueHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddIssueHeaderView.xib; sourceTree = "<group>"; };
-		848FCEB32397985100CD6334 /* AddIssueHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIssueHeaderView.swift; sourceTree = "<group>"; };
+		848FCEB12397980E00CD6334 /* IssueDetailHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IssueDetailHeaderView.xib; sourceTree = "<group>"; };
+		848FCEB32397985100CD6334 /* IssueDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetailHeaderView.swift; sourceTree = "<group>"; };
 		8490889623A1D75500D5DD96 /* DueDateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DueDateTableViewCell.swift; sourceTree = "<group>"; };
 		8490889823A1E1B900D5DD96 /* HalfScreenPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfScreenPresentationController.swift; sourceTree = "<group>"; };
 		84A1FC1823A32F1D008648F9 /* StartDateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartDateTableViewCell.swift; sourceTree = "<group>"; };
@@ -325,8 +325,8 @@
 				841D97AA238E685200483928 /* AppNavigationBar.swift */,
 				846757A12390AF0F009BD2DE /* RoundImageView.swift */,
 				8421F66A23974D3C001DF5D9 /* PriorityRowView.swift */,
-				848FCEB12397980E00CD6334 /* AddIssueHeaderView.xib */,
-				848FCEB32397985100CD6334 /* AddIssueHeaderView.swift */,
+				848FCEB12397980E00CD6334 /* IssueDetailHeaderView.xib */,
+				848FCEB32397985100CD6334 /* IssueDetailHeaderView.swift */,
 				84299FD22398FD9900432A66 /* IssuePriorityTableViewCell.swift */,
 				84299FD423990B8E00432A66 /* AttachmentCollectionView.swift */,
 				842686EF2399519600B981D7 /* AttachmentCollectionViewFlowLayout.swift */,
@@ -591,7 +591,7 @@
 				843C8990237AE7480050586E /* LaunchScreen.storyboard in Resources */,
 				843C898D237AE7480050586E /* Assets.xcassets in Resources */,
 				843C898B237AE7460050586E /* Main.storyboard in Resources */,
-				848FCEB22397980E00CD6334 /* AddIssueHeaderView.xib in Resources */,
+				848FCEB22397980E00CD6334 /* IssueDetailHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -745,7 +745,7 @@
 				846757A22390AF0F009BD2DE /* RoundImageView.swift in Sources */,
 				84584E29238EDBDD000408AE /* SearchProjectViewController.swift in Sources */,
 				842686F02399519600B981D7 /* AttachmentCollectionViewFlowLayout.swift in Sources */,
-				848FCEB42397985100CD6334 /* AddIssueHeaderView.swift in Sources */,
+				848FCEB42397985100CD6334 /* IssueDetailHeaderView.swift in Sources */,
 				842686F423995E7E00B981D7 /* AttachmentCollectionViewCell.swift in Sources */,
 				84B5F731238F806B00D344C3 /* SelectIssueTypeTableViewController.swift in Sources */,
 				8468D499238FBD71006B02D4 /* StatusController.swift in Sources */,

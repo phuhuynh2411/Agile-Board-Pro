@@ -9,7 +9,7 @@
 import UIKit
 import KMPlaceholderTextView
 
-class AddIssueHeaderView: UIView {
+class IssueDetailHeaderView: UIView {
 
     @IBOutlet weak var topStackView: UIStackView!
     @IBOutlet weak var summaryTextView: KMPlaceholderTextView!
@@ -44,6 +44,11 @@ class AddIssueHeaderView: UIView {
     
     override func draw(_ rect: CGRect) {
         showMoreButton.addTarget(self, action: #selector(showMoreButtonPressed(sender:)), for: .touchUpInside)
+        
+        // Remove all padding from UITextView
+        let padding = summaryTextView.textContainer.lineFragmentPadding
+        summaryTextView.textContainerInset = UIEdgeInsets(top: 0, left: -padding, bottom: 0, right: -padding)
+        descriptionTextView.textContainerInset = UIEdgeInsets(top: 0, left: -padding, bottom: 0, right: -padding)
     }
     
     func viewHeight() -> CGFloat {

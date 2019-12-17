@@ -11,7 +11,7 @@ import RealmSwift
 
 class PriorityController {
     
-    private var realm: Realm?
+    var realm: Realm?
     
     init() {
         do{

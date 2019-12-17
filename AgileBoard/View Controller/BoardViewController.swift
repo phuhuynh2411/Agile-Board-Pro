@@ -19,6 +19,8 @@ class BoardViewController: UIViewController {
     
     // Project
     var project: Project?
+    
+    var board: Board?
         
     override func viewDidLoad() {
         
@@ -30,6 +32,9 @@ class BoardViewController: UIViewController {
         navigationItem.title = project?.name
         
         //self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
+        
+        // Select first board as default
+        board = project?.boards.first
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -94,7 +99,7 @@ class BoardViewController: UIViewController {
             let navigationController = segue.destination as! UINavigationController
             let addIssueTableViewController =  navigationController.topViewController as! IssueDetailTableViewController
             
-            addIssueTableViewController.initView(with: project, issueType: IssueTypeController.shared.default(), priority: PriorityController.shared.default(),startDate: Date(), delegate: self)
+            addIssueTableViewController.initView(with: project, issueType: IssueTypeController.shared.default(), priority: PriorityController.shared.default(),startDate: Date(), status: board?.columns.first?.status, delegate: self)
             
         }
     }
@@ -126,11 +131,18 @@ extension BoardViewController {
 
 // MARK: - Add Issue Delegate
 
-extension BoardViewController: AddIssueDelegate {
+extension BoardViewController: IssueDetailDelegate {
+    func didModidyIssue(issue: Issue) {
+        // Do something here
+    }
+    
     
     func didAddIssue(with issue: Issue) {
-        // Reload the collection view
-        collectionView.reloadData()
+        if let project = project {
+            ProjectController.shared.add(issue: issue, to: project)
+            // Reload the collection view
+            collectionView.reloadData()
+        }
     }
     
 }

@@ -295,6 +295,59 @@ class AddIssueTableViewControllerTest: XCTestCase {
     
     // MARK: - Select Priority
     
+    func testSelectPriorityCase1() {
+        // Add priority cell into the table view
+        sut.showMoreButtonPress(sender: UIButton())
+        sut.initView(with: Issue(), and: nil)
+        
+        // Set up in-memory realm
+        setUpRealm(name: "In-MemoryRealm")
+        let realm = try! Realm()
+        
+        // Inject in-memory realm into the PriorityController
+        PriorityController.shared.realm = realm
+        
+        // Add one priroty to realm
+        let priority = Priority()
+        priority.name = "Urgent"
+        
+        try! realm.write {
+            realm.add(priority)
+        }
+        
+        // Try tapping on the priority cell
+        let indexPath = IndexPath(row: 0, section: 0)
+        sut.tableView(sut.tableView, didSelectRowAt: indexPath)
+        
+        // Make sure the presented view controller is PriorityTableViewController
+        XCTAssertTrue(UIApplication.getTopViewController() is PriorityTableViewController, "The presented view controller should be PriorityTableViewController")
+        
+        if let priorityTableViewController = UIApplication.getTopViewController() as? PriorityTableViewController {
+            // Make sure there is only on priority in the list
+            XCTAssertEqual(1, priorityTableViewController.priorityList?.count, "The list should show only one priority")
+            
+            // Try tapping on the first priority
+            priorityTableViewController.tableView(priorityTableViewController.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
+            
+            // Make sure the view controller's priority is equal to the selected priority
+            XCTAssertEqual(sut.issue?.priority?.id ?? "", priority.id, "The view controller's priority should be equal to the selected priority")
+            
+        }
+        
+    }
+    
+    // MARK: - Validation
+    
+    // Entered data into the summary field
+    // the createOrSave button is enable
+    func testValidationCase1() {
+        // Make sure the create button is disable after the view is loaded.
+        XCTAssertFalse(sut.createOrSaveButton.isEnabled, "The create/save buttom must be disabled after the view is loaded.")
+        sut.headerView?.summaryTextView.text = "Go to the super market and buy something."
+        sut.textViewDidChange(UITextView())
+        
+        XCTAssertEqual(sut.createOrSaveButton.isEnabled, true, "After modifying the summary text view, the create button should be enable.")
+    }
     
     
 }

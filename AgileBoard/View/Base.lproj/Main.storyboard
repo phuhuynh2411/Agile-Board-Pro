@@ -82,11 +82,11 @@
                                             <rect key="frame" x="16" y="18.5" width="319" height="33"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Priority" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u10-zj-nJO">
-                                                    <rect key="frame" x="0.0" y="-1" width="38" height="14"/>
+                                                    <rect key="frame" x="0.0" y="-1" width="46.5" height="14"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="14" id="886-lq-xTE"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" systemColor="placeholderTextColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -266,11 +266,11 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iRY-eL-GqP">
-                                            <rect key="frame" x="16" y="11" width="49" height="14"/>
+                                            <rect key="frame" x="16" y="11" width="60" height="14"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="14" id="1sP-Ad-HRH"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" systemColor="placeholderTextColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -327,11 +327,11 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VnJ-Uv-Pzn">
-                                            <rect key="frame" x="16" y="11" width="54" height="14"/>
+                                            <rect key="frame" x="16" y="11" width="66" height="14"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="14" id="6Wu-qb-JO8"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" systemColor="placeholderTextColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -388,11 +388,11 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="End Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DaW-C5-D42">
-                                            <rect key="frame" x="16" y="11" width="49" height="14"/>
+                                            <rect key="frame" x="16" y="11" width="59" height="14"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="14" id="Jad-Md-Smk"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" systemColor="placeholderTextColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -460,6 +460,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="createOrSaveButton" destination="0l8-Ja-fkF" id="MzK-Lx-tSm"/>
                         <segue destination="9LN-Ru-sBz" kind="showDetail" identifier="SearchProjectSegue" id="LWv-Ai-eQ7"/>
                         <segue destination="Gqt-1D-VJt" kind="show" identifier="SelectPrioritySegue" id="Loq-Iy-RnN"/>
                         <segue destination="7FK-TJ-0A0" kind="showDetail" identifier="SelectIssueTypeSegue" id="qsi-xn-vuW"/>
