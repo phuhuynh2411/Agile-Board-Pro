@@ -20,14 +20,14 @@ class IssueDetailTableViewController: UITableViewController {
     // MARK: - IB Outlets or View
     
     @IBOutlet weak var createOrSaveButton: UIBarButtonItem!
-    var headerView: IssueDetailHeaderView?
+    var headerView: IssueDetailHeaderView!
     
     // MARK: Properites
         
     /// The current project
     var project: Project?
     /// A list of table view's cell
-    private var Cells: [CellType]?
+    private var cells: [CellType]?
     
     /**
      Determines whether users modifed any data in the form.
@@ -53,10 +53,12 @@ class IssueDetailTableViewController: UITableViewController {
         - delegate: Callback functions after adding or modifying an issue
      */
     
-    func initView(with issue: Issue, and delegate: IssueDetailDelegate?) {
+    func initView(with issue: Issue, project: Project, delegate: IssueDetailDelegate? = nil) {
         self.delegate = delegate
         self.issue = issue
-        createOrSaveButton.title = "Save"
+        self.project = project
+        
+        createOrSaveButton.title = ""
     }
     
     /**
@@ -88,7 +90,7 @@ class IssueDetailTableViewController: UITableViewController {
         
         setUpView()
         
-        updateView(components: [.project, .issueType])
+        updateView(components: [.project, .issueType, .summary, .description, .header, .status])
     }
     
     private func setUpView() {
@@ -100,6 +102,12 @@ class IssueDetailTableViewController: UITableViewController {
         
         // Register for Validation
         registerForValidation()
+        
+        // Display all table cell if user are modifying the issue
+        if !isNew() {
+            displayTableViewCell(true)
+        }
+        
     }
     
     private func updateView(components: [ViewComponent], markAsModified: Bool = false) {
@@ -131,9 +139,24 @@ class IssueDetailTableViewController: UITableViewController {
             tableView.reloadData()
         }
         
+        // Update summary
+        if components.contains(.summary){
+            headerView.summaryTextView.text = issue?.summary
+        }
+        
+        // Update description
+        if components.contains(.description){
+            headerView.descriptionTextView.text = issue?.issueDescription
+        }
+        
         // Update header
         if components.contains(.header) {
-            sizeHeaderToFit()
+            headerFitsHeightContent()
+        }
+        
+        // Update status
+        if components.contains(.status){
+            headerView.statusButton.setTitle(issue?.status?.name ?? "", for: .normal)
         }
         
         // Marks issue as it was modified.
@@ -147,26 +170,27 @@ class IssueDetailTableViewController: UITableViewController {
     // MARK: - Set Up table view header view
     
     private func setUpHeader() {
-        
-        let nib = UINib(nibName: "IssueDetailHeaderView", bundle: .main)
-        headerView = nib.instantiate(withOwner: self, options: nil).first as? IssueDetailHeaderView
-        headerView?.translatesAutoresizingMaskIntoConstraints = false
-        headerView?.summaryTextView.delegate = self
-        headerView?.descriptionTextView.delegate = self
-        
-        let parentView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: headerView!.frame.height))
-        parentView.addSubview(headerView!)
-        headerView?.trailingAnchor.constraint(equalTo: parentView.trailingAnchor).isActive = true
-        headerView?.leadingAnchor.constraint(equalTo: parentView.leadingAnchor).isActive = true
-        headerView?.topAnchor.constraint(equalTo: parentView.topAnchor).isActive = true
-        headerView?.bottomAnchor.constraint(equalTo: parentView.bottomAnchor).isActive = true
+        headerView = .fromNib()
+        headerView.textViewDelagate = self
   
-        tableView.tableHeaderView = parentView
+        tableView.tableHeaderView = viewForTableViewHeader()
         
         // Set up actions
-        headerView?.projectButton.addTarget(self, action: #selector(selectProjectPressed(sender:)), for: .touchUpInside)
-        headerView?.typeButton.addTarget(self, action: #selector(selectTypePressed(sender:)), for: .touchUpInside)
-        headerView?.showMoreButton.addTarget(self, action: #selector(showMoreButtonPress(sender:)), for: .touchUpInside)
+        headerView.projectButton.addTarget(self, action: #selector(selectProjectPressed(sender:)), for: .touchUpInside)
+        headerView.typeButton.addTarget(self, action: #selector(selectTypePressed(sender:)), for: .touchUpInside)
+        headerView.showMoreButton.addTarget(self, action: #selector(showMoreButtonPress(sender:)), for: .touchUpInside)
+        headerView.statusButton.addTarget(self, action: #selector(statusPressed(_:)), for: .touchUpInside)
+    }
+    
+    func viewForTableViewHeader()->UIView {
+        if isNew() {
+            headerView.viewFor(.add)
+        } else {
+            headerView.viewFor(.edit)
+        }
+        let tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: headerView.height))
+        tableHeaderView.addSubview(headerView)
+        return tableHeaderView
     }
     
     // MARK: - Helper Methods
@@ -174,7 +198,7 @@ class IssueDetailTableViewController: UITableViewController {
     private func cellAt(indexPath: IndexPath) -> UITableViewCell? {
         var cell: UITableViewCell?
         
-        switch Cells?[indexPath.row] {
+        switch cells?[indexPath.row] {
         case .priority:
             cell = tableView.dequeueReusableCell(withIdentifier: C.prioriy)
             break
@@ -273,9 +297,9 @@ class IssueDetailTableViewController: UITableViewController {
     /**
      Adjusts the table view header to fit the text view height
      */
-    private func sizeHeaderToFit() {
+    private func headerFitsHeightContent() {
         let size = tableView.frame.size
-        tableView.tableHeaderView?.frame.size = CGSize(width: size.width, height: headerView!.viewHeight())
+        tableView.tableHeaderView?.frame.size = CGSize(width: size.width, height: headerView.height)
         tableView.reloadData()
     }
     
@@ -322,6 +346,26 @@ class IssueDetailTableViewController: UITableViewController {
         }
     }
     
+    func displayTableViewCell(_ display: Bool) {
+        // Remove all cell from the table view
+        if !display {
+            let indexPaths = cells?.enumerated().compactMap{ IndexPath(row: $0.offset, section: 0)}
+            cells = nil
+            tableView.deleteRows(at: indexPaths!, with: .none)
+        }
+        // Add selected cells to the table view
+        else {
+            cells = [CellType]()
+            cells?.append(.priority)
+            cells?.append(.attachment)
+            cells?.append(.dueDate)
+            cells?.append(.startDate)
+            cells?.append(.endDate)
+            
+            tableView.reloadData()
+        }
+    }
+    
     // MARK: - IB Actions
     
     @objc func selectProjectPressed(sender: UIButton) {
@@ -334,21 +378,12 @@ class IssueDetailTableViewController: UITableViewController {
     
     @objc func showMoreButtonPress(sender: UIButton) {
         // Remove all cell from the table view
-        if headerView!.showMoreField {
-            let indexPaths = Cells?.enumerated().compactMap{ IndexPath(row: $0.offset, section: 0)}
-            Cells = nil
-            tableView.deleteRows(at: indexPaths!, with: .none)
+        if cells != nil {
+           displayTableViewCell(false)
         }
         // Add selected cells to the table view
         else {
-            Cells = [CellType]()
-            Cells?.append(.priority)
-            Cells?.append(.attachment)
-            Cells?.append(.dueDate)
-            Cells?.append(.startDate)
-            Cells?.append(.endDate)
-            
-            tableView.reloadData()
+            displayTableViewCell(true)
         }
     }
 
@@ -377,19 +412,30 @@ class IssueDetailTableViewController: UITableViewController {
     }
     
     @IBAction func createButtonPressed(_ sender: UIBarButtonItem) {
-        if isNew(), let issue = issue {
-            guard let header = headerView  else { return }
-            issue.summary = header.summaryTextView.text
-            issue.issueDescription = header.descriptionTextView.text
+        
+        guard let header = headerView, let issue = issue else { return }
+        issue.summary = header.summaryTextView.text
+        issue.issueDescription = header.descriptionTextView.text
+        
+        if isNew(){
             delegate?.didAddIssue(with: issue)
         }
+        // The issue has been modified
+        else{
+            delegate?.didModidyIssue(issue: issue)
+        }
+        
         dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func statusPressed(_ sender: UIButton){
+        print("Status button was pressed.")
     }
     
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Cells?.count ?? 0
+        return cells?.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -417,9 +463,9 @@ extension IssueDetailTableViewController: UITextViewDelegate {
     }
     
     func textViewDidChange(_ textView: UITextView) {
-        sizeTextViewToFit(textView: textView)
         updateView(components: [.header], markAsModified: true)
     }
+    
     
 }
 
@@ -495,17 +541,17 @@ extension IssueDetailTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         // Priority cell
-        if Cells?[indexPath.row] == .priority {
+        if cells?[indexPath.row] == .priority {
             performSegue(withIdentifier: Identifier.SelectPrioritySegue, sender: self)
         }
         // Tap on the attachment cell
-        else if Cells?[indexPath.row] == .attachment {
+        else if cells?[indexPath.row] == .attachment {
             
             // Add or remove collection cell
             let cell = tableView.cellForRow(at: indexPath) as! AttachmentTableViewCell
             let nextIndexPath = IndexPath(row: indexPath.row + 1, section: indexPath.section)
-            if Cells!.contains(.collection) {
-                Cells?.removeAll(where: { (cell) -> Bool in
+            if cells!.contains(.collection) {
+                cells?.removeAll(where: { (cell) -> Bool in
                     cell == .collection
                 })
                 cell.isTransform = false
@@ -514,7 +560,7 @@ extension IssueDetailTableViewController {
                 nextCell?.isHidden = true
                 tableView.deleteRows(at: [nextIndexPath], with: .automatic)
             } else {
-                Cells?.insert(.collection, at: nextIndexPath.row)
+                cells?.insert(.collection, at: nextIndexPath.row)
                 cell.isTransform = true
                 tableView.insertRows(at: [nextIndexPath], with: .automatic)
             }
@@ -523,22 +569,22 @@ extension IssueDetailTableViewController {
            // tableView.reloadData()
         }
         // Tap on due date cell
-        else if Cells?[indexPath.row] == .dueDate {
+        else if cells?[indexPath.row] == .dueDate {
             performSegue(withIdentifier: S.dueDate, sender: self)
         }
         // Tapped on start date cell
-        else if Cells?[indexPath.row] == .startDate {
+        else if cells?[indexPath.row] == .startDate {
             performSegue(withIdentifier: S.startDate, sender: self)
         }
         // Tapped on end date cell
-        else if Cells?[indexPath.row] == .endDate {
+        else if cells?[indexPath.row] == .endDate {
             performSegue(withIdentifier: S.endDate, sender: self)
         }
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        switch Cells?[indexPath.row] {
+        switch cells?[indexPath.row] {
         case .priority:
             return 70
         case .attachment:
@@ -658,6 +704,9 @@ extension IssueDetailTableViewController {
         case priority
         case tableView
         case header
+        case summary
+        case description
+        case status
     }
 }
 
@@ -689,7 +738,7 @@ extension IssueDetailTableViewController: ValidationDelegate {
     func validationSuccessful() {
         // Only enable the button when the validation has been successfully
         // and the isMofied flag has been marked as modified.
-        createOrSaveButton.isEnabled = isModifed
+        createOrSaveButton.isEnabled = isModifed && isNew()
     }
     
     func validationFailed(_ errors: [(Validatable, ValidationError)]) {

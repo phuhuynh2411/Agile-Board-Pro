@@ -14,6 +14,8 @@ class IssueTableViewController: UITableViewController {
     // MARK: - Properties
     
     var issueList: List<Issue>?
+    var selectedIssue: Issue?
+    
     var column: Column?
             
     lazy var realm = try! Realm()
@@ -32,9 +34,29 @@ class IssueTableViewController: UITableViewController {
     override func viewDidLoad() {
         
         // Register custome cell
-        let nibName = UINib(nibName: Identifier.IssueTableViewCell, bundle: .main)
-        tableView.register(nibName, forCellReuseIdentifier: Identifier.IssueTableViewCell)
+        let nibName = UINib(nibName: I.issueTVC, bundle: .main)
+        tableView.register(nibName, forCellReuseIdentifier: I.issueTVC)
      
+    }
+    
+    // MARK: - Help Methods
+    
+    func edit(issue: Issue) {
+        
+        guard let project = issue.projectOwners.first else {
+            fatalError("The project should not be nil at this point.")
+        }
+        
+        let issueDetailTableViewController = UIStoryboard(name: I.storyBoard, bundle: .main).instantiateViewController(withIdentifier: I.issueDetailVC) as! IssueDetailTableViewController
+        
+        issueDetailTableViewController.initView(with: issue, project: project)
+        
+        let topViewController = UIApplication.getTopViewController()
+        let nav = UIStoryboard(name: I.storyBoard, bundle: .main).instantiateViewController(withIdentifier: I.issueDetailNC) as! UINavigationController
+        nav.viewControllers = [issueDetailTableViewController]
+        
+        topViewController?.present(nav, animated: true, completion: nil)
+        
     }
     
     // MARK: - Table View Data Source
@@ -53,7 +75,7 @@ class IssueTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
                 
-        let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.IssueTableViewCell, for: indexPath) as! IssueTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: I.issueTVC, for: indexPath) as! IssueTableViewCell
         
         let issue = issueList?[indexPath.row]
         
@@ -94,6 +116,15 @@ extension IssueTableViewController {
         }catch let error as NSError {
             print(error.description)
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        selectedIssue = issueList?[indexPath.row]
+        if let issue = selectedIssue {
+            edit(issue: issue)
+        }
+        
     }
     
 }
@@ -299,4 +330,16 @@ extension IssueTableViewController: UITableViewDropDelegate {
         
     }
 
+}
+
+// MARK: - Identifier
+
+extension IssueTableViewController {
+    private struct VCIdentifier {
+        static let issueDetailVC = "AddIssueTableViewController"
+        static let issueTVC = "IssueTableViewCell"
+        static let storyBoard = "Main"
+        static let issueDetailNC = "IssueDetailNavigationController"
+    }
+    private typealias I = VCIdentifier
 }

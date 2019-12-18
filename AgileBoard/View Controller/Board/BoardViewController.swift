@@ -144,5 +144,16 @@ extension BoardViewController: IssueDetailDelegate {
             collectionView.reloadData()
         }
     }
-    
+}
+
+extension BoardViewController {
+    private struct SegueIdentifier {
+        static let searchProject = "SearchProjectSegue"
+        static let issueType = "SelectIssueTypeSegue"
+        static let priority = "SelectPrioritySegue"
+        static let dueDate = "DueDateSegue"
+        static let startDate = "StartDateSegue"
+        static let endDate = "EndDateSegue"
+    }
+    private typealias S = SegueIdentifier
 }

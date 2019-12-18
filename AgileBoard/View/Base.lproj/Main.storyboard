@@ -55,7 +55,7 @@
                     <connections>
                         <outlet property="collectionView" destination="Ude-ek-oj3" id="4kx-j5-ICP"/>
                         <outlet property="pageControl" destination="S2E-3z-RmC" id="3cr-AQ-uj9"/>
-                        <segue destination="OPr-22-lDI" kind="presentation" identifier="AddIssueTableViewControllerSegue" modalPresentationStyle="automatic" id="tvL-Hg-vxR"/>
+                        <segue destination="OPr-22-lDI" kind="presentation" identifier="AddIssueTableViewControllerSegue" modalPresentationStyle="fullScreen" id="tvL-Hg-vxR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -67,7 +67,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="AddIssueTableViewController" id="Tt1-hd-qyE" customClass="IssueDetailTableViewController" customModule="AgileBoard" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Bln-9A-BI0">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
@@ -479,7 +479,7 @@
             <objects>
                 <tableViewController id="Gqt-1D-VJt" customClass="PriorityTableViewController" customModule="AgileBoard" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="rqM-bL-cCI">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <inset key="separatorInset" minX="36" minY="0.0" maxX="16" maxY="0.0"/>
@@ -538,11 +538,11 @@
             <objects>
                 <viewController id="vgI-8T-ppB" customClass="SearchProjectViewController" customModule="AgileBoard" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gcG-eI-XLa">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" estimatedRowHeight="70" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Bup-Ji-S8y">
-                                <rect key="frame" x="0.0" y="56" width="375" height="591"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <inset key="separatorInset" minX="56" minY="0.0" maxX="16" maxY="0.0"/>
                                 <prototypes>
@@ -633,7 +633,7 @@
             <objects>
                 <tableViewController id="rWX-Eh-5UE" customClass="SelectIssueTypeTableViewController" customModule="AgileBoard" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="TEx-uG-ZZg">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <inset key="separatorInset" minX="46" minY="0.0" maxX="16" maxY="0.0"/>
@@ -1090,10 +1090,10 @@
         <!--Navigation Controller-->
         <scene sceneID="ffU-sH-YZm">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="OPr-22-lDI" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="IssueDetailNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="OPr-22-lDI" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="tMp-Kb-aYu" customClass="AppNavigationBar" customModule="AgileBoard" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1111,7 +1111,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9LN-Ru-sBz" customClass="AppNavigationController" customModule="AgileBoard" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Osd-Hn-Fqt">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1171,14 +1171,14 @@
             <objects>
                 <viewController storyboardIdentifier="PhotoViewController" id="86O-EC-8WL" customClass="PhotoViewController" customModule="AgileBoard" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jJw-Oi-5pI">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" maximumZoomScale="5" translatesAutoresizingMaskIntoConstraints="NO" id="qMR-az-6i2">
-                                <rect key="frame" x="0.0" y="56" width="375" height="591"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IP8-Rl-HSr">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="591"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="609.5"/>
                                     </imageView>
                                 </subviews>
                                 <constraints>
@@ -1220,7 +1220,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7FK-TJ-0A0" customClass="AppNavigationController" customModule="AgileBoard" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hGz-7v-Yig">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

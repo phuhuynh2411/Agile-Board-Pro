@@ -54,47 +54,60 @@ class ProjectController {
         let inprogress = StatusController.status(name: "IN PROGRESS")
         let done = StatusController.status(name: "DONE")
         let completed = StatusController.status(name: "COMPLETED")
+        let issueType1 = IssueType()
+        issueType1.name = "Story"
+        issueType1.imageName = "issue_story"
+        issueType1.standard = true
+        issueType1.typeDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed diam eget risus varius blandit sit amet non magna."
         
         // 3. Create issues
         let issue1 = Issue()
         issue1.summary = "Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum."
         issue1.status = todo
         issue1.orderNumber = 0
+        issue1.type = issueType1
         
         let issue2 = Issue()
         issue2.summary = "Fringilla Fusce"
         issue2.status = todo
         issue2.orderNumber = 1
+        issue2.type = issueType1
         
         let issue3 = Issue()
         issue3.summary = "Donec sed odio dui."
         issue3.status = todo
         issue3.orderNumber = 2
+        issue3.type = issueType1
         
         let issue4 = Issue()
         issue4.summary = "Curabitur blandit tempus porttitor."
         issue4.status = inprogress
         issue4.orderNumber = 3
+        issue4.type = issueType1
         
         let issue5 = Issue()
         issue5.summary = "Nulla vitae elit libero, a pharetra augue."
         issue5.status = inprogress
         issue5.orderNumber = 4
+        issue5.type = issueType1
         
         let issue6 = Issue()
         issue6.summary = "Sed posuere consectetur est at lobortis."
         issue6.status = done
         issue6.orderNumber = 5
+        issue6.type = issueType1
         
         let issue7 = Issue()
         issue7.summary = "Cras mattis consectetur purus sit amet fermentum."
         issue7.status = completed
         issue7.orderNumber = 6
+        issue7.type = issueType1
         
         let issue8 = Issue()
         issue8.summary = "Vestibulum id ligula porta felis euismod semper."
         issue8.status = completed
         issue8.orderNumber = 7
+        issue8.type = issueType1
         
         // 4. Add issues to the project
         project1.issues.append(issue1)

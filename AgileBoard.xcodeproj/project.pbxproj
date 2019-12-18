@@ -10,6 +10,7 @@
 		3B4C0C8507FD361917057F21 /* Pods_AgileBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D35B2E4913DD45A6D1CE3DCE /* Pods_AgileBoard.framework */; };
 		840409BA239171290006829F /* IconCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840409B9239171290006829F /* IconCollectionViewController.swift */; };
 		840409BC239173070006829F /* IconCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840409BB239173070006829F /* IconCollectionViewCell.swift */; };
+		8408E50E23A9DEE3004A859C /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8408E50D23A9DEE3004A859C /* UIView+Extension.swift */; };
 		841B42F223844275000871F6 /* IssueCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841B42F123844275000871F6 /* IssueCollectionViewFlowLayout.swift */; };
 		841D97A9238E674300483928 /* AppNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841D97A8238E674300483928 /* AppNavigationController.swift */; };
 		841D97AB238E685200483928 /* AppNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841D97AA238E685200483928 /* AppNavigationBar.swift */; };
@@ -23,6 +24,7 @@
 		84299FD32398FD9900432A66 /* IssuePriorityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84299FD22398FD9900432A66 /* IssuePriorityTableViewCell.swift */; };
 		84299FD523990B8E00432A66 /* AttachmentCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84299FD423990B8E00432A66 /* AttachmentCollectionView.swift */; };
 		84299FD723990BB800432A66 /* AttachmentCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84299FD623990BB800432A66 /* AttachmentCollectionViewController.swift */; };
+		842D75C623AA2E8500193812 /* UITextView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842D75C523AA2E8500193812 /* UITextView+Extension.swift */; };
 		842FDD7623A1432B0038A796 /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842FDD7523A1432B0038A796 /* Animations.swift */; };
 		843BF016239A4C9C005F798D /* AttachmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843BF015239A4C9C005F798D /* AttachmentTableViewCell.swift */; };
 		843BF018239A61EE005F798D /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843BF017239A61EE005F798D /* PhotoViewController.swift */; };
@@ -117,6 +119,7 @@
 		760D95FF4FC9DB8BC409AD08 /* Pods-AgileBoardTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgileBoardTests.release.xcconfig"; path = "Target Support Files/Pods-AgileBoardTests/Pods-AgileBoardTests.release.xcconfig"; sourceTree = "<group>"; };
 		840409B9239171290006829F /* IconCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconCollectionViewController.swift; sourceTree = "<group>"; };
 		840409BB239173070006829F /* IconCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconCollectionViewCell.swift; sourceTree = "<group>"; };
+		8408E50D23A9DEE3004A859C /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		841B42F123844275000871F6 /* IssueCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		841D97A8238E674300483928 /* AppNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigationController.swift; sourceTree = "<group>"; };
 		841D97AA238E685200483928 /* AppNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigationBar.swift; sourceTree = "<group>"; };
@@ -130,6 +133,7 @@
 		84299FD22398FD9900432A66 /* IssuePriorityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssuePriorityTableViewCell.swift; sourceTree = "<group>"; };
 		84299FD423990B8E00432A66 /* AttachmentCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentCollectionView.swift; sourceTree = "<group>"; };
 		84299FD623990BB800432A66 /* AttachmentCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentCollectionViewController.swift; sourceTree = "<group>"; };
+		842D75C523AA2E8500193812 /* UITextView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Extension.swift"; sourceTree = "<group>"; };
 		842FDD7523A1432B0038A796 /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
 		843BF015239A4C9C005F798D /* AttachmentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentTableViewCell.swift; sourceTree = "<group>"; };
 		843BF017239A61EE005F798D /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
@@ -296,9 +300,7 @@
 				84584E28238EDBDD000408AE /* SearchProjectViewController.swift */,
 				84584E26238ED999000408AE /* AddIssueViewController.swift */,
 				84C340E32388361D00C65AC9 /* ProjectTableViewController.swift */,
-				843C8987237AE7460050586E /* BoardViewController.swift */,
-				845227CE238CFC61000607A8 /* IssueCollectionViewController.swift */,
-				84A51ABF237AF8DD00477B75 /* IssueTableViewController.swift */,
+				84E0E0C023A8B8E70057A360 /* Board */,
 				84F5FF9B238538FB00F2E966 /* DragIssueItem.swift */,
 				841D97A8238E674300483928 /* AppNavigationController.swift */,
 				84579E69239664FB009575E4 /* IssueDetailTableViewController.swift */,
@@ -314,6 +316,7 @@
 			children = (
 				843C8989237AE7460050586E /* Main.storyboard */,
 				843C898E237AE7480050586E /* LaunchScreen.storyboard */,
+				848FCEB12397980E00CD6334 /* IssueDetailHeaderView.xib */,
 				84206291237AFED20076CDAC /* Custom Cell */,
 				8458B442237CF98500D6D473 /* ShadowView.swift */,
 				841B42F123844275000871F6 /* IssueCollectionViewFlowLayout.swift */,
@@ -325,7 +328,6 @@
 				841D97AA238E685200483928 /* AppNavigationBar.swift */,
 				846757A12390AF0F009BD2DE /* RoundImageView.swift */,
 				8421F66A23974D3C001DF5D9 /* PriorityRowView.swift */,
-				848FCEB12397980E00CD6334 /* IssueDetailHeaderView.xib */,
 				848FCEB32397985100CD6334 /* IssueDetailHeaderView.swift */,
 				84299FD22398FD9900432A66 /* IssuePriorityTableViewCell.swift */,
 				84299FD423990B8E00432A66 /* AttachmentCollectionView.swift */,
@@ -342,6 +344,8 @@
 				84694E0D239A1199004BC18D /* UIApplication+Extention.swift */,
 				84F56A04237C5B56007E6C68 /* UIColor+Extention.swift */,
 				84B7EE0A239A40D10011BBD9 /* UIImageExtension.swift */,
+				8408E50D23A9DEE3004A859C /* UIView+Extension.swift */,
+				842D75C523AA2E8500193812 /* UITextView+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -466,6 +470,16 @@
 				8490889823A1E1B900D5DD96 /* HalfScreenPresentationController.swift */,
 			);
 			path = PresentationController;
+			sourceTree = "<group>";
+		};
+		84E0E0C023A8B8E70057A360 /* Board */ = {
+			isa = PBXGroup;
+			children = (
+				843C8987237AE7460050586E /* BoardViewController.swift */,
+				845227CE238CFC61000607A8 /* IssueCollectionViewController.swift */,
+				84A51ABF237AF8DD00477B75 /* IssueTableViewController.swift */,
+			);
+			path = Board;
 			sourceTree = "<group>";
 		};
 		84E5915E2392508B006FBA5E /* Validator */ = {
@@ -746,6 +760,7 @@
 				84584E29238EDBDD000408AE /* SearchProjectViewController.swift in Sources */,
 				842686F02399519600B981D7 /* AttachmentCollectionViewFlowLayout.swift in Sources */,
 				848FCEB42397985100CD6334 /* IssueDetailHeaderView.swift in Sources */,
+				8408E50E23A9DEE3004A859C /* UIView+Extension.swift in Sources */,
 				842686F423995E7E00B981D7 /* AttachmentCollectionViewCell.swift in Sources */,
 				84B5F731238F806B00D344C3 /* SelectIssueTypeTableViewController.swift in Sources */,
 				8468D499238FBD71006B02D4 /* StatusController.swift in Sources */,
@@ -760,6 +775,7 @@
 				847FD53723A0F49900399145 /* DragAttachmentItem.swift in Sources */,
 				84299FD723990BB800432A66 /* AttachmentCollectionViewController.swift in Sources */,
 				84579E66239656E1009575E4 /* PriorityTableViewController.swift in Sources */,
+				842D75C623AA2E8500193812 /* UITextView+Extension.swift in Sources */,
 				8442DC3B237E7B92008C88C6 /* IssueCollectionViewCell.swift in Sources */,
 				843C58C72390FFF800F5FAB5 /* ProjectIconController.swift in Sources */,
 				84B5F72F238F647F00D344C3 /* SearchProjectTableViewCell.swift in Sources */,

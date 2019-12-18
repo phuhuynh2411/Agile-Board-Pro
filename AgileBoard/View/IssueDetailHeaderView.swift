@@ -10,17 +10,53 @@ import UIKit
 import KMPlaceholderTextView
 
 class IssueDetailHeaderView: UIView {
-
-    @IBOutlet weak var topStackView: UIStackView!
+    
+    // Parent Views
+    @IBOutlet weak var backgroundStackView: UIStackView!
+    @IBOutlet weak var statusView: UIView!
+    @IBOutlet weak var issueTypeAndIssueIDView: UIView!
+    @IBOutlet weak var typeAndProjectStackView: UIStackView!
+    
     @IBOutlet weak var summaryTextView: KMPlaceholderTextView!
     @IBOutlet weak var descriptionTextView: KMPlaceholderTextView!
     
+    // Controls and views for add
     @IBOutlet weak var typeButton: UIButton!
     @IBOutlet weak var projectButton: UIButton!
-    @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var showMoreButton: UIButton!
-    
     @IBOutlet weak var typeImageView: UIImageView!
+    
+    // Controls and views for edit
+    @IBOutlet weak var typeImageView2: UIImageView!
+    @IBOutlet weak var issueIDLabel: UILabel!
+    @IBOutlet weak var statusButton: UIButton!
+    
+    // Separators
+    @IBOutlet weak var middleSeparatorView: UIView!
+    @IBOutlet weak var rowSeparatorView: UIView!
+    
+    // Text view delegate
+    var textViewDelagate: UITextViewDelegate? {
+        willSet{
+            summaryTextView.delegate = newValue
+            descriptionTextView.delegate = newValue
+        }
+    }
+    
+    override func awakeFromNib() {
+        showMoreButton.addTarget(self, action: #selector(showMoreButtonPressed(sender:)), for: .touchUpInside)
+        
+        // Remove left and right padding from UITextView
+        let padding = summaryTextView.textContainer.lineFragmentPadding
+        summaryTextView.textContainerInset = UIEdgeInsets(top: 0, left: -padding, bottom: 5, right: -padding)
+        descriptionTextView.textContainerInset = UIEdgeInsets(top: 5, left: -padding, bottom: 5, right: -padding)
+        
+        // Style the status button
+        statusButton.backgroundColor = .blue
+        statusButton.layer.cornerRadius = 13
+        statusButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        
+    }
     
     /// Show or hide the isuse type icon
     var showTypeIcon: Bool = false {
@@ -34,7 +70,7 @@ class IssueDetailHeaderView: UIView {
             }
         }
     }
-    
+        
     var showMoreField: Bool = false {
         willSet{
             let buttonTitle = newValue ? "Show less fields" : "Show more fields"
@@ -42,26 +78,43 @@ class IssueDetailHeaderView: UIView {
         }
     }
     
-    override func draw(_ rect: CGRect) {
-        showMoreButton.addTarget(self, action: #selector(showMoreButtonPressed(sender:)), for: .touchUpInside)
-        
-        // Remove all padding from UITextView
-        let padding = summaryTextView.textContainer.lineFragmentPadding
-        summaryTextView.textContainerInset = UIEdgeInsets(top: 0, left: -padding, bottom: 0, right: -padding)
-        descriptionTextView.textContainerInset = UIEdgeInsets(top: 0, left: -padding, bottom: 0, right: -padding)
-    }
-    
-    func viewHeight() -> CGFloat {
-        let numberOfViews = self.stackView.arrangedSubviews.count
-        let stackViewHeight = CGFloat(numberOfViews - 1 ) * stackView.spacing
-        
-        let height = topStackView.frame.height + summaryTextView.frame.height +
-            descriptionTextView.frame.height + stackViewHeight + showMoreButton.frame.height
-        
-        return height
+    var height: CGFloat{
+        // Lays out the subviews immediately, if layout updates are pending.
+        layoutIfNeeded()
+        return backgroundStackView.frame.height
     }
     
     @objc func showMoreButtonPressed(sender: UIButton) {
         showMoreField = !showMoreField
+    }
+    
+    override func didMoveToSuperview() {
+        guard let supperView = self.superview else { return }
+        trailingAnchor.constraint(equalTo: supperView.trailingAnchor).isActive = true
+        leadingAnchor.constraint(equalTo: supperView.leadingAnchor).isActive = true
+        topAnchor.constraint(equalTo: supperView.topAnchor).isActive = true
+        bottomAnchor.constraint(equalTo: supperView.bottomAnchor).isActive = true
+    }
+    
+    func viewFor(_ component: ViewComponent) {
+        if component == .add {
+            statusView.removeFromSuperview()
+            issueTypeAndIssueIDView.removeFromSuperview()
+        }
+        else if component == .edit {
+            typeAndProjectStackView.removeFromSuperview()
+            middleSeparatorView.removeFromSuperview()
+            rowSeparatorView.removeFromSuperview()
+            showMoreButton.removeFromSuperview()
+        }
+        layoutIfNeeded()
+    }
+    
+}
+
+extension IssueDetailHeaderView {
+    enum ViewComponent {
+        case edit
+        case add
     }
 }
