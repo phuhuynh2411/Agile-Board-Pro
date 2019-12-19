@@ -10,11 +10,22 @@ import Foundation
 import RealmSwift
 
 class StatusController {
-    static let realm = try! Realm()
     
-    static func status(name: String) -> Status {
+    var realm: Realm?
+    
+    static var shared = StatusController()
+    
+    init() {
+        do{
+            realm = try Realm()
+        } catch{
+            print(error)
+        }
+    }
+    
+    func status(name: String) -> Status {
         
-        if let status = realm.objects(Status.self).filter({ (status) -> Bool in
+        if let status = realm?.objects(Status.self).filter({ (status) -> Bool in
             status.name.lowercased() == name.lowercased()
         }).first {
             return status
@@ -24,7 +35,17 @@ class StatusController {
             status.name = name
             return status
         }
-        
+    
     }
     
+    func update(status: Status, toStatus: Status) {
+        do{
+            try realm?.write {
+                status.color = toStatus.color
+                status.name = toStatus.name
+            }
+        }catch{
+            print(error)
+        }
+    }
 }

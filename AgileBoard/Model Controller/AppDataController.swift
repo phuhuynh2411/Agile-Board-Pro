@@ -24,10 +24,13 @@ class AppDataController {
         IssueTypeController.shared.createSampleIssueTypes()
         // Create sample Project Icons
         ProjectIconController.createSampleIcons()
+        // Create sample priorities
+        PriorityController.shared.createSamplePriorities()
+        // Create sample colors
+        ColorController.shared.createSampleColors()
         // Create sample Projects
         let projectController = ProjectController()
         projectController.createSampleProjects()
-        // Create sample priorities
-        PriorityController.shared.createSamplePriorities()
+        
     }
 }

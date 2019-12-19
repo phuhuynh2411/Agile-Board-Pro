@@ -35,4 +35,30 @@ extension UIColor {
        let rgb:Int = (Int)(r*255)<<16 | (Int)(g*255)<<8 | (Int)(b*255)<<0
        return String(format:"#%06x", rgb)
     }
+    
+    var isDarkColor: Bool {
+        var r, g, b, a: CGFloat
+        (r, g, b, a) = (0, 0, 0, 0)
+        self.getRed(&r, green: &g, blue: &b, alpha: &a)
+        let lum = 0.2126 * r + 0.7152 * g + 0.0722 * b
+        return  lum < 0.50 ? true : false
+    }
+    
+    // Returns black if the given background color is light or white if the given color is dark
+    func textColor(bgColor: UIColor) -> UIColor {
+        var r: CGFloat = 0.0
+        var g: CGFloat = 0.0
+        var b: CGFloat = 0.0
+        var a: CGFloat = 0.0
+        var brightness: CGFloat = 0.0
+        bgColor.getRed(&r, green: &g, blue: &b, alpha: &a)
+        // algorithm from: http://www.w3.org/WAI/ER/WD-AERT/#color-contrast
+        brightness = ((r * 299) + (g * 587) + (b * 114)) / 1000;
+        if (brightness < 0.5) {
+            return UIColor.white
+        }
+        else {
+            return UIColor.black
+        }
+    }
 }

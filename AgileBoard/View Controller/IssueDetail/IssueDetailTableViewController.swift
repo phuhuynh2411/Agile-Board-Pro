@@ -47,6 +47,9 @@ class IssueDetailTableViewController: UITableViewController {
     var dateTransitioningDelegate: DateTransitioningDelegate?
     var statusTrasitioningDelegate: StatusTransitioningDelegate?
     
+    /// Determines which text view has been tapped.
+    var selectedTextViewTag: Int?
+    
     // MARK: Init methods
     
     /**
@@ -161,6 +164,12 @@ class IssueDetailTableViewController: UITableViewController {
         // Update status
         if components.contains(.status){
             headerView.statusButton.setTitle(issue?.status?.name ?? "", for: .normal)
+            if let color = issue?.status?.color {
+                let uiColor = UIColor(hexString: color.hexColor)
+                headerView.statusButton.backgroundColor = uiColor
+                // invert the text color based on the background color
+                headerView.statusButton.setTitleColor(UIColor().textColor(bgColor: uiColor), for: .normal)
+            }
         }
         
         // Marks issue as it was modified.
@@ -315,13 +324,13 @@ class IssueDetailTableViewController: UITableViewController {
         selectDateViewController.delegate = DateController(callback: { (selectedDate) in
             switch dateType{
             case .dueDate:
-                self.issue?.dueDate = selectedDate
+                IssueController.shared.update(dueDate: selectedDate!, to: self.issue!)
                 break
             case .startDate:
-                self.issue?.startDate = selectedDate
+                IssueController.shared.update(startDate: selectedDate!, to: self.issue!)
                 break
             case .endDate:
-                self.issue?.endDate = selectedDate
+                IssueController.shared.update(endDate: selectedDate!, to: self.issue!)
                 break
             }
             self.updateView(components: [.tableView], markAsModified: true)
@@ -437,6 +446,13 @@ class IssueDetailTableViewController: UITableViewController {
         performSegue(withIdentifier: S.status, sender: self)
     }
     
+    @IBAction func tapedOnTextView(_sender: UITextView){
+        print("Tapped on text view")
+        if !isNew(){
+            performSegue(withIdentifier: S.textView, sender: self)
+        }
+    }
+    
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -471,7 +487,14 @@ extension IssueDetailTableViewController: UITextViewDelegate {
         updateView(components: [.header], markAsModified: true)
     }
     
-    
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        selectedTextViewTag = textView == headerView.summaryTextView ? 0 : 1
+        if !isNew(){
+            performSegue(withIdentifier: S.textView, sender: self)
+        }
+        
+        return isNew() ? true : false
+    }
 }
 
 // MARK: - SelectProjectProtocol
@@ -528,9 +551,24 @@ extension IssueDetailTableViewController {
         
         // Prare for status segue
         if segue.identifier == S.status {
+            let navigationController = segue.destination as! UINavigationController
+            let statusTableViewController = navigationController.topViewController as! StatusTableViewController
+            statusTableViewController.statuses = project?.statuses
+            statusTableViewController.selectedStatus = issue?.status
+            statusTableViewController.delegate = self
+            
             statusTrasitioningDelegate = StatusTransitioningDelegate()
             segue.destination.transitioningDelegate = statusTrasitioningDelegate
             segue.destination.modalPresentationStyle = .custom
+        }
+        
+        if segue.identifier == S.textView {
+            let navigationController = segue.destination as! UINavigationController
+            let textViewTableViewController = navigationController.topViewController as! TextviewTableViewController
+            
+            textViewTableViewController.delegate = self
+            textViewTableViewController.selectedTextViewTag  = selectedTextViewTag
+            textViewTableViewController.issue = issue
         }
         
     }
@@ -623,8 +661,10 @@ extension IssueDetailTableViewController {
 extension IssueDetailTableViewController: SelectPriorityDelegate {
     
     func didSelectPriority(priority: Priority) {
-        self.issue?.priority = priority
-        updateView(components: [.tableView], markAsModified: true)
+        if let issue = issue {
+            IssueController.shared.update(priority, to: issue)
+            updateView(components: [.tableView], markAsModified: true)
+        }
     }
 }
 
@@ -721,6 +761,7 @@ extension IssueDetailTableViewController {
         static let startDate = "StartDateSegue"
         static let endDate = "EndDateSegue"
         static let status = "StatusSegue"
+        static let textView = "TextViewSegue"
     }
     private typealias S = SegueIdentifier
 }
@@ -744,10 +785,14 @@ extension IssueDetailTableViewController {
 
 extension IssueDetailTableViewController: AttachmentDelegate {
     func didAddAttachment(attachment: Attachment) {
-        updateView(components: [.tableView], markAsModified: true)
+        if let issue = issue {
+            IssueController.shared.add(attachment, to: issue)
+            updateView(components: [.tableView], markAsModified: true)
+        }
     }
     
     func didDeleteAttachment(attachment: Attachment, at indexPath: IndexPath) {
+        IssueController.shared.delete(attachment)
         updateView(components: [.tableView], markAsModified: true)
     }
 }
@@ -773,5 +818,24 @@ extension IssueDetailTableViewController: ValidationDelegate {
     
     func validationFailed(_ errors: [(Validatable, ValidationError)]) {
         createOrSaveButton.isEnabled = false
+    }
+}
+
+// MARK: - Status Delegate
+
+extension IssueDetailTableViewController: StatusDelegate {
+    func didSelectStatus(status: Status) {
+        if let issue = issue{
+            IssueController.shared.update(status, to: issue)
+            updateView(components: [.status])
+        }
+    }
+}
+
+// MARK: - TextViewTableView Delegate
+
+extension IssueDetailTableViewController: TextViewTableViewDelegate {
+    func issueDidChange(issue: Issue) {
+        updateView(components: [.summary, .description], markAsModified: true)
     }
 }

@@ -49,13 +49,13 @@ class IssueDetailHeaderView: UIView {
         
         // Remove left and right padding from UITextView
         let padding = summaryTextView.textContainer.lineFragmentPadding
-        summaryTextView.textContainerInset = UIEdgeInsets(top: 0, left: -padding, bottom: 5, right: -padding)
+        summaryTextView.textContainerInset = UIEdgeInsets(top: 5, left: -padding, bottom: 5, right: -padding)
         descriptionTextView.textContainerInset = UIEdgeInsets(top: 5, left: -padding, bottom: 5, right: -padding)
         
         // Style the status button
         statusButton.backgroundColor = .blue
         statusButton.layer.cornerRadius = 13
-        statusButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        statusButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 26)
         
     }
     
@@ -137,6 +137,8 @@ class IssueDetailHeaderView: UIView {
                 view.removeFromSuperview()
             }
         }
+        middleSeparatorView.removeFromSuperview()
+        rowSeparatorView.removeFromSuperview()
         layoutIfNeeded()
     }
     

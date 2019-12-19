@@ -38,4 +38,85 @@ class IssueController {
         }
     }
     
+    func update(_ status: Status, to issue: Issue) {
+        do{
+            try realm?.write {
+                issue.status = status
+            }
+        }catch{
+            print(error)
+        }
+    }
+    
+    func update(_ priority: Priority, to issue: Issue) {
+        do{
+            try realm?.write {
+                issue.priority = priority
+            }
+        }catch{
+            print(error)
+        }
+    }
+    
+    func update(dueDate: Date, to issue: Issue) {
+        do{
+            try realm?.write {
+                issue.dueDate = dueDate
+            }
+        }catch{
+            print(error)
+        }
+    }
+    
+    func update(startDate: Date, to issue: Issue) {
+        do{
+            try realm?.write {
+                issue.startDate = startDate
+            }
+        }catch{
+            print(error)
+        }
+    }
+    
+    func update(endDate: Date, to issue: Issue) {
+        do{
+            try realm?.write {
+                issue.endDate = endDate
+            }
+        }catch{
+            print(error)
+        }
+    }
+    
+    func add(_ attachment: Attachment, to issue: Issue) {
+        do{
+            try realm?.write {
+                issue.attachments.append(attachment)
+            }
+        }catch{
+            print(error)
+        }
+    }
+    
+    func delete(_ attachment: Attachment) {
+        do{
+            try realm?.write {
+                realm?.delete(attachment)
+            }
+        }catch{
+            print(error)
+        }
+    }
+    
+    func update(summary: String, description: String, to issue: Issue) {
+        do{
+            try realm?.write {
+                issue.summary = summary
+                issue.issueDescription = description
+            }
+        }catch{
+            print(error)
+        }
+    }
+    
 }

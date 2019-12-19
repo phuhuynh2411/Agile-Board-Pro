@@ -23,6 +23,8 @@ class Project: Object {
     // A project has many sprints
     let sprints = List<Sprint>()
     
+    let statuses = List<Status>()
+    
     @objc dynamic var icon: ProjectIcon?
   
 }

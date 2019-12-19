@@ -75,7 +75,7 @@ class AddIssueViewController: UIViewController {
     
     @IBAction func createButtonPressed(_ sender: UIBarButtonItem) {
         
-        let status = StatusController.status(name: "TO DO")
+        let status = StatusController.shared.status(name: "TO DO")
         let issue = Issue()
         issue.summary = summaryTextView.text
         issue.status = status

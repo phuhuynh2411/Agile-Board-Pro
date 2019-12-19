@@ -173,17 +173,16 @@ extension AttachmentCollectionViewController: UIImagePickerControllerDelegate, U
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
+        let attachment = Attachment()
+        
         // Selected a photo from the Photo Library
         if let imageURL = info[.imageURL] as? NSURL {
             let stringURL = imageURL.absoluteString
             let imageName = imageURL.lastPathComponent ?? "unknow.jpg"
             
-            let attachment = Attachment()
+            
             attachment.name = imageName
             attachment.url = stringURL!
-            
-            attachments?.append(attachment)
-            delegate?.didAddAttachment(attachment: attachment)
         }
         // Captured a photo from camera
         else {
@@ -193,10 +192,8 @@ extension AttachmentCollectionViewController: UIImagePickerControllerDelegate, U
             attachment.name = attachment.id
             let stringURL = AttachmentController.shared.cache(image: originalImage, name: attachment.name)?.absoluteString
             attachment.url = stringURL!
-            
-            attachments?.append(attachment)
-            delegate?.didAddAttachment(attachment: attachment)
         }
+        delegate?.didAddAttachment(attachment: attachment)
         
         collectionView.reloadData()
         
@@ -295,9 +292,9 @@ extension AttachmentCollectionViewController: UICollectionViewDropDelegate {
                 let indexPath = dragItem.indexPath
                 
                 let attachment = attachments![indexPath.row]
-                attachments?.remove(at: indexPath.row)
-                sourceCollectionView.deleteItems(at: [indexPath])
                 delegate?.didDeleteAttachment(attachment: attachment, at: indexPath)
+                // Delete the attachemnt in the collection view
+                sourceCollectionView.deleteItems(at: [indexPath])
             }
         }
         

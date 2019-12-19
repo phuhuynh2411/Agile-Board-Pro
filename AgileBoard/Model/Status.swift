@@ -13,4 +13,5 @@ class Status: Object {
     @objc dynamic var id = UUID().uuidString
     @objc dynamic var name = ""
     
+    @objc dynamic var color: Color?
 }

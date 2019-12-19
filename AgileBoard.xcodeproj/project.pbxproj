@@ -18,6 +18,7 @@
 		8421F66B23974D3C001DF5D9 /* PriorityRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8421F66A23974D3C001DF5D9 /* PriorityRowView.swift */; };
 		84245EBC238E551300AE479E /* Sprint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84245EBB238E551300AE479E /* Sprint.swift */; };
 		8426581B23AB169100061748 /* StatusTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8426581A23AB169100061748 /* StatusTableViewController.swift */; };
+		8426581D23AB2F6E00061748 /* StatusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8426581C23AB2F6E00061748 /* StatusTableViewCell.swift */; };
 		842686F02399519600B981D7 /* AttachmentCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842686EF2399519600B981D7 /* AttachmentCollectionViewFlowLayout.swift */; };
 		842686F223995BE900B981D7 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842686F123995BE900B981D7 /* Attachment.swift */; };
 		842686F423995E7E00B981D7 /* AttachmentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842686F323995E7E00B981D7 /* AttachmentCollectionViewCell.swift */; };
@@ -77,6 +78,9 @@
 		84A1FC1923A32F1D008648F9 /* StartDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A1FC1823A32F1D008648F9 /* StartDateTableViewCell.swift */; };
 		84A1FC1B23A32F2F008648F9 /* EndDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A1FC1A23A32F2F008648F9 /* EndDateTableViewCell.swift */; };
 		84A51AC0237AF8DD00477B75 /* IssueTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A51ABF237AF8DD00477B75 /* IssueTableViewController.swift */; };
+		84ACC2F523AB5AB8004B5281 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ACC2F423AB5AB8004B5281 /* Color.swift */; };
+		84ACC2F723AB5B26004B5281 /* ColorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ACC2F623AB5B26004B5281 /* ColorController.swift */; };
+		84ACC2FA23AB74A1004B5281 /* TextviewTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ACC2F923AB74A1004B5281 /* TextviewTableViewController.swift */; };
 		84B3010D2394BF0300D4BBA8 /* AddProjecTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B3010C2394BF0300D4BBA8 /* AddProjecTableViewControllerTests.swift */; };
 		84B301142394C17500D4BBA8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 843C8989237AE7460050586E /* Main.storyboard */; };
 		84B5F72F238F647F00D344C3 /* SearchProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B5F72E238F647F00D344C3 /* SearchProjectTableViewCell.swift */; };
@@ -128,6 +132,7 @@
 		8421F66A23974D3C001DF5D9 /* PriorityRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityRowView.swift; sourceTree = "<group>"; };
 		84245EBB238E551300AE479E /* Sprint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sprint.swift; sourceTree = "<group>"; };
 		8426581A23AB169100061748 /* StatusTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusTableViewController.swift; sourceTree = "<group>"; };
+		8426581C23AB2F6E00061748 /* StatusTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusTableViewCell.swift; sourceTree = "<group>"; };
 		842686EF2399519600B981D7 /* AttachmentCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		842686F123995BE900B981D7 /* Attachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attachment.swift; sourceTree = "<group>"; };
 		842686F323995E7E00B981D7 /* AttachmentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -197,6 +202,9 @@
 		84A1FC1823A32F1D008648F9 /* StartDateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartDateTableViewCell.swift; sourceTree = "<group>"; };
 		84A1FC1A23A32F2F008648F9 /* EndDateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndDateTableViewCell.swift; sourceTree = "<group>"; };
 		84A51ABF237AF8DD00477B75 /* IssueTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueTableViewController.swift; sourceTree = "<group>"; };
+		84ACC2F423AB5AB8004B5281 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		84ACC2F623AB5B26004B5281 /* ColorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorController.swift; sourceTree = "<group>"; };
+		84ACC2F923AB74A1004B5281 /* TextviewTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextviewTableViewController.swift; sourceTree = "<group>"; };
 		84B3010A2394BF0300D4BBA8 /* AgileBoardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AgileBoardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		84B3010C2394BF0300D4BBA8 /* AddProjecTableViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProjecTableViewControllerTests.swift; sourceTree = "<group>"; };
 		84B3010E2394BF0300D4BBA8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -288,6 +296,7 @@
 				843C58C42390FFB600F5FAB5 /* ProjectIcon.swift */,
 				84579E6123965068009575E4 /* Priority.swift */,
 				842686F123995BE900B981D7 /* Attachment.swift */,
+				84ACC2F423AB5AB8004B5281 /* Color.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -303,13 +312,8 @@
 				84584E26238ED999000408AE /* AddIssueViewController.swift */,
 				84C340E32388361D00C65AC9 /* ProjectTableViewController.swift */,
 				84E0E0C023A8B8E70057A360 /* Board */,
-				84F5FF9B238538FB00F2E966 /* DragIssueItem.swift */,
 				841D97A8238E674300483928 /* AppNavigationController.swift */,
-				84579E69239664FB009575E4 /* IssueDetailTableViewController.swift */,
-				84299FD623990BB800432A66 /* AttachmentCollectionViewController.swift */,
-				843BF017239A61EE005F798D /* PhotoViewController.swift */,
-				84C4042C23A2254B00A49A8D /* SelectDateViewController.swift */,
-				8426581A23AB169100061748 /* StatusTableViewController.swift */,
+				84ACC2F823AB6BC3004B5281 /* IssueDetail */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -380,6 +384,7 @@
 				842686F323995E7E00B981D7 /* AttachmentCollectionViewCell.swift */,
 				843BF015239A4C9C005F798D /* AttachmentTableViewCell.swift */,
 				846685F2239F4BCB0033BA1E /* AddIssueCollectionTableViewCell.swift */,
+				8426581C23AB2F6E00061748 /* StatusTableViewCell.swift */,
 			);
 			path = "Custom Cell";
 			sourceTree = "<group>";
@@ -444,6 +449,7 @@
 				842686F523995F4D00B981D7 /* AttachmentController.swift */,
 				847FD53623A0F49900399145 /* DragAttachmentItem.swift */,
 				8462567623A4949800600F0F /* IssueController.swift */,
+				84ACC2F623AB5B26004B5281 /* ColorController.swift */,
 			);
 			path = "Model Controller";
 			sourceTree = "<group>";
@@ -455,6 +461,19 @@
 				8470DBD323960A3A00B146BD /* Info.plist */,
 			);
 			path = AgileBoardUITests;
+			sourceTree = "<group>";
+		};
+		84ACC2F823AB6BC3004B5281 /* IssueDetail */ = {
+			isa = PBXGroup;
+			children = (
+				84579E69239664FB009575E4 /* IssueDetailTableViewController.swift */,
+				84299FD623990BB800432A66 /* AttachmentCollectionViewController.swift */,
+				843BF017239A61EE005F798D /* PhotoViewController.swift */,
+				84C4042C23A2254B00A49A8D /* SelectDateViewController.swift */,
+				8426581A23AB169100061748 /* StatusTableViewController.swift */,
+				84ACC2F923AB74A1004B5281 /* TextviewTableViewController.swift */,
+			);
+			path = IssueDetail;
 			sourceTree = "<group>";
 		};
 		84B3010B2394BF0300D4BBA8 /* AgileBoardTests */ = {
@@ -481,6 +500,7 @@
 				843C8987237AE7460050586E /* BoardViewController.swift */,
 				845227CE238CFC61000607A8 /* IssueCollectionViewController.swift */,
 				84A51ABF237AF8DD00477B75 /* IssueTableViewController.swift */,
+				84F5FF9B238538FB00F2E966 /* DragIssueItem.swift */,
 			);
 			path = Board;
 			sourceTree = "<group>";
@@ -724,6 +744,7 @@
 				847A78122387745D00911851 /* Board.swift in Sources */,
 				84F56A05237C5B56007E6C68 /* UIColor+Extention.swift in Sources */,
 				845227CF238CFC61000607A8 /* IssueCollectionViewController.swift in Sources */,
+				8426581D23AB2F6E00061748 /* StatusTableViewCell.swift in Sources */,
 				84E59164239253D3006FBA5E /* ValidatorError.swift in Sources */,
 				8468D497238FA76E006B02D4 /* IssueTypeController.swift in Sources */,
 				84299FD523990B8E00432A66 /* AttachmentCollectionView.swift in Sources */,
@@ -739,6 +760,7 @@
 				84F5FF9C238538FB00F2E966 /* DragIssueItem.swift in Sources */,
 				84A1FC1923A32F1D008648F9 /* StartDateTableViewCell.swift in Sources */,
 				8442DC42237E969C008C88C6 /* Identifier.swift in Sources */,
+				84ACC2F523AB5AB8004B5281 /* Color.swift in Sources */,
 				843C58C52390FFB600F5FAB5 /* ProjectIcon.swift in Sources */,
 				843C58CB2391073800F5FAB5 /* AddProjectTableViewController.swift in Sources */,
 				84B7EE0B239A40D10011BBD9 /* UIImageExtension.swift in Sources */,
@@ -764,6 +786,7 @@
 				842686F02399519600B981D7 /* AttachmentCollectionViewFlowLayout.swift in Sources */,
 				848FCEB42397985100CD6334 /* IssueDetailHeaderView.swift in Sources */,
 				8408E50E23A9DEE3004A859C /* UIView+Extension.swift in Sources */,
+				84ACC2F723AB5B26004B5281 /* ColorController.swift in Sources */,
 				842686F423995E7E00B981D7 /* AttachmentCollectionViewCell.swift in Sources */,
 				84B5F731238F806B00D344C3 /* SelectIssueTypeTableViewController.swift in Sources */,
 				8468D499238FBD71006B02D4 /* StatusController.swift in Sources */,
@@ -775,6 +798,7 @@
 				842686F223995BE900B981D7 /* Attachment.swift in Sources */,
 				8426581B23AB169100061748 /* StatusTableViewController.swift in Sources */,
 				84C4042D23A2254B00A49A8D /* SelectDateViewController.swift in Sources */,
+				84ACC2FA23AB74A1004B5281 /* TextviewTableViewController.swift in Sources */,
 				841D97A9238E674300483928 /* AppNavigationController.swift in Sources */,
 				847FD53723A0F49900399145 /* DragAttachmentItem.swift in Sources */,
 				84299FD723990BB800432A66 /* AttachmentCollectionViewController.swift in Sources */,

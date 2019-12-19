@@ -50,10 +50,25 @@ class ProjectController {
         
         // 2. Create statuses
 
-        let todo = StatusController.status(name: "TO DO")
-        let inprogress = StatusController.status(name: "IN PROGRESS")
-        let done = StatusController.status(name: "DONE")
-        let completed = StatusController.status(name: "COMPLETED")
+        let todo = Status()
+        todo.name = "TO DO"
+        todo.color = Color(value: ["hexColor": "#3498DB"])
+        let inprogress = Status()
+        inprogress.name = "IN PROGRESS"
+        inprogress.color = Color(value: ["hexColor": "#F1C40F"])
+        let done = Status()
+        done.name = "DONE"
+        done.color = Color(value: ["hexColor": "#27AE60"])
+        let completed = Status()
+        completed.name = "COMPLETED"
+        completed.color = Color(value: ["hexColor": "#9bb7d4"])
+        
+        // Add statuses to project
+        project1.statuses.append(todo)
+        project1.statuses.append(inprogress)
+        project1.statuses.append(done)
+        project1.statuses.append(completed)
+        
         let issueType1 = IssueType()
         issueType1.name = "Story"
         issueType1.imageName = "issue_story"
