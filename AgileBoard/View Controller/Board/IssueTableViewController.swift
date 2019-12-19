@@ -41,7 +41,7 @@ class IssueTableViewController: UITableViewController {
     
     // MARK: - Help Methods
     
-    func edit(issue: Issue) {
+    func viewDetail(issue: Issue) {
         
         guard let project = issue.projectOwners.first else {
             fatalError("The project should not be nil at this point.")
@@ -50,6 +50,7 @@ class IssueTableViewController: UITableViewController {
         let issueDetailTableViewController = UIStoryboard(name: I.storyBoard, bundle: .main).instantiateViewController(withIdentifier: I.issueDetailVC) as! IssueDetailTableViewController
         
         issueDetailTableViewController.initView(with: issue, project: project)
+        //issueDetailTableViewController.modalPresentationStyle = .fullScreen
         
         let topViewController = UIApplication.getTopViewController()
         let nav = UIStoryboard(name: I.storyBoard, bundle: .main).instantiateViewController(withIdentifier: I.issueDetailNC) as! UINavigationController
@@ -122,7 +123,7 @@ extension IssueTableViewController {
         
         selectedIssue = issueList?[indexPath.row]
         if let issue = selectedIssue {
-            edit(issue: issue)
+            viewDetail(issue: issue)
         }
         
     }

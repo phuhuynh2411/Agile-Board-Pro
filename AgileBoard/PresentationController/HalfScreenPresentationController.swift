@@ -12,6 +12,7 @@ import UIKit
 class HalfScreenPresentationController: UIPresentationController{
     
     var presentedViewHeight: CGFloat?
+    var presentedCornerRadius: CGFloat?
     
     let blurEffectView: UIVisualEffectView!
     var tapGestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer()
@@ -50,7 +51,7 @@ class HalfScreenPresentationController: UIPresentationController{
     override func containerViewWillLayoutSubviews() {
         super.containerViewWillLayoutSubviews()
         presentedView!.layer.masksToBounds = true
-        //presentedView!.layer.cornerRadius = 10
+        presentedView!.layer.cornerRadius = presentedCornerRadius ?? 0
        
     }
     override func containerViewDidLayoutSubviews() {

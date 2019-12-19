@@ -44,6 +44,7 @@ class IssueDetailHeaderView: UIView {
     }
     
     override func awakeFromNib() {
+        
         showMoreButton.addTarget(self, action: #selector(showMoreButtonPressed(sender:)), for: .touchUpInside)
         
         // Remove left and right padding from UITextView
@@ -98,14 +99,43 @@ class IssueDetailHeaderView: UIView {
     
     func viewFor(_ component: ViewComponent) {
         if component == .add {
-            statusView.removeFromSuperview()
-            issueTypeAndIssueIDView.removeFromSuperview()
+           keepViewsForAdd()
         }
         else if component == .edit {
-            typeAndProjectStackView.removeFromSuperview()
-            middleSeparatorView.removeFromSuperview()
-            rowSeparatorView.removeFromSuperview()
-            showMoreButton.removeFromSuperview()
+           keepViewsForEdit()
+        }
+        else if component == .editContent {
+            keepViewsForEditContent()
+        }
+        layoutIfNeeded()
+    }
+    
+    /**
+     Keeps views for add mode and removes all other views.
+     */
+    private func keepViewsForAdd() {
+        statusView.removeFromSuperview()
+        issueTypeAndIssueIDView.removeFromSuperview()
+    }
+    
+    /**
+     Keeps views for edit mode and removes all other views.
+     */
+    private func keepViewsForEdit() {
+        typeAndProjectStackView.removeFromSuperview()
+        middleSeparatorView.removeFromSuperview()
+        rowSeparatorView.removeFromSuperview()
+        showMoreButton.removeFromSuperview()
+    }
+    
+    /**
+     Keeps the summary and description text view only and removes all other views
+     */
+    private func keepViewsForEditContent() {
+        for view in backgroundStackView.subviews {
+            if !(view == summaryTextView || view == descriptionTextView) {
+                view.removeFromSuperview()
+            }
         }
         layoutIfNeeded()
     }
@@ -116,5 +146,6 @@ extension IssueDetailHeaderView {
     enum ViewComponent {
         case edit
         case add
+        case editContent
     }
 }

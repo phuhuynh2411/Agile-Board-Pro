@@ -43,6 +43,10 @@ class IssueDetailTableViewController: UITableViewController {
     
     var validator = Validator()
     
+    // MARK: Transitionning Delegate
+    var dateTransitioningDelegate: DateTransitioningDelegate?
+    var statusTrasitioningDelegate: StatusTransitioningDelegate?
+    
     // MARK: Init methods
     
     /**
@@ -326,7 +330,8 @@ class IssueDetailTableViewController: UITableViewController {
         selectDateViewController.selectedDate = date
         
         // Set segue transitioning
-        segue.destination.transitioningDelegate  = self
+        dateTransitioningDelegate = DateTransitioningDelegate()
+        segue.destination.transitioningDelegate = dateTransitioningDelegate
         segue.destination.modalPresentationStyle = .custom
         
     }
@@ -429,7 +434,7 @@ class IssueDetailTableViewController: UITableViewController {
     }
     
     @IBAction func statusPressed(_ sender: UIButton){
-        print("Status button was pressed.")
+        performSegue(withIdentifier: S.status, sender: self)
     }
     
     // MARK: - Table view data source
@@ -519,6 +524,13 @@ extension IssueDetailTableViewController {
         // Prepare for end date segue
         if segue.identifier == S.endDate {
             prepareForDateCell(segue: segue, date: issue?.endDate, dateType: .endDate)
+        }
+        
+        // Prare for status segue
+        if segue.identifier == S.status {
+            statusTrasitioningDelegate = StatusTransitioningDelegate()
+            segue.destination.transitioningDelegate = statusTrasitioningDelegate
+            segue.destination.modalPresentationStyle = .custom
         }
         
     }
@@ -618,16 +630,33 @@ extension IssueDetailTableViewController: SelectPriorityDelegate {
 
 // MARK: - UIViewControllerTransitioningDelegate
 
-extension IssueDetailTableViewController: UIViewControllerTransitioningDelegate {
+extension IssueDetailTableViewController {
     
-    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+    class DateTransitioningDelegate: UIViewController, UIViewControllerTransitioningDelegate {
         
-        let halfScreenPresentationController = HalfScreenPresentationController(presentedViewController: presented, presenting: presenting)
-        
-        halfScreenPresentationController.presentedViewHeight = 230.0
-        
-        return halfScreenPresentationController
+        func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+            
+            let halfScreenPresentationController = HalfScreenPresentationController(presentedViewController: presented, presenting: presenting)
+            
+            halfScreenPresentationController.presentedViewHeight = 230.0
+            
+            return halfScreenPresentationController
+        }
     }
+    
+    class StatusTransitioningDelegate: UIViewController, UIViewControllerTransitioningDelegate {
+        
+        func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+            
+            let halfScreenPresentationController = HalfScreenPresentationController(presentedViewController: presented, presenting: presenting)
+            
+            halfScreenPresentationController.presentedViewHeight = view.frame.height/2
+            halfScreenPresentationController.presentedCornerRadius = 10.0
+            
+            return halfScreenPresentationController
+        }
+    }
+    
 }
 
 // MARK: - SelectDateDelegate
@@ -691,6 +720,7 @@ extension IssueDetailTableViewController {
         static let dueDate = "DueDateSegue"
         static let startDate = "StartDateSegue"
         static let endDate = "EndDateSegue"
+        static let status = "StatusSegue"
     }
     private typealias S = SegueIdentifier
 }
