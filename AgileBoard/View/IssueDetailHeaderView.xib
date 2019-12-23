@@ -13,8 +13,8 @@
         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iN0-l3-epB" customClass="IssueDetailHeaderView" customModule="AgileBoard" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="473" height="258"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="4jG-cv-xqF">
-                    <rect key="frame" x="16" y="0.0" width="441" height="283"/>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="4jG-cv-xqF">
+                    <rect key="frame" x="16" y="0.0" width="441" height="248"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="uz2-m3-AIz">
                             <rect key="frame" x="0.0" y="0.0" width="441" height="50"/>
@@ -88,17 +88,17 @@
                             </constraints>
                         </stackView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C47-Zf-OmJ" userLabel="Issue Type and Issue ID">
-                            <rect key="frame" x="0.0" y="60" width="441" height="40"/>
+                            <rect key="frame" x="0.0" y="55" width="441" height="30"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JuR-CV-Gz3">
-                                    <rect key="frame" x="0.0" y="10" width="20" height="20"/>
+                                    <rect key="frame" x="0.0" y="5" width="20" height="20"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="20" id="FdM-0Q-5Hs"/>
                                         <constraint firstAttribute="width" constant="20" id="s5k-13-d2j"/>
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FT-0001" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sy7-cG-yWb">
-                                    <rect key="frame" x="28" y="11.5" width="54.5" height="17"/>
+                                    <rect key="frame" x="28" y="6.5" width="54.5" height="17"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <color key="textColor" systemColor="placeholderTextColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -108,14 +108,14 @@
                             <constraints>
                                 <constraint firstItem="JuR-CV-Gz3" firstAttribute="centerY" secondItem="C47-Zf-OmJ" secondAttribute="centerY" id="4xt-s7-fQO"/>
                                 <constraint firstItem="Sy7-cG-yWb" firstAttribute="centerY" secondItem="JuR-CV-Gz3" secondAttribute="centerY" id="BaF-Dt-44r"/>
-                                <constraint firstAttribute="height" constant="40" id="FBO-Gb-ruo"/>
+                                <constraint firstAttribute="height" constant="30" id="FBO-Gb-ruo"/>
                                 <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="Sy7-cG-yWb" secondAttribute="trailing" constant="377" id="Jo8-wu-In0"/>
                                 <constraint firstItem="Sy7-cG-yWb" firstAttribute="leading" secondItem="JuR-CV-Gz3" secondAttribute="trailing" constant="8" id="iyl-ag-Lw9"/>
                                 <constraint firstItem="JuR-CV-Gz3" firstAttribute="leading" secondItem="C47-Zf-OmJ" secondAttribute="leading" id="lCw-mP-3KY"/>
                             </constraints>
                         </view>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nke-rD-FBe" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
-                            <rect key="frame" x="0.0" y="110" width="441" height="37.5"/>
+                            <rect key="frame" x="0.0" y="90" width="441" height="37.5"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
@@ -125,7 +125,7 @@
                             </userDefinedRuntimeAttributes>
                         </textView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MNC-S2-pq5" userLabel="Status View">
-                            <rect key="frame" x="0.0" y="157.5" width="441" height="40"/>
+                            <rect key="frame" x="0.0" y="132.5" width="441" height="40"/>
                             <subviews>
                                 <button opaque="NO" contentMode="left" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dll-8S-kJb">
                                     <rect key="frame" x="0.0" y="6" width="71" height="28"/>
@@ -155,7 +155,7 @@
                             </constraints>
                         </view>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ypw-iD-dcp" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
-                            <rect key="frame" x="0.0" y="207.5" width="441" height="35.5"/>
+                            <rect key="frame" x="0.0" y="177.5" width="441" height="35.5"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -165,7 +165,7 @@
                             </userDefinedRuntimeAttributes>
                         </textView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="082-1B-0Fa">
-                            <rect key="frame" x="0.0" y="253" width="441" height="30"/>
+                            <rect key="frame" x="0.0" y="218" width="441" height="30"/>
                             <state key="normal" title="Show more fields"/>
                         </button>
                     </subviews>

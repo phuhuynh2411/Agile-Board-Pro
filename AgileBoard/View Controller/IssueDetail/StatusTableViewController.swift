@@ -17,6 +17,7 @@ class StatusTableViewController: UITableViewController {
     
     var statuses: List<Status>?
     var selectedStatus: Status?
+    var project: Project?
     
     // Delegate
     var delegate: StatusDelegate?
@@ -36,6 +37,23 @@ class StatusTableViewController: UITableViewController {
         
         // Remove extra separators
         tableView.tableFooterView = UIView()
+    }
+    
+    // MARK: - IB Actions
+    
+    @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: S.statusDetail, sender: self)
+    }
+    
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == S.statusDetail {
+            let nav = segue.destination as! UINavigationController
+            let statusDetailViewController = nav.topViewController as! StatusDetailViewController
+            
+            statusDetailViewController.delegate = self
+            statusDetailViewController.project  = project
+        }
     }
     
     // MARK: - UITableView Datasource
@@ -72,4 +90,29 @@ class StatusTableViewController: UITableViewController {
         dismiss(animated: true, completion: nil)
     }
 
+}
+
+// MARK: Status Detail Delegate
+
+extension StatusTableViewController: StatusDetailDelegate {
+    func didAddStatus(status: Status) {
+        if let project = project {
+            StatusController.shared.add(status, to: project)
+            tableView.reloadData()
+        }
+    }
+    
+    func didModifyStatus(status: Status) {
+        if let selectedStatus = selectedStatus {
+            StatusController.shared.update(status: status, toStatus: selectedStatus)
+        }
+    }
+}
+
+// MARK: - Segue Identifiers
+extension StatusTableViewController {
+    struct SegueIdentifier {
+        static let statusDetail = "StatusDetailControllerSegue"
+    }
+    typealias S = SegueIdentifier
 }

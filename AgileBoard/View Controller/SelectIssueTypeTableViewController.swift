@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 
 protocol SelectIssueTypeDelegate {
-    func didSelectIssueType(issueType: IssueType?)
+    func didSelectIssueType(issueType: IssueType)
 }
 
 class SelectIssueTypeTableViewController: UITableViewController {
@@ -69,7 +69,8 @@ class SelectIssueTypeTableViewController: UITableViewController {
 extension SelectIssueTypeTableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let issueType = issueTypeList?[indexPath.row]
+        
+        guard let issueType = issueTypeList?[indexPath.row] else { return }
         
         delegate?.didSelectIssueType(issueType: issueType)
         

@@ -51,7 +51,7 @@ class AddIssueTableViewControllerTest: XCTestCase {
         IssueController.shared.realm = realm
         
         let issue = Issue()
-        sut.initView(with: issue, and: nil)
+        sut.initView(with: issue, project: Project())
         
         XCTAssertTrue(sut.isNew(), "The issue was in realm database.")
     }
@@ -67,7 +67,7 @@ class AddIssueTableViewControllerTest: XCTestCase {
         let issue = Issue()
         IssueController.shared.add(issue: issue)
         let addedIssue = realm.objects(Issue.self).first
-        sut.initView(with: addedIssue!, and: nil)
+        sut.initView(with: addedIssue!, project: Project())
         
         XCTAssertFalse(sut.isNew(), "Issue is in realm database. It should return false.")
     }
@@ -252,7 +252,7 @@ class AddIssueTableViewControllerTest: XCTestCase {
     
     func testSelectIssueTypeCase1() {
         // Init sut
-        sut.initView(with: Issue(), and: nil)
+        sut.initView(with: Issue(), project: Project())
         
         // Setup in-memory realm
         setUpRealm(name: "In-MemoryRealm")
@@ -298,7 +298,7 @@ class AddIssueTableViewControllerTest: XCTestCase {
     func testSelectPriorityCase1() {
         // Add priority cell into the table view
         sut.showMoreButtonPress(sender: UIButton())
-        sut.initView(with: Issue(), and: nil)
+        sut.initView(with: Issue(), project: Project())
         
         // Set up in-memory realm
         setUpRealm(name: "In-MemoryRealm")

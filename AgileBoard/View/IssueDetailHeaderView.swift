@@ -49,8 +49,8 @@ class IssueDetailHeaderView: UIView {
         
         // Remove left and right padding from UITextView
         let padding = summaryTextView.textContainer.lineFragmentPadding
-        summaryTextView.textContainerInset = UIEdgeInsets(top: 5, left: -padding, bottom: 5, right: -padding)
-        descriptionTextView.textContainerInset = UIEdgeInsets(top: 5, left: -padding, bottom: 5, right: -padding)
+        summaryTextView.textContainerInset = UIEdgeInsets(top: 10, left: -padding, bottom: 10, right: -padding)
+        descriptionTextView.textContainerInset = UIEdgeInsets(top: 10, left: -padding, bottom: 10, right: -padding)
         
         // Style the status button
         statusButton.backgroundColor = .blue

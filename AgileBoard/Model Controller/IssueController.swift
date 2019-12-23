@@ -29,12 +29,26 @@ class IssueController {
     }
     
     func add(issue: Issue) {
+        issue.serial = maxSerial
         do{
             try realm?.write {
                 realm?.add(issue)
             }
         } catch{
             print(error)
+        }
+    }
+    
+    func add(_ issue: Issue)->Issue? {
+        issue.serial = maxSerial
+        do{
+            try realm?.write {
+                realm?.add(issue)
+            }
+            return issue
+        } catch{
+            print(error)
+            return nil
         }
     }
     
@@ -119,4 +133,42 @@ class IssueController {
         }
     }
     
+    func add(summary: String, description: String, status: Status? = nil, priority: Priority? = nil, type: IssueType? = nil ) -> Issue? {
+        
+        let issue = Issue()
+        issue.serial = maxSerial
+        issue.summary = summary
+        issue.issueDescription = description
+        issue.status = status
+        issue.priority = priority
+        issue.type = type
+        
+        do{
+            try realm?.write {
+                realm?.add(issue)
+            }
+            return issue
+        }catch{
+            print(error)
+            return nil
+        }
+        
+    }
+    
+    var maxSerial: Int {
+        var serial = realm?.objects(Issue.self).max(ofProperty: "serial") as Int? ?? 0
+        serial = serial == 0 ? 1 : serial + 1
+        
+        return serial
+    }
+    
+    func update(type: IssueType, to issue: Issue) {
+        do{
+            try realm?.write {
+                issue.type = type
+            }
+        }catch {
+            print(error)
+        }
+    }
 }

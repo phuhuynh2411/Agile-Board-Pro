@@ -73,4 +73,8 @@ class ColorController {
             print(error)
         }
     }
+    
+    func all()->Results<Color>? {
+        return realm?.objects(Color.self)
+    }
 }

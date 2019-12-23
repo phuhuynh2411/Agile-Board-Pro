@@ -97,7 +97,7 @@ class IssueDetailTableViewController: UITableViewController {
         
         setUpView()
         
-        updateView(components: [.project, .issueType, .summary, .description, .header, .status])
+        updateView(components: [.project, .issueType, .summary, .description, .header, .status, .issueId])
     }
     
     private func setUpView() {
@@ -115,6 +115,17 @@ class IssueDetailTableViewController: UITableViewController {
             displayTableViewCell(true)
         }
         
+        // Register project cell
+        registerCell(nibName: "ProjectTableViewCellv2", cellIdentifier: C.project)
+        // Register issue type cell
+        registerCell(nibName: "IssueTypeTableViewCellv2", cellIdentifier: C.issueType)
+        
+    }
+    
+    private func registerCell(nibName: String, cellIdentifier: String) {
+        // Register project cell
+        let nib = UINib(nibName: nibName, bundle: .main)
+        tableView.register(nib, forCellReuseIdentifier: cellIdentifier)
     }
     
     private func updateView(components: [ViewComponent], markAsModified: Bool = false) {
@@ -127,7 +138,7 @@ class IssueDetailTableViewController: UITableViewController {
         }
         
         // Update issue type
-        if components.contains(.issueType), let issueType = issue?.type?.name {
+        if isNew(), components.contains(.issueType), let issueType = issue?.type?.name {
             let typeButton = headerView?.typeButton
             typeButton?.isSelected = true
             typeButton?.setTitle(issueType, for: .selected)
@@ -169,6 +180,16 @@ class IssueDetailTableViewController: UITableViewController {
                 headerView.statusButton.backgroundColor = uiColor
                 // invert the text color based on the background color
                 headerView.statusButton.setTitleColor(UIColor().textColor(bgColor: uiColor), for: .normal)
+            }
+        }
+        
+        // Update Issue Id
+        if components.contains(.issueId) {
+            if let issueID = issue?.issueID {
+                headerView.issueIDLabel.text = issueID
+            }
+            if let imageName = issue?.type?.imageName {
+                headerView.typeImageView2.image = UIImage(named: imageName)
             }
         }
         
@@ -230,6 +251,11 @@ class IssueDetailTableViewController: UITableViewController {
         case .endDate:
             cell = tableView.dequeueReusableCell(withIdentifier: C.endDate)
             break
+        case .project:
+            cell = tableView.dequeueReusableCell(withIdentifier: C.project)
+            break
+        case .issueType:
+            cell = tableView.dequeueReusableCell(withIdentifier: C.issueType)
             
         default: break
         }
@@ -290,6 +316,22 @@ class IssueDetailTableViewController: UITableViewController {
                 endDateCell.endDateLabel.text = ""
             }
             endDateCell.updateCell()
+        }
+        
+        // Project cell
+        if let projectCell = cell as? ProjectTableViewCellv2 {
+            projectCell.nameLabel.text = project?.name
+            if let imageName = project?.icon?.name {
+                projectCell.iconImageView.image = UIImage(named: imageName)
+            }
+        }
+        
+        // Issue Type cell
+        if let issueTypeCell = cell as? IssueTypeTableViewCellv2 {
+            issueTypeCell.nameLabel.text = issue?.type?.name
+            if let imageName = issue?.type?.imageName {
+                issueTypeCell.iconImageView.image = UIImage(named: imageName)
+            }
         }
         
         return cell
@@ -375,6 +417,11 @@ class IssueDetailTableViewController: UITableViewController {
             cells?.append(.dueDate)
             cells?.append(.startDate)
             cells?.append(.endDate)
+            // Only add the folowing cells in edit mode
+            if !isNew() {
+                cells?.append(.project)
+                cells?.append(.issueType)
+            }
             
             tableView.reloadData()
         }
@@ -404,7 +451,7 @@ class IssueDetailTableViewController: UITableViewController {
     @IBAction func closeButtonPressed(_ sender: UIBarButtonItem) {
         // Prevents user lose entered data
         // Shows a popup to ask user whether they really want to discard the changes
-        if isModifed {
+        if isModifed, isNew() {
             let alertController = UIAlertController(title: "", message: "You added data to the form. Do you want to discard the changes? Select Cancel to keep working on it.", preferredStyle: .actionSheet)
             let discardAction = UIAlertAction(title: "Discard draft", style: .destructive) { (action) in
                 self.dismiss(animated: true, completion: nil)
@@ -555,6 +602,7 @@ extension IssueDetailTableViewController {
             let statusTableViewController = navigationController.topViewController as! StatusTableViewController
             statusTableViewController.statuses = project?.statuses
             statusTableViewController.selectedStatus = issue?.status
+            statusTableViewController.project = project
             statusTableViewController.delegate = self
             
             statusTrasitioningDelegate = StatusTransitioningDelegate()
@@ -578,9 +626,11 @@ extension IssueDetailTableViewController {
 
 extension IssueDetailTableViewController: SelectIssueTypeDelegate {
     
-    func didSelectIssueType(issueType: IssueType?) {
-        self.issue?.type = issueType
-        updateView(components: [.issueType], markAsModified: true)
+    func didSelectIssueType(issueType: IssueType) {
+        if let issue = issue{
+            IssueController.shared.update(type: issueType, to: issue)
+            updateView(components: [.issueType, .tableView], markAsModified: true)
+        }
     }
 }
 
@@ -630,6 +680,10 @@ extension IssueDetailTableViewController {
         else if cells?[indexPath.row] == .endDate {
             performSegue(withIdentifier: S.endDate, sender: self)
         }
+        // Tap on issue type cell
+        else if cells?[indexPath.row] == .issueType {
+            performSegue(withIdentifier: S.issueType, sender: self)
+        }
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -646,6 +700,10 @@ extension IssueDetailTableViewController {
         case .startDate:
             return 70
         case .endDate:
+            return 70
+        case .project:
+            return 70
+        case .issueType:
             return 70
             
         default:
@@ -724,12 +782,14 @@ class DateController: SelecteDateDelegate {
 extension IssueDetailTableViewController {
     
     private struct CellIdentifier {
-        static var prioriy = "PriorityCell"
-        static var attachment = "AttachmentCell"
-        static var collecion = "CollectionCell"
-        static var dueDate = "DueDateCell"
-        static var startDate = "StartDateCell"
-        static var endDate = "EndDateCell"
+        static let prioriy = "PriorityCell"
+        static let attachment = "AttachmentCell"
+        static let collecion = "CollectionCell"
+        static let dueDate = "DueDateCell"
+        static let startDate = "StartDateCell"
+        static let endDate = "EndDateCell"
+        static let project = "ProjectCell"
+        static let issueType = "IssueTypeCell"
     }
     private typealias C = CellIdentifier
     
@@ -740,6 +800,8 @@ extension IssueDetailTableViewController {
         case dueDate
         case startDate
         case endDate
+        case project
+        case issueType
     }
 
     private enum DateType {
@@ -778,6 +840,7 @@ extension IssueDetailTableViewController {
         case summary
         case description
         case status
+        case issueId
     }
 }
 
@@ -836,6 +899,6 @@ extension IssueDetailTableViewController: StatusDelegate {
 
 extension IssueDetailTableViewController: TextViewTableViewDelegate {
     func issueDidChange(issue: Issue) {
-        updateView(components: [.summary, .description], markAsModified: true)
+        updateView(components: [.summary, .description, .header], markAsModified: true)
     }
 }

@@ -256,7 +256,7 @@ extension AddIssueViewController: SelectProjectDelegate {
 
 extension AddIssueViewController: SelectIssueTypeDelegate {
     
-    func didSelectIssueType(issueType: IssueType?) {
+    func didSelectIssueType(issueType: IssueType) {
         self.selectedIssueType = issueType
                 
         updateUI()

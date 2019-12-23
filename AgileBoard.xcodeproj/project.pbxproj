@@ -12,6 +12,9 @@
 		840409BC239173070006829F /* IconCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840409BB239173070006829F /* IconCollectionViewCell.swift */; };
 		8408E50E23A9DEE3004A859C /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8408E50D23A9DEE3004A859C /* UIView+Extension.swift */; };
 		841B42F223844275000871F6 /* IssueCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841B42F123844275000871F6 /* IssueCollectionViewFlowLayout.swift */; };
+		841CEDDC23AC62E900D90369 /* IssueControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841CEDDB23AC62E900D90369 /* IssueControllerTest.swift */; };
+		841CEDDF23AC853C00D90369 /* ProjectTableViewCellv2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841CEDDD23AC853C00D90369 /* ProjectTableViewCellv2.swift */; };
+		841CEDE023AC853C00D90369 /* ProjectTableViewCellv2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841CEDDE23AC853C00D90369 /* ProjectTableViewCellv2.xib */; };
 		841D97A9238E674300483928 /* AppNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841D97A8238E674300483928 /* AppNavigationController.swift */; };
 		841D97AB238E685200483928 /* AppNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841D97AA238E685200483928 /* AppNavigationBar.swift */; };
 		8420628C237AFD7E0076CDAC /* Issue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8420628B237AFD7E0076CDAC /* Issue.swift */; };
@@ -28,6 +31,7 @@
 		84299FD723990BB800432A66 /* AttachmentCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84299FD623990BB800432A66 /* AttachmentCollectionViewController.swift */; };
 		842D75C623AA2E8500193812 /* UITextView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842D75C523AA2E8500193812 /* UITextView+Extension.swift */; };
 		842FDD7623A1432B0038A796 /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842FDD7523A1432B0038A796 /* Animations.swift */; };
+		8438256023B057C200C506B9 /* StatusRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8438255F23B057C200C506B9 /* StatusRule.swift */; };
 		843BF016239A4C9C005F798D /* AttachmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843BF015239A4C9C005F798D /* AttachmentTableViewCell.swift */; };
 		843BF018239A61EE005F798D /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843BF017239A61EE005F798D /* PhotoViewController.swift */; };
 		843C58C52390FFB600F5FAB5 /* ProjectIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843C58C42390FFB600F5FAB5 /* ProjectIcon.swift */; };
@@ -70,6 +74,8 @@
 		847A78142387758F00911851 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847A78132387758F00911851 /* Project.swift */; };
 		847A781623877FB500911851 /* Column.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847A781523877FB500911851 /* Column.swift */; };
 		847A781823878AEC00911851 /* ProjectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847A781723878AEC00911851 /* ProjectController.swift */; };
+		847DD06123ACAA5E001AF6BD /* IssueTypeTableViewCellv2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847DD05F23ACAA5E001AF6BD /* IssueTypeTableViewCellv2.swift */; };
+		847DD06223ACAA5E001AF6BD /* IssueTypeTableViewCellv2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 847DD06023ACAA5E001AF6BD /* IssueTypeTableViewCellv2.xib */; };
 		847FD53723A0F49900399145 /* DragAttachmentItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847FD53623A0F49900399145 /* DragAttachmentItem.swift */; };
 		848FCEB22397980E00CD6334 /* IssueDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 848FCEB12397980E00CD6334 /* IssueDetailHeaderView.xib */; };
 		848FCEB42397985100CD6334 /* IssueDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848FCEB32397985100CD6334 /* IssueDetailHeaderView.swift */; };
@@ -99,6 +105,9 @@
 		84F49ABC238E4D04002B8B93 /* AssigneeImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F49ABB238E4D04002B8B93 /* AssigneeImageView.swift */; };
 		84F56A05237C5B56007E6C68 /* UIColor+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F56A04237C5B56007E6C68 /* UIColor+Extention.swift */; };
 		84F5FF9C238538FB00F2E966 /* DragIssueItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F5FF9B238538FB00F2E966 /* DragIssueItem.swift */; };
+		84FA5A5323ACB44D003CDD65 /* StatusDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA5A5223ACB44D003CDD65 /* StatusDetailViewController.swift */; };
+		84FA5A5523ACB6F4003CDD65 /* ColorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA5A5423ACB6F4003CDD65 /* ColorCollectionViewCell.swift */; };
+		8A40E46566E0F1F02B43E550 /* Pods_AgileBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8470DBBF2395FB8E00B146BD /* Pods_AgileBoard.framework */; };
 		F9C8AE98AB57360C36ADD4AE /* Pods_AgileBoardTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 631EB82B934CE67D5CF381F4 /* Pods_AgileBoardTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -126,6 +135,9 @@
 		840409BB239173070006829F /* IconCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconCollectionViewCell.swift; sourceTree = "<group>"; };
 		8408E50D23A9DEE3004A859C /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		841B42F123844275000871F6 /* IssueCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		841CEDDB23AC62E900D90369 /* IssueControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueControllerTest.swift; sourceTree = "<group>"; };
+		841CEDDD23AC853C00D90369 /* ProjectTableViewCellv2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTableViewCellv2.swift; sourceTree = "<group>"; };
+		841CEDDE23AC853C00D90369 /* ProjectTableViewCellv2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectTableViewCellv2.xib; sourceTree = "<group>"; };
 		841D97A8238E674300483928 /* AppNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigationController.swift; sourceTree = "<group>"; };
 		841D97AA238E685200483928 /* AppNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigationBar.swift; sourceTree = "<group>"; };
 		8420628B237AFD7E0076CDAC /* Issue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Issue.swift; sourceTree = "<group>"; };
@@ -142,6 +154,7 @@
 		84299FD623990BB800432A66 /* AttachmentCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentCollectionViewController.swift; sourceTree = "<group>"; };
 		842D75C523AA2E8500193812 /* UITextView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Extension.swift"; sourceTree = "<group>"; };
 		842FDD7523A1432B0038A796 /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
+		8438255F23B057C200C506B9 /* StatusRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusRule.swift; sourceTree = "<group>"; };
 		843BF015239A4C9C005F798D /* AttachmentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentTableViewCell.swift; sourceTree = "<group>"; };
 		843BF017239A61EE005F798D /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		843C58C42390FFB600F5FAB5 /* ProjectIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectIcon.swift; sourceTree = "<group>"; };
@@ -194,6 +207,8 @@
 		847A78132387758F00911851 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		847A781523877FB500911851 /* Column.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Column.swift; sourceTree = "<group>"; };
 		847A781723878AEC00911851 /* ProjectController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectController.swift; sourceTree = "<group>"; };
+		847DD05F23ACAA5E001AF6BD /* IssueTypeTableViewCellv2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IssueTypeTableViewCellv2.swift; path = ../IssueTypeTableViewCellv2.swift; sourceTree = "<group>"; };
+		847DD06023ACAA5E001AF6BD /* IssueTypeTableViewCellv2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IssueTypeTableViewCellv2.xib; sourceTree = "<group>"; };
 		847FD53623A0F49900399145 /* DragAttachmentItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragAttachmentItem.swift; sourceTree = "<group>"; };
 		848FCEB12397980E00CD6334 /* IssueDetailHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IssueDetailHeaderView.xib; sourceTree = "<group>"; };
 		848FCEB32397985100CD6334 /* IssueDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetailHeaderView.swift; sourceTree = "<group>"; };
@@ -224,6 +239,8 @@
 		84F49ABB238E4D04002B8B93 /* AssigneeImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssigneeImageView.swift; sourceTree = "<group>"; };
 		84F56A04237C5B56007E6C68 /* UIColor+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIColor+Extention.swift"; path = "AgileBoard/View/UIColor+Extention.swift"; sourceTree = SOURCE_ROOT; };
 		84F5FF9B238538FB00F2E966 /* DragIssueItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragIssueItem.swift; sourceTree = "<group>"; };
+		84FA5A5223ACB44D003CDD65 /* StatusDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusDetailViewController.swift; sourceTree = "<group>"; };
+		84FA5A5423ACB6F4003CDD65 /* ColorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCollectionViewCell.swift; sourceTree = "<group>"; };
 		9A81CE3668EF1D469EACE232 /* Pods-AgileBoard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgileBoard.release.xcconfig"; path = "Target Support Files/Pods-AgileBoard/Pods-AgileBoard.release.xcconfig"; sourceTree = "<group>"; };
 		A2F83FB1AE62F811DF0DB076 /* Pods-AgileBoardTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgileBoardTests.debug.xcconfig"; path = "Target Support Files/Pods-AgileBoardTests/Pods-AgileBoardTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C50DE2C26859733515BCE587 /* Pods-AgileBoard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgileBoard.debug.xcconfig"; path = "Target Support Files/Pods-AgileBoard/Pods-AgileBoard.debug.xcconfig"; sourceTree = "<group>"; };
@@ -236,6 +253,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B4C0C8507FD361917057F21 /* Pods_AgileBoard.framework in Frameworks */,
+				8A40E46566E0F1F02B43E550 /* Pods_AgileBoard.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,6 +332,7 @@
 				84E0E0C023A8B8E70057A360 /* Board */,
 				841D97A8238E674300483928 /* AppNavigationController.swift */,
 				84ACC2F823AB6BC3004B5281 /* IssueDetail */,
+				84FA5A5223ACB44D003CDD65 /* StatusDetailViewController.swift */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -324,6 +343,8 @@
 				843C8989237AE7460050586E /* Main.storyboard */,
 				843C898E237AE7480050586E /* LaunchScreen.storyboard */,
 				848FCEB12397980E00CD6334 /* IssueDetailHeaderView.xib */,
+				841CEDDE23AC853C00D90369 /* ProjectTableViewCellv2.xib */,
+				847DD06023ACAA5E001AF6BD /* IssueTypeTableViewCellv2.xib */,
 				84206291237AFED20076CDAC /* Custom Cell */,
 				8458B442237CF98500D6D473 /* ShadowView.swift */,
 				841B42F123844275000871F6 /* IssueCollectionViewFlowLayout.swift */,
@@ -385,6 +406,9 @@
 				843BF015239A4C9C005F798D /* AttachmentTableViewCell.swift */,
 				846685F2239F4BCB0033BA1E /* AddIssueCollectionTableViewCell.swift */,
 				8426581C23AB2F6E00061748 /* StatusTableViewCell.swift */,
+				841CEDDD23AC853C00D90369 /* ProjectTableViewCellv2.swift */,
+				847DD05F23ACAA5E001AF6BD /* IssueTypeTableViewCellv2.swift */,
+				84FA5A5423ACB6F4003CDD65 /* ColorCollectionViewCell.swift */,
 			);
 			path = "Custom Cell";
 			sourceTree = "<group>";
@@ -479,6 +503,7 @@
 		84B3010B2394BF0300D4BBA8 /* AgileBoardTests */ = {
 			isa = PBXGroup;
 			children = (
+				841CEDDB23AC62E900D90369 /* IssueControllerTest.swift */,
 				8462567823A4968900600F0F /* AddIssueTableViewControllerTest.swift */,
 				84B3010C2394BF0300D4BBA8 /* AddProjecTableViewControllerTests.swift */,
 				84B3010E2394BF0300D4BBA8 /* Info.plist */,
@@ -511,6 +536,7 @@
 				84E59161239251A2006FBA5E /* ProjectNameTextField.swift */,
 				84E5916523925C86006FBA5E /* ProjectKeyTextField.swift */,
 				84E59163239253D3006FBA5E /* ValidatorError.swift */,
+				8438255F23B057C200C506B9 /* StatusRule.swift */,
 			);
 			path = Validator;
 			sourceTree = "<group>";
@@ -527,6 +553,7 @@
 				843C897D237AE7460050586E /* Frameworks */,
 				843C897E237AE7460050586E /* Resources */,
 				D7AA17458AC21CB5EF08EA29 /* [CP] Embed Pods Frameworks */,
+				84709D4F23AF854600E3B539 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -624,10 +651,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				8442DC3C237E7B92008C88C6 /* IssueCollectionViewCell.xib in Resources */,
+				847DD06223ACAA5E001AF6BD /* IssueTypeTableViewCellv2.xib in Resources */,
 				8442DC40237E7DF8008C88C6 /* IssueTableViewCell.xib in Resources */,
 				843C8990237AE7480050586E /* LaunchScreen.storyboard in Resources */,
 				843C898D237AE7480050586E /* Assets.xcassets in Resources */,
 				843C898B237AE7460050586E /* Main.storyboard in Resources */,
+				841CEDE023AC853C00D90369 /* ProjectTableViewCellv2.xib in Resources */,
 				848FCEB22397980E00CD6334 /* IssueDetailHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -689,6 +718,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AgileBoardTests/Pods-AgileBoardTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		84709D4F23AF854600E3B539 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nTAGS=\"TODO:|FIXME:\"\nERRORTAG=\"ERROR:\"\nfind \"${SRCROOT}/AgileBoard\" \\( -name \"*.h\" -or -name \"*.m\" -or -name \"*.swift\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$|($ERRORTAG).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\" | perl -p -e \"s/($ERRORTAG)/ error: \\$1/\"\n";
+		};
 		D7AA17458AC21CB5EF08EA29 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -735,12 +781,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84FA5A5523ACB6F4003CDD65 /* ColorCollectionViewCell.swift in Sources */,
 				8458B443237CF98500D6D473 /* ShadowView.swift in Sources */,
 				840409BA239171290006829F /* IconCollectionViewController.swift in Sources */,
+				8438256023B057C200C506B9 /* StatusRule.swift in Sources */,
 				842FDD7623A1432B0038A796 /* Animations.swift in Sources */,
 				843C58C92391049400F5FAB5 /* AppDataController.swift in Sources */,
 				841B42F223844275000871F6 /* IssueCollectionViewFlowLayout.swift in Sources */,
 				843BF016239A4C9C005F798D /* AttachmentTableViewCell.swift in Sources */,
+				84FA5A5323ACB44D003CDD65 /* StatusDetailViewController.swift in Sources */,
 				847A78122387745D00911851 /* Board.swift in Sources */,
 				84F56A05237C5B56007E6C68 /* UIColor+Extention.swift in Sources */,
 				845227CF238CFC61000607A8 /* IssueCollectionViewController.swift in Sources */,
@@ -767,6 +816,7 @@
 				8490889723A1D75500D5DD96 /* DueDateTableViewCell.swift in Sources */,
 				84DB1E02237B0EFA008BB31A /* IssueTableView.swift in Sources */,
 				843C8984237AE7460050586E /* AppDelegate.swift in Sources */,
+				847DD06123ACAA5E001AF6BD /* IssueTypeTableViewCellv2.swift in Sources */,
 				840409BC239173070006829F /* IconCollectionViewCell.swift in Sources */,
 				84BF40C1237D47C800600AE7 /* UIPanGestureRecognizer+Extension.swift in Sources */,
 				8421F66B23974D3C001DF5D9 /* PriorityRowView.swift in Sources */,
@@ -812,6 +862,7 @@
 				847A781623877FB500911851 /* Column.swift in Sources */,
 				84E59162239251A2006FBA5E /* ProjectNameTextField.swift in Sources */,
 				842686F623995F4D00B981D7 /* AttachmentController.swift in Sources */,
+				841CEDDF23AC853C00D90369 /* ProjectTableViewCellv2.swift in Sources */,
 				841D97AB238E685200483928 /* AppNavigationBar.swift in Sources */,
 				84C340E42388361D00C65AC9 /* ProjectTableViewController.swift in Sources */,
 				847A78142387758F00911851 /* Project.swift in Sources */,
@@ -832,6 +883,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84B3010D2394BF0300D4BBA8 /* AddProjecTableViewControllerTests.swift in Sources */,
+				841CEDDC23AC62E900D90369 /* IssueControllerTest.swift in Sources */,
 				8462567923A4968900600F0F /* AddIssueTableViewControllerTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -15,6 +15,7 @@ class Issue: Object {
     @objc dynamic var assignee: String?
     @objc dynamic var orderNumber: Int = 0
     @objc dynamic var issueDescription = ""
+    @objc dynamic var serial: Int = 0
     
     // A issue belongs to either one or more projects
     let projectOwners = LinkingObjects(fromType: Project.self, property: "issues")
@@ -35,6 +36,10 @@ class Issue: Object {
     @objc dynamic var dueDate: Date?
     @objc dynamic var startDate: Date?
     @objc dynamic var endDate: Date?
+    
+    var issueID: String {
+        return "\(projectOwners.first?.key ?? "")-\(serial)"
+    }
     
     static func incrementID() -> Int {
         
