@@ -60,13 +60,11 @@ class BoardViewController: UIViewController {
     
     func showHidePageControl() {
         
-        // Portrait mode
-        if UIDevice.current.orientation.isPortrait {
-            pageControl.setVisible(state: true, with: 37)
-        }
-        // Landscape mode
-        else {
+        if UIDevice.current.orientation.isLandscape {
             pageControl.setVisible(state: false, with: 10)
+        }
+        else {
+            pageControl.setVisible(state: true, with: 37)
         }
     }
     
@@ -75,11 +73,11 @@ class BoardViewController: UIViewController {
      */
     func adjustPaging() {
         
-        if UIDevice.current.orientation.isPortrait {
-            collectionView.isPagingEnabled = true
+        if UIDevice.current.orientation.isLandscape {
+            collectionView.isPagingEnabled = false
         }
         else {
-            collectionView.isPagingEnabled = false
+            collectionView.isPagingEnabled = true
         }
     }
     

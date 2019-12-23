@@ -67,10 +67,35 @@ extension IssueCollectionViewController {
         guard !UIDevice.current.orientation.isLandscape else { return }
         
         // Re-calculate the paging
-        let pageWidth = scrollView.frame.size.width
-        let pageNumber: Int = Int(floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1)
+//        let pageWidth = scrollView.frame.size.width
+//        let pageNumber: Int = Int(floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1)
+//
+//        let newX = CGFloat(pageNumber) * pageWidth - CGFloat(30 * pageNumber)
+//
+//        let rect = CGRect(x: newX, y: 0, width: scrollView.frame.width, height: scrollView.frame.height)
+//        scrollView.scrollRectToVisible(rect, animated: true)
         
-        let newX = CGFloat(pageNumber) * pageWidth - CGFloat(30 * pageNumber)
+        let pageWidth = scrollView.frame.size.width
+        var pageNumber: Int = Int(floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1)
+        
+        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        
+        let cellWidth = layout.itemSize.width
+        let spacing = layout.minimumLineSpacing
+        let numberOfCells = Int(pageWidth/(cellWidth + spacing))
+        
+        let totalCellWidth = CGFloat(numberOfCells) * cellWidth
+        let totalSpacing = CGFloat(numberOfCells ) * spacing
+
+        // Scroll left
+        if scrollView.panGestureRecognizer.translation(in: scrollView.superview).x > 0 {
+            pageNumber -= 1
+        }
+        // Scroll right
+        else {
+            pageNumber += 1
+        }
+        let newX = CGFloat(pageNumber) * (totalSpacing + totalCellWidth)
         
         let rect = CGRect(x: newX, y: 0, width: scrollView.frame.width, height: scrollView.frame.height)
         scrollView.scrollRectToVisible(rect, animated: true)
