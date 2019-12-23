@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import SwipeCellKit
 
 protocol StatusDelegate {
     func didSelectStatus(status: Status)
@@ -17,6 +18,7 @@ class StatusTableViewController: UITableViewController {
     
     var statuses: List<Status>?
     var selectedStatus: Status?
+    var currentStatus: Status?
     var project: Project?
     
     // Delegate
@@ -54,6 +56,14 @@ class StatusTableViewController: UITableViewController {
             statusDetailViewController.delegate = self
             statusDetailViewController.project  = project
         }
+        else if segue.identifier == S.editStatusDetail {
+            let nav = segue.destination as! UINavigationController
+            let statusDetailViewController = nav.topViewController as! StatusDetailViewController
+            
+            statusDetailViewController.delegate = self
+            statusDetailViewController.project  = project
+            statusDetailViewController.status = currentStatus
+        }
     }
     
     // MARK: - UITableView Datasource
@@ -64,6 +74,8 @@ class StatusTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "StatusCell") as! StatusTableViewCell
+        cell.delegate = self
+        
         let status = statuses?[indexPath.row]
         cell.statusNameLabel.text = status?.name
         if let color = status?.color {
@@ -103,8 +115,9 @@ extension StatusTableViewController: StatusDetailDelegate {
     }
     
     func didModifyStatus(status: Status) {
-        if let selectedStatus = selectedStatus {
-            StatusController.shared.update(status: status, toStatus: selectedStatus)
+        if let currentStatus = currentStatus {
+            StatusController.shared.update(status: currentStatus, toStatus: status)
+            tableView.reloadData()
         }
     }
 }
@@ -113,6 +126,33 @@ extension StatusTableViewController: StatusDetailDelegate {
 extension StatusTableViewController {
     struct SegueIdentifier {
         static let statusDetail = "StatusDetailControllerSegue"
+        static let editStatusDetail = "StatusDetailControllerEditSegue"
     }
     typealias S = SegueIdentifier
+}
+
+// MARK: - SwipeTableViewCellDelegate
+
+extension StatusTableViewController: SwipeTableViewCellDelegate {
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        
+        var action: SwipeAction!
+
+        if orientation == .right {
+            action = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
+                // TODO: handle action by updating model with deletion
+            }
+        }
+        else if orientation == .left {
+            // Edit cell
+            action = SwipeAction(style: .default, title: "Edit") { action, indexPath in
+                self.currentStatus = self.statuses?[indexPath.row]
+                self.performSegue(withIdentifier: S.editStatusDetail, sender: self)
+            }
+        }
+        
+        return [action]
+    }
+    
 }

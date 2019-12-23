@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import SwipeCellKit
 
-class StatusTableViewCell: UITableViewCell {
+class StatusTableViewCell: SwipeTableViewCell {
     
     @IBOutlet weak var statusImageView: UIImageView!
     @IBOutlet weak var statusNameLabel: UILabel!

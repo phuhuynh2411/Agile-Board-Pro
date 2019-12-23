@@ -34,6 +34,8 @@ class StatusDetailViewController: UIViewController {
     let validator = Validator()
     
     var delegate: StatusDetailDelegate?
+    
+    //var pageNumber: CGFloat = 0
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,9 +44,6 @@ class StatusDetailViewController: UIViewController {
         collectionView.delegate = self
         
         colors = ColorController.shared.all()
-        
-        // Select first color
-        selectFirstColor()
         
         // Set the status text view as the first responder
         statusTextField.becomeFirstResponder()
@@ -59,8 +58,24 @@ class StatusDetailViewController: UIViewController {
         
         // Rename Done button to add if selected color is empty
         // User adds a new color
-        if selectedColor == nil {
+        if isNew(){
             navigationItem.rightBarButtonItem?.title = "Add"
+            // Select first color
+            selectFirstColor()
+        }else {
+            navigationItem.rightBarButtonItem?.title = "Save"
+            
+            // Load status name if user is modifying an existing status
+            if let status = status {
+                statusTextField.text = status.name
+                selectedColor = status.color
+            }
+            
+            let predicate = NSPredicate(format: "id == %@", status?.color?.id ?? "" )
+            if let colorIndex = colors?.index(matching: predicate) {
+                let indexPath = IndexPath(row: colorIndex, section: 0)
+                collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+            }
         }
     }
     
@@ -120,7 +135,14 @@ class StatusDetailViewController: UIViewController {
     
     private func registerForValidation() {
         if let project = project {
-            validator.registerField(statusTextField, errorLabel: errorLabel, rules: [RequiredRule(), StatusRule(project: project)])
+            var rules: [Rule] = [RequiredRule()]
+            let statusRule = StatusRule(project: project)
+            if !isNew() {
+                statusRule.status = status
+            }
+            rules.append(statusRule)
+            
+            validator.registerField(statusTextField, errorLabel: errorLabel, rules: rules)
         }
     }
 
@@ -173,6 +195,7 @@ extension StatusDetailViewController: UICollectionViewDelegate {
         }
         
         updateView(markAsModified: true)
+        validator.validate(self)
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
@@ -184,11 +207,9 @@ extension StatusDetailViewController: UICollectionViewDelegate {
     private func highlightView(for cell: UICollectionViewCell, at indexPath: IndexPath) -> UIView {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .gray
+        view.backgroundColor = .white
         view.layer.cornerRadius = 10.0
         view.clipsToBounds = true
-        view.layer.borderWidth = 1
-        view.layer.borderColor = UIColor.white.cgColor
         view.tag = 1
         
         cell.addSubview(view)
@@ -207,6 +228,41 @@ extension StatusDetailViewController: UICollectionViewDelegate {
                 view.removeFromSuperview()
             }
         }
+    }
+    
+    // MARK: UIScrollView Delegate
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        // Stop scrollView sliding:
+        targetContentOffset.pointee = scrollView.contentOffset
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        
+        let pageWidth = scrollView.frame.size.width
+        var pageNumber: Int = Int(floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1)
+        
+        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        
+        let cellWidth = layout.itemSize.width
+        let spacing = layout.minimumLineSpacing
+        let numberOfCells = Int(pageWidth/(cellWidth + spacing))
+        
+        let totalCellWidth = CGFloat(numberOfCells) * cellWidth
+        let totalSpacing = CGFloat(numberOfCells ) * spacing
+
+        // Scroll left
+        if scrollView.panGestureRecognizer.translation(in: scrollView.superview).x > 0 {
+            pageNumber -= 1
+        }
+        // Scroll right
+        else {
+            pageNumber += 1
+        }
+        let newX = CGFloat(pageNumber) * (totalSpacing + totalCellWidth)
+        
+        let rect = CGRect(x: newX, y: 0, width: scrollView.frame.width, height: scrollView.frame.height)
+        scrollView.scrollRectToVisible(rect, animated: true)
     }
 }
 

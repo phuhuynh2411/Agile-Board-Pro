@@ -1333,6 +1333,7 @@
                     </navigationItem>
                     <connections>
                         <segue destination="kAn-88-hfw" kind="presentation" identifier="StatusDetailControllerSegue" modalPresentationStyle="overFullScreen" id="GTU-B0-RCW"/>
+                        <segue destination="kAn-88-hfw" kind="presentation" identifier="StatusDetailControllerEditSegue" modalPresentationStyle="overFullScreen" id="dqX-dl-iul"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fqH-CV-Q7U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1534,7 +1535,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WMp-RA-rYw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4590" y="2171"/>
+            <point key="canvasLocation" x="4590" y="2281"/>
         </scene>
     </scenes>
     <resources>
@@ -1545,6 +1546,7 @@
         <image name="priority_lowest" width="12" height="10"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="dqX-dl-iul"/>
         <segue reference="U2G-ij-VVg"/>
         <segue reference="kzU-CZ-19t"/>
     </inferredMetricsTieBreakers>

@@ -11,6 +11,7 @@ import SwiftValidator
 
 class StatusRule: Rule {
     var project: Project
+    var status: Status?
     
     init(project: Project) {
         self.project = project
@@ -19,9 +20,10 @@ class StatusRule: Rule {
      If project already contains the project name, the validation will be failed; otherwise true.
      */
     func validate(_ value: String) -> Bool {
-        return !project.statuses.contains { (status) -> Bool in
+        let validate =  !project.statuses.contains { (status) -> Bool in
             status.name == value
         }
+        return value == status?.name ? true : validate
     }
     
     func errorMessage() -> String {
