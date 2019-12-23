@@ -141,7 +141,10 @@ extension StatusTableViewController: SwipeTableViewCellDelegate {
 
         if orientation == .right {
             action = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
-                // TODO: handle action by updating model with deletion
+                if let status = self.statuses?[indexPath.row] {
+                    self.currentStatus = status
+                    self.delete(status: status, at: indexPath)
+                }
             }
         }
         else if orientation == .left {
@@ -153,6 +156,28 @@ extension StatusTableViewController: SwipeTableViewCellDelegate {
         }
         
         return [action]
+    }
+    
+    private func delete(status: Status, at indexPath: IndexPath) {
+        if let project = self.project, !isUsed(status: status){
+            ProjectController.shared.removeStatus(at: indexPath.row, in: project)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }else {
+            let alertController = UIAlertController(title: "Warning", message: "You cannot delete the status because it is in use. Please change all related issues to another one and try again.", preferredStyle: .actionSheet)
+            let cancelAction = UIAlertAction(title: "OK", style: .default) { (action) in
+    
+            }
+            alertController.addAction(cancelAction)
+            
+            present(alertController, animated: true, completion: nil)
+        }
+    }
+    
+    // If the status is not in any issue, return true; otherwise, false
+    func isUsed(status: Status)->Bool {
+        return project!.issues.contains(where: { (issue) -> Bool in
+            issue.status?.id == status.id
+        })
     }
     
 }

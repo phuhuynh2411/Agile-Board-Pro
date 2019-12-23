@@ -266,5 +266,15 @@ class ProjectController {
         return max
     }
     
+    func removeStatus(at index: Int, in project: Project) {
+        do{
+            try realm.write {
+                project.statuses.remove(at: index)
+            }
+        }catch{
+            print(error)
+        }
+    }
+    
 }
 
