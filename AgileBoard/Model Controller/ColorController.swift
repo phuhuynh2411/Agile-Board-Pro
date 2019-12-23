@@ -14,6 +14,10 @@ class ColorController {
     
     static var shared = ColorController()
     
+    let todoHexColor = "#3498db"
+    let inprogressHexColor = "#f1c40f"
+    let doneHexColor = "#27ae60"
+    
     init() {
         do{
             realm = try Realm()
@@ -67,6 +71,13 @@ class ColorController {
                 realm?.add(Color(value: ["hexColor": "#9bb7d4"]))
                 realm?.add(Color(value: ["hexColor": "#c74375"]))
                 realm?.add(Color(value: ["hexColor": "#bf1932"]))
+                
+                // Todo
+                realm?.add(Color(value: ["hexColor": todoHexColor]))
+                // In progress
+                realm?.add(Color(value: ["hexColor": inprogressHexColor]))
+                // Done
+                realm?.add(Color(value: ["hexColor": doneHexColor]))
 
             }
         }catch{
@@ -77,4 +88,23 @@ class ColorController {
     func all()->Results<Color>? {
         return realm?.objects(Color.self)
     }
+    
+    func todoColor()->Color {
+        return (realm?.objects(Color.self).filter({ (color) -> Bool in
+            color.hexColor == self.todoHexColor
+        }).first)!
+    }
+    
+    func inprogressColor()->Color {
+        return (realm?.objects(Color.self).filter({ (color) -> Bool in
+            color.hexColor == self.inprogressHexColor
+        }).first)!
+    }
+    
+    func doneColor()->Color {
+        return (realm?.objects(Color.self).filter({ (color) -> Bool in
+            color.hexColor == self.doneHexColor
+        }).first)!
+    }
+    
 }

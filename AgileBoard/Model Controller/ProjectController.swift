@@ -52,22 +52,18 @@ class ProjectController {
 
         let todo = Status()
         todo.name = "TO DO"
-        todo.color = Color(value: ["hexColor": "#3498DB"])
+        todo.color = ColorController.shared.todoColor()
         let inprogress = Status()
         inprogress.name = "IN PROGRESS"
-        inprogress.color = Color(value: ["hexColor": "#F1C40F"])
+        inprogress.color = ColorController.shared.inprogressColor()
         let done = Status()
         done.name = "DONE"
-        done.color = Color(value: ["hexColor": "#27AE60"])
-        let completed = Status()
-        completed.name = "COMPLETED"
-        completed.color = Color(value: ["hexColor": "#9bb7d4"])
+        done.color = ColorController.shared.doneColor()
         
         // Add statuses to project
         project.statuses.append(todo)
         project.statuses.append(inprogress)
         project.statuses.append(done)
-        project.statuses.append(completed)
         
         let issueType1 = IssueType()
         issueType1.name = "Story"
@@ -112,20 +108,8 @@ class ProjectController {
         issue6.orderNumber = 5
         issue6.type = issueType1
         
-        let issue7 = Issue()
-        issue7.summary = "Cras mattis consectetur purus sit amet fermentum."
-        issue7.status = completed
-        issue7.orderNumber = 6
-        issue7.type = issueType1
-        
-        let issue8 = Issue()
-        issue8.summary = "Vestibulum id ligula porta felis euismod semper."
-        issue8.status = completed
-        issue8.orderNumber = 7
-        issue8.type = issueType1
-        
         // 4. Add issues to the project
-        let issues = [issue1, issue2, issue3, issue4, issue5, issue6, issue7, issue8]
+        let issues = [issue1, issue2, issue3, issue4, issue5, issue6]
         add(issues: issues, to: project)
         
         // 5. Create columns
@@ -141,17 +125,12 @@ class ProjectController {
         column3.name = "DONE"
         column3.status = done
         
-        let column4 = Column()
-        column4.name = "COMPLETED"
-        column4.status = completed
-        
         // 6. Create board
         let board = Board()
         board.name = "Default Board"
         board.columns.append(column1)
         board.columns.append(column2)
         board.columns.append(column3)
-        board.columns.append(column4)
         
         // 7. Add board to the project
         add(board: board, to: project)
