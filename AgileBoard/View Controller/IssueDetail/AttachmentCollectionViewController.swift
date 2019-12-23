@@ -154,7 +154,6 @@ class AttachmentCollectionViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        print("Did select row at index path \(indexPath)")
         selectedAttachment = attachments?[indexPath.row]
         let nav = topController?.navigationController
         let storyBoardInstant = UIStoryboard(name: "Main", bundle: .main)
@@ -174,25 +173,13 @@ extension AttachmentCollectionViewController: UIImagePickerControllerDelegate, U
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         let attachment = Attachment()
+
+        let originalImage = info[.originalImage] as! UIImage
+        // Save the selected image to temporary folder
+        attachment.name = attachment.id
+        guard let stringURL = AttachmentController.shared.saveToDocumentFolder(image: originalImage, name: attachment.name)?.absoluteString else { return }
+        attachment.url = stringURL
         
-        // Selected a photo from the Photo Library
-        if let imageURL = info[.imageURL] as? NSURL {
-            let stringURL = imageURL.absoluteString
-            let imageName = imageURL.lastPathComponent ?? "unknow.jpg"
-            
-            
-            attachment.name = imageName
-            attachment.url = stringURL!
-        }
-        // Captured a photo from camera
-        else {
-            let originalImage = info[.originalImage] as! UIImage
-            // Save the captured image to temporary folder
-            let attachment = Attachment()
-            attachment.name = attachment.id
-            let stringURL = AttachmentController.shared.cache(image: originalImage, name: attachment.name)?.absoluteString
-            attachment.url = stringURL!
-        }
         delegate?.didAddAttachment(attachment: attachment)
         
         collectionView.reloadData()

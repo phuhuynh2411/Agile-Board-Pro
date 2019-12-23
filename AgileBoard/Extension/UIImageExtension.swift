@@ -13,8 +13,8 @@ extension UIImage {
     
     static func image(filePath: String) -> UIImage? {
         if let url = URL(string: filePath) {
-            let data = try? Data(contentsOf: url)
-            return UIImage(data: data!)
+            guard let data = try? Data(contentsOf: url) else { return nil }
+            return UIImage(data: data)
         }
        
         return nil

@@ -59,11 +59,11 @@ class StatusDetailViewController: UIViewController {
         // Rename Done button to add if selected color is empty
         // User adds a new color
         if isNew(){
-            navigationItem.rightBarButtonItem?.title = "Add"
+            navigationItem.rightBarButtonItem?.title = "Create"
             // Select first color
             selectFirstColor()
         }else {
-            navigationItem.rightBarButtonItem?.title = "Save"
+            navigationItem.rightBarButtonItem?.title = "Done"
             
             // Load status name if user is modifying an existing status
             if let status = status {

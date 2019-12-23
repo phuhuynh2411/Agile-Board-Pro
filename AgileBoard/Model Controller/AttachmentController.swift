@@ -80,4 +80,53 @@ class AttachmentController {
         return fileURL
     }
     
+    func saveToDocumentFolder(image: UIImage, name: String) -> URL? {
+    
+        let fileURL = attachmentFolderPath.appendingPathComponent(name).appendingPathExtension("jpeg")
+        let jpegData = image.jpegData(compressionQuality: 1.0)
+        
+        // Write the image to the fileURL
+        do{
+            try jpegData?.write(to: fileURL)
+            print("The image was saved at path \(fileURL.absoluteString)")
+        }catch {
+            print("Image was not saved with error \(error)")
+            return nil
+        }
+        return fileURL
+    }
+    
+    /**
+     Move the attachment from a temporary folder into the document folder
+     */
+    func document(attachment: Attachment, completion: (_ error: Error?)->Void) {
+        
+        let fileManager = FileManager()
+        
+        // Create the folder if it does not exist
+        if !fileManager.fileExists(atPath: attachmentFolderPath.absoluteString) {
+            do {
+                try fileManager.createDirectory(at: attachmentFolderPath, withIntermediateDirectories: true, attributes: nil)
+                print("attachments folder was created.")
+            } catch {
+                print("attachment folder was not created with error: \(error)")
+            }
+        }
+        
+        let fileURL = attachmentFolderPath.appendingPathComponent(attachment.id).appendingPathExtension("jpeg")
+        let newFile = fileURL.path
+        let oldFile = tempFolderPath.appendingPathComponent(attachment.id).appendingPathExtension("jpeg").path
+                
+        do{
+            try fileManager.moveItem(atPath: oldFile, toPath: newFile)
+            try realm?.write {
+                attachment.url = fileURL.absoluteString
+            }
+            completion(nil)
+        }catch{
+            print(error)
+            completion(error)
+        }
+    }
+    
 }

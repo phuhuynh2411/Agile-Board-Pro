@@ -413,12 +413,12 @@ class IssueDetailTableViewController: UITableViewController {
         else {
             cells = [CellType]()
             cells?.append(.priority)
-            cells?.append(.attachment)
             cells?.append(.dueDate)
             cells?.append(.startDate)
             cells?.append(.endDate)
             // Only add the folowing cells in edit mode
             if !isNew() {
+                cells?.insert(.attachment, at: 1)
                 cells?.append(.project)
                 cells?.append(.issueType)
             }
@@ -494,7 +494,6 @@ class IssueDetailTableViewController: UITableViewController {
     }
     
     @IBAction func tapedOnTextView(_sender: UITextView){
-        print("Tapped on text view")
         if !isNew(){
             performSegue(withIdentifier: S.textView, sender: self)
         }
