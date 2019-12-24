@@ -9,22 +9,19 @@
 import UIKit
 import RealmSwift
 
-protocol SelectIssueTypeDelegate {
+protocol IssueTypeTableViewDelegate {
     func didSelectIssueType(issueType: IssueType)
 }
 
-class SelectIssueTypeTableViewController: UITableViewController {
+class IssueTypeTableViewController: UITableViewController {
     
-    var issueTypeList: Results<IssueType>?
+    var issueTypes: List<IssueType>?
     var selectedIssueType: IssueType?
     
-    var delegate: SelectIssueTypeDelegate?
+    var delegate: IssueTypeTableViewDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Load all issue type
-        issueTypeList = IssueTypeController.shared.all()
         
         // Remove extra seperators
         tableView.tableFooterView = UIView()
@@ -39,12 +36,12 @@ class SelectIssueTypeTableViewController: UITableViewController {
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       return issueTypeList?.count ?? 0
+       return issueTypes?.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! IssueTypeTableViewCell
-        let issueType = issueTypeList?[indexPath.row]
+        let issueType = issueTypes?[indexPath.row]
         cell.nameLabel.text = issueType?.name
         cell.descriptionLabel.text = issueType?.typeDescription
         
@@ -66,11 +63,11 @@ class SelectIssueTypeTableViewController: UITableViewController {
 
 // MARK: - Table View Delegate
 
-extension SelectIssueTypeTableViewController {
+extension IssueTypeTableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        guard let issueType = issueTypeList?[indexPath.row] else { return }
+        guard let issueType = issueTypes?[indexPath.row] else { return }
         
         delegate?.didSelectIssueType(issueType: issueType)
         

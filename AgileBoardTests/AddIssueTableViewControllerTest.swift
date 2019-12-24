@@ -275,7 +275,7 @@ class AddIssueTableViewControllerTest: XCTestCase {
         XCTAssertTrue(UIApplication.getTopViewController() is SelectIssueTypeTableViewController, "The presented view controller is not SelectIssueTableViewController.")
         
         // Get SelectIssueTypeViewController
-        if let issueTypeViewController = UIApplication.getTopViewController() as? SelectIssueTypeTableViewController {
+        if let issueTypeViewController = UIApplication.getTopViewController() as? IssueTypeTableViewController {
             issueTypeViewController.loadViewIfNeeded()
             
             // Make sure that there is one issue type in the list view

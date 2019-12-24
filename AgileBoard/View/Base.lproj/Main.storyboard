@@ -633,7 +633,7 @@
         <!--Issue Type-->
         <scene sceneID="ffp-bI-akS">
             <objects>
-                <tableViewController id="rWX-Eh-5UE" customClass="SelectIssueTypeTableViewController" customModule="AgileBoard" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="rWX-Eh-5UE" customClass="IssueTypeTableViewController" customModule="AgileBoard" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="TEx-uG-ZZg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1216,10 +1216,10 @@
             </objects>
             <point key="canvasLocation" x="7106.3999999999996" y="1459.52023988006"/>
         </scene>
-        <!--App Navigation Controller-->
+        <!--Navigation Controller-->
         <scene sceneID="dRL-wq-7fG">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7FK-TJ-0A0" customClass="AppNavigationController" customModule="AgileBoard" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7FK-TJ-0A0" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hGz-7v-Yig" customClass="AppNavigationBar" customModule="AgileBoard" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

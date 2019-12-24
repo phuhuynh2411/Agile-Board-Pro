@@ -189,7 +189,7 @@ class AddIssueViewController: UIViewController {
         
         if segue.identifier == Identifier.SelectIssueTypeSegue {
             let navigationController = segue.destination as! UINavigationController
-            let selectIssueTypeTableViewController = navigationController.topViewController as! SelectIssueTypeTableViewController
+            let selectIssueTypeTableViewController = navigationController.topViewController as! IssueTypeTableViewController
             
             selectIssueTypeTableViewController.selectedIssueType = selectedIssueType
             selectIssueTypeTableViewController.delegate = self
@@ -254,7 +254,7 @@ extension AddIssueViewController: SelectProjectDelegate {
 
 // MARK: - SelectIssueType Delegate
 
-extension AddIssueViewController: SelectIssueTypeDelegate {
+extension AddIssueViewController: IssueTypeTableViewDelegate {
     
     func didSelectIssueType(issueType: IssueType) {
         self.selectedIssueType = issueType

@@ -570,10 +570,11 @@ extension IssueDetailTableViewController {
         
         if segue.identifier == S.issueType {
             let navigationController = segue.destination as! UINavigationController
-            let selectIssueTypeTableViewController = navigationController.topViewController as! SelectIssueTypeTableViewController
+            let issueTypeTableViewController = navigationController.topViewController as! IssueTypeTableViewController
             
-            selectIssueTypeTableViewController.selectedIssueType = issue?.type
-            selectIssueTypeTableViewController.delegate = self
+            issueTypeTableViewController.selectedIssueType = issue?.type
+            issueTypeTableViewController.issueTypes = project?.issueTypes
+            issueTypeTableViewController.delegate = self
         }
         
         if segue.identifier == S.priority {
@@ -623,7 +624,7 @@ extension IssueDetailTableViewController {
 
 // MARK: - SelectIssueType Delegate
 
-extension IssueDetailTableViewController: SelectIssueTypeDelegate {
+extension IssueDetailTableViewController: IssueTypeTableViewDelegate {
     
     func didSelectIssueType(issueType: IssueType) {
         if let issue = issue{

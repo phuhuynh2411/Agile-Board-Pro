@@ -65,48 +65,50 @@ class ProjectController {
         project.statuses.append(inprogress)
         project.statuses.append(done)
         
-        let issueType1 = IssueType()
-        issueType1.name = "Story"
-        issueType1.imageName = "issue_story"
-        issueType1.standard = true
-        issueType1.typeDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed diam eget risus varius blandit sit amet non magna."
+        // Create issue types
+        let story = IssueTypeController.shared.story()
+        let epic = IssueTypeController.shared.epic()
+        let task = IssueTypeController.shared.task()
+        let bug = IssueTypeController.shared.bug()
+        // Add issue types to project
+        project.issueTypes.append(objectsIn: [story, epic, task, bug])
         
         // 3. Create issues
         let issue1 = Issue()
         issue1.summary = "Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum."
         issue1.status = todo
         issue1.orderNumber = 0
-        issue1.type = issueType1
+        issue1.type = story
         
         let issue2 = Issue()
         issue2.summary = "Fringilla Fusce"
         issue2.status = todo
         issue2.orderNumber = 1
-        issue2.type = issueType1
+        issue2.type = story
         
         let issue3 = Issue()
         issue3.summary = "Donec sed odio dui."
         issue3.status = todo
         issue3.orderNumber = 2
-        issue3.type = issueType1
+        issue3.type = story
         
         let issue4 = Issue()
         issue4.summary = "Curabitur blandit tempus porttitor."
         issue4.status = inprogress
         issue4.orderNumber = 3
-        issue4.type = issueType1
+        issue4.type = story
         
         let issue5 = Issue()
         issue5.summary = "Nulla vitae elit libero, a pharetra augue."
         issue5.status = inprogress
         issue5.orderNumber = 4
-        issue5.type = issueType1
+        issue5.type = story
         
         let issue6 = Issue()
         issue6.summary = "Sed posuere consectetur est at lobortis."
         issue6.status = done
         issue6.orderNumber = 5
-        issue6.type = issueType1
+        issue6.type = story
         
         // 4. Add issues to the project
         let issues = [issue1, issue2, issue3, issue4, issue5, issue6]

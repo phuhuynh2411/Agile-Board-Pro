@@ -25,6 +25,8 @@ class Project: Object {
     
     let statuses = List<Status>()
     
+    let issueTypes = List<IssueType>()
+    
     @objc dynamic var icon: ProjectIcon?
   
 }
