@@ -129,7 +129,7 @@ class ProjectController {
         
         // 6. Create board
         let board = Board()
-        board.name = "Default Board"
+        board.name = "Main Board"
         board.columns.append(column1)
         board.columns.append(column2)
         board.columns.append(column3)

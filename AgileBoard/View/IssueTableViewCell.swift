@@ -12,8 +12,8 @@ class IssueTableViewCell: UITableViewCell {
 
     @IBOutlet weak var cellBackgroundView: UIView!
     @IBOutlet weak var summaryLabel: UILabel!
-    @IBOutlet weak var assigneeImageVIew: UIImageView!
     @IBOutlet weak var issueTypeImageView: UIImageView!
+    @IBOutlet weak var issueIDLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

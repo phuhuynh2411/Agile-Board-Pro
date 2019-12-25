@@ -21,38 +21,36 @@
                         <rect key="frame" x="8" y="4" width="359" height="115"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mdx-f7-mAs">
-                                <rect key="frame" x="8" y="8" width="305" height="71"/>
+                                <rect key="frame" x="8" y="8" width="343" height="71"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" red="0.13365754490000001" green="0.1851062477" blue="0.30589702730000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3Ph-GR-asg" customClass="CircleImageView" customModule="AgileBoard" customModuleProvider="target">
-                                <rect key="frame" x="321" y="8" width="30" height="30"/>
-                                <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="AmT-GQ-A2M"/>
-                                    <constraint firstAttribute="height" constant="30" id="UF7-Re-wB1"/>
-                                </constraints>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="25u-fb-9Dj">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="25u-fb-9Dj" customClass="RoundImageView" customModule="AgileBoard" customModuleProvider="target">
                                 <rect key="frame" x="8" y="87" width="20" height="20"/>
-                                <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="O8t-dJ-kbg"/>
                                     <constraint firstAttribute="height" constant="20" id="kUt-32-nsW"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FT-1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jBT-cw-r3H">
+                                <rect key="frame" x="36" y="90" width="29" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" systemColor="placeholderTextColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="Mdx-f7-mAs" firstAttribute="leading" secondItem="zE3-Lu-VIF" secondAttribute="leading" constant="8" id="08u-fl-fNG"/>
-                            <constraint firstItem="3Ph-GR-asg" firstAttribute="top" secondItem="zE3-Lu-VIF" secondAttribute="top" constant="8" id="Ofu-lw-fAM"/>
+                            <constraint firstItem="jBT-cw-r3H" firstAttribute="leading" secondItem="25u-fb-9Dj" secondAttribute="trailing" constant="8" id="1xF-Qg-ci0"/>
                             <constraint firstItem="Mdx-f7-mAs" firstAttribute="top" secondItem="zE3-Lu-VIF" secondAttribute="top" constant="8" id="QxI-Tw-s5Y"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="jBT-cw-r3H" secondAttribute="trailing" constant="16" id="Rvm-4X-hZC"/>
                             <constraint firstItem="25u-fb-9Dj" firstAttribute="top" secondItem="Mdx-f7-mAs" secondAttribute="bottom" constant="8" id="UCN-wu-yty"/>
                             <constraint firstItem="25u-fb-9Dj" firstAttribute="leading" secondItem="zE3-Lu-VIF" secondAttribute="leading" constant="8" id="Uoo-0n-9uc"/>
-                            <constraint firstAttribute="trailing" secondItem="3Ph-GR-asg" secondAttribute="trailing" constant="8" id="bv8-1M-r9K"/>
-                            <constraint firstItem="3Ph-GR-asg" firstAttribute="leading" secondItem="Mdx-f7-mAs" secondAttribute="trailing" constant="8" id="jUN-bm-Phl"/>
                             <constraint firstAttribute="bottom" secondItem="25u-fb-9Dj" secondAttribute="bottom" constant="8" id="nnj-dU-eqS"/>
+                            <constraint firstItem="jBT-cw-r3H" firstAttribute="bottom" secondItem="25u-fb-9Dj" secondAttribute="bottom" id="o61-I1-QyB"/>
+                            <constraint firstAttribute="trailing" secondItem="Mdx-f7-mAs" secondAttribute="trailing" constant="8" id="yM1-pc-Lfg"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -65,8 +63,8 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="assigneeImageVIew" destination="3Ph-GR-asg" id="Rog-Xo-isp"/>
                 <outlet property="cellBackgroundView" destination="zE3-Lu-VIF" id="I8o-f1-BDU"/>
+                <outlet property="issueIDLabel" destination="jBT-cw-r3H" id="7MR-fY-CBM"/>
                 <outlet property="issueTypeImageView" destination="25u-fb-9Dj" id="HUa-5j-zk3"/>
                 <outlet property="summaryLabel" destination="Mdx-f7-mAs" id="hxc-V8-AKI"/>
             </connections>

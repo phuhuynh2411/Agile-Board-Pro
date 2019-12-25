@@ -20,7 +20,9 @@ class BoardViewController: UIViewController {
     // Project
     var project: Project?
     
-    var board: Board?
+    var selectedBoard: Board?
+    
+    var boardTransitioningDelegate: BoardTransitioningDelegate?
         
     override func viewDidLoad() {
         
@@ -28,13 +30,19 @@ class BoardViewController: UIViewController {
         let columns = project?.boards.first?.columns
         self.pageControl.numberOfPages = columns?.count ?? 0
         
-        // Set the navigation item title to the project name
-        navigationItem.title = project?.name
-        
-        //self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
-        
         // Select first board as default
-        board = project?.boards.first
+        selectedBoard = project?.boards.first
+        let customView: BoardTitleView = .fromNib()
+        navigationItem.titleView = customView
+        customView.titleButton.setTitle(selectedBoard?.name, for: .normal)
+        
+        // Add action for the title view
+        customView.titleButton.addTarget(self, action: #selector(titleViewPressed(_sender:)), for: .touchUpInside)
+        
+        // Customize left bar button
+        let leftBarButton = UIBarButtonItem(image: UIImage(named: "ic_left_arrow"), style: .plain, target: self, action: #selector(leftButtonPress(_:)))
+        navigationItem.leftBarButtonItem = leftBarButton
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -87,6 +95,14 @@ class BoardViewController: UIViewController {
         performSegue(withIdentifier: Identifier.AddIssueTableViewControllerSegue, sender: self)
     }
     
+    @IBAction func titleViewPressed(_sender: UIButton) {
+        performSegue(withIdentifier: S.boardTableView, sender: self)
+    }
+    
+    @IBAction func leftButtonPress(_ sender: UIBarButtonItem) {
+        navigationController?.popViewController(animated: true)
+    }
+    
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -97,8 +113,19 @@ class BoardViewController: UIViewController {
             let navigationController = segue.destination as! UINavigationController
             let addIssueTableViewController =  navigationController.topViewController as! IssueDetailTableViewController
             
-            addIssueTableViewController.initView(with: project, issueType: IssueTypeController.shared.default(), priority: PriorityController.shared.default(),startDate: Date(), status: board?.columns.first?.status, delegate: self)
+            addIssueTableViewController.initView(with: project, issueType: IssueTypeController.shared.default(), priority: PriorityController.shared.default(),startDate: Date(), status: selectedBoard?.columns.first?.status, delegate: self)
             
+        }
+        if segue.identifier == S.boardTableView {
+            let navigationController = segue.destination as! UINavigationController
+            let boardTableViewController =  navigationController.topViewController as! BoardTableViewController
+            boardTableViewController.boards = project?.boards
+            boardTableViewController.selectedBoard = selectedBoard
+            boardTableViewController.project = project
+            
+            boardTransitioningDelegate = BoardTransitioningDelegate()
+            segue.destination.transitioningDelegate = boardTransitioningDelegate
+            segue.destination.modalPresentationStyle = .custom
         }
     }
     
@@ -152,6 +179,27 @@ extension BoardViewController {
         static let dueDate = "DueDateSegue"
         static let startDate = "StartDateSegue"
         static let endDate = "EndDateSegue"
+        static let boardTableView = "BoardTableViewControllerSegue"
     }
     private typealias S = SegueIdentifier
+}
+
+
+// MARK: - UIViewControllerTransitioningDelegate
+
+extension BoardViewController {
+    
+    class BoardTransitioningDelegate: UIViewController, UIViewControllerTransitioningDelegate {
+        
+        func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+            
+            let halfScreenPresentationController = HalfScreenPresentationController(presentedViewController: presented, presenting: presenting)
+            
+            halfScreenPresentationController.presentedViewHeight = view.frame.height/2
+            halfScreenPresentationController.presentedCornerRadius = 10.0
+            
+            return halfScreenPresentationController
+        }
+    }
+    
 }

@@ -79,8 +79,12 @@ class IssueTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: I.issueTVC, for: indexPath) as! IssueTableViewCell
         
         let issue = issueList?[indexPath.row]
+        if let imageName = issue?.type?.imageName {
+            cell.issueTypeImageView.image = UIImage(named: imageName)
+        }
         
         cell.summaryLabel.text = issue?.summary
+        cell.issueIDLabel.text = issue?.issueID
                     
         return cell
     }

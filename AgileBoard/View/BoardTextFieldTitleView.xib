@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BoardTextFieldTitleView" customModule="AgileBoard" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="BoardTextFieldTitleView" customModule="AgileBoard" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="379" height="53"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Board Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YLn-Fe-Uw5">
+                    <rect key="frame" x="0.0" y="0.0" width="379" height="53"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+            </subviews>
+            <constraints>
+                <constraint firstItem="YLn-Fe-Uw5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="HXq-d5-ZOb"/>
+                <constraint firstItem="YLn-Fe-Uw5" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="QVy-Ts-NY6"/>
+                <constraint firstAttribute="trailing" secondItem="YLn-Fe-Uw5" secondAttribute="trailing" id="TOU-a7-P9b"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="YLn-Fe-Uw5" secondAttribute="bottom" id="YfU-GK-Y5w"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="nameTextField" destination="YLn-Fe-Uw5" id="owT-yT-Q1M"/>
+            </connections>
+            <point key="canvasLocation" x="90.579710144927546" y="390.06696428571428"/>
+        </view>
+    </objects>
+</document>

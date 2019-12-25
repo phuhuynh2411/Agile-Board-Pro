@@ -38,7 +38,7 @@
                                             <constraint firstAttribute="height" constant="20" id="u3Z-mI-bUg"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                        <color key="textColor" red="0.65988522770000002" green="0.685388267" blue="0.72941917180000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="textColor" red="0.6588235294117647" green="0.68627450980392157" blue="0.72941176470588232" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>

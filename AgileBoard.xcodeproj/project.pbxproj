@@ -32,6 +32,7 @@
 		842D75C623AA2E8500193812 /* UITextView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842D75C523AA2E8500193812 /* UITextView+Extension.swift */; };
 		842FDD7623A1432B0038A796 /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842FDD7523A1432B0038A796 /* Animations.swift */; };
 		8438256023B057C200C506B9 /* StatusRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8438255F23B057C200C506B9 /* StatusRule.swift */; };
+		84382A6123B31DB1008A1F29 /* BColumnCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84382A6023B31DB1008A1F29 /* BColumnCollectionViewFlowLayout.swift */; };
 		843BF016239A4C9C005F798D /* AttachmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843BF015239A4C9C005F798D /* AttachmentTableViewCell.swift */; };
 		843BF018239A61EE005F798D /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843BF017239A61EE005F798D /* PhotoViewController.swift */; };
 		843C58C52390FFB600F5FAB5 /* ProjectIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843C58C42390FFB600F5FAB5 /* ProjectIcon.swift */; };
@@ -48,6 +49,7 @@
 		8442DC3F237E7DF8008C88C6 /* IssueTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8442DC3D237E7DF8008C88C6 /* IssueTableViewCell.swift */; };
 		8442DC40237E7DF8008C88C6 /* IssueTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8442DC3E237E7DF8008C88C6 /* IssueTableViewCell.xib */; };
 		8442DC42237E969C008C88C6 /* Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8442DC41237E969C008C88C6 /* Identifier.swift */; };
+		844A12E323B2510700E74020 /* BColumnCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A12E223B2510700E74020 /* BColumnCollectionReusableView.swift */; };
 		845227CF238CFC61000607A8 /* IssueCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845227CE238CFC61000607A8 /* IssueCollectionViewController.swift */; };
 		845227D1238D22FE000607A8 /* IssueCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845227D0238D22FE000607A8 /* IssueCollectionView.swift */; };
 		84579E602396412A009575E4 /* ProjectControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84579E5F2396412A009575E4 /* ProjectControllerMock.swift */; };
@@ -81,6 +83,11 @@
 		848FCEB42397985100CD6334 /* IssueDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848FCEB32397985100CD6334 /* IssueDetailHeaderView.swift */; };
 		8490889723A1D75500D5DD96 /* DueDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8490889623A1D75500D5DD96 /* DueDateTableViewCell.swift */; };
 		8490889923A1E1B900D5DD96 /* HalfScreenPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8490889823A1E1B900D5DD96 /* HalfScreenPresentationController.swift */; };
+		84983EC223B1B623003657F1 /* BoardTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84983EC123B1B623003657F1 /* BoardTitleView.xib */; };
+		84983EC423B1B702003657F1 /* BoardTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84983EC323B1B702003657F1 /* BoardTitleView.swift */; };
+		84983EC623B1C33C003657F1 /* BoardTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84983EC523B1C33C003657F1 /* BoardTableViewController.swift */; };
+		84983EC823B1C7DC003657F1 /* BoardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84983EC723B1C7DB003657F1 /* BoardTableViewCell.swift */; };
+		84983ECA23B1CB05003657F1 /* BoardDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84983EC923B1CB05003657F1 /* BoardDetailViewController.swift */; };
 		84A1FC1923A32F1D008648F9 /* StartDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A1FC1823A32F1D008648F9 /* StartDateTableViewCell.swift */; };
 		84A1FC1B23A32F2F008648F9 /* EndDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A1FC1A23A32F2F008648F9 /* EndDateTableViewCell.swift */; };
 		84A51AC0237AF8DD00477B75 /* IssueTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A51ABF237AF8DD00477B75 /* IssueTableViewController.swift */; };
@@ -97,6 +104,11 @@
 		84C340E42388361D00C65AC9 /* ProjectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C340E32388361D00C65AC9 /* ProjectTableViewController.swift */; };
 		84C340E62388368900C65AC9 /* ProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C340E52388368900C65AC9 /* ProjectTableViewCell.swift */; };
 		84C4042D23A2254B00A49A8D /* SelectDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C4042C23A2254B00A49A8D /* SelectDateViewController.swift */; };
+		84CEC23623B1F5260044B2B3 /* BoardTextFieldTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84CEC23523B1F5260044B2B3 /* BoardTextFieldTitleView.xib */; };
+		84CEC23823B1F5540044B2B3 /* BoardTextFieldTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CEC23723B1F5540044B2B3 /* BoardTextFieldTitleView.swift */; };
+		84CEC23A23B1FD9D0044B2B3 /* BoardDetailStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CEC23923B1FD9D0044B2B3 /* BoardDetailStatusViewController.swift */; };
+		84CEC23C23B2021E0044B2B3 /* BStatusCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CEC23B23B2021E0044B2B3 /* BStatusCollectionViewCell.swift */; };
+		84CEC23E23B210570044B2B3 /* BStatusHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CEC23D23B210570044B2B3 /* BStatusHeaderCell.swift */; };
 		84DB1E02237B0EFA008BB31A /* IssueTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DB1E01237B0EFA008BB31A /* IssueTableView.swift */; };
 		84E59162239251A2006FBA5E /* ProjectNameTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E59161239251A2006FBA5E /* ProjectNameTextField.swift */; };
 		84E59164239253D3006FBA5E /* ValidatorError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E59163239253D3006FBA5E /* ValidatorError.swift */; };
@@ -105,6 +117,8 @@
 		84F49ABC238E4D04002B8B93 /* AssigneeImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F49ABB238E4D04002B8B93 /* AssigneeImageView.swift */; };
 		84F56A05237C5B56007E6C68 /* UIColor+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F56A04237C5B56007E6C68 /* UIColor+Extention.swift */; };
 		84F5FF9C238538FB00F2E966 /* DragIssueItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F5FF9B238538FB00F2E966 /* DragIssueItem.swift */; };
+		84F96A3423B2157E00F44C73 /* BoardDetailColumnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F96A3323B2157E00F44C73 /* BoardDetailColumnViewController.swift */; };
+		84F96A3623B2169300F44C73 /* BColumnColumnCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F96A3523B2169300F44C73 /* BColumnColumnCollectionViewCell.swift */; };
 		84FA5A5323ACB44D003CDD65 /* StatusDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA5A5223ACB44D003CDD65 /* StatusDetailViewController.swift */; };
 		84FA5A5523ACB6F4003CDD65 /* ColorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA5A5423ACB6F4003CDD65 /* ColorCollectionViewCell.swift */; };
 		8A40E46566E0F1F02B43E550 /* Pods_AgileBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8470DBBF2395FB8E00B146BD /* Pods_AgileBoard.framework */; };
@@ -155,6 +169,7 @@
 		842D75C523AA2E8500193812 /* UITextView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Extension.swift"; sourceTree = "<group>"; };
 		842FDD7523A1432B0038A796 /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
 		8438255F23B057C200C506B9 /* StatusRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusRule.swift; sourceTree = "<group>"; };
+		84382A6023B31DB1008A1F29 /* BColumnCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BColumnCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		843BF015239A4C9C005F798D /* AttachmentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentTableViewCell.swift; sourceTree = "<group>"; };
 		843BF017239A61EE005F798D /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		843C58C42390FFB600F5FAB5 /* ProjectIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectIcon.swift; sourceTree = "<group>"; };
@@ -173,6 +188,7 @@
 		8442DC3D237E7DF8008C88C6 /* IssueTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IssueTableViewCell.swift; path = AgileBoard/View/IssueTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		8442DC3E237E7DF8008C88C6 /* IssueTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = IssueTableViewCell.xib; path = AgileBoard/View/IssueTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		8442DC41237E969C008C88C6 /* Identifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifier.swift; sourceTree = "<group>"; };
+		844A12E223B2510700E74020 /* BColumnCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BColumnCollectionReusableView.swift; path = "AgileBoard/View/Custom Cell/BColumnCollectionReusableView.swift"; sourceTree = SOURCE_ROOT; };
 		845227CE238CFC61000607A8 /* IssueCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueCollectionViewController.swift; sourceTree = "<group>"; };
 		845227D0238D22FE000607A8 /* IssueCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueCollectionView.swift; sourceTree = "<group>"; };
 		84579E5F2396412A009575E4 /* ProjectControllerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectControllerMock.swift; sourceTree = "<group>"; };
@@ -214,6 +230,11 @@
 		848FCEB32397985100CD6334 /* IssueDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetailHeaderView.swift; sourceTree = "<group>"; };
 		8490889623A1D75500D5DD96 /* DueDateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DueDateTableViewCell.swift; sourceTree = "<group>"; };
 		8490889823A1E1B900D5DD96 /* HalfScreenPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfScreenPresentationController.swift; sourceTree = "<group>"; };
+		84983EC123B1B623003657F1 /* BoardTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BoardTitleView.xib; sourceTree = "<group>"; };
+		84983EC323B1B702003657F1 /* BoardTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BoardTitleView.swift; path = AgileBoard/View/BoardTitleView.swift; sourceTree = SOURCE_ROOT; };
+		84983EC523B1C33C003657F1 /* BoardTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardTableViewController.swift; sourceTree = "<group>"; };
+		84983EC723B1C7DB003657F1 /* BoardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BoardTableViewCell.swift; path = "AgileBoard/View/Custom Cell/BoardTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
+		84983EC923B1CB05003657F1 /* BoardDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardDetailViewController.swift; sourceTree = "<group>"; };
 		84A1FC1823A32F1D008648F9 /* StartDateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartDateTableViewCell.swift; sourceTree = "<group>"; };
 		84A1FC1A23A32F2F008648F9 /* EndDateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndDateTableViewCell.swift; sourceTree = "<group>"; };
 		84A51ABF237AF8DD00477B75 /* IssueTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueTableViewController.swift; sourceTree = "<group>"; };
@@ -231,6 +252,11 @@
 		84C340E32388361D00C65AC9 /* ProjectTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTableViewController.swift; sourceTree = "<group>"; };
 		84C340E52388368900C65AC9 /* ProjectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTableViewCell.swift; sourceTree = "<group>"; };
 		84C4042C23A2254B00A49A8D /* SelectDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDateViewController.swift; sourceTree = "<group>"; };
+		84CEC23523B1F5260044B2B3 /* BoardTextFieldTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BoardTextFieldTitleView.xib; sourceTree = "<group>"; };
+		84CEC23723B1F5540044B2B3 /* BoardTextFieldTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardTextFieldTitleView.swift; sourceTree = "<group>"; };
+		84CEC23923B1FD9D0044B2B3 /* BoardDetailStatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardDetailStatusViewController.swift; sourceTree = "<group>"; };
+		84CEC23B23B2021E0044B2B3 /* BStatusCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BStatusCollectionViewCell.swift; sourceTree = "<group>"; };
+		84CEC23D23B210570044B2B3 /* BStatusHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BStatusHeaderCell.swift; path = "AgileBoard/View/Custom Cell/BStatusHeaderCell.swift"; sourceTree = SOURCE_ROOT; };
 		84DB1E01237B0EFA008BB31A /* IssueTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueTableView.swift; sourceTree = "<group>"; };
 		84E59161239251A2006FBA5E /* ProjectNameTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNameTextField.swift; sourceTree = "<group>"; };
 		84E59163239253D3006FBA5E /* ValidatorError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatorError.swift; sourceTree = "<group>"; };
@@ -239,6 +265,8 @@
 		84F49ABB238E4D04002B8B93 /* AssigneeImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssigneeImageView.swift; sourceTree = "<group>"; };
 		84F56A04237C5B56007E6C68 /* UIColor+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIColor+Extention.swift"; path = "AgileBoard/View/UIColor+Extention.swift"; sourceTree = SOURCE_ROOT; };
 		84F5FF9B238538FB00F2E966 /* DragIssueItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragIssueItem.swift; sourceTree = "<group>"; };
+		84F96A3323B2157E00F44C73 /* BoardDetailColumnViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardDetailColumnViewController.swift; sourceTree = "<group>"; };
+		84F96A3523B2169300F44C73 /* BColumnColumnCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BColumnColumnCollectionViewCell.swift; path = "AgileBoard/View/Custom Cell/BColumnColumnCollectionViewCell.swift"; sourceTree = "<group>"; };
 		84FA5A5223ACB44D003CDD65 /* StatusDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusDetailViewController.swift; sourceTree = "<group>"; };
 		84FA5A5423ACB6F4003CDD65 /* ColorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCollectionViewCell.swift; sourceTree = "<group>"; };
 		9A81CE3668EF1D469EACE232 /* Pods-AgileBoard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgileBoard.release.xcconfig"; path = "Target Support Files/Pods-AgileBoard/Pods-AgileBoard.release.xcconfig"; sourceTree = "<group>"; };
@@ -322,6 +350,7 @@
 		8420628D237AFE950076CDAC /* View Controller */ = {
 			isa = PBXGroup;
 			children = (
+				841D97A8238E674300483928 /* AppNavigationController.swift */,
 				84579E65239656E1009575E4 /* PriorityTableViewController.swift */,
 				840409B9239171290006829F /* IconCollectionViewController.swift */,
 				843C58CA2391073800F5FAB5 /* AddProjectTableViewController.swift */,
@@ -330,7 +359,6 @@
 				84584E26238ED999000408AE /* AddIssueViewController.swift */,
 				84C340E32388361D00C65AC9 /* ProjectTableViewController.swift */,
 				84E0E0C023A8B8E70057A360 /* Board */,
-				841D97A8238E674300483928 /* AppNavigationController.swift */,
 				84ACC2F823AB6BC3004B5281 /* IssueDetail */,
 				84FA5A5223ACB44D003CDD65 /* StatusDetailViewController.swift */,
 			);
@@ -342,9 +370,11 @@
 			children = (
 				843C8989237AE7460050586E /* Main.storyboard */,
 				843C898E237AE7480050586E /* LaunchScreen.storyboard */,
+				84CEC23523B1F5260044B2B3 /* BoardTextFieldTitleView.xib */,
 				848FCEB12397980E00CD6334 /* IssueDetailHeaderView.xib */,
 				841CEDDE23AC853C00D90369 /* ProjectTableViewCellv2.xib */,
 				847DD06023ACAA5E001AF6BD /* IssueTypeTableViewCellv2.xib */,
+				84983EC123B1B623003657F1 /* BoardTitleView.xib */,
 				84206291237AFED20076CDAC /* Custom Cell */,
 				8458B442237CF98500D6D473 /* ShadowView.swift */,
 				841B42F123844275000871F6 /* IssueCollectionViewFlowLayout.swift */,
@@ -360,6 +390,7 @@
 				84299FD22398FD9900432A66 /* IssuePriorityTableViewCell.swift */,
 				84299FD423990B8E00432A66 /* AttachmentCollectionView.swift */,
 				842686EF2399519600B981D7 /* AttachmentCollectionViewFlowLayout.swift */,
+				84382A6023B31DB1008A1F29 /* BColumnCollectionViewFlowLayout.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -400,6 +431,7 @@
 				8442DC3E237E7DF8008C88C6 /* IssueTableViewCell.xib */,
 				8442DC39237E7B92008C88C6 /* IssueCollectionViewCell.swift */,
 				8442DC3A237E7B92008C88C6 /* IssueCollectionViewCell.xib */,
+				84CEC23B23B2021E0044B2B3 /* BStatusCollectionViewCell.swift */,
 				8442DC41237E969C008C88C6 /* Identifier.swift */,
 				84579E6723965CD4009575E4 /* PriorityTableViewCell.swift */,
 				842686F323995E7E00B981D7 /* AttachmentCollectionViewCell.swift */,
@@ -408,7 +440,11 @@
 				8426581C23AB2F6E00061748 /* StatusTableViewCell.swift */,
 				841CEDDD23AC853C00D90369 /* ProjectTableViewCellv2.swift */,
 				847DD05F23ACAA5E001AF6BD /* IssueTypeTableViewCellv2.swift */,
+				84CEC23723B1F5540044B2B3 /* BoardTextFieldTitleView.swift */,
 				84FA5A5423ACB6F4003CDD65 /* ColorCollectionViewCell.swift */,
+				84983EC723B1C7DB003657F1 /* BoardTableViewCell.swift */,
+				84CEC23D23B210570044B2B3 /* BStatusHeaderCell.swift */,
+				844A12E223B2510700E74020 /* BColumnCollectionReusableView.swift */,
 			);
 			path = "Custom Cell";
 			sourceTree = "<group>";
@@ -416,6 +452,7 @@
 		843C8977237AE7460050586E = {
 			isa = PBXGroup;
 			children = (
+				84F96A3523B2169300F44C73 /* BColumnColumnCollectionViewCell.swift */,
 				843C8982237AE7460050586E /* AgileBoard */,
 				84B3010B2394BF0300D4BBA8 /* AgileBoardTests */,
 				8470DBD023960A3A00B146BD /* AgileBoardUITests */,
@@ -523,9 +560,14 @@
 			isa = PBXGroup;
 			children = (
 				843C8987237AE7460050586E /* BoardViewController.swift */,
+				84983EC323B1B702003657F1 /* BoardTitleView.swift */,
 				845227CE238CFC61000607A8 /* IssueCollectionViewController.swift */,
 				84A51ABF237AF8DD00477B75 /* IssueTableViewController.swift */,
 				84F5FF9B238538FB00F2E966 /* DragIssueItem.swift */,
+				84983EC523B1C33C003657F1 /* BoardTableViewController.swift */,
+				84983EC923B1CB05003657F1 /* BoardDetailViewController.swift */,
+				84CEC23923B1FD9D0044B2B3 /* BoardDetailStatusViewController.swift */,
+				84F96A3323B2157E00F44C73 /* BoardDetailColumnViewController.swift */,
 			);
 			path = Board;
 			sourceTree = "<group>";
@@ -650,6 +692,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84983EC223B1B623003657F1 /* BoardTitleView.xib in Resources */,
 				8442DC3C237E7B92008C88C6 /* IssueCollectionViewCell.xib in Resources */,
 				847DD06223ACAA5E001AF6BD /* IssueTypeTableViewCellv2.xib in Resources */,
 				8442DC40237E7DF8008C88C6 /* IssueTableViewCell.xib in Resources */,
@@ -657,6 +700,7 @@
 				843C898D237AE7480050586E /* Assets.xcassets in Resources */,
 				843C898B237AE7460050586E /* Main.storyboard in Resources */,
 				841CEDE023AC853C00D90369 /* ProjectTableViewCellv2.xib in Resources */,
+				84CEC23623B1F5260044B2B3 /* BoardTextFieldTitleView.xib in Resources */,
 				848FCEB22397980E00CD6334 /* IssueDetailHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -801,6 +845,8 @@
 				847A78102387711600911851 /* Status.swift in Sources */,
 				84579E6223965068009575E4 /* Priority.swift in Sources */,
 				84F49ABC238E4D04002B8B93 /* AssigneeImageView.swift in Sources */,
+				84CEC23823B1F5540044B2B3 /* BoardTextFieldTitleView.swift in Sources */,
+				84983EC823B1C7DC003657F1 /* BoardTableViewCell.swift in Sources */,
 				84299FD32398FD9900432A66 /* IssuePriorityTableViewCell.swift in Sources */,
 				84E5916623925C86006FBA5E /* ProjectKeyTextField.swift in Sources */,
 				843C8988237AE7460050586E /* BoardViewController.swift in Sources */,
@@ -809,11 +855,15 @@
 				84F5FF9C238538FB00F2E966 /* DragIssueItem.swift in Sources */,
 				84A1FC1923A32F1D008648F9 /* StartDateTableViewCell.swift in Sources */,
 				8442DC42237E969C008C88C6 /* Identifier.swift in Sources */,
+				844A12E323B2510700E74020 /* BColumnCollectionReusableView.swift in Sources */,
 				84ACC2F523AB5AB8004B5281 /* Color.swift in Sources */,
 				843C58C52390FFB600F5FAB5 /* ProjectIcon.swift in Sources */,
+				84F96A3423B2157E00F44C73 /* BoardDetailColumnViewController.swift in Sources */,
 				843C58CB2391073800F5FAB5 /* AddProjectTableViewController.swift in Sources */,
+				84983EC423B1B702003657F1 /* BoardTitleView.swift in Sources */,
 				84B7EE0B239A40D10011BBD9 /* UIImageExtension.swift in Sources */,
 				8490889723A1D75500D5DD96 /* DueDateTableViewCell.swift in Sources */,
+				84F96A3623B2169300F44C73 /* BColumnColumnCollectionViewCell.swift in Sources */,
 				84DB1E02237B0EFA008BB31A /* IssueTableView.swift in Sources */,
 				843C8984237AE7460050586E /* AppDelegate.swift in Sources */,
 				847DD06123ACAA5E001AF6BD /* IssueTypeTableViewCellv2.swift in Sources */,
@@ -828,6 +878,7 @@
 				84579E602396412A009575E4 /* ProjectControllerMock.swift in Sources */,
 				846685F3239F4BCB0033BA1E /* AddIssueCollectionTableViewCell.swift in Sources */,
 				84B5F733238F860C00D344C3 /* IssueTypeTableViewCell.swift in Sources */,
+				84CEC23A23B1FD9D0044B2B3 /* BoardDetailStatusViewController.swift in Sources */,
 				847A781823878AEC00911851 /* ProjectController.swift in Sources */,
 				84F49ABA238E4C72002B8B93 /* CircleImageView.swift in Sources */,
 				8468D494238FA69F006B02D4 /* IssueType.swift in Sources */,
@@ -836,6 +887,7 @@
 				842686F02399519600B981D7 /* AttachmentCollectionViewFlowLayout.swift in Sources */,
 				848FCEB42397985100CD6334 /* IssueDetailHeaderView.swift in Sources */,
 				8408E50E23A9DEE3004A859C /* UIView+Extension.swift in Sources */,
+				84CEC23C23B2021E0044B2B3 /* BStatusCollectionViewCell.swift in Sources */,
 				84ACC2F723AB5B26004B5281 /* ColorController.swift in Sources */,
 				842686F423995E7E00B981D7 /* AttachmentCollectionViewCell.swift in Sources */,
 				84B5F731238F806B00D344C3 /* IssueTypeTableViewController.swift in Sources */,
@@ -850,8 +902,11 @@
 				84C4042D23A2254B00A49A8D /* SelectDateViewController.swift in Sources */,
 				84ACC2FA23AB74A1004B5281 /* TextviewTableViewController.swift in Sources */,
 				841D97A9238E674300483928 /* AppNavigationController.swift in Sources */,
+				84382A6123B31DB1008A1F29 /* BColumnCollectionViewFlowLayout.swift in Sources */,
 				847FD53723A0F49900399145 /* DragAttachmentItem.swift in Sources */,
+				84CEC23E23B210570044B2B3 /* BStatusHeaderCell.swift in Sources */,
 				84299FD723990BB800432A66 /* AttachmentCollectionViewController.swift in Sources */,
+				84983EC623B1C33C003657F1 /* BoardTableViewController.swift in Sources */,
 				84579E66239656E1009575E4 /* PriorityTableViewController.swift in Sources */,
 				842D75C623AA2E8500193812 /* UITextView+Extension.swift in Sources */,
 				8442DC3B237E7B92008C88C6 /* IssueCollectionViewCell.swift in Sources */,
@@ -864,6 +919,7 @@
 				842686F623995F4D00B981D7 /* AttachmentController.swift in Sources */,
 				841CEDDF23AC853C00D90369 /* ProjectTableViewCellv2.swift in Sources */,
 				841D97AB238E685200483928 /* AppNavigationBar.swift in Sources */,
+				84983ECA23B1CB05003657F1 /* BoardDetailViewController.swift in Sources */,
 				84C340E42388361D00C65AC9 /* ProjectTableViewController.swift in Sources */,
 				847A78142387758F00911851 /* Project.swift in Sources */,
 				843BF018239A61EE005F798D /* PhotoViewController.swift in Sources */,
