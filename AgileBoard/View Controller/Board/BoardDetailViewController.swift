@@ -69,6 +69,11 @@ class BoardDetailViewController: UIViewController {
         statusCollectionView.dataSource = statusCollectionController
         let layout = statusCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
         layout.sectionHeadersPinToVisibleBounds = true
+        
+        // Enable drag and set up drag delegate
+        statusCollectionView.dragInteractionEnabled = true
+        statusCollectionView.dragDelegate = statusCollectionController
+        statusCollectionView.dropDelegate = statusCollectionController
 
     }
     
@@ -84,6 +89,11 @@ class BoardDetailViewController: UIViewController {
         // Add data source and delegate
         columnCollectionView.delegate = columnCollectionController
         columnCollectionView.dataSource = columnCollectionController
+        
+        // Enable drag and drop
+        columnCollectionView.dragInteractionEnabled = true
+        columnCollectionView.dragDelegate = columnCollectionController
+        columnCollectionView.dropDelegate = columnCollectionController
         
     }
     

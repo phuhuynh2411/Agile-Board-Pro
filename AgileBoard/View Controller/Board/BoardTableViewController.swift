@@ -67,7 +67,12 @@ class BoardTableViewController: UITableViewController {
             let navigationController = segue.destination as! UINavigationController
             let boardDetailViewController = navigationController.topViewController as! BoardDetailViewController
             
-            boardDetailViewController.statuses = project?.statuses
+            // Duplicate project's statues
+            let statuses = List<Status>()
+            guard let projectStatuses = project?.statuses else { return }
+            statuses.append(objectsIn: projectStatuses)
+            
+            boardDetailViewController.statuses = statuses //project?.statuses
         }
     }
 }

@@ -91,3 +91,52 @@ extension BoardDetailStatusViewController: UICollectionViewDelegate, UICollectio
         
     }
 }
+
+// MARK: - UICollectionViewDragDelegate
+
+extension BoardDetailStatusViewController: UICollectionViewDragDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        
+        let itemProvider = NSItemProvider()
+        let dragItem = UIDragItem(itemProvider: itemProvider)
+        let status = statuses?[indexPath.row]
+        dragItem.localObject = (status: status, collectionView: collectionView, indexPath: indexPath)
+        
+    
+        return [dragItem]
+
+    }
+    
+    
+}
+
+// MARK: - UICollectionViewDropDelegate
+
+extension BoardDetailStatusViewController: UICollectionViewDropDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, performDropWith coordinator: UICollectionViewDropCoordinator) {
+        
+        guard let item = coordinator.items.first else { return }
+        
+        if let (column, srcCollectionView, srcIndexPath) = item.dragItem.localObject as? (Column, UICollectionView, IndexPath),
+            let status = column.status {
+            
+            statuses?.append(status)
+            collectionView.reloadData()
+            
+            // Remove column at source collection view
+            // Remove the status at the source collection view
+            if let datasource = srcCollectionView.dataSource as? BoardDetailColumnViewController,
+                let srcColumns = datasource.columns {
+                
+                srcColumns.remove(at: srcIndexPath.row)
+                srcCollectionView.reloadData()
+                //srcCollectionView.collectionViewLayout.invalidateLayout()
+            }
+            
+        }
+        
+    }
+    
+}

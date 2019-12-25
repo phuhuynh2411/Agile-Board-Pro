@@ -24,7 +24,17 @@ class BoardDetailColumnViewController: UIViewController {
 extension BoardDetailColumnViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4//columns?.count ?? 0
+        
+        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        
+        let count = columns?.count ?? 0
+        if count == 0 {
+            layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        }else {
+            layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
+        }
+        
+        return count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -33,6 +43,19 @@ extension BoardDetailColumnViewController: UICollectionViewDataSource {
         // Make the cell round
         cell.layer.cornerRadius = 10
         cell.clipsToBounds = true
+        
+        // Make the placeholder view round
+        cell.placeholderView.layer.cornerRadius = 10.0
+        cell.placeholderView.clipsToBounds = true
+        
+        let column = columns?[indexPath.row]
+        
+        if let status = column?.status, let hexColor = status.color?.hexColor {
+            let uiColor = UIColor(hexString: hexColor)
+            cell.placeholderView.backgroundColor = uiColor
+            cell.nameLabel.text = status.name
+            cell.nameLabel.textColor = UIColor().textColor(bgColor: uiColor)
+        }
         
         // Update column number
         cell.numberLabel.text = "\(indexPath.row + 1)"
@@ -61,7 +84,7 @@ extension BoardDetailColumnViewController: UICollectionViewDataSource {
         var number = columns?.count ?? 1
         number = number == 1 ? 1 : number + 1
         
-        cell.titleLabel.text = "COLUMN \(number)"
+        // cell.titleLabel.text = "COLUMN \(number)"
         cell.placeholderBackground.layer.cornerRadius = 10.0
         cell.placeholderBackground.clipsToBounds = true
         
@@ -106,5 +129,96 @@ extension BoardDetailColumnViewController: UICollectionViewDelegate, UICollectio
         
     }
     
+    func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        print("move item")
+    }
+    
+    
 }
 
+// MARK: - UICollectionViewDragDelegate
+
+extension BoardDetailColumnViewController: UICollectionViewDragDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        
+        let itemProvider = NSItemProvider()
+        let dragItem = UIDragItem(itemProvider: itemProvider)
+        let column = columns?[indexPath.row]
+        dragItem.localObject = (column: column, collectionView: collectionView, indexPath: indexPath)
+        session.localContext = column
+
+        return [dragItem]
+
+    }
+    
+    
+}
+
+// MARK: - UICollectionViewDropDelegate
+
+extension BoardDetailColumnViewController: UICollectionViewDropDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UICollectionViewDropProposal {
+        
+        if destinationIndexPath == nil {
+            return UICollectionViewDropProposal(operation: .copy, intent: .insertIntoDestinationIndexPath)
+        }
+        return UICollectionViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, performDropWith coordinator: UICollectionViewDropCoordinator) {
+        print("Drop item")
+        
+        // Destination index path will be nil, if user drags item into collection view's footer
+        
+        guard let item = coordinator.items.first else { return }
+        
+        // Source index path will be nil, if users drags item from another collection view into this collection view
+        // You are re-ordering the items inside the collection view
+        if let srcIndexPath = item.sourceIndexPath, let desIndexPath = coordinator.destinationIndexPath,
+            let (column, _, _) = item.dragItem.localObject as? (Column, UICollectionView, IndexPath){
+            
+            collectionView.performBatchUpdates({
+                columns?.remove(at: srcIndexPath.row)
+                columns?.insert(column, at: desIndexPath.row)
+                
+                collectionView.deleteItems(at: [srcIndexPath])
+                collectionView.insertItems(at: [desIndexPath])
+                
+            }, completion: nil)
+            
+            coordinator.drop(item.dragItem, toItemAt: desIndexPath)
+            
+            let visibleIndexPaths = collectionView.visibleCells.enumerated().compactMap {
+                return IndexPath(row: $0.0, section: 0)
+            }
+            collectionView.reloadItems(at: visibleIndexPaths)
+            
+        }
+        // Drag and drop an item from another collection view into this collection view
+        else if let (status, srcCollectionView, srcIndexPath) = item.dragItem.localObject as? (Status, UICollectionView, IndexPath) {
+            let column = Column()
+            column.status = status
+            
+            if columns == nil {
+                columns = List<Column>()
+            }
+            columns?.append(column)
+            collectionView.reloadData()
+            // Remove the status at the source collection view
+            if let datasource = srcCollectionView.dataSource as? BoardDetailStatusViewController,
+                let srcStatuses = datasource.statuses{
+                
+                srcStatuses.remove(at: srcIndexPath.row)
+                srcCollectionView.reloadData()
+            }
+        }
+    }
+    
+    
+}
