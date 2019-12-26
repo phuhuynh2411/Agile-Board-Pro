@@ -21,7 +21,7 @@ class StatusRule: Rule {
      */
     func validate(_ value: String) -> Bool {
         let validate =  !project.statuses.contains { (status) -> Bool in
-            status.name == value
+            status.name.lowercased() == value.lowercased()
         }
         return value == status?.name ? true : validate
     }

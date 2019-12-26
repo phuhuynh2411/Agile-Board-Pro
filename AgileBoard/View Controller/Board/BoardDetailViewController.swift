@@ -28,6 +28,11 @@ class BoardDetailViewController: UIViewController {
     var statuses: List<Status>?
     var columns: List<Column>?
     
+    // A selected status used when modifying status
+    var selectedStatus: Status?
+    
+    var project: Project?
+    
     // MARK: - View methods
     
     override func viewDidLoad() {
@@ -36,6 +41,8 @@ class BoardDetailViewController: UIViewController {
         // Customize title view
         titleView = .fromNib()
         navigationItem.titleView = titleView
+        titleView?.nameTextField.delegate = self
+        titleView?.nameTextField.returnKeyType = .done
         
         // Disable the create button when the view is loaded
         createButton.isEnabled = false
@@ -50,6 +57,13 @@ class BoardDetailViewController: UIViewController {
         super.viewDidLayoutSubviews()
         columnCollectionView.collectionViewLayout.invalidateLayout()
         statusCollectionView.collectionViewLayout.invalidateLayout()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        // Dismiss the keyboard when tapping on anywhere on the layout.
+        // view.endEditing(true)
+        titleView?.nameTextField.resignFirstResponder()
     }
     
     // MARK: - Helper methods
@@ -104,5 +118,53 @@ class BoardDetailViewController: UIViewController {
     }
     
     @IBAction func createButtonPressed(_ sender: UIBarButtonItem) {
+    }
+    
+    // MARK: - Navigations
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "AddStatusSegue" {
+            let navigationController = segue.destination as! UINavigationController
+            let statusDetailViewController = navigationController.topViewController as! StatusDetailViewController
+            statusDetailViewController.delegate = self
+        }
+        else if segue.identifier == "EditStatusSegue" {
+            let navigationController = segue.destination as! UINavigationController
+            let statusDetailViewController = navigationController.topViewController as! StatusDetailViewController
+            statusDetailViewController.delegate = self
+            statusDetailViewController.status = selectedStatus
+            statusDetailViewController.project = project
+        }
+    }
+    
+}
+
+// MARK: - UITextFieldDelegate
+
+extension BoardDetailViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        
+        return false
+    }
+}
+
+// MARK: - StatusDetailDelegate
+
+extension BoardDetailViewController: StatusDetailDelegate {
+    
+    func didAddStatus(status: Status) {
+        statuses?.append(status)
+        statusCollectionView.reloadData()
+    }
+    
+    func didModifyStatus(status: Status) {
+        if let selectedStatus = selectedStatus{
+            StatusController.shared.update(status: selectedStatus, toStatus: status)
+            statusCollectionView.reloadData()
+        }
     }
 }

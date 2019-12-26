@@ -73,6 +73,7 @@ class BoardTableViewController: UITableViewController {
             statuses.append(objectsIn: projectStatuses)
             
             boardDetailViewController.statuses = statuses //project?.statuses
+            boardDetailViewController.project = project
         }
     }
 }

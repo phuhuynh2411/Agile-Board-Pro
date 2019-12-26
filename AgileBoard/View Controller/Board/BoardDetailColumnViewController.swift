@@ -172,9 +172,6 @@ extension BoardDetailColumnViewController: UICollectionViewDropDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, performDropWith coordinator: UICollectionViewDropCoordinator) {
-        print("Drop item")
-        
-        // Destination index path will be nil, if user drags item into collection view's footer
         
         guard let item = coordinator.items.first else { return }
         
@@ -208,8 +205,23 @@ extension BoardDetailColumnViewController: UICollectionViewDropDelegate {
             if columns == nil {
                 columns = List<Column>()
             }
-            columns?.append(column)
-            collectionView.reloadData()
+            
+            // Get destination index path
+            // Destination index path will be nil, if user drags item into collection view's footer
+            if let desIndexPath = coordinator.destinationIndexPath {
+                columns?.insert(column, at: desIndexPath.row)
+                collectionView.insertItems(at: [desIndexPath])
+                coordinator.drop(item.dragItem, toItemAt: desIndexPath)
+                
+                let visibleIndexPaths = collectionView.visibleCells.enumerated().compactMap {
+                    return IndexPath(row: $0.0, section: 0)
+                }
+                collectionView.reloadItems(at: visibleIndexPaths)
+            } else {
+                columns?.append(column)
+                collectionView.reloadData()
+            }
+            
             // Remove the status at the source collection view
             if let datasource = srcCollectionView.dataSource as? BoardDetailStatusViewController,
                 let srcStatuses = datasource.statuses{

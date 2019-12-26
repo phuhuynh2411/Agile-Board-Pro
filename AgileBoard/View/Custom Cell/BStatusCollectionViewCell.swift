@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import SwipeCellKit
 
-class BStatusCollectionViewCell: UICollectionViewCell {
+class BStatusCollectionViewCell: SwipeCollectionViewCell {
     
     @IBOutlet weak var nameLabel: UILabel!
 }

@@ -26,7 +26,9 @@ class StatusDetailViewController: UIViewController {
     var colors: Results<Color>?
     
     var selectedColor: Color?
+    /// required when modifying status
     var status: Status?
+    /// required when modifying status
     var project: Project?
     
     var isModified = false

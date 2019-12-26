@@ -35,6 +35,7 @@ class BoardViewController: UIViewController {
         let customView: BoardTitleView = .fromNib()
         navigationItem.titleView = customView
         customView.titleButton.setTitle(selectedBoard?.name, for: .normal)
+        //customView.titleButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
         
         // Add action for the title view
         customView.titleButton.addTarget(self, action: #selector(titleViewPressed(_sender:)), for: .touchUpInside)

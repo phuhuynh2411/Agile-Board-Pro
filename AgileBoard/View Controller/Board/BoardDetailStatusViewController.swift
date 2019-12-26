@@ -8,14 +8,20 @@
 
 import UIKit
 import RealmSwift
+import SwipeCellKit
 
 class BoardDetailStatusViewController: UIViewController {
     
     var statuses: List<Status>?
+    
+    //var selectedStatus: Status?
 
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    // MARK: - IB Actions
+
 }
 
 // MARK: - UICollection View Datasource
@@ -23,20 +29,29 @@ class BoardDetailStatusViewController: UIViewController {
 extension BoardDetailStatusViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return statuses?.count ?? 0
+        let count = statuses?.count ?? 0
+        return count + 1 // add an extra cell, so we need to increase the count by 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StatusCell", for: indexPath) as! BStatusCollectionViewCell
         
-        let status = statuses?[indexPath.row]
-        cell.nameLabel.text = status?.name
-        if let hexColor = status?.color?.hexColor {
-            let uiColor = UIColor(hexString: hexColor)
-            cell.backgroundColor = uiColor
-            cell.nameLabel.textColor = UIColor().textColor(bgColor: uiColor)
+        var cell: UICollectionViewCell
+        
+        if indexPath.row == statuses?.count ?? 0 {
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LastCell", for: indexPath)
+        }else {
+            let status = statuses?[indexPath.row]
+            let itemCell = collectionView.dequeueReusableCell(withReuseIdentifier: "StatusCell", for: indexPath) as! BStatusCollectionViewCell
+            itemCell.nameLabel.text = status?.name
+            if let hexColor = status?.color?.hexColor {
+                let uiColor = UIColor(hexString: hexColor)
+                itemCell.backgroundColor = uiColor
+                itemCell.nameLabel.textColor = UIColor().textColor(bgColor: uiColor)
+            }
+            itemCell.delegate = self
+            cell = itemCell
         }
-        
+    
         // Make the cell round
         cell.layer.cornerRadius = 10
         cell.clipsToBounds = true
@@ -50,19 +65,22 @@ extension BoardDetailStatusViewController: UICollectionViewDataSource {
         
         var cellIdentifier = ""
         var viewType = ""
+        var cell: UICollectionReusableView!
         
         switch kind {
         case UICollectionView.elementKindSectionHeader:
             cellIdentifier = "HeaderCell"
             viewType = UICollectionView.elementKindSectionHeader
+            
+            cell = collectionView.dequeueReusableSupplementaryView(ofKind: viewType, withReuseIdentifier: cellIdentifier, for: indexPath)
+            let headerCell = cell as! BStatusHeaderCell
+            headerCell.numberLabel.text = "\(statuses?.count ?? 0)"
+            
             break
         default:
             print("Undefine view")
         }
-        
-        let cell = collectionView.dequeueReusableSupplementaryView(ofKind: viewType, withReuseIdentifier: cellIdentifier, for: indexPath) as! BStatusHeaderCell
-        
-        cell.numberLabel.text = "\(statuses?.count ?? 0)"
+                
                 
         return cell
     }
@@ -90,6 +108,19 @@ extension BoardDetailStatusViewController: UICollectionViewDelegate, UICollectio
         return CGSize(width: width, height: height)
         
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        // Tapped on the last cell
+        // Add new status
+        if indexPath.row == statuses?.count ?? 0 {
+            let topViewController = UIApplication.getTopViewController()
+            if let boardDetailViewController = topViewController as? BoardDetailViewController {
+                boardDetailViewController.performSegue(withIdentifier: "AddStatusSegue", sender: self)
+            }
+        }
+        
+    }
 }
 
 // MARK: - UICollectionViewDragDelegate
@@ -100,9 +131,12 @@ extension BoardDetailStatusViewController: UICollectionViewDragDelegate {
         
         let itemProvider = NSItemProvider()
         let dragItem = UIDragItem(itemProvider: itemProvider)
+        
+        // Do not allow user to drag the last cell.
+        guard indexPath.row < statuses?.count ?? 0 else {return []}
+        
         let status = statuses?[indexPath.row]
         dragItem.localObject = (status: status, collectionView: collectionView, indexPath: indexPath)
-        
     
         return [dragItem]
 
@@ -137,6 +171,40 @@ extension BoardDetailStatusViewController: UICollectionViewDropDelegate {
             
         }
         
+    }
+    
+}
+
+// MARK: - SwipeCollectionViewCellDelegate
+
+extension BoardDetailStatusViewController: SwipeCollectionViewCellDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, editActionsForItemAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+
+        // Do not modify the last cell
+        guard indexPath.row < statuses?.count ?? 0 else {return nil}
+        
+        var action: SwipeAction!
+        
+        if orientation == .right {
+            let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
+                // handle action by updating model with deletion
+            }
+            action = deleteAction
+        }else{
+            let editAction = SwipeAction(style: .default, title: "Edit") { (action, indexPath) in
+                let topViewController = UIApplication.getTopViewController()
+                if let boardDetailViewController = topViewController as? BoardDetailViewController {
+                    boardDetailViewController.selectedStatus = self.statuses?[indexPath.row]
+                    boardDetailViewController.performSegue(withIdentifier: "EditStatusSegue", sender: self)
+                }
+                action.fulfill(with: .reset)
+            }
+            
+            action = editAction
+        }
+
+        return [action]
     }
     
 }
