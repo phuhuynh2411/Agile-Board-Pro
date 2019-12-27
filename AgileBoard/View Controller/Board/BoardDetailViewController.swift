@@ -8,17 +8,19 @@
 
 import UIKit
 import RealmSwift
+import SwiftValidator
 
 class BoardDetailViewController: UIViewController {
 
     // MARK: - IB Outlets
     
     @IBOutlet weak var createButton: UIBarButtonItem!
-    var titleView: BoardTextFieldTitleView?
+    var titleView: BoardTextFieldTitleView!
     
     @IBOutlet weak var statusCollectionView: UICollectionView!
     
     @IBOutlet weak var columnCollectionView: UICollectionView!
+    @IBOutlet weak var errorLabel: UILabel!
     
     var statusCollectionController: BoardDetailStatusViewController?
     var columnCollectionController: BoardDetailColumnViewController?
@@ -32,6 +34,8 @@ class BoardDetailViewController: UIViewController {
     var selectedStatus: Status?
     
     var project: Project?
+    
+    var validator = Validator()
     
     // MARK: - View methods
     
@@ -47,9 +51,26 @@ class BoardDetailViewController: UIViewController {
         // Disable the create button when the view is loaded
         createButton.isEnabled = false
         
+        // Set up status view controller
         initStatusCollectionView()
         
+        // Set up column view controller
         initColumnCollectionView()
+        
+        // Register fields for validation
+        validator.registerField(titleView.nameTextField, errorLabel: errorLabel, rules: [RequiredRule()])
+        
+        // Clears the error label after the view loaded.
+        errorLabel.text = ""
+        
+        // Observes for text field changed
+        titleView.nameTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        
+        // Dismisses the keyboard if collection views tapped.
+        let tapGesture1 = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard(_:)))
+        let tapGesture2 = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard(_:)))
+        statusCollectionView.addGestureRecognizer(tapGesture1)
+        columnCollectionView.addGestureRecognizer(tapGesture2)
         
     }
     
@@ -111,6 +132,11 @@ class BoardDetailViewController: UIViewController {
         
     }
     
+    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
+        //view.endEditing(true)
+        titleView.nameTextField.resignFirstResponder()
+    }
+    
     // MARK: - IB Actions
     
     @IBAction func closeButtonPressed(_ sender: UIBarButtonItem) {
@@ -150,6 +176,11 @@ extension BoardDetailViewController: UITextFieldDelegate {
         
         return false
     }
+    
+    @IBAction func textFieldDidChange(_ sender: UITextField) {
+        print("Text fiedl did change")
+        validator.validate(self)
+    }
 }
 
 // MARK: - StatusDetailDelegate
@@ -165,6 +196,27 @@ extension BoardDetailViewController: StatusDetailDelegate {
         if let selectedStatus = selectedStatus{
             StatusController.shared.update(status: selectedStatus, toStatus: status)
             statusCollectionView.reloadData()
+        }
+    }
+}
+
+
+// MARK: - Validations
+
+extension BoardDetailViewController: ValidationDelegate {
+    
+    func validationSuccessful() {
+        // Enable the create button
+        createButton.isEnabled = true
+        // Clears previous error message
+        errorLabel.text = ""
+    }
+    
+    func validationFailed(_ errors: [(Validatable, ValidationError)]) {
+        // Disable the create button
+        createButton.isEnabled = false
+        for (_, error) in errors {
+            errorLabel.text = error.errorMessage
         }
     }
 }
