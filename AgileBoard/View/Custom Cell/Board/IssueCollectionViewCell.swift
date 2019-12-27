@@ -15,6 +15,8 @@ class IssueCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var cellFooterView: UIView!
     @IBOutlet weak var countLabel: UILabel!
+    
+    var tableViewController: IssueTableController?
      
     /// A height of the cell's header and footer
     var headerFooterHeight: CGFloat {
@@ -28,7 +30,7 @@ class IssueCollectionViewCell: UICollectionViewCell {
         configureCell()
     }
     
-    fileprivate func configureCell() {
+    private func configureCell() {
         
         // Round the header and footer
         cellHeaderView.layer.cornerRadius = 5.0
@@ -41,6 +43,11 @@ class IssueCollectionViewCell: UICollectionViewCell {
         
         // Pass the issue count label to the table view
         issueTableView.issueCountLabel = countLabel
+        
+        // Set up table controller
+        tableViewController = IssueTableController(tableView: issueTableView)
+        issueTableView.dataSource = tableViewController
+        issueTableView.delegate = tableViewController
         
     }
     

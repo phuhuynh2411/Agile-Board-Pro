@@ -202,10 +202,10 @@ extension BoardDetailColumnViewController: UICollectionViewDropDelegate {
             let column = Column()
             column.status = status
             
-            if columns == nil {
-                columns = List<Column>()
-            }
-            
+//            if columns == nil {
+//                columns = List<Column>()
+//            }
+//            
             // Get destination index path
             // Destination index path will be nil, if user drags item into collection view's footer
             if let desIndexPath = coordinator.destinationIndexPath {

@@ -257,5 +257,15 @@ class ProjectController {
         }
     }
     
+    func add(status: Status, to project: Project) {
+        do{
+            try realm.write {
+                project.statuses.append(status)
+            }
+        }catch{
+            print(error)
+        }
+    }
+    
 }
 

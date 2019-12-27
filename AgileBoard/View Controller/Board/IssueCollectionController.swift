@@ -8,7 +8,7 @@
 
 import UIKit
 
-class IssueCollectionViewController: UICollectionViewController {
+class IssueCollectionController: NSObject {
     
     var project: Project?
     
@@ -16,8 +16,17 @@ class IssueCollectionViewController: UICollectionViewController {
     
     var pageControl: IssuePageControlView?
     
-    override init(collectionViewLayout layout: UICollectionViewLayout) {
-        super.init(collectionViewLayout: layout)
+    var collectionView: UICollectionView?
+    
+    init(collectionView: UICollectionView) {
+        super.init()
+        self.collectionView = collectionView
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        
+        let nib = UINib(nibName: Identifier.IssueCollectionViewCell, bundle: .main)
+        collectionView.register(nib, forCellWithReuseIdentifier: Identifier.IssueCollectionViewCell)
+
     }
     
     required init?(coder: NSCoder) {
@@ -26,18 +35,18 @@ class IssueCollectionViewController: UICollectionViewController {
     
 }
 
-// MARK: - Collection Data Source
+// MARK: - UICollectionViewDatasource
 
-extension IssueCollectionViewController{
+extension IssueCollectionController: UICollectionViewDataSource {
     
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        let columns = project?.boards.first?.columns
+        let columns = selectedBoard?.columns
         return columns?.count ?? 0
         
     }
     
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
                         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifier.IssueCollectionViewCell, for: indexPath) as! IssueCollectionViewCell
 
@@ -48,11 +57,11 @@ extension IssueCollectionViewController{
     
 }
 
-// MARK: - UIScrollViewDelegate
+// MARK: - UICollectionViewDelegate
 
-extension IssueCollectionViewController {
+extension IssueCollectionController: UICollectionViewDelegate {
     
-    override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         
         // Only perform the following lines in portrait mode
         guard !UIDevice.current.orientation.isLandscape else { return }
@@ -61,24 +70,15 @@ extension IssueCollectionViewController {
         
     }
     
-    override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         
         // Only perform the following lines in portrait mode
         guard !UIDevice.current.orientation.isLandscape else { return }
         
-        // Re-calculate the paging
-//        let pageWidth = scrollView.frame.size.width
-//        let pageNumber: Int = Int(floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1)
-//
-//        let newX = CGFloat(pageNumber) * pageWidth - CGFloat(30 * pageNumber)
-//
-//        let rect = CGRect(x: newX, y: 0, width: scrollView.frame.width, height: scrollView.frame.height)
-//        scrollView.scrollRectToVisible(rect, animated: true)
-        
         let pageWidth = scrollView.frame.size.width
         var pageNumber: Int = Int(floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1)
         
-        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        let layout = collectionView?.collectionViewLayout as! UICollectionViewFlowLayout
         
         let cellWidth = layout.itemSize.width
         let spacing = layout.minimumLineSpacing
@@ -108,23 +108,20 @@ extension IssueCollectionViewController {
 
 // MARK: - Collection View Cell
 
-extension IssueCollectionViewController {
+extension IssueCollectionController {
     
     func update(cell: IssueCollectionViewCell, at indexPath: IndexPath) {
         
         // The columns of the first board
-        let columns = project?.boards.first?.columns
+        let columns = selectedBoard?.columns
         let status = columns?[indexPath.row].status
         
         // Get all issues by status
         let issues = project?.issues.filter("status = %@", status!)
     
-        cell.headerLabel.text = columns?[indexPath.row].name
-        // cell.countLabel.text = "\(issues!.count)"
+        cell.headerLabel.text = status?.name
         
-        // Add data source for the table view
-        let tableViewController = cell.issueTableView.controller
-        tableViewController?.dataForTableView(with: issues, and: columns![indexPath.row])
+        cell.tableViewController?.dataForTableView(with: issues, and: columns![indexPath.row])
         
         // Reload the table view data
         cell.issueTableView.reloadData()

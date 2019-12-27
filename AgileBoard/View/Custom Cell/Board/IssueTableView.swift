@@ -11,10 +11,7 @@ import UIKit
 class IssueTableView: UITableView{
     
     /// Dashed border
-    fileprivate var shapeLayer: CAShapeLayer?
-    
-    /// Table View Controller
-    var controller: IssueTableViewController?
+    private var shapeLayer: CAShapeLayer?
     
     /// Table view height constraint
     var heightConstraint: NSLayoutConstraint {
@@ -33,30 +30,8 @@ class IssueTableView: UITableView{
         // Enable drag operation
         self.dragInteractionEnabled = true
         
-        // Configure table view
-        configureTableView()
-        
     }
-    
-    func configureTableView() {
-        
-        // Initilize the issue table view controller
-        controller = IssueTableViewController(style: .plain)
-        controller?.tableView = self
-        
-        // Set data source and delegate to the table view
-        dataSource = controller
-        delegate = controller
-        
-        // Set table view drag and drop delegate
-        dragDelegate = controller
-        dropDelegate = controller
-        
-        let nib = UINib(nibName: Identifier.IssueTableViewCell, bundle: .main)
-        register(nib, forCellReuseIdentifier: Identifier.IssueTableViewCell)
-        
-    }
-    
+
     /**
      Resize the table view height to fit the visible cell height
      - Parameters:

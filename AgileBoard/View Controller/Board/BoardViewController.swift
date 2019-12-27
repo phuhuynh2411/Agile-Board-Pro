@@ -17,6 +17,8 @@ class BoardViewController: UIViewController {
     
     @IBOutlet weak var collectionView: IssueCollectionView!
     
+    var collectionController: IssueCollectionController?
+    
     // Project
     var project: Project?
     
@@ -31,7 +33,10 @@ class BoardViewController: UIViewController {
         self.pageControl.numberOfPages = columns?.count ?? 0
         
         // Select first board as default
-        selectedBoard = project?.boards.first
+        if let firstBoard = project?.boards.first {
+            selectedBoard = Board(value: firstBoard)
+        }
+        
         let customView: BoardTitleView = .fromNib()
         navigationItem.titleView = customView
         customView.titleButton.setTitle(selectedBoard?.name, for: .normal)
@@ -44,16 +49,16 @@ class BoardViewController: UIViewController {
         let leftBarButton = UIBarButtonItem(image: UIImage(named: "ic_left_arrow"), style: .plain, target: self, action: #selector(leftButtonPress(_:)))
         navigationItem.leftBarButtonItem = leftBarButton
         
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        collectionView.controller?.project = project
+        // Set up collection view
+        collectionController = IssueCollectionController(collectionView: collectionView)
+        collectionController?.project = project
+        collectionController?.selectedBoard = selectedBoard
     }
     
     override func viewDidLayoutSubviews() {
         
         // Pass the page control through the collection view
-        collectionView.controller?.pageControl = pageControl
+        // collectionView.controller?.pageControl = pageControl
         
         // Show or Hide the page control
         showHidePageControl()
@@ -123,6 +128,7 @@ class BoardViewController: UIViewController {
             boardTableViewController.boards = project?.boards
             boardTableViewController.selectedBoard = selectedBoard
             boardTableViewController.project = project
+            boardTableViewController.delegate = self
             
             boardTransitioningDelegate = BoardTransitioningDelegate()
             segue.destination.transitioningDelegate = boardTransitioningDelegate
@@ -201,6 +207,21 @@ extension BoardViewController {
             
             return halfScreenPresentationController
         }
+    }
+    
+}
+
+// MARK: - BoardTableViewControllerDelegate
+
+extension BoardViewController: BoardTableViewControllerDelegate {
+    
+    func didSelectBoard(board: Board) {
+        selectedBoard?.id = board.id
+        selectedBoard?.name = board.name
+        selectedBoard?.columns.removeAll()
+        selectedBoard?.columns.append(objectsIn: board.columns)
+        
+        collectionView.reloadData()
     }
     
 }

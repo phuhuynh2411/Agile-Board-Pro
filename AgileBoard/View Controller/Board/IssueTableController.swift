@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class IssueTableViewController: UITableViewController {
+class IssueTableController: NSObject {
     
     // MARK: - Properties
     
@@ -17,26 +17,19 @@ class IssueTableViewController: UITableViewController {
     var selectedIssue: Issue?
     
     var column: Column?
-            
-    lazy var realm = try! Realm()
+    var tableView: UITableView?
     
-    // MARK: - Init Methods
-    override init(style: UITableView.Style) {
-        super.init(style: style)
-        self.loadView()
-    }
+    var realm = try! Realm()
     
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-    }
     
-    // MARK: - View Methods
-    override func viewDidLoad() {
-        
+    init(tableView: UITableView) {
+        super.init()
+        self.tableView = tableView
+        tableView.dataSource = self
+        tableView.delegate = self
         // Register custome cell
         let nibName = UINib(nibName: I.issueTVC, bundle: .main)
         tableView.register(nibName, forCellReuseIdentifier: I.issueTVC)
-     
     }
     
     // MARK: - Help Methods
@@ -60,9 +53,15 @@ class IssueTableViewController: UITableViewController {
         
     }
     
-    // MARK: - Table View Data Source
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
+}
+
+// MARK: - UITableView Datasource
+
+extension IssueTableController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         let numberOfRow = issueList?.count ?? 0
         
@@ -74,7 +73,7 @@ class IssueTableViewController: UITableViewController {
         
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
                 
         let cell = tableView.dequeueReusableCell(withIdentifier: I.issueTVC, for: indexPath) as! IssueTableViewCell
         
@@ -98,21 +97,20 @@ class IssueTableViewController: UITableViewController {
         self.column = column
         
     }
-    
 }
 
 // MARK: - UITableView Delegate
 
-extension IssueTableViewController {
+extension IssueTableController: UITableViewDelegate {
     
-    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         
         // Remove the dashed rectangle if any
         let issueTableView = tableView as! IssueTableView
         issueTableView.removeDashedBorder()
         
         print("Move row at \(sourceIndexPath) to \(destinationIndexPath)")
-       // let sourceIssue = issueList[sourceIndexPath.row]
+        let sourceIssue = issueList?[sourceIndexPath.row]
         do{
             try realm.write {
                  //issueList?.move(from: sourceIndexPath.row, to: destinationIndexPath.row)
@@ -123,7 +121,7 @@ extension IssueTableViewController {
         }
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         selectedIssue = issueList?[indexPath.row]
         if let issue = selectedIssue {
@@ -136,7 +134,7 @@ extension IssueTableViewController {
 
 // MARK: - UITableViewDragDelegate
 
-extension IssueTableViewController: UITableViewDragDelegate {
+extension IssueTableController: UITableViewDragDelegate {
 
     func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
 
@@ -175,7 +173,7 @@ extension IssueTableViewController: UITableViewDragDelegate {
 
 // MARK: - UITableViewDropDelegate
 
-extension IssueTableViewController: UITableViewDropDelegate {
+extension IssueTableController: UITableViewDropDelegate {
 
     func tableView(_ tableView: UITableView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UITableViewDropProposal {
         
@@ -339,7 +337,7 @@ extension IssueTableViewController: UITableViewDropDelegate {
 
 // MARK: - Identifier
 
-extension IssueTableViewController {
+extension IssueTableController {
     private struct VCIdentifier {
         static let issueDetailVC = "AddIssueTableViewController"
         static let issueTVC = "IssueTableViewCell"

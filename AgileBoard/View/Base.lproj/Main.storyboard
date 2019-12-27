@@ -1309,7 +1309,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="Mei-ho-2qc" kind="presentation" identifier="BoardDetailViewControllerSegue" modalPresentationStyle="overFullScreen" id="sFG-yj-ceB"/>
+                        <segue destination="Mei-ho-2qc" kind="presentation" identifier="AddBoardSegue" modalPresentationStyle="overFullScreen" id="sFG-yj-ceB"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zmE-yN-Pe1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -10,21 +10,21 @@ import UIKit
 
 class IssueCollectionView: UICollectionView {
     
-    var controller: IssueCollectionViewController?
+    var controller: IssueCollectionController?
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         
-        let layout = IssueCollectionViewFlowLayout()
-        
-        controller = IssueCollectionViewController(collectionViewLayout: layout)
-        delegate = controller
-        dataSource = controller
-        controller?.collectionView = self
+//        let layout = IssueCollectionViewFlowLayout()
+//
+//        controller = IssueCollectionController(collectionViewLayout: layout)
+//        delegate = controller
+//        dataSource = controller
+//        controller?.collectionView = self
         
         // Register custom cell for UICollectionView
-        let nib = UINib(nibName: Identifier.IssueCollectionViewCell, bundle: .main)
-        register(nib, forCellWithReuseIdentifier: Identifier.IssueCollectionViewCell)
+//        let nib = UINib(nibName: Identifier.IssueCollectionViewCell, bundle: .main)
+//        register(nib, forCellWithReuseIdentifier: Identifier.IssueCollectionViewCell)
         
     }
     

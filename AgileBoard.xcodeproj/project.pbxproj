@@ -50,7 +50,7 @@
 		8442DC40237E7DF8008C88C6 /* IssueTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8442DC3E237E7DF8008C88C6 /* IssueTableViewCell.xib */; };
 		8442DC42237E969C008C88C6 /* Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8442DC41237E969C008C88C6 /* Identifier.swift */; };
 		844A12E323B2510700E74020 /* BColumnCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A12E223B2510700E74020 /* BColumnCollectionReusableView.swift */; };
-		845227CF238CFC61000607A8 /* IssueCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845227CE238CFC61000607A8 /* IssueCollectionViewController.swift */; };
+		845227CF238CFC61000607A8 /* IssueCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845227CE238CFC61000607A8 /* IssueCollectionController.swift */; };
 		845227D1238D22FE000607A8 /* IssueCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845227D0238D22FE000607A8 /* IssueCollectionView.swift */; };
 		84579E602396412A009575E4 /* ProjectControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84579E5F2396412A009575E4 /* ProjectControllerMock.swift */; };
 		84579E6223965068009575E4 /* Priority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84579E6123965068009575E4 /* Priority.swift */; };
@@ -90,7 +90,7 @@
 		84983ECA23B1CB05003657F1 /* BoardDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84983EC923B1CB05003657F1 /* BoardDetailViewController.swift */; };
 		84A1FC1923A32F1D008648F9 /* StartDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A1FC1823A32F1D008648F9 /* StartDateTableViewCell.swift */; };
 		84A1FC1B23A32F2F008648F9 /* EndDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A1FC1A23A32F2F008648F9 /* EndDateTableViewCell.swift */; };
-		84A51AC0237AF8DD00477B75 /* IssueTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A51ABF237AF8DD00477B75 /* IssueTableViewController.swift */; };
+		84A51AC0237AF8DD00477B75 /* IssueTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A51ABF237AF8DD00477B75 /* IssueTableController.swift */; };
 		84ACC2F523AB5AB8004B5281 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ACC2F423AB5AB8004B5281 /* Color.swift */; };
 		84ACC2F723AB5B26004B5281 /* ColorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ACC2F623AB5B26004B5281 /* ColorController.swift */; };
 		84ACC2FA23AB74A1004B5281 /* TextviewTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ACC2F923AB74A1004B5281 /* TextviewTableViewController.swift */; };
@@ -183,13 +183,13 @@
 		843C898C237AE7480050586E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		843C898F237AE7480050586E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		843C8991237AE7480050586E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8442DC39237E7B92008C88C6 /* IssueCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IssueCollectionViewCell.swift; path = AgileBoard/View/IssueCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
-		8442DC3A237E7B92008C88C6 /* IssueCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = IssueCollectionViewCell.xib; path = AgileBoard/View/IssueCollectionViewCell.xib; sourceTree = SOURCE_ROOT; };
+		8442DC39237E7B92008C88C6 /* IssueCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IssueCollectionViewCell.swift; path = "AgileBoard/View/Custom Cell/Board/IssueCollectionViewCell.swift"; sourceTree = SOURCE_ROOT; };
+		8442DC3A237E7B92008C88C6 /* IssueCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = IssueCollectionViewCell.xib; path = "AgileBoard/View/Custom Cell/Board/IssueCollectionViewCell.xib"; sourceTree = SOURCE_ROOT; };
 		8442DC3D237E7DF8008C88C6 /* IssueTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IssueTableViewCell.swift; path = AgileBoard/View/IssueTableViewCell.swift; sourceTree = SOURCE_ROOT; };
-		8442DC3E237E7DF8008C88C6 /* IssueTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = IssueTableViewCell.xib; path = AgileBoard/View/IssueTableViewCell.xib; sourceTree = SOURCE_ROOT; };
+		8442DC3E237E7DF8008C88C6 /* IssueTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = IssueTableViewCell.xib; path = "AgileBoard/View/Custom Cell/Board/IssueTableViewCell.xib"; sourceTree = SOURCE_ROOT; };
 		8442DC41237E969C008C88C6 /* Identifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifier.swift; sourceTree = "<group>"; };
 		844A12E223B2510700E74020 /* BColumnCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BColumnCollectionReusableView.swift; path = "AgileBoard/View/Custom Cell/BColumnCollectionReusableView.swift"; sourceTree = SOURCE_ROOT; };
-		845227CE238CFC61000607A8 /* IssueCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueCollectionViewController.swift; sourceTree = "<group>"; };
+		845227CE238CFC61000607A8 /* IssueCollectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueCollectionController.swift; sourceTree = "<group>"; };
 		845227D0238D22FE000607A8 /* IssueCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueCollectionView.swift; sourceTree = "<group>"; };
 		84579E5F2396412A009575E4 /* ProjectControllerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectControllerMock.swift; sourceTree = "<group>"; };
 		84579E6123965068009575E4 /* Priority.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Priority.swift; sourceTree = "<group>"; };
@@ -237,7 +237,7 @@
 		84983EC923B1CB05003657F1 /* BoardDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardDetailViewController.swift; sourceTree = "<group>"; };
 		84A1FC1823A32F1D008648F9 /* StartDateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartDateTableViewCell.swift; sourceTree = "<group>"; };
 		84A1FC1A23A32F2F008648F9 /* EndDateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndDateTableViewCell.swift; sourceTree = "<group>"; };
-		84A51ABF237AF8DD00477B75 /* IssueTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueTableViewController.swift; sourceTree = "<group>"; };
+		84A51ABF237AF8DD00477B75 /* IssueTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueTableController.swift; sourceTree = "<group>"; };
 		84ACC2F423AB5AB8004B5281 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		84ACC2F623AB5B26004B5281 /* ColorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorController.swift; sourceTree = "<group>"; };
 		84ACC2F923AB74A1004B5281 /* TextviewTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextviewTableViewController.swift; sourceTree = "<group>"; };
@@ -380,7 +380,6 @@
 				841B42F123844275000871F6 /* IssueCollectionViewFlowLayout.swift */,
 				846B6A8B238CCA7600569BC2 /* IssuePageControlView.swift */,
 				845227D0238D22FE000607A8 /* IssueCollectionView.swift */,
-				84DB1E01237B0EFA008BB31A /* IssueTableView.swift */,
 				84F49AB9238E4C72002B8B93 /* CircleImageView.swift */,
 				84F49ABB238E4D04002B8B93 /* AssigneeImageView.swift */,
 				841D97AA238E685200483928 /* AppNavigationBar.swift */,
@@ -420,17 +419,14 @@
 		84206291237AFED20076CDAC /* Custom Cell */ = {
 			isa = PBXGroup;
 			children = (
+				846EA45723B5FEF300C428BB /* Board */,
 				84A1FC1823A32F1D008648F9 /* StartDateTableViewCell.swift */,
 				84A1FC1A23A32F2F008648F9 /* EndDateTableViewCell.swift */,
 				8490889623A1D75500D5DD96 /* DueDateTableViewCell.swift */,
 				840409BB239173070006829F /* IconCollectionViewCell.swift */,
-				84B5F732238F860C00D344C3 /* IssueTypeTableViewCell.swift */,
 				84C340E52388368900C65AC9 /* ProjectTableViewCell.swift */,
 				84B5F72E238F647F00D344C3 /* SearchProjectTableViewCell.swift */,
 				8442DC3D237E7DF8008C88C6 /* IssueTableViewCell.swift */,
-				8442DC3E237E7DF8008C88C6 /* IssueTableViewCell.xib */,
-				8442DC39237E7B92008C88C6 /* IssueCollectionViewCell.swift */,
-				8442DC3A237E7B92008C88C6 /* IssueCollectionViewCell.xib */,
 				84CEC23B23B2021E0044B2B3 /* BStatusCollectionViewCell.swift */,
 				8442DC41237E969C008C88C6 /* Identifier.swift */,
 				84579E6723965CD4009575E4 /* PriorityTableViewCell.swift */,
@@ -515,6 +511,18 @@
 			path = "Model Controller";
 			sourceTree = "<group>";
 		};
+		846EA45723B5FEF300C428BB /* Board */ = {
+			isa = PBXGroup;
+			children = (
+				84B5F732238F860C00D344C3 /* IssueTypeTableViewCell.swift */,
+				8442DC39237E7B92008C88C6 /* IssueCollectionViewCell.swift */,
+				84DB1E01237B0EFA008BB31A /* IssueTableView.swift */,
+				8442DC3E237E7DF8008C88C6 /* IssueTableViewCell.xib */,
+				8442DC3A237E7B92008C88C6 /* IssueCollectionViewCell.xib */,
+			);
+			path = Board;
+			sourceTree = "<group>";
+		};
 		8470DBD023960A3A00B146BD /* AgileBoardUITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -559,10 +567,10 @@
 		84E0E0C023A8B8E70057A360 /* Board */ = {
 			isa = PBXGroup;
 			children = (
-				843C8987237AE7460050586E /* BoardViewController.swift */,
 				84983EC323B1B702003657F1 /* BoardTitleView.swift */,
-				845227CE238CFC61000607A8 /* IssueCollectionViewController.swift */,
-				84A51ABF237AF8DD00477B75 /* IssueTableViewController.swift */,
+				843C8987237AE7460050586E /* BoardViewController.swift */,
+				845227CE238CFC61000607A8 /* IssueCollectionController.swift */,
+				84A51ABF237AF8DD00477B75 /* IssueTableController.swift */,
 				84F5FF9B238538FB00F2E966 /* DragIssueItem.swift */,
 				84983EC523B1C33C003657F1 /* BoardTableViewController.swift */,
 				84983EC923B1CB05003657F1 /* BoardDetailViewController.swift */,
@@ -836,7 +844,7 @@
 				84FA5A5323ACB44D003CDD65 /* StatusDetailViewController.swift in Sources */,
 				847A78122387745D00911851 /* Board.swift in Sources */,
 				84F56A05237C5B56007E6C68 /* UIColor+Extention.swift in Sources */,
-				845227CF238CFC61000607A8 /* IssueCollectionViewController.swift in Sources */,
+				845227CF238CFC61000607A8 /* IssueCollectionController.swift in Sources */,
 				8426581D23AB2F6E00061748 /* StatusTableViewCell.swift in Sources */,
 				84E59164239253D3006FBA5E /* ValidatorError.swift in Sources */,
 				8468D497238FA76E006B02D4 /* IssueTypeController.swift in Sources */,
@@ -870,7 +878,7 @@
 				840409BC239173070006829F /* IconCollectionViewCell.swift in Sources */,
 				84BF40C1237D47C800600AE7 /* UIPanGestureRecognizer+Extension.swift in Sources */,
 				8421F66B23974D3C001DF5D9 /* PriorityRowView.swift in Sources */,
-				84A51AC0237AF8DD00477B75 /* IssueTableViewController.swift in Sources */,
+				84A51AC0237AF8DD00477B75 /* IssueTableController.swift in Sources */,
 				845227D1238D22FE000607A8 /* IssueCollectionView.swift in Sources */,
 				84579E642396513B009575E4 /* PriorityController.swift in Sources */,
 				84A1FC1B23A32F2F008648F9 /* EndDateTableViewCell.swift in Sources */,

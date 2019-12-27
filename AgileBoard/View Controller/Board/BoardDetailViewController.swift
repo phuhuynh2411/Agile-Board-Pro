@@ -10,6 +10,11 @@ import UIKit
 import RealmSwift
 import SwiftValidator
 
+protocol BoardDetailViewControllerDelegate {
+    func didAddBoard(board: Board)
+    func didModifyBoard(board: Board)
+}
+
 class BoardDetailViewController: UIViewController {
 
     // MARK: - IB Outlets
@@ -36,6 +41,8 @@ class BoardDetailViewController: UIViewController {
     var project: Project?
     
     var validator = Validator()
+    
+    var delegate: BoardDetailViewControllerDelegate?
     
     // MARK: - View methods
     
@@ -68,7 +75,9 @@ class BoardDetailViewController: UIViewController {
         
         // Dismisses the keyboard if collection views tapped.
         let tapGesture1 = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard(_:)))
+        tapGesture1.cancelsTouchesInView = false
         let tapGesture2 = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard(_:)))
+        tapGesture2.cancelsTouchesInView = false
         statusCollectionView.addGestureRecognizer(tapGesture1)
         columnCollectionView.addGestureRecognizer(tapGesture2)
         
@@ -135,6 +144,7 @@ class BoardDetailViewController: UIViewController {
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
         //view.endEditing(true)
         titleView.nameTextField.resignFirstResponder()
+        print("dismiss the keyboard")
     }
     
     // MARK: - IB Actions
@@ -144,6 +154,15 @@ class BoardDetailViewController: UIViewController {
     }
     
     @IBAction func createButtonPressed(_ sender: UIBarButtonItem) {
+        if let name = titleView.nameTextField.text, let columns = columns {
+            let board = Board()
+            board.name = name
+            board.columns.append(objectsIn: columns)
+            
+            delegate?.didAddBoard(board: board)
+            dismiss(animated: true, completion: nil)
+        }
+       
     }
     
     // MARK: - Navigations
@@ -188,8 +207,12 @@ extension BoardDetailViewController: UITextFieldDelegate {
 extension BoardDetailViewController: StatusDetailDelegate {
     
     func didAddStatus(status: Status) {
-        statuses?.append(status)
-        statusCollectionView.reloadData()
+        if let project = project {
+            statuses?.append(status)
+            ProjectController.shared.add(status: status, to: project)
+            statusCollectionView.reloadData()
+        }
+        
     }
     
     func didModifyStatus(status: Status) {
