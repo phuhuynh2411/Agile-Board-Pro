@@ -10,14 +10,17 @@ import UIKit
 import RealmSwift
 import SwipeCellKit
 
-class BoardDetailStatusViewController: UIViewController {
+class BoardDetailStatusViewController: NSObject {
     
     var statuses: List<Status>?
     
-    //var selectedStatus: Status?
+    var project: Project?
+    
+    var collectionView: UICollectionView?
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    init(collectionView: UICollectionView) {
+        super.init()
+        self.collectionView = collectionView
     }
     
     // MARK: - IB Actions
@@ -156,7 +159,11 @@ extension BoardDetailStatusViewController: UICollectionViewDropDelegate {
         if let (column, srcCollectionView, srcIndexPath) = item.dragItem.localObject as? (Column, UICollectionView, IndexPath),
             let status = column.status {
             
-            statuses?.append(status)
+            if let _ = statuses?.realm {
+                statuses?.append(status, completion: nil)
+            }else {
+                statuses?.append(status)
+            }
             collectionView.reloadData()
             
             // Remove column at source collection view
@@ -164,9 +171,12 @@ extension BoardDetailStatusViewController: UICollectionViewDropDelegate {
             if let datasource = srcCollectionView.dataSource as? BoardDetailColumnViewController,
                 let srcColumns = datasource.columns {
                 
-                srcColumns.remove(at: srcIndexPath.row)
+                if let _ = srcColumns.realm {
+                    srcColumns.remove(at: srcIndexPath.row, completion: nil)
+                }else {
+                    srcColumns.remove(at: srcIndexPath.row)
+                }
                 srcCollectionView.reloadData()
-                //srcCollectionView.collectionViewLayout.invalidateLayout()
             }
             
         }
@@ -189,6 +199,9 @@ extension BoardDetailStatusViewController: SwipeCollectionViewCellDelegate {
         if orientation == .right {
             let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
                 // handle action by updating model with deletion
+                if let status = self.statuses?[indexPath.row] {
+                    self.delete(status: status, at: indexPath)
+                }
             }
             action = deleteAction
         }else{
@@ -205,6 +218,31 @@ extension BoardDetailStatusViewController: SwipeCollectionViewCellDelegate {
         }
 
         return [action]
+    }
+    
+    private func delete(status: Status, at indexPath: IndexPath) {
+        if let project = self.project, !isUsed(status: status){
+            // Delete status in realm
+            ProjectController.shared.removeStatus(at: indexPath.row, in: project)
+            // Also remvoe the status in the array
+            statuses?.remove(at: indexPath.row)
+            collectionView?.deleteItems(at: [indexPath])
+        }else {
+            let alertController = UIAlertController(title: "Warning", message: "You cannot delete the status because it is in use. Please change all related issues to another one and try again.", preferredStyle: .actionSheet)
+            let cancelAction = UIAlertAction(title: "OK", style: .default) { (action) in
+    
+            }
+            alertController.addAction(cancelAction)
+            let topViewController = UIApplication.getTopViewController()
+            topViewController?.present(alertController, animated: true, completion: nil)
+        }
+    }
+    
+    // If the status is not in any issue, return true; otherwise, false
+    func isUsed(status: Status)->Bool {
+        return project!.issues.contains(where: { (issue) -> Bool in
+            issue.status?.id == status.id
+        })
     }
     
 }

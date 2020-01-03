@@ -180,10 +180,19 @@ extension BoardDetailColumnViewController: UICollectionViewDropDelegate {
         if let srcIndexPath = item.sourceIndexPath, let desIndexPath = coordinator.destinationIndexPath,
             let (column, _, _) = item.dragItem.localObject as? (Column, UICollectionView, IndexPath){
             
-            collectionView.performBatchUpdates({
+            // User are modifying an existing board
+            if let _ = columns?.realm {
+                columns?.write(code: {
+                    columns?.remove(at: srcIndexPath.row)
+                    columns?.insert(column, at: desIndexPath.row)
+                }, completion: nil)
+            }
+            else {
                 columns?.remove(at: srcIndexPath.row)
                 columns?.insert(column, at: desIndexPath.row)
-                
+            }
+            
+            collectionView.performBatchUpdates({
                 collectionView.deleteItems(at: [srcIndexPath])
                 collectionView.insertItems(at: [desIndexPath])
                 
@@ -201,36 +210,52 @@ extension BoardDetailColumnViewController: UICollectionViewDropDelegate {
         else if let (status, srcCollectionView, srcIndexPath) = item.dragItem.localObject as? (Status, UICollectionView, IndexPath) {
             let column = Column()
             column.status = status
-            
-//            if columns == nil {
-//                columns = List<Column>()
-//            }
-//            
             // Get destination index path
             // Destination index path will be nil, if user drags item into collection view's footer
             if let desIndexPath = coordinator.destinationIndexPath {
-                columns?.insert(column, at: desIndexPath.row)
+                // The columns array is in realm
+                // User is editing the board
+                if let _ = columns?.realm {
+                    columns?.insert(column, at: desIndexPath.row, completion: nil)
+                }
+                // User is adding a a new board.
+                else {
+                    columns?.insert(column, at: desIndexPath.row)
+                }
+                
+                // Update collection view
                 collectionView.insertItems(at: [desIndexPath])
                 coordinator.drop(item.dragItem, toItemAt: desIndexPath)
                 
+                // Reload collection view's visible items
                 let visibleIndexPaths = collectionView.visibleCells.enumerated().compactMap {
                     return IndexPath(row: $0.0, section: 0)
                 }
                 collectionView.reloadItems(at: visibleIndexPaths)
             } else {
-                columns?.append(column)
+                // User is modifying an existing board
+                if let _ = columns?.realm {
+                    columns?.append(column, completion: nil)
+                }
+                // User is adding a new board
+                else {
+                    columns?.append(column)
+                }
                 collectionView.reloadData()
             }
             
             // Remove the status at the source collection view
             if let datasource = srcCollectionView.dataSource as? BoardDetailStatusViewController,
                 let srcStatuses = datasource.statuses{
-                
-                srcStatuses.remove(at: srcIndexPath.row)
+                if let _ = srcStatuses.realm {
+                    srcStatuses.remove(at: srcIndexPath.row, completion: nil)
+                }
+                else {
+                    srcStatuses.remove(at: srcIndexPath.row)
+                }
                 srcCollectionView.reloadData()
             }
         }
     }
-    
     
 }

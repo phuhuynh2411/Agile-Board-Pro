@@ -16,4 +16,8 @@ class Column: Object {
     
     // A column belongs to either one or more boards
     var boardOwners = LinkingObjects(fromType: Board.self, property: "columns")
+    
+    override static func primaryKey() -> String? {
+        return "id"
+    }
 }

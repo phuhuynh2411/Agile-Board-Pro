@@ -41,6 +41,10 @@ class Issue: Object {
         return "\(projectOwners.first?.key ?? "")-\(serial)"
     }
     
+    override static func primaryKey() -> String? {
+        return "id"
+    }
+    
     static func incrementID() -> Int {
         
         let realm = try! Realm()

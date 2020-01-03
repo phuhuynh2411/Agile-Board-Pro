@@ -7,17 +7,16 @@
 //
 
 import UIKit
+import RealmSwift
 
 class IssueCollectionController: NSObject {
     
     var project: Project?
-    
-    var selectedBoard: Board?
-    
+        
     var pageControl: IssuePageControlView?
     
     var collectionView: UICollectionView?
-    
+        
     init(collectionView: UICollectionView) {
         super.init()
         self.collectionView = collectionView
@@ -26,7 +25,7 @@ class IssueCollectionController: NSObject {
         
         let nib = UINib(nibName: Identifier.IssueCollectionViewCell, bundle: .main)
         collectionView.register(nib, forCellWithReuseIdentifier: Identifier.IssueCollectionViewCell)
-
+        
     }
     
     required init?(coder: NSCoder) {
@@ -41,7 +40,7 @@ extension IssueCollectionController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        let columns = selectedBoard?.columns
+        let columns = project?.selectedBoard?.columns
         return columns?.count ?? 0
         
     }
@@ -113,7 +112,7 @@ extension IssueCollectionController {
     func update(cell: IssueCollectionViewCell, at indexPath: IndexPath) {
         
         // The columns of the first board
-        let columns = selectedBoard?.columns
+        let columns = project?.selectedBoard?.columns
         let status = columns?[indexPath.row].status
         
         // Get all issues by status

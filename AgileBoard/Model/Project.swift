@@ -28,5 +28,11 @@ class Project: Object {
     let issueTypes = List<IssueType>()
     
     @objc dynamic var icon: ProjectIcon?
+    
+    override static func primaryKey() -> String? {
+        return "id"
+    }
+    
+    @objc dynamic var selectedBoard: Board?
   
 }

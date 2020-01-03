@@ -15,4 +15,8 @@ class Attachment: Object {
     @objc dynamic var name = ""
     @objc dynamic var url = ""
     
+    override static func primaryKey() -> String? {
+        return "id"
+    }
+    
 }

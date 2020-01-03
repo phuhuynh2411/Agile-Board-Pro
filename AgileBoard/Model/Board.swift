@@ -17,5 +17,9 @@ class Board: Object {
     let projectOwners = LinkingObjects(fromType: Project.self, property: "boards")
     
     // A board has many columns
-    let columns = List<Column>()
+    var columns = List<Column>()
+    
+    override static func primaryKey() -> String? {
+        return "id"
+    }
 }

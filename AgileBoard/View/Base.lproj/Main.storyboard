@@ -1310,6 +1310,7 @@
                     </navigationItem>
                     <connections>
                         <segue destination="Mei-ho-2qc" kind="presentation" identifier="AddBoardSegue" modalPresentationStyle="overFullScreen" id="sFG-yj-ceB"/>
+                        <segue destination="Mei-ho-2qc" kind="presentation" identifier="EditBoardSegue" modalPresentationStyle="overFullScreen" id="R4r-id-FWv"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zmE-yN-Pe1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1333,16 +1334,16 @@
                                 <color key="currentPageIndicatorTintColor" red="0.6470588235294118" green="0.67843137254901964" blue="0.72941176470588232" alpha="1" colorSpace="calibratedRGB"/>
                             </pageControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="error message" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zGk-AS-x9J">
-                                <rect key="frame" x="20" y="44" width="335" height="7"/>
+                                <rect key="frame" x="20" y="44" width="335" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Dup-tm-Ghf">
-                                <rect key="frame" x="0.0" y="51" width="375" height="616"/>
+                                <rect key="frame" x="0.0" y="64.5" width="375" height="602.5"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="onDrag" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xaG-mK-xgN">
-                                        <rect key="frame" x="20" y="8" width="335" height="295"/>
+                                        <rect key="frame" x="20" y="8" width="335" height="288.5"/>
                                         <color key="backgroundColor" red="0.95686274510000002" green="0.96078431369999995" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="YYq-sm-agM">
                                             <size key="itemSize" width="295" height="44"/>
@@ -1436,7 +1437,7 @@
                                         </collectionReusableView>
                                     </collectionView>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="onDrag" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="RHU-wH-whS">
-                                        <rect key="frame" x="20" y="313" width="335" height="295"/>
+                                        <rect key="frame" x="20" y="306.5" width="335" height="288"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="otC-AU-z1M">
                                             <size key="itemSize" width="335" height="122"/>
@@ -1516,13 +1517,13 @@
                                             </collectionViewCell>
                                         </cells>
                                         <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="FooterCell" id="cFE-Sk-oOK" customClass="BColumnCollectionReusableView" customModule="AgileBoard" customModuleProvider="target">
-                                            <rect key="frame" x="345" y="0.0" width="335" height="295"/>
+                                            <rect key="frame" x="345" y="0.0" width="335" height="288"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nUe-yw-50I">
+                                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nUe-yw-50I">
                                                     <rect key="frame" x="0.0" y="0.0" width="335" height="50"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NEW COLUMN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jCl-JC-GI2">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="NEW COLUMN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jCl-JC-GI2">
                                                             <rect key="frame" x="8" y="15.5" width="112.5" height="19.5"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                             <nil key="textColor"/>
@@ -1537,10 +1538,10 @@
                                                         <constraint firstAttribute="height" constant="50" id="x6l-pE-PLV"/>
                                                     </constraints>
                                                 </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="srI-LV-VbD">
+                                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="srI-LV-VbD">
                                                     <rect key="frame" x="8" y="58" width="319" height="44"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Drop status here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0j-Nc-99b">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Drop status here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0j-Nc-99b">
                                                             <rect key="frame" x="96" y="12" width="127.5" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" systemColor="placeholderTextColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1610,11 +1611,58 @@
                         <outlet property="statusCollectionView" destination="xaG-mK-xgN" id="r7M-6N-aab"/>
                         <segue destination="kAn-88-hfw" kind="presentation" identifier="AddStatusSegue" modalPresentationStyle="overFullScreen" id="Rzx-zf-G2O"/>
                         <segue destination="kAn-88-hfw" kind="presentation" identifier="EditStatusSegue" modalPresentationStyle="overFullScreen" id="MHi-C5-gJy"/>
+                        <segue destination="Ojo-o1-2r5" kind="presentation" identifier="EditBoardNameSegue" modalPresentationStyle="fullScreen" id="2FF-4Y-eCf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Gc-vF-qSp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5669.6000000000004" y="-842.42878560719646"/>
+        </scene>
+        <!--Edit Board Name View Controller-->
+        <scene sceneID="CQb-3m-oyY">
+            <objects>
+                <viewController id="yUn-ud-wtq" customClass="EditBoardNameViewController" customModule="AgileBoard" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2Z9-bx-i9a">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Board name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oFd-jb-nc6">
+                                <rect key="frame" x="16" y="60" width="343" height="22"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="textFieldDidChange:" destination="yUn-ud-wtq" eventType="editingChanged" id="oPu-Rd-peN"/>
+                                </connections>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="6I6-Ir-9ts" firstAttribute="trailing" secondItem="oFd-jb-nc6" secondAttribute="trailing" constant="16" id="knX-we-8K2"/>
+                            <constraint firstItem="oFd-jb-nc6" firstAttribute="top" secondItem="6I6-Ir-9ts" secondAttribute="top" constant="16" id="nxw-gK-VMc"/>
+                            <constraint firstItem="oFd-jb-nc6" firstAttribute="leading" secondItem="6I6-Ir-9ts" secondAttribute="leading" constant="16" id="sbg-ME-pb2"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6I6-Ir-9ts"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="nwL-2Q-AG6">
+                        <barButtonItem key="leftBarButtonItem" title="Close" id="vm0-dQ-yL9">
+                            <connections>
+                                <action selector="closeButtonPressed:" destination="yUn-ud-wtq" id="vHV-6t-hwX"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="abo-ZN-OfN">
+                            <connections>
+                                <action selector="saveButtonPressed:" destination="yUn-ud-wtq" id="orb-ud-3Ji"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="nameTextField" destination="oFd-jb-nc6" id="dJv-TG-xxG"/>
+                        <outlet property="saveButton" destination="abo-ZN-OfN" id="V1N-19-e4O"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tQf-u7-ay7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7327.1999999999998" y="-842.42878560719646"/>
         </scene>
         <!--Projects-->
         <scene sceneID="CaN-T6-2jw">
@@ -1937,6 +1985,24 @@
             </objects>
             <point key="canvasLocation" x="4920.8000000000002" y="-841.52923538230891"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Ga7-oP-Rua">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ojo-o1-2r5" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="D5Z-qB-yOO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="yUn-ud-wtq" kind="relationship" relationship="rootViewController" id="mtP-f6-Svw"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e1T-WW-tyQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6388" y="-842.42878560719646"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Accepted" width="23" height="22"/>
@@ -1947,6 +2013,7 @@
         <image name="priority_lowest" width="12" height="10"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="R4r-id-FWv"/>
         <segue reference="MHi-C5-gJy"/>
         <segue reference="U2G-ij-VVg"/>
         <segue reference="kzU-CZ-19t"/>

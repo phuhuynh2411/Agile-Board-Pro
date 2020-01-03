@@ -17,4 +17,7 @@ class Sprint: Object {
     // A print can has multiple issue
     let issues = List<Issue>()
     
+    override static func primaryKey() -> String? {
+        return "id"
+    }
 }

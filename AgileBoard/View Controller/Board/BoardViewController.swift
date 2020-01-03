@@ -22,25 +22,30 @@ class BoardViewController: UIViewController {
     // Project
     var project: Project?
     
-    var selectedBoard: Board?
-    
     var boardTransitioningDelegate: BoardTransitioningDelegate?
-        
+    
+    var customView: BoardTitleView = .fromNib()
+    
+    var notificationToken: NotificationToken?
+            
     override func viewDidLoad() {
         
         // Set the number of pages for the page control
         let columns = project?.boards.first?.columns
         self.pageControl.numberOfPages = columns?.count ?? 0
         
-        // Select first board as default
-        if let firstBoard = project?.boards.first {
-            selectedBoard = Board(value: firstBoard)
+        // Custom navigation title view
+        navigationItem.titleView = customView
+        
+        // Init the selected board
+        if project?.selectedBoard == nil {
+            project?.write(code: {
+                project?.selectedBoard = project?.boards.first
+            }, completion: nil)
         }
         
-        let customView: BoardTitleView = .fromNib()
-        navigationItem.titleView = customView
-        customView.titleButton.setTitle(selectedBoard?.name, for: .normal)
-        //customView.titleButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
+        // Update board name
+        customView.titleButton.setTitle(project?.selectedBoard?.name, for: .normal)
         
         // Add action for the title view
         customView.titleButton.addTarget(self, action: #selector(titleViewPressed(_sender:)), for: .touchUpInside)
@@ -52,7 +57,27 @@ class BoardViewController: UIViewController {
         // Set up collection view
         collectionController = IssueCollectionController(collectionView: collectionView)
         collectionController?.project = project
-        collectionController?.selectedBoard = selectedBoard
+        //collectionController?.selectedBoard = project?.selectedBoard
+        
+        notificationToken = project?.selectedBoard?.observe({ (change) in
+            switch change {
+            case .change(_):
+                print("The selected board has been changed.")
+                self.selectedBoardDidChange()
+                break
+            case .deleted:
+                print("The selected board has been deleted.")
+                break
+            case .error(let error):
+                print("An error occured \(error)")
+                break
+            }
+        })
+        
+    }
+    
+    deinit {
+        notificationToken?.invalidate()
     }
     
     override func viewDidLayoutSubviews() {
@@ -95,6 +120,13 @@ class BoardViewController: UIViewController {
         }
     }
     
+    // MARK: - Helper Methods
+    
+    private func selectedBoardDidChange() {
+        customView.titleButton.setTitle(project?.selectedBoard?.name, for: .normal)
+        collectionView.reloadData()
+    }
+    
     // MARK: - IB Actions
     
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
@@ -118,6 +150,7 @@ class BoardViewController: UIViewController {
             
             let navigationController = segue.destination as! UINavigationController
             let addIssueTableViewController =  navigationController.topViewController as! IssueDetailTableViewController
+            let selectedBoard = project?.selectedBoard
             
             addIssueTableViewController.initView(with: project, issueType: IssueTypeController.shared.default(), priority: PriorityController.shared.default(),startDate: Date(), status: selectedBoard?.columns.first?.status, delegate: self)
             
@@ -125,8 +158,7 @@ class BoardViewController: UIViewController {
         if segue.identifier == S.boardTableView {
             let navigationController = segue.destination as! UINavigationController
             let boardTableViewController =  navigationController.topViewController as! BoardTableViewController
-            boardTableViewController.boards = project?.boards
-            boardTableViewController.selectedBoard = selectedBoard
+
             boardTableViewController.project = project
             boardTableViewController.delegate = self
             
@@ -216,12 +248,12 @@ extension BoardViewController {
 extension BoardViewController: BoardTableViewControllerDelegate {
     
     func didSelectBoard(board: Board) {
-        selectedBoard?.id = board.id
-        selectedBoard?.name = board.name
-        selectedBoard?.columns.removeAll()
-        selectedBoard?.columns.append(objectsIn: board.columns)
+        project?.write(code: {
+            project?.selectedBoard = board
+        }, completion: nil)
         
-        collectionView.reloadData()
+        // Refresh the selected board
+        selectedBoardDidChange()
     }
     
 }

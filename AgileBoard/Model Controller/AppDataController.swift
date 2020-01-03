@@ -11,13 +11,27 @@ import RealmSwift
 
 class AppDataController {
     
-    static let realm = try! Realm()
+    var realm: Realm?
     
-    static func createSampleData() {
+    init() {
+        do{
+            self.realm  = try Realm()
+        }catch let error as NSError {
+            print(error)
+        }
+    }
+    
+    static var shared = AppDataController()
+        
+    func createSampleData() {
         
         // Clear previous data
-        try! realm.write {
-            realm.deleteAll()
+        do{
+            try realm?.write {
+                realm?.deleteAll()
+            }
+        }catch{
+            print(error)
         }
         
         // Create Sample Issue Types

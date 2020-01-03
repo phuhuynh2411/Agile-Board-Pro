@@ -14,4 +14,8 @@ class Status: Object {
     @objc dynamic var name = ""
     
     @objc dynamic var color: Color?
+    
+    override static func primaryKey() -> String? {
+        return "id"
+    }
 }

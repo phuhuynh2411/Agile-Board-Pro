@@ -15,12 +15,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         // Create sample data for the app
-        AppDataController.createSampleData()
+        AppDataController.shared.createSampleData()
         
         return true
     }
-
-
 
 }
 

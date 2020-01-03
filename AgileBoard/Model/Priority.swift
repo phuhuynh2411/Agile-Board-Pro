@@ -15,4 +15,8 @@ class Priority: Object {
     @objc dynamic var name = ""
     @objc dynamic var imageName = ""
     @objc dynamic var standard = false
+    
+    override static func primaryKey() -> String? {
+        return "id"
+    }
 }

@@ -12,7 +12,6 @@ import SwiftValidator
 
 protocol BoardDetailViewControllerDelegate {
     func didAddBoard(board: Board)
-    func didModifyBoard(board: Board)
 }
 
 class BoardDetailViewController: UIViewController {
@@ -32,13 +31,16 @@ class BoardDetailViewController: UIViewController {
     
     @IBOutlet weak var stackView: UIStackView!
     
-    var statuses: List<Status>?
-    var columns: List<Column>?
+    var availableStatuses: List<Status>?
+    
+    var board: Board?
     
     // A selected status used when modifying status
     var selectedStatus: Status?
     
     var project: Project?
+    
+    var columns = List<Column>()
     
     var validator = Validator()
     
@@ -81,6 +83,23 @@ class BoardDetailViewController: UIViewController {
         statusCollectionView.addGestureRecognizer(tapGesture1)
         columnCollectionView.addGestureRecognizer(tapGesture2)
         
+        // Load board name
+        if let name = board?.name {
+            titleView.nameTextField.text = name
+        }
+        
+        // Hide the create button on the right of the screen if the user
+        // are modifying the board
+        if !isNew() {
+            createButton.isEnabled = false
+            createButton.tintColor = .clear
+            
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(textFieldTapped(_:)))
+            titleView.nameTextField.addGestureRecognizer(tapGesture)
+        } else {
+            titleView.nameTextField.becomeFirstResponder()
+        }
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -105,8 +124,9 @@ class BoardDetailViewController: UIViewController {
         statusCollectionView.clipsToBounds = true
         
         // Status Collection View
-        statusCollectionController = BoardDetailStatusViewController()
-        statusCollectionController?.statuses = statuses
+        statusCollectionController = BoardDetailStatusViewController(collectionView: statusCollectionView)
+        statusCollectionController?.statuses = availableStatuses
+        statusCollectionController?.project = project
         
         // Add data source and delegate
         statusCollectionView.delegate = statusCollectionController
@@ -128,7 +148,11 @@ class BoardDetailViewController: UIViewController {
         
         // Column Collection View
         columnCollectionController = BoardDetailColumnViewController()
-        columnCollectionController?.columns = columns
+        if let columns = board?.columns {
+            columnCollectionController?.columns = columns
+        }else {
+            columnCollectionController?.columns = columns
+        }
         
         // Add data source and delegate
         columnCollectionView.delegate = columnCollectionController
@@ -142,9 +166,11 @@ class BoardDetailViewController: UIViewController {
     }
     
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
-        //view.endEditing(true)
         titleView.nameTextField.resignFirstResponder()
-        print("dismiss the keyboard")
+    }
+    
+    private func isNew()-> Bool {
+        return board == nil ? true : false
     }
     
     // MARK: - IB Actions
@@ -154,32 +180,41 @@ class BoardDetailViewController: UIViewController {
     }
     
     @IBAction func createButtonPressed(_ sender: UIBarButtonItem) {
-        if let name = titleView.nameTextField.text, let columns = columns {
+        if let name = titleView.nameTextField.text{
             let board = Board()
             board.name = name
-            board.columns.append(objectsIn: columns)
-            
+            board.columns = columns
             delegate?.didAddBoard(board: board)
             dismiss(animated: true, completion: nil)
         }
-       
+    }
+    
+    @IBAction func textFieldTapped(_ sender: UITapGestureRecognizer) {
+        performSegue(withIdentifier: S.editBoardName, sender: self)
     }
     
     // MARK: - Navigations
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.identifier == "AddStatusSegue" {
+        if segue.identifier == S.addStatus {
             let navigationController = segue.destination as! UINavigationController
             let statusDetailViewController = navigationController.topViewController as! StatusDetailViewController
             statusDetailViewController.delegate = self
         }
-        else if segue.identifier == "EditStatusSegue" {
+        else if segue.identifier == S.editStatus {
             let navigationController = segue.destination as! UINavigationController
             let statusDetailViewController = navigationController.topViewController as! StatusDetailViewController
             statusDetailViewController.delegate = self
             statusDetailViewController.status = selectedStatus
             statusDetailViewController.project = project
+        }
+        else if segue.identifier == S.editBoardName {
+            let navigationController = segue.destination as! UINavigationController
+            let editBoardNameViewController = navigationController.topViewController as! EditBoardNameViewController
+            
+            editBoardNameViewController.board = board
+            editBoardNameViewController.delegate = self
         }
     }
     
@@ -197,8 +232,11 @@ extension BoardDetailViewController: UITextFieldDelegate {
     }
     
     @IBAction func textFieldDidChange(_ sender: UITextField) {
-        print("Text fiedl did change")
         validator.validate(self)
+    }
+
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        return isNew() ? true : false
     }
 }
 
@@ -208,7 +246,7 @@ extension BoardDetailViewController: StatusDetailDelegate {
     
     func didAddStatus(status: Status) {
         if let project = project {
-            statuses?.append(status)
+            availableStatuses?.append(status)
             ProjectController.shared.add(status: status, to: project)
             statusCollectionView.reloadData()
         }
@@ -242,4 +280,26 @@ extension BoardDetailViewController: ValidationDelegate {
             errorLabel.text = error.errorMessage
         }
     }
+}
+
+// MARK: - Segue Identifiers
+
+extension BoardDetailViewController {
+    struct SegueIdentifier {
+        static let editBoardName = "EditBoardNameSegue"
+        static let addStatus = "AddStatusSegue"
+        static let editStatus = "EditStatusSegue"
+    }
+    typealias S = SegueIdentifier
+}
+
+
+// MARK: - EditBoardNameViewControlller
+
+extension BoardDetailViewController: EditBoardNameDelegate {
+    
+    func didModifyName(board: Board) {
+        titleView.nameTextField.text = board.name
+    }
+    
 }

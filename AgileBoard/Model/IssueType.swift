@@ -17,4 +17,8 @@ class IssueType: Object {
     @objc dynamic var typeDescription = ""
     @objc dynamic var standard = false
     
+    override static func primaryKey() -> String? {
+        return "id"
+    }
+    
 }

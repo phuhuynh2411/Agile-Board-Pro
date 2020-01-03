@@ -14,4 +14,8 @@ class ProjectIcon: Object {
     @objc dynamic var id = UUID().uuidString
     @objc dynamic var name = ""
     
+    override static func primaryKey() -> String? {
+        return "id"
+    }
+    
 }
