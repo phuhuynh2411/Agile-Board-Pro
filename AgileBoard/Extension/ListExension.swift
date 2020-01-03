@@ -62,4 +62,17 @@ extension List {
             completion?(error)
         }
     }
+    
+    func move(from: Int, to: Int,completion: ((_ error: Error?)->Void)?) {
+        let realm = AppDataController.shared.realm
+        do{
+            try realm?.write {
+                self.move(from: from, to: to)
+            }
+            completion?(nil)
+        }catch{
+            print(error)
+            completion?(error)
+        }
+    }
 }

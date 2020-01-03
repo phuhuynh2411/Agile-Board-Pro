@@ -119,10 +119,9 @@ extension IssueCollectionController: UICollectionViewDelegate, UICollectionViewD
         return CGSize(width: width, height: height)
     }
     
-    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         let issueCell = cell as! IssueCollectionViewCell
-     
+        
         // Reload the table view data
         issueCell.issueTableView.reloadData()
         
@@ -130,8 +129,8 @@ extension IssueCollectionController: UICollectionViewDelegate, UICollectionViewD
         let maxHeight = issueCell.frame.height - issueCell.headerFooterHeight
         issueCell.issueTableView.maxHeight = maxHeight
         issueCell.issueTableView.fitVisibleCellHeight(maxHeight: maxHeight, minHeight: 40, animated: false)
-        
     }
+    
 }
 
 // MARK: - Collection View Cell
@@ -143,21 +142,12 @@ extension IssueCollectionController {
         // The columns of the first board
         let columns = project?.selectedBoard?.columns
         let status = columns?[indexPath.row].status
-        
-        // Get all issues by status
-        let issues = project?.issues.filter("status = %@", status!)
     
         cell.headerLabel.text = status?.name
+        if let issues = project?.issues, let column = columns?[indexPath.row] {
+              cell.tableViewController?.dataForTableView(with: issues, and: column)
+        }
         
-        cell.tableViewController?.dataForTableView(with: issues, and: columns![indexPath.row])
-        
-        // Reload the table view data
-        //cell.issueTableView.reloadData()
-        
-        // Make the table view fit the visisble cell's height
-        // let maxHeight = cell.frame.height - cell.headerFooterHeight
-        // cell.issueTableView.maxHeight = maxHeight
-        //cell.issueTableView.fitVisibleCellHeight(maxHeight: maxHeight, minHeight: 40, animated: false)
     }
     
     

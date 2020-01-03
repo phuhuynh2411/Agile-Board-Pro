@@ -10,13 +10,13 @@ import UIKit
 import RealmSwift
 
 class DragIssueItem {
-    var issueList: List<Issue>
+    var issueList: Results<Issue>
     let indexPath: IndexPath
     let tableView: UITableView
     
     var cell: UITableViewCell
     
-    init(issueList: List<Issue>, indexPath: IndexPath, tableView: UITableView, cell: UITableViewCell){
+    init(issueList: Results<Issue>, indexPath: IndexPath, tableView: UITableView, cell: UITableViewCell){
         self.issueList = issueList
         self.indexPath = indexPath
         self.tableView = tableView

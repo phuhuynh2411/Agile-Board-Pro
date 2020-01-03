@@ -29,7 +29,7 @@ class IssueTableView: UITableView{
         
         // Enable drag operation
         self.dragInteractionEnabled = true
-        
+        self.translatesAutoresizingMaskIntoConstraints = false
     }
 
     /**
@@ -156,49 +156,6 @@ class IssueTableView: UITableView{
                 self.superview?.layoutIfNeeded()
             }
         }
-    }
-    
-    /**
-     Add a dashed border rectangle onto the table view
-     - Parameters:
-        - frame: the frame in which the dashed border rectangle is drawed
-     */
-    func addDashedBorder(at frame: CGRect) {
-        
-        removeDashedBorder()
-        
-        // guard let cell = tableViewCell else { return }
-        guard shapeLayer == nil else { return }
-
-        let color = UIColor.lightGray.cgColor
-
-        shapeLayer = CAShapeLayer()
-        let frameSize = frame.size
-        let shapeRect = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
-
-        shapeLayer?.bounds = shapeRect
-        shapeLayer?.position = CGPoint(x: frameSize.width/2, y: frameSize.height/2)
-        shapeLayer?.fillColor = UIColor.clear.cgColor
-        shapeLayer?.strokeColor = color
-        shapeLayer?.lineWidth = 2.0
-        shapeLayer?.lineJoin = CAShapeLayerLineJoin.round
-        shapeLayer?.lineDashPattern = [9,6]
-        shapeLayer?.path = UIBezierPath(roundedRect: CGRect(x: frame.minX + 8, y: frame.minY + 4, width: shapeRect.width - 16, height: shapeRect.height - 8), cornerRadius: 7).cgPath
-
-        self.layer.addSublayer(self.shapeLayer!)
-        
-    }
-    
-    /**
-     Remove the dashed border rectangle on the table view
-     */
-    func removeDashedBorder() {
-        
-        if shapeLayer != nil {
-            shapeLayer?.removeFromSuperlayer()
-            shapeLayer = nil
-        }
-        
     }
     
 }

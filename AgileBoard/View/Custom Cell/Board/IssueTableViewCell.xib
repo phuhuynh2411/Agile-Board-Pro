@@ -1,40 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IssueTableViewCell" customModule="AgileBoard" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="IssueTableViewCell" rowHeight="123" id="KGk-i7-Jjw" customClass="IssueTableViewCell" customModule="AgileBoard" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="123"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="IssueTableViewCell" rowHeight="116" translatesAutoresizingMaskIntoConstraints="NO" id="KGk-i7-Jjw" customClass="IssueTableViewCell" customModule="AgileBoard" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="116"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="123"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="116"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zE3-Lu-VIF" userLabel="Background View">
-                        <rect key="frame" x="8" y="4" width="359" height="115"/>
+                        <rect key="frame" x="8" y="4" width="359" height="108"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mdx-f7-mAs">
-                                <rect key="frame" x="8" y="8" width="343" height="71"/>
+                                <rect key="frame" x="8" y="8" width="343" height="64"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" red="0.13365754490000001" green="0.1851062477" blue="0.30589702730000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="25u-fb-9Dj" customClass="RoundImageView" customModule="AgileBoard" customModuleProvider="target">
-                                <rect key="frame" x="8" y="87" width="20" height="20"/>
+                                <rect key="frame" x="8" y="80" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="O8t-dJ-kbg"/>
-                                    <constraint firstAttribute="height" constant="20" id="kUt-32-nsW"/>
+                                    <constraint firstAttribute="height" priority="999" constant="20" id="kUt-32-nsW"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FT-1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jBT-cw-r3H">
-                                <rect key="frame" x="36" y="90" width="29" height="17"/>
+                                <rect key="frame" x="36" y="83" width="29" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" systemColor="placeholderTextColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -46,9 +45,9 @@
                             <constraint firstItem="jBT-cw-r3H" firstAttribute="leading" secondItem="25u-fb-9Dj" secondAttribute="trailing" constant="8" id="1xF-Qg-ci0"/>
                             <constraint firstItem="Mdx-f7-mAs" firstAttribute="top" secondItem="zE3-Lu-VIF" secondAttribute="top" constant="8" id="QxI-Tw-s5Y"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="jBT-cw-r3H" secondAttribute="trailing" constant="16" id="Rvm-4X-hZC"/>
-                            <constraint firstItem="25u-fb-9Dj" firstAttribute="top" secondItem="Mdx-f7-mAs" secondAttribute="bottom" constant="8" id="UCN-wu-yty"/>
                             <constraint firstItem="25u-fb-9Dj" firstAttribute="leading" secondItem="zE3-Lu-VIF" secondAttribute="leading" constant="8" id="Uoo-0n-9uc"/>
-                            <constraint firstAttribute="bottom" secondItem="25u-fb-9Dj" secondAttribute="bottom" constant="8" id="nnj-dU-eqS"/>
+                            <constraint firstItem="25u-fb-9Dj" firstAttribute="top" secondItem="Mdx-f7-mAs" secondAttribute="bottom" constant="8" id="aOH-im-27l"/>
+                            <constraint firstAttribute="bottom" secondItem="25u-fb-9Dj" secondAttribute="bottom" constant="8" id="hma-jq-Wq7"/>
                             <constraint firstItem="jBT-cw-r3H" firstAttribute="bottom" secondItem="25u-fb-9Dj" secondAttribute="bottom" id="o61-I1-QyB"/>
                             <constraint firstAttribute="trailing" secondItem="Mdx-f7-mAs" secondAttribute="trailing" constant="8" id="yM1-pc-Lfg"/>
                         </constraints>
@@ -68,7 +67,7 @@
                 <outlet property="issueTypeImageView" destination="25u-fb-9Dj" id="HUa-5j-zk3"/>
                 <outlet property="summaryLabel" destination="Mdx-f7-mAs" id="hxc-V8-AKI"/>
             </connections>
-            <point key="canvasLocation" x="176.08695652173915" y="151.00446428571428"/>
+            <point key="canvasLocation" x="123.91304347826087" y="127.23214285714285"/>
         </tableViewCell>
     </objects>
 </document>

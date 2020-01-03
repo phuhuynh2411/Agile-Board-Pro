@@ -15,7 +15,7 @@ class BoardViewController: UIViewController {
     
     @IBOutlet weak var pageControl: IssuePageControlView!
     
-    @IBOutlet weak var collectionView: IssueCollectionView!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     var collectionController: IssueCollectionController?
     
@@ -80,23 +80,6 @@ class BoardViewController: UIViewController {
     
     deinit {
         notificationToken?.invalidate()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        print("View đid layout subviews")
-        
-        // Show or Hide the page control
-        showHidePageControl()
-        
-        // Adjust Paging based the portrait and landscape mode
-        adjustPaging()
-        
-        // Adjust collection view cell
-        // collectionView.adjustCellSize()
-        //collectionView.reloadData()
-        collectionView.collectionViewLayout.invalidateLayout()
     }
     
     func showHidePageControl() {
@@ -188,8 +171,8 @@ extension BoardViewController {
         showHidePageControl()
 
         // Reload the collection data when users change the orientation
-        // Portait/Landscape mode
-        // collectionView.reloadData()
+        collectionView.collectionViewLayout.invalidateLayout()
+        collectionView.reloadData()
         
     }
     
