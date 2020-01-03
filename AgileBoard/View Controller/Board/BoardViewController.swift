@@ -74,6 +74,8 @@ class BoardViewController: UIViewController {
             }
         })
         
+        // Pass the page control through the collection view
+        collectionController?.pageControl = pageControl
     }
     
     deinit {
@@ -81,9 +83,9 @@ class BoardViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         
-        // Pass the page control through the collection view
-        // collectionView.controller?.pageControl = pageControl
+        print("View đid layout subviews")
         
         // Show or Hide the page control
         showHidePageControl()
@@ -92,9 +94,9 @@ class BoardViewController: UIViewController {
         adjustPaging()
         
         // Adjust collection view cell
-        collectionView.adjustCellSize()
-        collectionView.reloadData()
-        
+        // collectionView.adjustCellSize()
+        //collectionView.reloadData()
+        collectionView.collectionViewLayout.invalidateLayout()
     }
     
     func showHidePageControl() {

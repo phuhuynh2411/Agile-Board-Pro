@@ -58,7 +58,7 @@ extension IssueCollectionController: UICollectionViewDataSource {
 
 // MARK: - UICollectionViewDelegate
 
-extension IssueCollectionController: UICollectionViewDelegate {
+extension IssueCollectionController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         
@@ -103,6 +103,35 @@ extension IssueCollectionController: UICollectionViewDelegate {
         pageControl?.currentPage = pageNumber
         
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        return sizeForItem(collectionView)
+    }
+        
+    private func sizeForItem(_ collectionView: UICollectionView) ->CGSize {
+        // Landscape mode
+        let width = UIDevice.current.orientation.isLandscape ? collectionView.frame.width/2 - 30
+            : collectionView.frame.width - 40
+        
+        let height:CGFloat = collectionView.frame.height
+        
+        return CGSize(width: width, height: height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    
+        let issueCell = cell as! IssueCollectionViewCell
+     
+        // Reload the table view data
+        issueCell.issueTableView.reloadData()
+        
+        // Make the table view fit the visisble cell's height
+        let maxHeight = issueCell.frame.height - issueCell.headerFooterHeight
+        issueCell.issueTableView.maxHeight = maxHeight
+        issueCell.issueTableView.fitVisibleCellHeight(maxHeight: maxHeight, minHeight: 40, animated: false)
+        
+    }
 }
 
 // MARK: - Collection View Cell
@@ -123,12 +152,13 @@ extension IssueCollectionController {
         cell.tableViewController?.dataForTableView(with: issues, and: columns![indexPath.row])
         
         // Reload the table view data
-        cell.issueTableView.reloadData()
+        //cell.issueTableView.reloadData()
         
         // Make the table view fit the visisble cell's height
-        let maxHeight = cell.frame.height - cell.headerFooterHeight
-        cell.issueTableView.maxHeight = maxHeight
-        cell.issueTableView.fitVisibleCellHeight(maxHeight: maxHeight, minHeight: 40, animated: false)
+        // let maxHeight = cell.frame.height - cell.headerFooterHeight
+        // cell.issueTableView.maxHeight = maxHeight
+        //cell.issueTableView.fitVisibleCellHeight(maxHeight: maxHeight, minHeight: 40, animated: false)
     }
+    
     
 }
