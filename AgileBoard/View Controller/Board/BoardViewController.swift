@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 
 class BoardViewController: UIViewController {
-    
+        
     // MARK: - Outlets
     
     @IBOutlet weak var pageControl: IssuePageControlView!
@@ -76,6 +76,10 @@ class BoardViewController: UIViewController {
         
         // Pass the page control through the collection view
         collectionController?.pageControl = pageControl
+        
+        // Show or hide page controll
+        showHidePageControl()
+        
     }
     
     deinit {
@@ -92,22 +96,13 @@ class BoardViewController: UIViewController {
         }
     }
     
-    /**
-        Enables the paging in portrait mode and disables the paging in landscape mode
-     */
-    func adjustPaging() {
-        
-        if UIDevice.current.orientation.isLandscape {
-            collectionView.isPagingEnabled = false
-        }
-        else {
-            collectionView.isPagingEnabled = true
-        }
-    }
-    
     // MARK: - Helper Methods
     
     private func selectedBoardDidChange() {
+        // Re-update the total page number
+        pageControl.numberOfPages = project?.selectedBoard?.columns.count ?? 0
+        
+        // Update board name and reload the collection view
         customView.titleButton.setTitle(project?.selectedBoard?.name, for: .normal)
         collectionView.reloadData()
     }
@@ -161,11 +156,6 @@ class BoardViewController: UIViewController {
 extension BoardViewController {
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        
-        print("View will transition")
-                
-        // Adjusts the paging of the collection view
-        adjustPaging()
         
         // Show or hide the page control
         showHidePageControl()

@@ -206,7 +206,7 @@ class IssueDetailTableViewController: UITableViewController {
     private func setUpHeader() {
         headerView = .fromNib()
         headerView.textViewDelagate = self
-  
+    
         tableView.tableHeaderView = viewForTableViewHeader()
         
         // Set up actions

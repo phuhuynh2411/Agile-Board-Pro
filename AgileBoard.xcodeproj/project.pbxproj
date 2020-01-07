@@ -124,7 +124,6 @@
 		84F96A3623B2169300F44C73 /* BColumnColumnCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F96A3523B2169300F44C73 /* BColumnColumnCollectionViewCell.swift */; };
 		84FA5A5323ACB44D003CDD65 /* StatusDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA5A5223ACB44D003CDD65 /* StatusDetailViewController.swift */; };
 		84FA5A5523ACB6F4003CDD65 /* ColorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA5A5423ACB6F4003CDD65 /* ColorCollectionViewCell.swift */; };
-		8A40E46566E0F1F02B43E550 /* Pods_AgileBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8470DBBF2395FB8E00B146BD /* Pods_AgileBoard.framework */; };
 		F9C8AE98AB57360C36ADD4AE /* Pods_AgileBoardTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 631EB82B934CE67D5CF381F4 /* Pods_AgileBoardTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -287,7 +286,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B4C0C8507FD361917057F21 /* Pods_AgileBoard.framework in Frameworks */,
-				8A40E46566E0F1F02B43E550 /* Pods_AgileBoard.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -668,7 +666,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1120;
-				LastUpgradeCheck = 1120;
+				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = Filesoft;
 				TargetAttributes = {
 					843C897F237AE7460050586E = {

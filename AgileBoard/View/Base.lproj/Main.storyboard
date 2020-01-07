@@ -25,7 +25,7 @@
                                 <color key="pageIndicatorTintColor" red="0.92156862745098034" green="0.92549019607843142" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="currentPageIndicatorTintColor" red="0.6470588235294118" green="0.67843137254901964" blue="0.72941176470588232" alpha="1" colorSpace="calibratedRGB"/>
                             </pageControl>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ude-ek-oj3" userLabel="Issue Collection View" customClass="IssueCollectionView" customModule="AgileBoard" customModuleProvider="target">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ude-ek-oj3" userLabel="Issue Collection View" customClass="IssueCollectionView" customModule="AgileBoard" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="44" width="375" height="537"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <gestureRecognizers/>
@@ -1550,20 +1550,20 @@
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <constraints>
-                                                        <constraint firstItem="d0j-Nc-99b" firstAttribute="centerY" secondItem="srI-LV-VbD" secondAttribute="centerY" id="DjE-hP-TmV"/>
-                                                        <constraint firstAttribute="height" constant="44" id="hvO-Aj-hdr"/>
-                                                        <constraint firstItem="d0j-Nc-99b" firstAttribute="centerX" secondItem="srI-LV-VbD" secondAttribute="centerX" id="i0Y-gs-JKX"/>
+                                                        <constraint firstAttribute="height" constant="44" id="4za-Ev-JGN"/>
+                                                        <constraint firstItem="d0j-Nc-99b" firstAttribute="centerX" secondItem="srI-LV-VbD" secondAttribute="centerX" id="MDX-fw-c30"/>
+                                                        <constraint firstItem="d0j-Nc-99b" firstAttribute="centerY" secondItem="srI-LV-VbD" secondAttribute="centerY" id="XwT-SZ-NmJ"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
                                             <color key="backgroundColor" red="0.95686274510000002" green="0.96078431369999995" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <constraints>
+                                                <constraint firstItem="srI-LV-VbD" firstAttribute="leading" secondItem="cFE-Sk-oOK" secondAttribute="leadingMargin" id="ED5-Lg-MHt"/>
                                                 <constraint firstItem="nUe-yw-50I" firstAttribute="top" secondItem="cFE-Sk-oOK" secondAttribute="top" id="NrW-uN-5xt"/>
                                                 <constraint firstAttribute="trailing" secondItem="nUe-yw-50I" secondAttribute="trailing" id="Pit-Ig-Wo0"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="srI-LV-VbD" secondAttribute="trailing" id="U4q-7F-yD3"/>
-                                                <constraint firstItem="srI-LV-VbD" firstAttribute="top" secondItem="nUe-yw-50I" secondAttribute="bottom" constant="8" id="izV-EX-OYx"/>
-                                                <constraint firstItem="srI-LV-VbD" firstAttribute="leading" secondItem="cFE-Sk-oOK" secondAttribute="leadingMargin" id="t1E-Xk-0bI"/>
+                                                <constraint firstItem="srI-LV-VbD" firstAttribute="trailing" secondItem="cFE-Sk-oOK" secondAttribute="trailingMargin" id="ST2-aa-DzJ"/>
                                                 <constraint firstItem="nUe-yw-50I" firstAttribute="leading" secondItem="cFE-Sk-oOK" secondAttribute="leading" id="t2t-z6-yTq"/>
+                                                <constraint firstItem="srI-LV-VbD" firstAttribute="top" secondItem="nUe-yw-50I" secondAttribute="bottom" constant="8" id="zVM-dV-6nS"/>
                                             </constraints>
                                             <connections>
                                                 <outlet property="placeholderBackground" destination="srI-LV-VbD" id="YfU-eq-VbE"/>
