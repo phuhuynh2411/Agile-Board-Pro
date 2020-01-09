@@ -721,13 +721,47 @@
                     <connections>
                         <segue destination="JSO-L4-jsf" kind="relationship" relationship="viewControllers" id="2eM-al-HGG"/>
                         <segue destination="Jbh-5Z-ofQ" kind="relationship" relationship="viewControllers" id="dwn-ME-1ja"/>
+                        <segue destination="D1H-vY-9dA" kind="relationship" relationship="viewControllers" id="vkp-mH-ApD"/>
+                        <segue destination="pD2-gf-x4d" kind="relationship" relationship="viewControllers" id="rky-m9-xGF"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="29Z-y1-Gu5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="162" y="135"/>
         </scene>
-        <!--Item-->
+        <!--Profile-->
+        <scene sceneID="bw6-kp-lDs">
+            <objects>
+                <viewController id="D1H-vY-9dA" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nQl-ui-ux6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="nqE-uI-Al2"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Profile" image="profile" id="x0A-dq-2Uh"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dcm-fm-P1m" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-545" y="976"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="Xgv-EM-IAk">
+            <objects>
+                <viewController id="pD2-gf-x4d" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8cg-kA-X82">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="3ia-GE-nqn"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Settings" image="settings" id="xB8-PQ-IOB"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kD5-CX-wHZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="161" y="976"/>
+        </scene>
+        <!--Issues-->
         <scene sceneID="UHD-t2-DUC">
             <objects>
                 <tableViewController id="Jbh-5Z-ofQ" sceneMemberID="viewController">
@@ -750,7 +784,7 @@
                             <outlet property="delegate" destination="Jbh-5Z-ofQ" id="jnp-cq-MU6"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Item" id="Y3V-yg-YX3"/>
+                    <tabBarItem key="tabBarItem" title="Issues" image="issue" id="Y3V-yg-YX3"/>
                     <navigationItem key="navigationItem" id="JCS-F4-Y6f"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pqr-s0-0dN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1669,7 +1703,7 @@
         <scene sceneID="CaN-T6-2jw">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="JSO-L4-jsf" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Projects" id="6jK-ch-5mP"/>
+                    <tabBarItem key="tabBarItem" title="Projects" image="project" id="6jK-ch-5mP"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="BkD-nS-unX" customClass="AppNavigationBar" customModule="AgileBoard" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
@@ -2011,7 +2045,11 @@
         <image name="board" width="38" height="38"/>
         <image name="default_project_icon" width="81" height="71"/>
         <image name="disclosure" width="10" height="16"/>
+        <image name="issue" width="24" height="24"/>
         <image name="priority_lowest" width="12" height="10"/>
+        <image name="profile" width="22" height="22"/>
+        <image name="project" width="25" height="25"/>
+        <image name="settings" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="R4r-id-FWv"/>
