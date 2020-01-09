@@ -9,14 +9,12 @@
 import UIKit
 import RealmSwift
 
-class BoardDetailColumnViewController: UIViewController {
+class BoardDetailColumnViewController: NSObject {
 
     var columns: List<Column>?
+    var pageControl: UIPageControl?
+    var collectionView: UICollectionView?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-    }
 }
 
 // MARK: - UICollection View Datasource
@@ -33,6 +31,9 @@ extension BoardDetailColumnViewController: UICollectionViewDataSource {
         }else {
             layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
         }
+        
+        // Update the total page number
+        pageControl?.numberOfPages = count + 1
         
         return count
     }
@@ -99,6 +100,21 @@ extension BoardDetailColumnViewController: UICollectionViewDataSource {
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+       updatePageControl()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        updatePageControl()
+    }
+    
+    private func updatePageControl() {
+        // Update the total page numbers
+        let count = (columns?.count ?? 1) + 1
+        
+        pageControl?.numberOfPages = count
+    }
+    
     
 }
 
@@ -135,6 +151,52 @@ extension BoardDetailColumnViewController: UICollectionViewDelegate, UICollectio
     
     func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         print("move item")
+    }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        
+        // Only perform the following lines in portrait mode
+        guard !UIDevice.current.orientation.isLandscape else { return }
+        
+        // Stop scrollView sliding:
+        targetContentOffset.pointee = scrollView.contentOffset
+        
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        
+        // Only perform the following lines in portrait mode
+        guard !UIDevice.current.orientation.isLandscape, let layout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout,
+        let columns = columns else { return }
+    
+        let cellWidth = layout.itemSize.width + layout.minimumLineSpacing
+        var pageNumber = currentPageNumber()
+        
+        // If user scrolls the view to the left, decreases the page number;
+        // otherwise, increases the page number
+        pageNumber = scrollView.scrollDirection == .left ? pageNumber - 1 : pageNumber + 1
+        // If page number is less than 0, sets it to 0
+        pageNumber = pageNumber < 0 ? 0 : pageNumber
+        // If page number is greater than a number of columns, sets it to the number of columns
+        pageNumber = pageNumber > columns.count ? columns.count : pageNumber
+        
+        let newX = CGFloat(pageNumber) * cellWidth
+        
+        let rect = CGRect(x: newX, y: 0, width: scrollView.frame.width, height: scrollView.frame.height)
+        scrollView.scrollRectToVisible(rect, animated: true)
+    
+        // Update the page number
+        pageControl?.currentPage = pageNumber
+        
+    }
+    
+    private func currentPageNumber()->Int {
+        guard let collectionView = collectionView else { return 0 }
+        
+        let pageWidth = collectionView.frame.size.width
+        let pageNumber: Int = Int(floor((collectionView.contentOffset.x - pageWidth / 2) / pageWidth) + 1)
+        
+        return pageNumber
     }
     
     
@@ -195,15 +257,13 @@ extension BoardDetailColumnViewController: UICollectionViewDropDelegate {
             collectionView.performBatchUpdates({
                 collectionView.deleteItems(at: [srcIndexPath])
                 collectionView.insertItems(at: [desIndexPath])
-                
             }, completion: nil)
-            
+
             coordinator.drop(item.dragItem, toItemAt: desIndexPath)
+            collectionView.reloadVisibleItems()
             
-            let visibleIndexPaths = collectionView.visibleCells.enumerated().compactMap {
-                return IndexPath(row: $0.0, section: 0)
-            }
-            collectionView.reloadItems(at: visibleIndexPaths)
+            // Re-update the page number
+            pageControl?.currentPage = currentPageNumber()
             
         }
         // Drag and drop an item from another collection view into this collection view
@@ -227,12 +287,10 @@ extension BoardDetailColumnViewController: UICollectionViewDropDelegate {
                 collectionView.insertItems(at: [desIndexPath])
                 coordinator.drop(item.dragItem, toItemAt: desIndexPath)
                 
-                // Reload collection view's visible items
-                let visibleIndexPaths = collectionView.visibleCells.enumerated().compactMap {
-                    return IndexPath(row: $0.0, section: 0)
-                }
-                collectionView.reloadItems(at: visibleIndexPaths)
+                collectionView.reloadVisibleItems()
+                
             } else {
+                let lastIndexPath = IndexPath(row: columns?.count ?? 0, section: 0)
                 // User is modifying an existing board
                 if let _ = columns?.realm {
                     columns?.append(column, completion: nil)
@@ -241,7 +299,7 @@ extension BoardDetailColumnViewController: UICollectionViewDropDelegate {
                 else {
                     columns?.append(column)
                 }
-                collectionView.reloadData()
+                collectionView.insertItems(at: [lastIndexPath])
             }
             
             // Remove the status at the source collection view
@@ -253,7 +311,9 @@ extension BoardDetailColumnViewController: UICollectionViewDropDelegate {
                 else {
                     srcStatuses.remove(at: srcIndexPath.row)
                 }
-                srcCollectionView.reloadData()
+                srcCollectionView.deleteItems(at: [srcIndexPath])
+                // Reload collection view's header
+                srcCollectionView.reloadHeader()
             }
         }
     }

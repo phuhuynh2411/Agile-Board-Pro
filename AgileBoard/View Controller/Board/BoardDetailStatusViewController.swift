@@ -76,8 +76,6 @@ extension BoardDetailStatusViewController: UICollectionViewDataSource {
             viewType = UICollectionView.elementKindSectionHeader
             
             cell = collectionView.dequeueReusableSupplementaryView(ofKind: viewType, withReuseIdentifier: cellIdentifier, for: indexPath)
-            let headerCell = cell as! BStatusHeaderCell
-            headerCell.numberLabel.text = "\(statuses?.count ?? 0)"
             
             break
         default:
@@ -86,6 +84,13 @@ extension BoardDetailStatusViewController: UICollectionViewDataSource {
                 
                 
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView, forElementKind elementKind: String, at indexPath: IndexPath) {
+        // Update the status count on the collection view's header.
+        let headerView = view as! BStatusHeaderCell
+        headerView.numberLabel.text = "\(statuses?.count ?? 0)"
+        
     }
     
 }
@@ -158,13 +163,16 @@ extension BoardDetailStatusViewController: UICollectionViewDropDelegate {
         
         if let (column, srcCollectionView, srcIndexPath) = item.dragItem.localObject as? (Column, UICollectionView, IndexPath),
             let status = column.status {
+            let lastIndexPath = IndexPath(row: statuses?.count ?? 0, section: 0)
             
             if let _ = statuses?.realm {
                 statuses?.append(status, completion: nil)
             }else {
                 statuses?.append(status)
             }
-            collectionView.reloadData()
+            collectionView.insertItems(at: [lastIndexPath])
+            // Reload header
+            collectionView.reloadHeader()
             
             // Remove column at source collection view
             // Remove the status at the source collection view
@@ -176,7 +184,8 @@ extension BoardDetailStatusViewController: UICollectionViewDropDelegate {
                 }else {
                     srcColumns.remove(at: srcIndexPath.row)
                 }
-                srcCollectionView.reloadData()
+                srcCollectionView.deleteItems(at: [srcIndexPath])
+                srcCollectionView.reloadVisibleItems()
             }
             
         }

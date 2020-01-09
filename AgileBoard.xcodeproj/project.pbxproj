@@ -80,10 +80,12 @@
 		847DD06123ACAA5E001AF6BD /* IssueTypeTableViewCellv2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847DD05F23ACAA5E001AF6BD /* IssueTypeTableViewCellv2.swift */; };
 		847DD06223ACAA5E001AF6BD /* IssueTypeTableViewCellv2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 847DD06023ACAA5E001AF6BD /* IssueTypeTableViewCellv2.xib */; };
 		847FD53723A0F49900399145 /* DragAttachmentItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847FD53623A0F49900399145 /* DragAttachmentItem.swift */; };
+		848C483B23C56953001B5CC8 /* UICollectionViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848C483A23C56953001B5CC8 /* UICollectionViewExtension.swift */; };
 		848FCEB22397980E00CD6334 /* IssueDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 848FCEB12397980E00CD6334 /* IssueDetailHeaderView.xib */; };
 		848FCEB42397985100CD6334 /* IssueDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848FCEB32397985100CD6334 /* IssueDetailHeaderView.swift */; };
 		8490889723A1D75500D5DD96 /* DueDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8490889623A1D75500D5DD96 /* DueDateTableViewCell.swift */; };
 		8490889923A1E1B900D5DD96 /* HalfScreenPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8490889823A1E1B900D5DD96 /* HalfScreenPresentationController.swift */; };
+		8490D5E923C5DD82002E787B /* UIScrollViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8490D5E823C5DD82002E787B /* UIScrollViewExtension.swift */; };
 		84983EC223B1B623003657F1 /* BoardTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84983EC123B1B623003657F1 /* BoardTitleView.xib */; };
 		84983EC423B1B702003657F1 /* BoardTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84983EC323B1B702003657F1 /* BoardTitleView.swift */; };
 		84983EC623B1C33C003657F1 /* BoardTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84983EC523B1C33C003657F1 /* BoardTableViewController.swift */; };
@@ -229,10 +231,12 @@
 		847DD05F23ACAA5E001AF6BD /* IssueTypeTableViewCellv2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IssueTypeTableViewCellv2.swift; path = ../IssueTypeTableViewCellv2.swift; sourceTree = "<group>"; };
 		847DD06023ACAA5E001AF6BD /* IssueTypeTableViewCellv2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IssueTypeTableViewCellv2.xib; sourceTree = "<group>"; };
 		847FD53623A0F49900399145 /* DragAttachmentItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragAttachmentItem.swift; sourceTree = "<group>"; };
+		848C483A23C56953001B5CC8 /* UICollectionViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewExtension.swift; sourceTree = "<group>"; };
 		848FCEB12397980E00CD6334 /* IssueDetailHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IssueDetailHeaderView.xib; sourceTree = "<group>"; };
 		848FCEB32397985100CD6334 /* IssueDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetailHeaderView.swift; sourceTree = "<group>"; };
 		8490889623A1D75500D5DD96 /* DueDateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DueDateTableViewCell.swift; sourceTree = "<group>"; };
 		8490889823A1E1B900D5DD96 /* HalfScreenPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfScreenPresentationController.swift; sourceTree = "<group>"; };
+		8490D5E823C5DD82002E787B /* UIScrollViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScrollViewExtension.swift; sourceTree = "<group>"; };
 		84983EC123B1B623003657F1 /* BoardTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BoardTitleView.xib; sourceTree = "<group>"; };
 		84983EC323B1B702003657F1 /* BoardTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BoardTitleView.swift; path = AgileBoard/View/BoardTitleView.swift; sourceTree = SOURCE_ROOT; };
 		84983EC523B1C33C003657F1 /* BoardTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardTableViewController.swift; sourceTree = "<group>"; };
@@ -410,6 +414,8 @@
 				84B7EE0A239A40D10011BBD9 /* UIImageExtension.swift */,
 				8408E50D23A9DEE3004A859C /* UIView+Extension.swift */,
 				842D75C523AA2E8500193812 /* UITextView+Extension.swift */,
+				848C483A23C56953001B5CC8 /* UICollectionViewExtension.swift */,
+				8490D5E823C5DD82002E787B /* UIScrollViewExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -916,6 +922,7 @@
 				84579E6A239664FB009575E4 /* IssueDetailTableViewController.swift in Sources */,
 				842686F223995BE900B981D7 /* Attachment.swift in Sources */,
 				8426581B23AB169100061748 /* StatusTableViewController.swift in Sources */,
+				848C483B23C56953001B5CC8 /* UICollectionViewExtension.swift in Sources */,
 				84C4042D23A2254B00A49A8D /* SelectDateViewController.swift in Sources */,
 				84ACC2FA23AB74A1004B5281 /* TextviewTableViewController.swift in Sources */,
 				841D97A9238E674300483928 /* AppNavigationController.swift in Sources */,
@@ -931,6 +938,7 @@
 				84B5F72F238F647F00D344C3 /* SearchProjectTableViewCell.swift in Sources */,
 				84C340E62388368900C65AC9 /* ProjectTableViewCell.swift in Sources */,
 				8420628C237AFD7E0076CDAC /* Issue.swift in Sources */,
+				8490D5E923C5DD82002E787B /* UIScrollViewExtension.swift in Sources */,
 				84D590F523B9F36E0011FA4B /* EditBoardNameViewController.swift in Sources */,
 				847A781623877FB500911851 /* Column.swift in Sources */,
 				84E59162239251A2006FBA5E /* ProjectNameTextField.swift in Sources */,

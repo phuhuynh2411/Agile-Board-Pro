@@ -25,6 +25,7 @@ class BoardDetailViewController: UIViewController {
     
     @IBOutlet weak var columnCollectionView: UICollectionView!
     @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var pageControl: UIPageControl!
     
     var statusCollectionController: BoardDetailStatusViewController?
     var columnCollectionController: BoardDetailColumnViewController?
@@ -162,6 +163,10 @@ class BoardDetailViewController: UIViewController {
         columnCollectionView.dragInteractionEnabled = true
         columnCollectionView.dragDelegate = columnCollectionController
         columnCollectionView.dropDelegate = columnCollectionController
+        
+        // Pass the page control and collection view to the controller
+        columnCollectionController?.collectionView = columnCollectionView
+        columnCollectionController?.pageControl = pageControl
         
     }
     

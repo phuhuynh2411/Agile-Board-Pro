@@ -41,22 +41,26 @@ class BoardTableViewController: UITableViewController {
         tableView.tableFooterView = UIView()
         
         // Add fine-grained notification block
-        notificationToken = boards?.observe { changes in
+        notificationToken = boards?.observe { [weak self] (changes) in
+            guard let tableView = self?.tableView else { return }
+            
             switch changes {
             case .initial:
-                self.tableView.reloadData()
-            case .update(_, let deletions, let insertions, let modifications):
+                tableView.reloadData()
+            case .update(_ , let deletions, let insertions, let modifications):
+                print("Table view has been updated.")
+                
                 // Query results have changed, so apply them to the UITableView
-                self.tableView.beginUpdates()
-                // Always apply updates in the following order: deletions, insertions, then modifications.
-                // Handling insertions before deletions may result in unexpected behavior.
-                self.tableView.deleteRows(at: deletions.map({ IndexPath(row: $0, section: 0)}),
+                tableView.beginUpdates()
+                 //Always apply updates in the following order: deletions, insertions, then modifications.
+                 //Handling insertions before deletions may result in unexpected behavior.
+                tableView.deleteRows(at: deletions.map({ IndexPath(row: $0, section: 0)}),
                                      with: .automatic)
-                self.tableView.insertRows(at: insertions.map({ IndexPath(row: $0, section: 0) }),
+                tableView.insertRows(at: insertions.map({ IndexPath(row: $0, section: 0) }),
                                      with: .automatic)
-                self.tableView.reloadRows(at: modifications.map({ IndexPath(row: $0, section: 0) }),
+                tableView.reloadRows(at: modifications.map({ IndexPath(row: $0, section: 0) }),
                                      with: .automatic)
-                self.tableView.endUpdates()
+                tableView.endUpdates()
             case .error(let error):
                 // handle error
                 print(error)
@@ -66,6 +70,12 @@ class BoardTableViewController: UITableViewController {
     }
     
     deinit {
+        notificationToken?.invalidate()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
         notificationToken?.invalidate()
     }
     

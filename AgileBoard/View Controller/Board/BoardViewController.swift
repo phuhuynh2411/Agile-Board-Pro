@@ -86,6 +86,12 @@ class BoardViewController: UIViewController {
         notificationToken?.invalidate()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        notificationToken?.invalidate()
+    }
+    
     func showHidePageControl() {
         
         if UIDevice.current.orientation.isLandscape {

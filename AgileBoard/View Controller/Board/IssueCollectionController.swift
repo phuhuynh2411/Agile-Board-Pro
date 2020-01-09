@@ -60,11 +60,6 @@ extension IssueCollectionController: UICollectionViewDataSource {
 
 extension IssueCollectionController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
-    func collectionView(_ collectionView: UICollectionView, targetContentOffsetForProposedContentOffset proposedContentOffset: CGPoint) -> CGPoint {
-        
-        return proposedContentOffset
-    }
-    
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         
         // Only perform the following lines in portrait mode
@@ -104,11 +99,6 @@ extension IssueCollectionController: UICollectionViewDelegate, UICollectionViewD
         
         let rect = CGRect(x: newX, y: 0, width: scrollView.frame.width, height: scrollView.frame.height)
         scrollView.scrollRectToVisible(rect, animated: true)
-        
-        print("Visible rect \(rect)")
-        print("Content off set \(scrollView.contentOffset)")
-        
-        //scrollView.contentOffset = CGPoint(x: newX, y: 0)
         
         // Update the page number
         pageControl?.currentPage = pageNumber
