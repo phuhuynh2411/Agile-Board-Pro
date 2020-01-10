@@ -32,6 +32,9 @@ class Project: Object {
     override static func primaryKey() -> String? {
         return "id"
     }
+    // House keeping fields
+    @objc dynamic var createdDate = Date()
+    @objc dynamic var modifiedDate = Date()
     
     @objc dynamic var selectedBoard: Board?
   

@@ -366,13 +366,22 @@ class IssueDetailTableViewController: UITableViewController {
         selectDateViewController.delegate = DateController(callback: { (selectedDate) in
             switch dateType{
             case .dueDate:
-                IssueController.shared.update(dueDate: selectedDate!, to: self.issue!)
+                //IssueController.shared.update(dueDate: selectedDate!, to: self.issue!)
+                self.issue?.write(code: {
+                    self.issue?.dueDate = selectedDate
+                }, completion: nil)
                 break
             case .startDate:
-                IssueController.shared.update(startDate: selectedDate!, to: self.issue!)
+                //IssueController.shared.update(startDate: selectedDate!, to: self.issue!)
+                self.issue?.write(code: {
+                    self.issue?.startDate = selectedDate
+                }, completion: nil)
                 break
             case .endDate:
-                IssueController.shared.update(endDate: selectedDate!, to: self.issue!)
+                //IssueController.shared.update(endDate: selectedDate!, to: self.issue!)
+                self.issue?.write(code: {
+                    self.issue?.endDate = selectedDate
+                }, completion: nil)
                 break
             }
             self.updateView(components: [.tableView], markAsModified: true)
@@ -395,8 +404,8 @@ class IssueDetailTableViewController: UITableViewController {
         // If realm database does not contain the issue,
         // it is the new one; otherwise, it is an exsiting issue.
         if let issue = issue {
-            guard let isExisting = IssueController.shared.contain(issue: issue) else { return true }
-            return !isExisting
+            guard let _ = issue.realm else { return true }
+            return false
         }else{
             return true
         }
@@ -628,7 +637,14 @@ extension IssueDetailTableViewController: IssueTypeTableViewDelegate {
     
     func didSelectIssueType(issueType: IssueType) {
         if let issue = issue{
-            IssueController.shared.update(type: issueType, to: issue)
+            //IssueController.shared.update(type: issueType, to: issue)
+            issue.write(code: {
+                issue.type = issueType
+            }) { (error) in
+                if let error = error {
+                    print(error)
+                }
+            }
             updateView(components: [.issueType, .tableView], markAsModified: true)
         }
     }
@@ -720,7 +736,10 @@ extension IssueDetailTableViewController: SelectPriorityDelegate {
     
     func didSelectPriority(priority: Priority) {
         if let issue = issue {
-            IssueController.shared.update(priority, to: issue)
+            //IssueController.shared.update(priority, to: issue)
+            issue.write(code: {
+                issue.priority = priority
+            }, completion: nil)
             updateView(components: [.tableView], markAsModified: true)
         }
     }
@@ -849,13 +868,19 @@ extension IssueDetailTableViewController {
 extension IssueDetailTableViewController: AttachmentDelegate {
     func didAddAttachment(attachment: Attachment) {
         if let issue = issue {
-            IssueController.shared.add(attachment, to: issue)
+            //IssueController.shared.add(attachment, to: issue)
+            issue.write(code: {
+                issue.attachments.append(attachment)
+            }, completion: nil)
             updateView(components: [.tableView], markAsModified: true)
         }
     }
     
     func didDeleteAttachment(attachment: Attachment, at indexPath: IndexPath) {
-        IssueController.shared.delete(attachment)
+        //IssueController.shared.delete(attachment)
+        issue?.write(code: {
+            issue?.realm?.delete(attachment)
+        }, completion: nil)
         updateView(components: [.tableView], markAsModified: true)
     }
 }
@@ -889,7 +914,10 @@ extension IssueDetailTableViewController: ValidationDelegate {
 extension IssueDetailTableViewController: StatusDelegate {
     func didSelectStatus(status: Status) {
         if let issue = issue{
-            IssueController.shared.update(status, to: issue)
+            //IssueController.shared.update(status, to: issue)
+            issue.write(code: {
+                issue.status = status
+            }, completion: nil)
             updateView(components: [.status])
         }
     }

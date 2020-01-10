@@ -8,7 +8,7 @@
 
 import XCTest
 
-@testable import AgileBoard
+@testable import Agile_Board
 import RealmSwift
 
 class AddProjecTableViewControllerTests: XCTestCase {

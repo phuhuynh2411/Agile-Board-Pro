@@ -12,12 +12,12 @@
         <!--Main board-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="BoardViewController" customModule="AgileBoard" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="BoardViewController" customModule="Agile_Board" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="S2E-3z-RmC" customClass="IssuePageControlView" customModule="AgileBoard" customModuleProvider="target">
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="S2E-3z-RmC" customClass="IssuePageControlView" customModule="Agile_Board" customModuleProvider="target">
                                 <rect key="frame" x="16" y="581" width="343" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" identifier="heightConstrant" id="Kga-hZ-QSD"/>
@@ -25,11 +25,11 @@
                                 <color key="pageIndicatorTintColor" red="0.92156862745098034" green="0.92549019607843142" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="currentPageIndicatorTintColor" red="0.6470588235294118" green="0.67843137254901964" blue="0.72941176470588232" alpha="1" colorSpace="calibratedRGB"/>
                             </pageControl>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ude-ek-oj3" userLabel="Issue Collection View" customClass="IssueCollectionView" customModule="AgileBoard" customModuleProvider="target">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ude-ek-oj3" userLabel="Issue Collection View" customClass="IssueCollectionView" customModule="Agile_Board" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="44" width="375" height="537"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <gestureRecognizers/>
-                                <collectionViewLayout key="collectionViewLayout" id="0Wy-gz-6WL" customClass="IssueCollectionViewFlowLayout" customModule="AgileBoard" customModuleProvider="target"/>
+                                <collectionViewLayout key="collectionViewLayout" id="0Wy-gz-6WL" customClass="IssueCollectionViewFlowLayout" customModule="Agile_Board" customModuleProvider="target"/>
                                 <cells/>
                             </collectionView>
                         </subviews>
@@ -66,13 +66,13 @@
         <!--Issue Detail Table View Controller-->
         <scene sceneID="Wca-ty-3r1">
             <objects>
-                <tableViewController storyboardIdentifier="AddIssueTableViewController" id="Tt1-hd-qyE" customClass="IssueDetailTableViewController" customModule="AgileBoard" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="AddIssueTableViewController" id="Tt1-hd-qyE" customClass="IssueDetailTableViewController" customModule="Agile_Board" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Bln-9A-BI0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PriorityCell" rowHeight="70" id="XMn-6P-f5y" customClass="IssuePriorityTableViewCell" customModule="AgileBoard" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PriorityCell" rowHeight="70" id="XMn-6P-f5y" customClass="IssuePriorityTableViewCell" customModule="Agile_Board" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XMn-6P-f5y" id="Zab-px-9jr">
@@ -142,7 +142,7 @@
                                     <outlet property="priorityNameLabel" destination="5g9-gd-9uE" id="46h-fh-PjA"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AttachmentCell" rowHeight="44" id="60S-Lh-2bL" customClass="AttachmentTableViewCell" customModule="AgileBoard" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AttachmentCell" rowHeight="44" id="60S-Lh-2bL" customClass="AttachmentTableViewCell" customModule="Agile_Board" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="98" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="60S-Lh-2bL" id="bP1-lt-CDo">
@@ -186,14 +186,14 @@
                                     <outlet property="numberLabel" destination="uHz-Qx-aYS" id="cGT-OS-1Tg"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CollectionCell" rowHeight="116" id="JHZ-ms-e2w" customClass="AddIssueCollectionTableViewCell" customModule="AgileBoard" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CollectionCell" rowHeight="116" id="JHZ-ms-e2w" customClass="AddIssueCollectionTableViewCell" customModule="Agile_Board" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="142" width="375" height="116"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JHZ-ms-e2w" id="Ubx-rw-HV0">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="116"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="VR8-Lg-17B" customClass="AttachmentCollectionView" customModule="AgileBoard" customModuleProvider="target">
+                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="VR8-Lg-17B" customClass="AttachmentCollectionView" customModule="Agile_Board" customModuleProvider="target">
                                             <rect key="frame" x="16" y="8" width="343" height="100"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <constraints>
@@ -206,7 +206,7 @@
                                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                             </collectionViewFlowLayout>
                                             <cells>
-                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="XYt-Wj-Ion" customClass="AttachmentCollectionViewCell" customModule="AgileBoard" customModuleProvider="target">
+                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="XYt-Wj-Ion" customClass="AttachmentCollectionViewCell" customModule="Agile_Board" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="7aK-FI-Cji">
@@ -259,7 +259,7 @@
                                     <outlet property="collectionView" destination="VR8-Lg-17B" id="cqM-Fs-NVI"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DueDateCell" rowHeight="70" id="tuu-Ca-6gL" customClass="DueDateTableViewCell" customModule="AgileBoard" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DueDateCell" rowHeight="70" id="tuu-Ca-6gL" customClass="DueDateTableViewCell" customModule="Agile_Board" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="258" width="375" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tuu-Ca-6gL" id="tVk-SD-X33">
@@ -320,7 +320,7 @@
                                     <outlet property="titleLabel2" destination="aPp-0p-jg9" id="EoX-La-CFK"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StartDateCell" rowHeight="70" id="1Yd-fa-w6m" customClass="StartDateTableViewCell" customModule="AgileBoard" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StartDateCell" rowHeight="70" id="1Yd-fa-w6m" customClass="StartDateTableViewCell" customModule="Agile_Board" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="328" width="375" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1Yd-fa-w6m" id="wW6-EB-NLb">
@@ -381,7 +381,7 @@
                                     <outlet property="titleLabel2" destination="aJ4-Zy-L7A" id="c59-tp-48H"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EndDateCell" rowHeight="70" id="wZw-3t-Zz9" customClass="EndDateTableViewCell" customModule="AgileBoard" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EndDateCell" rowHeight="70" id="wZw-3t-Zz9" customClass="EndDateTableViewCell" customModule="Agile_Board" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="398" width="375" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wZw-3t-Zz9" id="wHq-Rj-BRS">
@@ -475,26 +475,26 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3fj-RK-vOE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3373.5999999999999" y="681.40929535232385"/>
+            <point key="canvasLocation" x="4312.8000000000002" y="681.40929535232385"/>
         </scene>
         <!--Priority-->
         <scene sceneID="o02-qj-Vqs">
             <objects>
-                <tableViewController id="Gqt-1D-VJt" customClass="PriorityTableViewController" customModule="AgileBoard" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Gqt-1D-VJt" customClass="PriorityTableViewController" customModule="Agile_Board" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="rqM-bL-cCI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <inset key="separatorInset" minX="36" minY="0.0" maxX="16" maxY="0.0"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="60" id="q49-wS-hzr" customClass="PriorityTableViewCell" customModule="AgileBoard" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="60" id="q49-wS-hzr" customClass="PriorityTableViewCell" customModule="Agile_Board" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="q49-wS-hzr" id="Oss-CG-0RY">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="priority_lowest" translatesAutoresizingMaskIntoConstraints="NO" id="CAO-3c-lIv" customClass="RoundImageView" customModule="AgileBoard" customModuleProvider="target">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="priority_lowest" translatesAutoresizingMaskIntoConstraints="NO" id="CAO-3c-lIv" customClass="RoundImageView" customModule="Agile_Board" customModuleProvider="target">
                                             <rect key="frame" x="16" y="20" width="20" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="20" id="Uu5-C1-Tp4"/>
@@ -534,12 +534,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zof-qZ-cGG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4174" y="-49"/>
+            <point key="canvasLocation" x="5112.8000000000002" y="-49.025487256371818"/>
         </scene>
         <!--Project-->
         <scene sceneID="IdJ-hJ-yja">
             <objects>
-                <viewController id="vgI-8T-ppB" customClass="SearchProjectViewController" customModule="AgileBoard" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vgI-8T-ppB" customClass="SearchProjectViewController" customModule="Agile_Board" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gcG-eI-XLa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -549,14 +549,14 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <inset key="separatorInset" minX="56" minY="0.0" maxX="16" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="70" id="k1G-sO-u02" customClass="SearchProjectTableViewCell" customModule="AgileBoard" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="70" id="k1G-sO-u02" customClass="SearchProjectTableViewCell" customModule="Agile_Board" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="k1G-sO-u02" id="tWX-Xi-8IQ">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UO8-Dg-cm5" customClass="RoundImageView" customModule="AgileBoard" customModuleProvider="target">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UO8-Dg-cm5" customClass="RoundImageView" customModule="Agile_Board" customModuleProvider="target">
                                                     <rect key="frame" x="16" y="15" width="40" height="40"/>
                                                     <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
@@ -629,26 +629,26 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Icn-Bn-Gek" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4969" y="681"/>
+            <point key="canvasLocation" x="5908" y="680.5097451274363"/>
         </scene>
         <!--Issue Type-->
         <scene sceneID="ffp-bI-akS">
             <objects>
-                <tableViewController id="rWX-Eh-5UE" customClass="IssueTypeTableViewController" customModule="AgileBoard" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="rWX-Eh-5UE" customClass="IssueTypeTableViewController" customModule="Agile_Board" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="TEx-uG-ZZg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <inset key="separatorInset" minX="46" minY="0.0" maxX="16" maxY="0.0"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="BNb-NB-ggB" customClass="IssueTypeTableViewCell" customModule="AgileBoard" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="BNb-NB-ggB" customClass="IssueTypeTableViewCell" customModule="Agile_Board" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BNb-NB-ggB" id="TvI-4X-sXZ">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3tF-CT-Ixf" customClass="RoundImageView" customModule="AgileBoard" customModuleProvider="target">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3tF-CT-Ixf" customClass="RoundImageView" customModule="Agile_Board" customModuleProvider="target">
                                             <rect key="frame" x="16" y="20" width="30" height="30"/>
                                             <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
@@ -720,7 +720,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="JSO-L4-jsf" kind="relationship" relationship="viewControllers" id="2eM-al-HGG"/>
-                        <segue destination="Jbh-5Z-ofQ" kind="relationship" relationship="viewControllers" id="dwn-ME-1ja"/>
+                        <segue destination="U8U-B9-8pp" kind="relationship" relationship="viewControllers" id="dwn-ME-1ja"/>
                         <segue destination="D1H-vY-9dA" kind="relationship" relationship="viewControllers" id="vkp-mH-ApD"/>
                         <segue destination="pD2-gf-x4d" kind="relationship" relationship="viewControllers" id="rky-m9-xGF"/>
                     </connections>
@@ -761,40 +761,33 @@
             </objects>
             <point key="canvasLocation" x="161" y="976"/>
         </scene>
-        <!--Issues-->
+        <!--Due today-->
         <scene sceneID="UHD-t2-DUC">
             <objects>
-                <tableViewController id="Jbh-5Z-ofQ" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Oy1-DU-dLq">
+                <tableViewController id="Jbh-5Z-ofQ" customClass="IssueListTableViewController" customModule="Agile_Board" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" id="Oy1-DU-dLq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="Jso-cU-zmS">
-                                <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Jso-cU-zmS" id="4Ti-7Z-8he">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="Jbh-5Z-ofQ" id="ezO-gX-5q6"/>
                             <outlet property="delegate" destination="Jbh-5Z-ofQ" id="jnp-cq-MU6"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Issues" image="issue" id="Y3V-yg-YX3"/>
-                    <navigationItem key="navigationItem" id="JCS-F4-Y6f"/>
+                    <navigationItem key="navigationItem" title="Due today" largeTitleDisplayMode="never" id="JCS-F4-Y6f">
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="1uY-KB-QXn"/>
+                            <barButtonItem systemItem="search" id="LNc-92-ZAq"/>
+                        </rightBarButtonItems>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pqr-s0-0dN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="990" y="590"/>
+            <point key="canvasLocation" x="1928.8" y="589.65517241379314"/>
         </scene>
         <!--New Project-->
         <scene sceneID="817-fF-gv3">
             <objects>
-                <tableViewController storyboardIdentifier="addProjectTableViewController" id="Gmb-pi-FYd" customClass="AddProjectTableViewController" customModule="AgileBoard" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="addProjectTableViewController" id="Gmb-pi-FYd" customClass="AddProjectTableViewController" customModule="Agile_Board" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="1" id="fpc-bb-Dpb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -809,7 +802,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="73"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_project_icon" translatesAutoresizingMaskIntoConstraints="NO" id="gey-Hw-6ha" customClass="RoundImageView" customModule="AgileBoard" customModuleProvider="target">
+                                                <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_project_icon" translatesAutoresizingMaskIntoConstraints="NO" id="gey-Hw-6ha" customClass="RoundImageView" customModule="Agile_Board" customModuleProvider="target">
                                                     <rect key="frame" x="16" y="11.5" width="50" height="50"/>
                                                     <gestureRecognizers/>
                                                     <constraints>
@@ -847,7 +840,7 @@
                                                     <color key="textColor" systemColor="placeholderTextColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phoenix" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iNg-6R-jbg" customClass="ProjectNameTextField" customModule="AgileBoard" customModuleProvider="target">
+                                                <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phoenix" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iNg-6R-jbg" customClass="ProjectNameTextField" customModule="Agile_Board" customModuleProvider="target">
                                                     <rect key="frame" x="16" y="11" width="343" height="34"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="34" id="8wA-gn-6Cu"/>
@@ -881,7 +874,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="73"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="PHN" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Q3G-0n-VWG" customClass="ProjectKeyTextField" customModule="AgileBoard" customModuleProvider="target">
+                                                <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="PHN" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Q3G-0n-VWG" customClass="ProjectKeyTextField" customModule="Agile_Board" customModuleProvider="target">
                                                     <rect key="frame" x="16" y="5" width="343" height="34"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="34" id="UCG-sa-vRR"/>
@@ -987,7 +980,7 @@
         <!--Icon Collection View Controller-->
         <scene sceneID="kPM-Dg-FLc">
             <objects>
-                <collectionViewController id="ljZ-GO-OEN" customClass="IconCollectionViewController" customModule="AgileBoard" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="ljZ-GO-OEN" customClass="IconCollectionViewController" customModule="Agile_Board" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="1jP-ae-lBO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -999,14 +992,14 @@
                             <inset key="sectionInset" minX="20" minY="10" maxX="20" maxY="10"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="d8I-Gi-0Bs" customClass="IconCollectionViewCell" customModule="AgileBoard" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="d8I-Gi-0Bs" customClass="IconCollectionViewCell" customModule="Agile_Board" customModuleProvider="target">
                                 <rect key="frame" x="20" y="10" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="wAV-d4-mPC">
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DNE-gZ-6xM" customClass="RoundImageView" customModule="AgileBoard" customModuleProvider="target">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DNE-gZ-6xM" customClass="RoundImageView" customModule="Agile_Board" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
@@ -1043,21 +1036,21 @@
         <!--Projects-->
         <scene sceneID="WzP-qo-nPy">
             <objects>
-                <tableViewController id="VBh-5k-qwg" customClass="ProjectTableViewController" customModule="AgileBoard" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="VBh-5k-qwg" customClass="ProjectTableViewController" customModule="Agile_Board" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="q40-0e-0NI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <inset key="separatorInset" minX="56" minY="0.0" maxX="16" maxY="0.0"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="70" id="rDd-iq-KUx" customClass="ProjectTableViewCell" customModule="AgileBoard" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="70" id="rDd-iq-KUx" customClass="ProjectTableViewCell" customModule="Agile_Board" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rDd-iq-KUx" id="WuD-FM-2Mo">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_project_icon" translatesAutoresizingMaskIntoConstraints="NO" id="Zvb-4x-bXX" customClass="RoundImageView" customModule="AgileBoard" customModuleProvider="target">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_project_icon" translatesAutoresizingMaskIntoConstraints="NO" id="Zvb-4x-bXX" customClass="RoundImageView" customModule="Agile_Board" customModuleProvider="target">
                                             <rect key="frame" x="16" y="15" width="40" height="40"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="40" id="0HE-qv-ITf"/>
@@ -1129,7 +1122,7 @@
             <objects>
                 <navigationController storyboardIdentifier="IssueDetailNavigationController" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="OPr-22-lDI" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="tMp-Kb-aYu" customClass="AppNavigationBar" customModule="AgileBoard" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="tMp-Kb-aYu" customClass="AppNavigationBar" customModule="Agile_Board" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1140,12 +1133,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sil-TE-UgL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2545" y="681"/>
+            <point key="canvasLocation" x="3484" y="680.5097451274363"/>
         </scene>
         <!--App Navigation Controller-->
         <scene sceneID="aX3-Np-ADt">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9LN-Ru-sBz" customClass="AppNavigationController" customModule="AgileBoard" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9LN-Ru-sBz" customClass="AppNavigationController" customModule="Agile_Board" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Osd-Hn-Fqt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -1158,12 +1151,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZZu-XM-rXU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4174" y="681"/>
+            <point key="canvasLocation" x="5112.8000000000002" y="680.5097451274363"/>
         </scene>
         <!--Select Date View Controller-->
         <scene sceneID="HLw-Ne-Pny">
             <objects>
-                <viewController storyboardIdentifier="DueDateViewController" id="p9y-WW-PtR" customClass="SelectDateViewController" customModule="AgileBoard" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DueDateViewController" id="p9y-WW-PtR" customClass="SelectDateViewController" customModule="Agile_Board" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mNv-oM-K1v">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1206,7 +1199,7 @@
         <!--Photo-->
         <scene sceneID="CgV-qU-rgj">
             <objects>
-                <viewController storyboardIdentifier="PhotoViewController" id="86O-EC-8WL" customClass="PhotoViewController" customModule="AgileBoard" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PhotoViewController" id="86O-EC-8WL" customClass="PhotoViewController" customModule="Agile_Board" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jJw-Oi-5pI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1256,7 +1249,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7FK-TJ-0A0" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hGz-7v-Yig" customClass="AppNavigationBar" customModule="AgileBoard" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hGz-7v-Yig" customClass="AppNavigationBar" customModule="Agile_Board" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1272,7 +1265,7 @@
         <!--App Navigation Controller-->
         <scene sceneID="blM-zL-d0q">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="S3t-ou-0GQ" customClass="AppNavigationController" customModule="AgileBoard" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="S3t-ou-0GQ" customClass="AppNavigationController" customModule="Agile_Board" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="0xD-j2-7YD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -1290,20 +1283,20 @@
         <!--Board Table View Controller-->
         <scene sceneID="cHb-rd-nAi">
             <objects>
-                <tableViewController id="Wxq-T8-shN" customClass="BoardTableViewController" customModule="AgileBoard" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Wxq-T8-shN" customClass="BoardTableViewController" customModule="Agile_Board" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="kJv-xb-H1m">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BoardCell" rowHeight="70" id="v6W-Se-Hq2" customClass="BoardTableViewCell" customModule="AgileBoard" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BoardCell" rowHeight="70" id="v6W-Se-Hq2" customClass="BoardTableViewCell" customModule="Agile_Board" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="v6W-Se-Hq2" id="Qrt-P4-Vsd">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="board" translatesAutoresizingMaskIntoConstraints="NO" id="QrK-OD-Fd3" customClass="RoundImageView" customModule="AgileBoard" customModuleProvider="target">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="board" translatesAutoresizingMaskIntoConstraints="NO" id="QrK-OD-Fd3" customClass="RoundImageView" customModule="Agile_Board" customModuleProvider="target">
                                             <rect key="frame" x="16" y="20" width="30" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="6Dw-Cp-TC5"/>
@@ -1354,7 +1347,7 @@
         <!--Board Detail View Controller-->
         <scene sceneID="pmB-fm-RKJ">
             <objects>
-                <viewController id="wct-Wx-oSm" customClass="BoardDetailViewController" customModule="AgileBoard" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="wct-Wx-oSm" customClass="BoardDetailViewController" customModule="Agile_Board" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Zfl-A6-Ya3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1378,7 +1371,7 @@
                                             <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="10"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="StatusCell" id="0fU-by-09a" customClass="BStatusCollectionViewCell" customModule="AgileBoard" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="StatusCell" id="0fU-by-09a" customClass="BStatusCollectionViewCell" customModule="Agile_Board" customModuleProvider="target">
                                                 <rect key="frame" x="20" y="50" width="295" height="44"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="K0W-Ej-NCk">
@@ -1425,7 +1418,7 @@
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             </collectionViewCell>
                                         </cells>
-                                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="HeaderCell" id="LM2-vX-Duw" customClass="BStatusHeaderCell" customModule="AgileBoard" customModuleProvider="target">
+                                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="HeaderCell" id="LM2-vX-Duw" customClass="BStatusHeaderCell" customModule="Agile_Board" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="335" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -1472,7 +1465,7 @@
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ColumnCell" id="3Me-ea-ILi" customClass="BColumnColumnCollectionViewCell" customModule="AgileBoard" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ColumnCell" id="3Me-ea-ILi" customClass="BColumnColumnCollectionViewCell" customModule="Agile_Board" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="122"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="IVG-aY-Z1s">
@@ -1542,7 +1535,7 @@
                                                 </connections>
                                             </collectionViewCell>
                                         </cells>
-                                        <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="FooterCell" id="cFE-Sk-oOK" customClass="BColumnCollectionReusableView" customModule="AgileBoard" customModuleProvider="target">
+                                        <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="FooterCell" id="cFE-Sk-oOK" customClass="BColumnCollectionReusableView" customModule="Agile_Board" customModuleProvider="target">
                                             <rect key="frame" x="345" y="0.0" width="335" height="288"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -1656,7 +1649,7 @@
         <!--Edit Board Name View Controller-->
         <scene sceneID="CQb-3m-oyY">
             <objects>
-                <viewController id="yUn-ud-wtq" customClass="EditBoardNameViewController" customModule="AgileBoard" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="yUn-ud-wtq" customClass="EditBoardNameViewController" customModule="Agile_Board" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2Z9-bx-i9a">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1705,7 +1698,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="JSO-L4-jsf" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Projects" image="project" id="6jK-ch-5mP"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="BkD-nS-unX" customClass="AppNavigationBar" customModule="AgileBoard" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="BkD-nS-unX" customClass="AppNavigationBar" customModule="Agile_Board" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1723,14 +1716,14 @@
         <!--Status Table View Controller-->
         <scene sceneID="c0W-fk-7Xz">
             <objects>
-                <tableViewController id="rvC-yI-Zjp" customClass="StatusTableViewController" customModule="AgileBoard" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="rvC-yI-Zjp" customClass="StatusTableViewController" customModule="Agile_Board" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="9M9-11-u5x">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <inset key="separatorInset" minX="62" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StatusCell" rowHeight="60" id="q7O-6U-9bc" customClass="StatusTableViewCell" customModule="AgileBoard" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StatusCell" rowHeight="60" id="q7O-6U-9bc" customClass="StatusTableViewCell" customModule="Agile_Board" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="q7O-6U-9bc" id="G1T-lC-vQt">
@@ -1792,7 +1785,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CLG-RX-55K" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8Nz-4O-Tze" customClass="AppNavigationBar" customModule="AgileBoard" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8Nz-4O-Tze" customClass="AppNavigationBar" customModule="Agile_Board" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1808,7 +1801,7 @@
         <!--Textview Table View Controller-->
         <scene sceneID="Ie8-ap-qT7">
             <objects>
-                <tableViewController id="iWv-ZB-9c2" customClass="TextviewTableViewController" customModule="AgileBoard" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="iWv-ZB-9c2" customClass="TextviewTableViewController" customModule="Agile_Board" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="S3P-Iz-dCV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1843,7 +1836,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Th0-Pj-UqK" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="70Y-mC-Fbv" customClass="AppNavigationBar" customModule="AgileBoard" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="70Y-mC-Fbv" customClass="AppNavigationBar" customModule="Agile_Board" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1859,7 +1852,7 @@
         <!--Status Detail View Controller-->
         <scene sceneID="iRw-Oa-oL4">
             <objects>
-                <viewController id="sI0-JO-3YB" customClass="StatusDetailViewController" customModule="AgileBoard" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="sI0-JO-3YB" customClass="StatusDetailViewController" customModule="Agile_Board" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LS6-Sx-4ow">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1885,14 +1878,14 @@
                                     <inset key="sectionInset" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ColorCollectionViewCell" id="EaZ-5k-TAy" customClass="ColorCollectionViewCell" customModule="AgileBoard" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ColorCollectionViewCell" id="EaZ-5k-TAy" customClass="ColorCollectionViewCell" customModule="Agile_Board" customModuleProvider="target">
                                         <rect key="frame" x="16" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="xuU-y8-hTs">
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zsb-ul-95P" customClass="CircleImageView" customModule="AgileBoard" customModuleProvider="target">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zsb-ul-95P" customClass="CircleImageView" customModule="Agile_Board" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
@@ -1948,12 +1941,76 @@
             </objects>
             <point key="canvasLocation" x="5529" y="2171"/>
         </scene>
+        <!--Issues-->
+        <scene sceneID="qHX-vq-8yF">
+            <objects>
+                <tableViewController id="cHi-Bx-mt6" customClass="IssueFilterTableViewController" customModule="Agile_Board" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" estimatedRowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" id="bGe-NM-yfz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FilterCell" rowHeight="60" id="SPH-8x-ICC" customClass="FilterIssueTableViewCell" customModule="Agile_Board" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="60"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SPH-8x-ICC" id="MY8-vj-zr5">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pak-pa-ri7">
+                                            <rect key="frame" x="16" y="15" width="30" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="30" id="XUs-FH-kIu"/>
+                                                <constraint firstAttribute="height" constant="30" id="m77-WR-dGA"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due today" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WZZ-ga-24P">
+                                            <rect key="frame" x="62" y="19.5" width="78.5" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="pak-pa-ri7" firstAttribute="leading" secondItem="MY8-vj-zr5" secondAttribute="leadingMargin" id="5r2-rI-ZP4"/>
+                                        <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="WZZ-ga-24P" secondAttribute="trailing" id="F2u-dT-Y0u"/>
+                                        <constraint firstItem="pak-pa-ri7" firstAttribute="centerY" secondItem="MY8-vj-zr5" secondAttribute="centerY" id="dRI-pU-r5Z"/>
+                                        <constraint firstItem="WZZ-ga-24P" firstAttribute="leading" secondItem="pak-pa-ri7" secondAttribute="trailing" constant="16" id="iR5-9m-Rbt"/>
+                                        <constraint firstItem="WZZ-ga-24P" firstAttribute="centerY" secondItem="MY8-vj-zr5" secondAttribute="centerY" id="tcQ-N3-Edi"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <inset key="separatorInset" minX="46" minY="0.0" maxX="16" maxY="0.0"/>
+                                <connections>
+                                    <outlet property="filterImageView" destination="pak-pa-ri7" id="LZA-6W-cRC"/>
+                                    <outlet property="nameLabel" destination="WZZ-ga-24P" id="o6I-yj-j6n"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="cHi-Bx-mt6" id="9d7-Vp-AAq"/>
+                            <outlet property="delegate" destination="cHi-Bx-mt6" id="5xe-NI-JRQ"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Issues" id="YJN-Sx-NtJ">
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="FVr-tF-YQf"/>
+                            <barButtonItem systemItem="search" id="0RZ-gr-OaM"/>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="Jbh-5Z-ofQ" kind="show" identifier="IssueTableViewSegue" id="9nM-To-yhd"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fAE-1F-sI8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="989.60000000000002" y="1337.1814092953525"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="LxL-oo-mzh">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="XOW-UH-yCS" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="o8O-IA-tMg" customClass="AppNavigationBar" customModule="AgileBoard" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="o8O-IA-tMg" customClass="AppNavigationBar" customModule="Agile_Board" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1971,7 +2028,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kAn-88-hfw" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="yYH-q4-Sga" customClass="AppNavigationBar" customModule="AgileBoard" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="yYH-q4-Sga" customClass="AppNavigationBar" customModule="Agile_Board" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2005,9 +2062,9 @@
         <!--App Navigation Controller-->
         <scene sceneID="t33-AO-10o">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Mei-ho-2qc" customClass="AppNavigationController" customModule="AgileBoard" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Mei-ho-2qc" customClass="AppNavigationController" customModule="Agile_Board" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Pwj-6b-iGj" customClass="AppNavigationBar" customModule="AgileBoard" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Pwj-6b-iGj" customClass="AppNavigationBar" customModule="Agile_Board" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2037,6 +2094,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e1T-WW-tyQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6388" y="-842.42878560719646"/>
+        </scene>
+        <!--Issues-->
+        <scene sceneID="ruz-Ds-HaY">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="U8U-B9-8pp" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Issues" image="issue" id="Y3V-yg-YX3"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="tGM-bz-ety" customClass="AppNavigationBar" customModule="Agile_Board">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="cHi-Bx-mt6" kind="relationship" relationship="rootViewController" id="csq-p4-uPJ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b60-ON-QyE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="989.60000000000002" y="589.65517241379314"/>
         </scene>
     </scenes>
     <resources>

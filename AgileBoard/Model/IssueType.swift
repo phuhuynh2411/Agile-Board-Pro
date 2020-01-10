@@ -16,6 +16,9 @@ class IssueType: Object {
     @objc dynamic var imageName = ""
     @objc dynamic var typeDescription = ""
     @objc dynamic var standard = false
+    // House keeping fields
+    @objc dynamic var createdDate = Date()
+    @objc dynamic var modifiedDate = Date()
     
     override static func primaryKey() -> String? {
         return "id"

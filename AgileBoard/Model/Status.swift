@@ -14,6 +14,9 @@ class Status: Object {
     @objc dynamic var name = ""
     
     @objc dynamic var color: Color?
+    // House keeping fields
+    @objc dynamic var createdDate = Date()
+    @objc dynamic var modifiedDate = Date()
     
     override static func primaryKey() -> String? {
         return "id"

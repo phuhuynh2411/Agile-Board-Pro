@@ -17,8 +17,11 @@ extension Object {
         do{
             try realm?.write {
                 code()
+                // Auto update the modify date
+                self.setValue(Date(), forKey: "modifiedDate")
             }
             completion?(nil)
+            print("Update modified date: \(String(describing: self.value(forKey: "modifiedDate")))")
         }catch{
             print(error)
             completion?(error)

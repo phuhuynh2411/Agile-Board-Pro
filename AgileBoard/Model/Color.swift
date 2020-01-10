@@ -12,6 +12,9 @@ import RealmSwift
 class Color: Object {
     @objc dynamic var id = UUID().uuidString
     @objc dynamic var hexColor = ""
+    // House keeping fields
+    @objc dynamic var createdDate = Date()
+    @objc dynamic var modifiedDate = Date()
     
     override static func primaryKey() -> String? {
         return "id"

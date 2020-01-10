@@ -17,6 +17,10 @@ class Sprint: Object {
     // A print can has multiple issue
     let issues = List<Issue>()
     
+    // House keeping fields
+    @objc dynamic var createdDate = Date()
+    @objc dynamic var modifiedDate = Date()
+    
     override static func primaryKey() -> String? {
         return "id"
     }

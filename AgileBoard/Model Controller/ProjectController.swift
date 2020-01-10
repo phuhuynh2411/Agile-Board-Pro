@@ -79,12 +79,16 @@ class ProjectController {
         issue1.status = todo
         issue1.orderNumber = 0
         issue1.type = story
+        // Tomorrow
+        issue1.createdDate = Calendar.current.date(byAdding: .day, value: 1, to: Date())!
         
         let issue2 = Issue()
         issue2.summary = "Fringilla Fusce"
         issue2.status = todo
         issue2.orderNumber = 1
         issue2.type = story
+        // Last month
+        issue2.createdDate = Calendar.current.date(byAdding: .month, value: -1, to: Date())!
         
         let issue3 = Issue()
         issue3.summary = "Donec sed odio dui."
@@ -97,12 +101,16 @@ class ProjectController {
         issue4.status = inprogress
         issue4.orderNumber = 3
         issue4.type = story
+        // Next week
+        issue4.createdDate = Calendar.current.date(byAdding: .day, value: 7, to: Date())!
         
         let issue5 = Issue()
         issue5.summary = "Nulla vitae elit libero, a pharetra augue."
         issue5.status = inprogress
         issue5.orderNumber = 4
         issue5.type = story
+        // This week
+        issue5.createdDate = Calendar.current.date(byAdding: .day, value: 2, to: Date())!
         
         let issue6 = Issue()
         issue6.summary = "Sed posuere consectetur est at lobortis."

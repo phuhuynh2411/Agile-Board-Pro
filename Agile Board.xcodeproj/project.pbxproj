@@ -11,6 +11,10 @@
 		840409BA239171290006829F /* IconCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840409B9239171290006829F /* IconCollectionViewController.swift */; };
 		840409BC239173070006829F /* IconCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840409BB239173070006829F /* IconCollectionViewCell.swift */; };
 		8408E50E23A9DEE3004A859C /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8408E50D23A9DEE3004A859C /* UIView+Extension.swift */; };
+		84094BCE23C6D58800650950 /* IssueListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84094BCC23C6D58800650950 /* IssueListTableViewCell.swift */; };
+		84094BCF23C6D58800650950 /* IssueListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84094BCD23C6D58800650950 /* IssueListTableViewCell.xib */; };
+		84094BD123C6DD3400650950 /* IssueListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84094BD023C6DD3400650950 /* IssueListTableViewController.swift */; };
+		84094BD323C6E46F00650950 /* IssueFilterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84094BD223C6E46F00650950 /* IssueFilterTableViewController.swift */; };
 		841B42F223844275000871F6 /* IssueCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841B42F123844275000871F6 /* IssueCollectionViewFlowLayout.swift */; };
 		841CEDDC23AC62E900D90369 /* IssueControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841CEDDB23AC62E900D90369 /* IssueControllerTest.swift */; };
 		841CEDDF23AC853C00D90369 /* ProjectTableViewCellv2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841CEDDD23AC853C00D90369 /* ProjectTableViewCellv2.swift */; };
@@ -61,6 +65,7 @@
 		84579E6A239664FB009575E4 /* IssueDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84579E69239664FB009575E4 /* IssueDetailTableViewController.swift */; };
 		84584E27238ED999000408AE /* AddIssueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84584E26238ED999000408AE /* AddIssueViewController.swift */; };
 		84584E29238EDBDD000408AE /* SearchProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84584E28238EDBDD000408AE /* SearchProjectViewController.swift */; };
+		84588D4323C8BE8B006A1E6E /* CalendarExtensionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84588D4223C8BE8B006A1E6E /* CalendarExtensionTest.swift */; };
 		8458B443237CF98500D6D473 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8458B442237CF98500D6D473 /* ShadowView.swift */; };
 		8462567723A4949800600F0F /* IssueController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8462567623A4949800600F0F /* IssueController.swift */; };
 		8462567923A4968900600F0F /* AddIssueTableViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8462567823A4968900600F0F /* AddIssueTableViewControllerTest.swift */; };
@@ -71,7 +76,9 @@
 		8468D499238FBD71006B02D4 /* StatusController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468D498238FBD71006B02D4 /* StatusController.swift */; };
 		84694E0E239A1199004BC18D /* UIApplication+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84694E0D239A1199004BC18D /* UIApplication+Extention.swift */; };
 		846B6A8C238CCA7600569BC2 /* IssuePageControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846B6A8B238CCA7600569BC2 /* IssuePageControlView.swift */; };
-		8470DBD223960A3A00B146BD /* AddProjectTableViewControllerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8470DBD123960A3A00B146BD /* AddProjectTableViewControllerUITests.swift */; };
+		8476A55323C709C20002334C /* IssueFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8476A55223C709C20002334C /* IssueFilter.swift */; };
+		8476A55523C7234E0002334C /* FilterIssueTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8476A55423C7234E0002334C /* FilterIssueTableViewCell.swift */; };
+		8476A55723C72E820002334C /* FilterSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8476A55623C72E820002334C /* FilterSection.swift */; };
 		847A78102387711600911851 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847A780F2387711600911851 /* Status.swift */; };
 		847A78122387745D00911851 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847A78112387745D00911851 /* Board.swift */; };
 		847A78142387758F00911851 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847A78132387758F00911851 /* Project.swift */; };
@@ -126,17 +133,11 @@
 		84F96A3623B2169300F44C73 /* BColumnColumnCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F96A3523B2169300F44C73 /* BColumnColumnCollectionViewCell.swift */; };
 		84FA5A5323ACB44D003CDD65 /* StatusDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA5A5223ACB44D003CDD65 /* StatusDetailViewController.swift */; };
 		84FA5A5523ACB6F4003CDD65 /* ColorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA5A5423ACB6F4003CDD65 /* ColorCollectionViewCell.swift */; };
+		84FCC14123C781E1002309C1 /* CalendarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FCC14023C781E1002309C1 /* CalendarExtension.swift */; };
 		F9C8AE98AB57360C36ADD4AE /* Pods_AgileBoardTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 631EB82B934CE67D5CF381F4 /* Pods_AgileBoardTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		8470DBD423960A3A00B146BD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 843C8978237AE7460050586E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 843C897F237AE7460050586E;
-			remoteInfo = AgileBoard;
-		};
 		84B3010F2394BF0300D4BBA8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 843C8978237AE7460050586E /* Project object */;
@@ -152,6 +153,10 @@
 		840409B9239171290006829F /* IconCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconCollectionViewController.swift; sourceTree = "<group>"; };
 		840409BB239173070006829F /* IconCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconCollectionViewCell.swift; sourceTree = "<group>"; };
 		8408E50D23A9DEE3004A859C /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		84094BCC23C6D58800650950 /* IssueListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListTableViewCell.swift; sourceTree = "<group>"; };
+		84094BCD23C6D58800650950 /* IssueListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IssueListTableViewCell.xib; sourceTree = "<group>"; };
+		84094BD023C6DD3400650950 /* IssueListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListTableViewController.swift; sourceTree = "<group>"; };
+		84094BD223C6E46F00650950 /* IssueFilterTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueFilterTableViewController.swift; sourceTree = "<group>"; };
 		841B42F123844275000871F6 /* IssueCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		841CEDDB23AC62E900D90369 /* IssueControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueControllerTest.swift; sourceTree = "<group>"; };
 		841CEDDD23AC853C00D90369 /* ProjectTableViewCellv2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTableViewCellv2.swift; sourceTree = "<group>"; };
@@ -181,7 +186,7 @@
 		843C58C62390FFF800F5FAB5 /* ProjectIconController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectIconController.swift; sourceTree = "<group>"; };
 		843C58C82391049400F5FAB5 /* AppDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDataController.swift; sourceTree = "<group>"; };
 		843C58CA2391073800F5FAB5 /* AddProjectTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProjectTableViewController.swift; sourceTree = "<group>"; };
-		843C8980237AE7460050586E /* AgileBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AgileBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		843C8980237AE7460050586E /* Agile Board.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Agile Board.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		843C8983237AE7460050586E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		843C8987237AE7460050586E /* BoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardViewController.swift; sourceTree = "<group>"; };
 		843C898A237AE7460050586E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -204,6 +209,9 @@
 		84579E69239664FB009575E4 /* IssueDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetailTableViewController.swift; sourceTree = "<group>"; };
 		84584E26238ED999000408AE /* AddIssueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIssueViewController.swift; sourceTree = "<group>"; };
 		84584E28238EDBDD000408AE /* SearchProjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchProjectViewController.swift; sourceTree = "<group>"; };
+		84588D3A23C8BB39006A1E6E /* CalendarExtensionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarExtensionTest.swift; sourceTree = "<group>"; };
+		84588D3C23C8BB39006A1E6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84588D4223C8BE8B006A1E6E /* CalendarExtensionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarExtensionTest.swift; sourceTree = "<group>"; };
 		8458B442237CF98500D6D473 /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
 		8462567623A4949800600F0F /* IssueController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueController.swift; sourceTree = "<group>"; };
 		8462567823A4968900600F0F /* AddIssueTableViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIssueTableViewControllerTest.swift; sourceTree = "<group>"; };
@@ -220,9 +228,11 @@
 		8470DBC52395FBC000B146BD /* RealmSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8470DBC72395FBC000B146BD /* SwiftValidator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftValidator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8470DBC92395FBC000B146BD /* SwipeCellKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwipeCellKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8470DBCF23960A3A00B146BD /* AgileBoardUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AgileBoardUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8470DBD123960A3A00B146BD /* AddProjectTableViewControllerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProjectTableViewControllerUITests.swift; sourceTree = "<group>"; };
 		8470DBD323960A3A00B146BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8476A55223C709C20002334C /* IssueFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueFilter.swift; sourceTree = "<group>"; };
+		8476A55423C7234E0002334C /* FilterIssueTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterIssueTableViewCell.swift; sourceTree = "<group>"; };
+		8476A55623C72E820002334C /* FilterSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSection.swift; sourceTree = "<group>"; };
 		847A780F2387711600911851 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		847A78112387745D00911851 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		847A78132387758F00911851 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
@@ -248,7 +258,7 @@
 		84ACC2F423AB5AB8004B5281 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		84ACC2F623AB5B26004B5281 /* ColorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorController.swift; sourceTree = "<group>"; };
 		84ACC2F923AB74A1004B5281 /* TextviewTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextviewTableViewController.swift; sourceTree = "<group>"; };
-		84B3010A2394BF0300D4BBA8 /* AgileBoardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AgileBoardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		84B3010A2394BF0300D4BBA8 /* Agile BoardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Agile BoardTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84B3010C2394BF0300D4BBA8 /* AddProjecTableViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProjecTableViewControllerTests.swift; sourceTree = "<group>"; };
 		84B3010E2394BF0300D4BBA8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84B5F72E238F647F00D344C3 /* SearchProjectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchProjectTableViewCell.swift; sourceTree = "<group>"; };
@@ -275,9 +285,10 @@
 		84F56A04237C5B56007E6C68 /* UIColor+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIColor+Extention.swift"; path = "AgileBoard/View/UIColor+Extention.swift"; sourceTree = SOURCE_ROOT; };
 		84F5FF9B238538FB00F2E966 /* DragIssueItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragIssueItem.swift; sourceTree = "<group>"; };
 		84F96A3323B2157E00F44C73 /* BoardDetailColumnViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardDetailColumnViewController.swift; sourceTree = "<group>"; };
-		84F96A3523B2169300F44C73 /* BColumnColumnCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BColumnColumnCollectionViewCell.swift; path = "AgileBoard/View/Custom Cell/BColumnColumnCollectionViewCell.swift"; sourceTree = "<group>"; };
+		84F96A3523B2169300F44C73 /* BColumnColumnCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BColumnColumnCollectionViewCell.swift; sourceTree = "<group>"; };
 		84FA5A5223ACB44D003CDD65 /* StatusDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusDetailViewController.swift; sourceTree = "<group>"; };
 		84FA5A5423ACB6F4003CDD65 /* ColorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCollectionViewCell.swift; sourceTree = "<group>"; };
+		84FCC14023C781E1002309C1 /* CalendarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarExtension.swift; sourceTree = "<group>"; };
 		9A81CE3668EF1D469EACE232 /* Pods-AgileBoard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgileBoard.release.xcconfig"; path = "Target Support Files/Pods-AgileBoard/Pods-AgileBoard.release.xcconfig"; sourceTree = "<group>"; };
 		A2F83FB1AE62F811DF0DB076 /* Pods-AgileBoardTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgileBoardTests.debug.xcconfig"; path = "Target Support Files/Pods-AgileBoardTests/Pods-AgileBoardTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C50DE2C26859733515BCE587 /* Pods-AgileBoard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgileBoard.debug.xcconfig"; path = "Target Support Files/Pods-AgileBoard/Pods-AgileBoard.debug.xcconfig"; sourceTree = "<group>"; };
@@ -290,13 +301,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B4C0C8507FD361917057F21 /* Pods_AgileBoard.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8470DBCC23960A3A00B146BD /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -351,6 +355,8 @@
 				84579E6123965068009575E4 /* Priority.swift */,
 				842686F123995BE900B981D7 /* Attachment.swift */,
 				84ACC2F423AB5AB8004B5281 /* Color.swift */,
+				8476A55223C709C20002334C /* IssueFilter.swift */,
+				8476A55623C72E820002334C /* FilterSection.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -369,6 +375,8 @@
 				84E0E0C023A8B8E70057A360 /* Board */,
 				84ACC2F823AB6BC3004B5281 /* IssueDetail */,
 				84FA5A5223ACB44D003CDD65 /* StatusDetailViewController.swift */,
+				84094BD023C6DD3400650950 /* IssueListTableViewController.swift */,
+				84094BD223C6E46F00650950 /* IssueFilterTableViewController.swift */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -398,6 +406,7 @@
 				84299FD423990B8E00432A66 /* AttachmentCollectionView.swift */,
 				842686EF2399519600B981D7 /* AttachmentCollectionViewFlowLayout.swift */,
 				84382A6023B31DB1008A1F29 /* BColumnCollectionViewFlowLayout.swift */,
+				8476A55423C7234E0002334C /* FilterIssueTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -406,6 +415,7 @@
 			isa = PBXGroup;
 			children = (
 				843242FC23B9B36500BA5135 /* ListExension.swift */,
+				84FCC14023C781E1002309C1 /* CalendarExtension.swift */,
 				84D590F623B9FDD90011FA4B /* ObjectExtension.swift */,
 				842FDD7523A1432B0038A796 /* Animations.swift */,
 				84BF40C0237D47C800600AE7 /* UIPanGestureRecognizer+Extension.swift */,
@@ -453,6 +463,9 @@
 				84983EC723B1C7DB003657F1 /* BoardTableViewCell.swift */,
 				84CEC23D23B210570044B2B3 /* BStatusHeaderCell.swift */,
 				844A12E223B2510700E74020 /* BColumnCollectionReusableView.swift */,
+				84F96A3523B2169300F44C73 /* BColumnColumnCollectionViewCell.swift */,
+				84094BCC23C6D58800650950 /* IssueListTableViewCell.swift */,
+				84094BCD23C6D58800650950 /* IssueListTableViewCell.xib */,
 			);
 			path = "Custom Cell";
 			sourceTree = "<group>";
@@ -460,10 +473,10 @@
 		843C8977237AE7460050586E = {
 			isa = PBXGroup;
 			children = (
-				84F96A3523B2169300F44C73 /* BColumnColumnCollectionViewCell.swift */,
 				843C8982237AE7460050586E /* AgileBoard */,
 				84B3010B2394BF0300D4BBA8 /* AgileBoardTests */,
 				8470DBD023960A3A00B146BD /* AgileBoardUITests */,
+				84588D3923C8BB39006A1E6E /* CalendarExtensionTest */,
 				843C8981237AE7460050586E /* Products */,
 				79FD8BA0861C60C87775EE90 /* Pods */,
 				46A71542EFECC73ABABC71F3 /* Frameworks */,
@@ -473,9 +486,8 @@
 		843C8981237AE7460050586E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				843C8980237AE7460050586E /* AgileBoard.app */,
-				84B3010A2394BF0300D4BBA8 /* AgileBoardTests.xctest */,
-				8470DBCF23960A3A00B146BD /* AgileBoardUITests.xctest */,
+				843C8980237AE7460050586E /* Agile Board.app */,
+				84B3010A2394BF0300D4BBA8 /* Agile BoardTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -504,6 +516,15 @@
 				84579E5F2396412A009575E4 /* ProjectControllerMock.swift */,
 			);
 			path = Mock;
+			sourceTree = "<group>";
+		};
+		84588D3923C8BB39006A1E6E /* CalendarExtensionTest */ = {
+			isa = PBXGroup;
+			children = (
+				84588D3A23C8BB39006A1E6E /* CalendarExtensionTest.swift */,
+				84588D3C23C8BB39006A1E6E /* Info.plist */,
+			);
+			path = CalendarExtensionTest;
 			sourceTree = "<group>";
 		};
 		8468D495238FA755006B02D4 /* Model Controller */ = {
@@ -560,6 +581,7 @@
 		84B3010B2394BF0300D4BBA8 /* AgileBoardTests */ = {
 			isa = PBXGroup;
 			children = (
+				84588D4223C8BE8B006A1E6E /* CalendarExtensionTest.swift */,
 				841CEDDB23AC62E900D90369 /* IssueControllerTest.swift */,
 				8462567823A4968900600F0F /* AddIssueTableViewControllerTest.swift */,
 				84B3010C2394BF0300D4BBA8 /* AddProjecTableViewControllerTests.swift */,
@@ -607,9 +629,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		843C897F237AE7460050586E /* AgileBoard */ = {
+		843C897F237AE7460050586E /* Agile Board */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 843C8994237AE7480050586E /* Build configuration list for PBXNativeTarget "AgileBoard" */;
+			buildConfigurationList = 843C8994237AE7480050586E /* Build configuration list for PBXNativeTarget "Agile Board" */;
 			buildPhases = (
 				F7433027F2738BE92126EF57 /* [CP] Check Pods Manifest.lock */,
 				843C897C237AE7460050586E /* Sources */,
@@ -622,32 +644,14 @@
 			);
 			dependencies = (
 			);
-			name = AgileBoard;
+			name = "Agile Board";
 			productName = AgileBoard;
-			productReference = 843C8980237AE7460050586E /* AgileBoard.app */;
+			productReference = 843C8980237AE7460050586E /* Agile Board.app */;
 			productType = "com.apple.product-type.application";
 		};
-		8470DBCE23960A3A00B146BD /* AgileBoardUITests */ = {
+		84B301092394BF0300D4BBA8 /* Agile BoardTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8470DBD623960A3A00B146BD /* Build configuration list for PBXNativeTarget "AgileBoardUITests" */;
-			buildPhases = (
-				8470DBCB23960A3A00B146BD /* Sources */,
-				8470DBCC23960A3A00B146BD /* Frameworks */,
-				8470DBCD23960A3A00B146BD /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				8470DBD523960A3A00B146BD /* PBXTargetDependency */,
-			);
-			name = AgileBoardUITests;
-			productName = AgileBoardUITests;
-			productReference = 8470DBCF23960A3A00B146BD /* AgileBoardUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
-		84B301092394BF0300D4BBA8 /* AgileBoardTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 84B301112394BF0300D4BBA8 /* Build configuration list for PBXNativeTarget "AgileBoardTests" */;
+			buildConfigurationList = 84B301112394BF0300D4BBA8 /* Build configuration list for PBXNativeTarget "Agile BoardTests" */;
 			buildPhases = (
 				4B8DEBCCA39AF04A9AD97F0B /* [CP] Check Pods Manifest.lock */,
 				84B301062394BF0300D4BBA8 /* Sources */,
@@ -660,9 +664,9 @@
 			dependencies = (
 				84B301102394BF0300D4BBA8 /* PBXTargetDependency */,
 			);
-			name = AgileBoardTests;
+			name = "Agile BoardTests";
 			productName = AgileBoardTests;
-			productReference = 84B3010A2394BF0300D4BBA8 /* AgileBoardTests.xctest */;
+			productReference = 84B3010A2394BF0300D4BBA8 /* Agile BoardTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -671,16 +675,12 @@
 		843C8978237AE7460050586E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1120;
+				LastSwiftUpdateCheck = 1130;
 				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = Filesoft;
 				TargetAttributes = {
 					843C897F237AE7460050586E = {
 						CreatedOnToolsVersion = 11.2;
-					};
-					8470DBCE23960A3A00B146BD = {
-						CreatedOnToolsVersion = 11.2.1;
-						TestTargetID = 843C897F237AE7460050586E;
 					};
 					84B301092394BF0300D4BBA8 = {
 						CreatedOnToolsVersion = 11.2.1;
@@ -688,7 +688,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 843C897B237AE7460050586E /* Build configuration list for PBXProject "AgileBoard" */;
+			buildConfigurationList = 843C897B237AE7460050586E /* Build configuration list for PBXProject "Agile Board" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -701,9 +701,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				843C897F237AE7460050586E /* AgileBoard */,
-				84B301092394BF0300D4BBA8 /* AgileBoardTests */,
-				8470DBCE23960A3A00B146BD /* AgileBoardUITests */,
+				843C897F237AE7460050586E /* Agile Board */,
+				84B301092394BF0300D4BBA8 /* Agile BoardTests */,
 			);
 		};
 /* End PBXProject section */
@@ -718,18 +717,12 @@
 				847DD06223ACAA5E001AF6BD /* IssueTypeTableViewCellv2.xib in Resources */,
 				8442DC40237E7DF8008C88C6 /* IssueTableViewCell.xib in Resources */,
 				843C8990237AE7480050586E /* LaunchScreen.storyboard in Resources */,
+				84094BCF23C6D58800650950 /* IssueListTableViewCell.xib in Resources */,
 				843C898D237AE7480050586E /* Assets.xcassets in Resources */,
 				843C898B237AE7460050586E /* Main.storyboard in Resources */,
 				841CEDE023AC853C00D90369 /* ProjectTableViewCellv2.xib in Resources */,
 				84CEC23623B1F5260044B2B3 /* BoardTextFieldTitleView.xib in Resources */,
 				848FCEB22397980E00CD6334 /* IssueDetailHeaderView.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8470DBCD23960A3A00B146BD /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -869,6 +862,7 @@
 				84CEC23823B1F5540044B2B3 /* BoardTextFieldTitleView.swift in Sources */,
 				84983EC823B1C7DC003657F1 /* BoardTableViewCell.swift in Sources */,
 				84299FD32398FD9900432A66 /* IssuePriorityTableViewCell.swift in Sources */,
+				84094BD123C6DD3400650950 /* IssueListTableViewController.swift in Sources */,
 				84E5916623925C86006FBA5E /* ProjectKeyTextField.swift in Sources */,
 				843C8988237AE7460050586E /* BoardViewController.swift in Sources */,
 				84584E27238ED999000408AE /* AddIssueViewController.swift in Sources */,
@@ -880,6 +874,7 @@
 				844A12E323B2510700E74020 /* BColumnCollectionReusableView.swift in Sources */,
 				84ACC2F523AB5AB8004B5281 /* Color.swift in Sources */,
 				843C58C52390FFB600F5FAB5 /* ProjectIcon.swift in Sources */,
+				84094BD323C6E46F00650950 /* IssueFilterTableViewController.swift in Sources */,
 				84F96A3423B2157E00F44C73 /* BoardDetailColumnViewController.swift in Sources */,
 				843C58CB2391073800F5FAB5 /* AddProjectTableViewController.swift in Sources */,
 				84983EC423B1B702003657F1 /* BoardTitleView.swift in Sources */,
@@ -891,6 +886,7 @@
 				847DD06123ACAA5E001AF6BD /* IssueTypeTableViewCellv2.swift in Sources */,
 				840409BC239173070006829F /* IconCollectionViewCell.swift in Sources */,
 				84BF40C1237D47C800600AE7 /* UIPanGestureRecognizer+Extension.swift in Sources */,
+				8476A55723C72E820002334C /* FilterSection.swift in Sources */,
 				8421F66B23974D3C001DF5D9 /* PriorityRowView.swift in Sources */,
 				84A51AC0237AF8DD00477B75 /* IssueTableController.swift in Sources */,
 				845227D1238D22FE000607A8 /* IssueCollectionView.swift in Sources */,
@@ -909,13 +905,16 @@
 				84D590F723B9FDD90011FA4B /* ObjectExtension.swift in Sources */,
 				842686F02399519600B981D7 /* AttachmentCollectionViewFlowLayout.swift in Sources */,
 				848FCEB42397985100CD6334 /* IssueDetailHeaderView.swift in Sources */,
+				84094BCE23C6D58800650950 /* IssueListTableViewCell.swift in Sources */,
 				8408E50E23A9DEE3004A859C /* UIView+Extension.swift in Sources */,
 				84CEC23C23B2021E0044B2B3 /* BStatusCollectionViewCell.swift in Sources */,
+				84FCC14123C781E1002309C1 /* CalendarExtension.swift in Sources */,
 				84ACC2F723AB5B26004B5281 /* ColorController.swift in Sources */,
 				842686F423995E7E00B981D7 /* AttachmentCollectionViewCell.swift in Sources */,
 				84B5F731238F806B00D344C3 /* IssueTypeTableViewController.swift in Sources */,
 				8468D499238FBD71006B02D4 /* StatusController.swift in Sources */,
 				8462567723A4949800600F0F /* IssueController.swift in Sources */,
+				8476A55323C709C20002334C /* IssueFilter.swift in Sources */,
 				846B6A8C238CCA7600569BC2 /* IssuePageControlView.swift in Sources */,
 				8490889923A1E1B900D5DD96 /* HalfScreenPresentationController.swift in Sources */,
 				84694E0E239A1199004BC18D /* UIApplication+Extention.swift in Sources */,
@@ -945,18 +944,11 @@
 				842686F623995F4D00B981D7 /* AttachmentController.swift in Sources */,
 				841CEDDF23AC853C00D90369 /* ProjectTableViewCellv2.swift in Sources */,
 				841D97AB238E685200483928 /* AppNavigationBar.swift in Sources */,
+				8476A55523C7234E0002334C /* FilterIssueTableViewCell.swift in Sources */,
 				84983ECA23B1CB05003657F1 /* BoardDetailViewController.swift in Sources */,
 				84C340E42388361D00C65AC9 /* ProjectTableViewController.swift in Sources */,
 				847A78142387758F00911851 /* Project.swift in Sources */,
 				843BF018239A61EE005F798D /* PhotoViewController.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8470DBCB23960A3A00B146BD /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8470DBD223960A3A00B146BD /* AddProjectTableViewControllerUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -965,6 +957,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84B3010D2394BF0300D4BBA8 /* AddProjecTableViewControllerTests.swift in Sources */,
+				84588D4323C8BE8B006A1E6E /* CalendarExtensionTest.swift in Sources */,
 				841CEDDC23AC62E900D90369 /* IssueControllerTest.swift in Sources */,
 				8462567923A4968900600F0F /* AddIssueTableViewControllerTest.swift in Sources */,
 			);
@@ -973,14 +966,9 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		8470DBD523960A3A00B146BD /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 843C897F237AE7460050586E /* AgileBoard */;
-			targetProxy = 8470DBD423960A3A00B146BD /* PBXContainerItemProxy */;
-		};
 		84B301102394BF0300D4BBA8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 843C897F237AE7460050586E /* AgileBoard */;
+			target = 843C897F237AE7460050586E /* Agile Board */;
 			targetProxy = 84B3010F2394BF0300D4BBA8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1159,46 +1147,6 @@
 			};
 			name = Release;
 		};
-		8470DBD723960A3A00B146BD /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9RUFVFAF79;
-				INFOPLIST_FILE = AgileBoardUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = filesoft.co.AgileBoardUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = AgileBoard;
-			};
-			name = Debug;
-		};
-		8470DBD823960A3A00B146BD /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9RUFVFAF79;
-				INFOPLIST_FILE = AgileBoardUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = filesoft.co.AgileBoardUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = AgileBoard;
-			};
-			name = Release;
-		};
 		84B301122394BF0300D4BBA8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A2F83FB1AE62F811DF0DB076 /* Pods-AgileBoardTests.debug.xcconfig */;
@@ -1226,7 +1174,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AgileBoard.app/AgileBoard";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Agile Board.app/Agile Board";
 			};
 			name = Debug;
 		};
@@ -1248,14 +1196,14 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AgileBoard.app/AgileBoard";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Agile Board.app/Agile Board";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		843C897B237AE7460050586E /* Build configuration list for PBXProject "AgileBoard" */ = {
+		843C897B237AE7460050586E /* Build configuration list for PBXProject "Agile Board" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				843C8992237AE7480050586E /* Debug */,
@@ -1264,7 +1212,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		843C8994237AE7480050586E /* Build configuration list for PBXNativeTarget "AgileBoard" */ = {
+		843C8994237AE7480050586E /* Build configuration list for PBXNativeTarget "Agile Board" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				843C8995237AE7480050586E /* Debug */,
@@ -1273,16 +1221,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8470DBD623960A3A00B146BD /* Build configuration list for PBXNativeTarget "AgileBoardUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8470DBD723960A3A00B146BD /* Debug */,
-				8470DBD823960A3A00B146BD /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		84B301112394BF0300D4BBA8 /* Build configuration list for PBXNativeTarget "AgileBoardTests" */ = {
+		84B301112394BF0300D4BBA8 /* Build configuration list for PBXNativeTarget "Agile BoardTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				84B301122394BF0300D4BBA8 /* Debug */,

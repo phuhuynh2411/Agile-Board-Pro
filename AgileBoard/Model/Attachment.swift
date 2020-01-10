@@ -14,6 +14,9 @@ class Attachment: Object {
     @objc dynamic var id = UUID().uuidString
     @objc dynamic var name = ""
     @objc dynamic var url = ""
+    // House keeping fields
+    @objc dynamic var createdDate = Date()
+    @objc dynamic var modifiedDate = Date()
     
     override static func primaryKey() -> String? {
         return "id"

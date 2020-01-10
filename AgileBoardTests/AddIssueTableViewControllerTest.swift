@@ -8,7 +8,7 @@
 
 import XCTest
 import RealmSwift
-@testable import AgileBoard
+@testable import Agile_Board
 
 class AddIssueTableViewControllerTest: XCTestCase {
     
@@ -39,38 +39,6 @@ class AddIssueTableViewControllerTest: XCTestCase {
     override func tearDown() {
         sut = nil
     }
-
-    // MARK: - IsNew Test Cases
-    
-    // Issue is not in realm database
-    // Expeted result: true
-    func testIsNewCase2() {
-        setUpRealm(name: "In-MemoryRealm")
-        let realm = try! Realm()
-        
-        IssueController.shared.realm = realm
-        
-        let issue = Issue()
-        sut.initView(with: issue, project: Project())
-        
-        XCTAssertTrue(sut.isNew(), "The issue was in realm database.")
-    }
-    
-    // Issue is in the realm database
-    // Expected result: false
-    func testIsNewCase1() {
-        setUpRealm(name: "In-MemoryRealm")
-        let realm = try! Realm()
-        
-        IssueController.shared.realm = realm
-        
-        let issue = Issue()
-        IssueController.shared.add(issue: issue)
-        let addedIssue = realm.objects(Issue.self).first
-        sut.initView(with: addedIssue!, project: Project())
-        
-        XCTAssertFalse(sut.isNew(), "Issue is in realm database. It should return false.")
-    }
     
     // MARK: - Modified Issue
     
@@ -88,7 +56,7 @@ class AddIssueTableViewControllerTest: XCTestCase {
     
     // After modifying the issue type, `isModifed` should be true
     func testIsModifiedCase3() {
-        sut.didSelectIssueType(issueType: nil)
+        sut.didSelectIssueType(issueType: IssueType())
         XCTAssertTrue(sut.isModifed, "After modifying the issue type, isModifed variable should be true")
     }
     
@@ -272,14 +240,14 @@ class AddIssueTableViewControllerTest: XCTestCase {
         sut.selectTypePressed(sender: UIButton())
         
         XCTAssertNotNil(sut.presentedViewController, "The presented view controller should not be nil.")
-        XCTAssertTrue(UIApplication.getTopViewController() is SelectIssueTypeTableViewController, "The presented view controller is not SelectIssueTableViewController.")
+        XCTAssertTrue(UIApplication.getTopViewController() is IssueTypeTableViewController, "The presented view controller is not SelectIssueTableViewController.")
         
         // Get SelectIssueTypeViewController
         if let issueTypeViewController = UIApplication.getTopViewController() as? IssueTypeTableViewController {
             issueTypeViewController.loadViewIfNeeded()
             
             // Make sure that there is one issue type in the list view
-            XCTAssertEqual(1, issueTypeViewController.issueTypeList!.count, "There should be one issue type in the list view.")
+            XCTAssertEqual(1, issueTypeViewController.issueTypes?.count, "There should be one issue type in the list view.")
             
             // Select Issue Type at the first index path
             let indexPath = IndexPath(row: 0, section: 0)

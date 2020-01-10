@@ -16,6 +16,9 @@ class Column: Object {
     
     // A column belongs to either one or more boards
     var boardOwners = LinkingObjects(fromType: Board.self, property: "columns")
+    // House keeping fields
+    @objc dynamic var createdDate = Date()
+    @objc dynamic var modifiedDate = Date()
     
     override static func primaryKey() -> String? {
         return "id"
