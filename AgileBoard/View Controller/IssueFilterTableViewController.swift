@@ -11,35 +11,48 @@ import RealmSwift
 
 class IssueFilterTableViewController: UITableViewController {
     
-    var filters: Results<IssueFilter>?
+    var filters = [IssueFilter]()
     
     var selectedFilter: IssueFilter?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Load all issue filters
-        let realm = AppDataController.shared.realm
-        filters = realm?.objects(IssueFilter.self)
+        //All
+        filters.append(AllIssueFilter(name: "All", imageName: "filter_all"))
+        //Due today
+        filters.append(DueTodayIssueFilter(name: "Due today", imageName: "filter_due_today"))
+        //Due this week
+        filters.append(DueThisWeekIssueFilter(name: "Due this week", imageName: "filter_due_this_week"))
+        //Created recently
+        filters.append(CreatedRecentlyIssueFilter(name: "Created recenlty", imageName: "filter_created_recently"))
+        //Updated recently
+        filters.append(UpdatedRecentlyIssueFilter(name: "Updated recenlty", imageName: "filter_updated_recently"))
+        //Open
+        filters.append(OpenIssueFilter(name: "Open", imageName: "filter_open"))
+        //Done
+         filters.append(DoneIssueFilter(name: "Done", imageName: "filter_done"))
         
         // Remove extra separators
         tableView.tableFooterView = UIView()
+        
+        
         
     }
 
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filters?.count ?? 0
+        return filters.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "FilterCell", for: indexPath) as! FilterIssueTableViewCell
         
-        if let filter = filters?[indexPath.row] {
-            cell.nameLabel.text = filter.name
-        }
+        let filter = filters[indexPath.row]
+        cell.nameLabel.text = filter.name
+        cell.filterImageView.image = UIImage(named: filter.imageName)
 
         return cell
     }
@@ -57,10 +70,9 @@ class IssueFilterTableViewController: UITableViewController {
     // MARK: - TableViewDelegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let filter = filters?[indexPath.row] {
-            selectedFilter = filter
-            performSegue(withIdentifier: "IssueTableViewSegue", sender: self)
-        }
+        selectedFilter = filters[indexPath.row]
+        performSegue(withIdentifier: "IssueTableViewSegue", sender: self)
+
     }
 
 }

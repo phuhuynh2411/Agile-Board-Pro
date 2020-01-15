@@ -10,13 +10,27 @@ import Foundation
 
 extension Calendar {
     private var currentDate: Date { return Date() }
+    private var lastWeekDate: Date {
+        self.date(byAdding: .day, value: -7, to: currentDate)!
+    }
+    private var lastMonthDate: Date {
+        self.date(byAdding: .month, value: -1, to: currentDate)!
+    }
     
     func isDateInThisWeek(_ date: Date) -> Bool {
         return isDate(date, equalTo: currentDate, toGranularity: .weekOfYear)
     }
     
+    func isDateInLastWeek(_ date: Date) -> Bool {
+           return isDate(date, equalTo: lastWeekDate, toGranularity: .weekOfYear)
+    }
+    
     func isDateInThisMonth(_ date: Date) -> Bool {
         return isDate(date, equalTo: currentDate, toGranularity: .month)
+    }
+    
+    func isDateInLastMonth(_ date: Date) -> Bool {
+           return isDate(date, equalTo: lastMonthDate, toGranularity: .month)
     }
     
     func isDateInNextWeek(_ date: Date) -> Bool {
@@ -51,5 +65,23 @@ extension Calendar {
             return calendar.date(byAdding: .day, value: 8 - dayofWeek, to: date)!
         }
     }
+    
+    var startOfWeek: Date? {
+        let calendar = self
+        guard let sunday = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: currentDate)) else { return nil }
+        return calendar.date(byAdding: .day, value: 1, to: sunday)
+    }
 
+    var endOfWeek: Date? {
+        let calendar = self
+        guard let sunday = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: currentDate)) else { return nil }
+        return calendar.date(byAdding: .day, value: 7, to: sunday)
+    }
+    
+    var dateFrom: Date {
+        return self.startOfDay(for: Date()) // eg. 2016-10-10 00:00:00
+    }
+    var dateTo: Date {
+        return self.date(byAdding: .day, value: 1, to: dateFrom)!
+    }
 }

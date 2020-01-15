@@ -22,6 +22,7 @@ class StatusDetailViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var doneButton: UIBarButtonItem!
     @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var doneSwitch: UISwitch!
     
     var colors: Results<Color>?
     
@@ -71,6 +72,7 @@ class StatusDetailViewController: UIViewController {
             if let status = status {
                 statusTextField.text = status.name
                 selectedColor = status.color
+                doneSwitch.isOn = status.markedAsDone
             }
             
             let predicate = NSPredicate(format: "id == %@", status?.color?.id ?? "" )
@@ -79,6 +81,7 @@ class StatusDetailViewController: UIViewController {
                 collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
             }
         }
+        
     }
     
     private func updateView(components: [ViewCompoments] = [], markAsModified: Bool = false) {
@@ -112,15 +115,27 @@ class StatusDetailViewController: UIViewController {
         
         guard isModified, let statusName = statusTextField.text, let color = selectedColor else { return }
         
-        let status = Status()
-        status.color = color
-        status.name = statusName
+        let newStatus = Status()
+        newStatus.color = color
+        newStatus.name = statusName
+        newStatus.markedAsDone = doneSwitch.isOn
         // User is adding new status
         if isNew(){
-            delegate?.didAddStatus(status: status)
+            delegate?.didAddStatus(status: newStatus)
         }
-        else { // Modifying status
+        else if let status = status { // Modifying status
+            status.write(code: {
+                status.name = statusName
+                status.color = color
+                status.markedAsDone = doneSwitch.isOn
+            }, completion: { (error) in
+                if let error = error {
+                    print("An error occured while saving the status: \(error)")
+                }
+            })
             delegate?.didModifyStatus(status: status)
+        } else {
+            fatalError("The status view controller only has two states add or modify. You are in another situation.")
         }
         dismiss(animated: true, completion: nil)
     }
@@ -129,6 +144,12 @@ class StatusDetailViewController: UIViewController {
     @IBAction func textFieldDidChange(_ sender: UITextField) {
         updateView(markAsModified: true)
         // Validate
+        validator.validate(self)
+    }
+    
+    @IBAction func switchChanged(_ sender: UISwitch) {
+        updateView(markAsModified: true)
+        print("Switch changed: \(sender.isOn)")
         validator.validate(self)
     }
     

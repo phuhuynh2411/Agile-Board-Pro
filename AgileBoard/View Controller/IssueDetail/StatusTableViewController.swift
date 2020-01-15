@@ -119,10 +119,12 @@ extension StatusTableViewController: StatusDetailDelegate {
     }
     
     func didModifyStatus(status: Status) {
-        if let currentStatus = currentStatus {
-            StatusController.shared.update(status: currentStatus, toStatus: status)
-            tableView.reloadData()
-        }
+//        if let currentStatus = currentStatus {
+//            StatusController.shared.update(status: currentStatus, toStatus: status)
+//            tableView.reloadData()
+//        }
+        
+        tableView.reloadData()
     }
 }
 

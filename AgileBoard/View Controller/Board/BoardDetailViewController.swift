@@ -259,10 +259,11 @@ extension BoardDetailViewController: StatusDetailDelegate {
     }
     
     func didModifyStatus(status: Status) {
-        if let selectedStatus = selectedStatus{
-            StatusController.shared.update(status: selectedStatus, toStatus: status)
-            statusCollectionView.reloadData()
-        }
+//        if let selectedStatus = selectedStatus{
+//            StatusController.shared.update(status: selectedStatus, toStatus: status)
+//            statusCollectionView.reloadData()
+//        }
+        statusCollectionView.reloadData()
     }
 }
 

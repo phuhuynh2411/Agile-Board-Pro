@@ -11,12 +11,12 @@ import UIKit
 class IssueListTableViewCell: UITableViewCell {
 
     @IBOutlet weak var typeImageView: UIImageView!
-    @IBOutlet weak var summaryTextField: UILabel!
+    @IBOutlet weak var summaryLabel: UILabel!
     
     @IBOutlet weak var issueIdLabel: UILabel!
     @IBOutlet weak var priorityImageView: UIImageView!
     @IBOutlet weak var statusButton: UIButton!
-    
+        
     override func awakeFromNib() {
         super.awakeFromNib()    }
 

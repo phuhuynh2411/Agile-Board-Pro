@@ -76,9 +76,7 @@
 		8468D499238FBD71006B02D4 /* StatusController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468D498238FBD71006B02D4 /* StatusController.swift */; };
 		84694E0E239A1199004BC18D /* UIApplication+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84694E0D239A1199004BC18D /* UIApplication+Extention.swift */; };
 		846B6A8C238CCA7600569BC2 /* IssuePageControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846B6A8B238CCA7600569BC2 /* IssuePageControlView.swift */; };
-		8476A55323C709C20002334C /* IssueFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8476A55223C709C20002334C /* IssueFilter.swift */; };
 		8476A55523C7234E0002334C /* FilterIssueTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8476A55423C7234E0002334C /* FilterIssueTableViewCell.swift */; };
-		8476A55723C72E820002334C /* FilterSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8476A55623C72E820002334C /* FilterSection.swift */; };
 		847A78102387711600911851 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847A780F2387711600911851 /* Status.swift */; };
 		847A78122387745D00911851 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847A78112387745D00911851 /* Board.swift */; };
 		847A78142387758F00911851 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847A78132387758F00911851 /* Project.swift */; };
@@ -86,6 +84,10 @@
 		847A781823878AEC00911851 /* ProjectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847A781723878AEC00911851 /* ProjectController.swift */; };
 		847DD06123ACAA5E001AF6BD /* IssueTypeTableViewCellv2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847DD05F23ACAA5E001AF6BD /* IssueTypeTableViewCellv2.swift */; };
 		847DD06223ACAA5E001AF6BD /* IssueTypeTableViewCellv2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 847DD06023ACAA5E001AF6BD /* IssueTypeTableViewCellv2.xib */; };
+		847FD26D23CEBE730005E446 /* CreatedRecentlyIssueFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847FD26C23CEBE730005E446 /* CreatedRecentlyIssueFilter.swift */; };
+		847FD26F23CEC09A0005E446 /* UpdatedRecentlyIssueFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847FD26E23CEC09A0005E446 /* UpdatedRecentlyIssueFilter.swift */; };
+		847FD27123CEC1410005E446 /* OpenIssueFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847FD27023CEC1410005E446 /* OpenIssueFilter.swift */; };
+		847FD27323CEC4160005E446 /* DoneIssueFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847FD27223CEC4160005E446 /* DoneIssueFilter.swift */; };
 		847FD53723A0F49900399145 /* DragAttachmentItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847FD53623A0F49900399145 /* DragAttachmentItem.swift */; };
 		848C483B23C56953001B5CC8 /* UICollectionViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848C483A23C56953001B5CC8 /* UICollectionViewExtension.swift */; };
 		848FCEB22397980E00CD6334 /* IssueDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 848FCEB12397980E00CD6334 /* IssueDetailHeaderView.xib */; };
@@ -98,6 +100,10 @@
 		84983EC623B1C33C003657F1 /* BoardTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84983EC523B1C33C003657F1 /* BoardTableViewController.swift */; };
 		84983EC823B1C7DC003657F1 /* BoardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84983EC723B1C7DB003657F1 /* BoardTableViewCell.swift */; };
 		84983ECA23B1CB05003657F1 /* BoardDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84983EC923B1CB05003657F1 /* BoardDetailViewController.swift */; };
+		849E508823CC4A8000ED81D5 /* IssueFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849E508723CC4A8000ED81D5 /* IssueFilter.swift */; };
+		849E508A23CC4B1E00ED81D5 /* AllIssueFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849E508923CC4B1E00ED81D5 /* AllIssueFilter.swift */; };
+		849E508C23CC5F8700ED81D5 /* DueTodayIssueFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849E508B23CC5F8700ED81D5 /* DueTodayIssueFilter.swift */; };
+		849E508E23CC665300ED81D5 /* DueThisWeekIssueFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849E508D23CC665300ED81D5 /* DueThisWeekIssueFilter.swift */; };
 		84A1FC1923A32F1D008648F9 /* StartDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A1FC1823A32F1D008648F9 /* StartDateTableViewCell.swift */; };
 		84A1FC1B23A32F2F008648F9 /* EndDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A1FC1A23A32F2F008648F9 /* EndDateTableViewCell.swift */; };
 		84A51AC0237AF8DD00477B75 /* IssueTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A51ABF237AF8DD00477B75 /* IssueTableController.swift */; };
@@ -230,9 +236,7 @@
 		8470DBC92395FBC000B146BD /* SwipeCellKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwipeCellKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8470DBD123960A3A00B146BD /* AddProjectTableViewControllerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProjectTableViewControllerUITests.swift; sourceTree = "<group>"; };
 		8470DBD323960A3A00B146BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8476A55223C709C20002334C /* IssueFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueFilter.swift; sourceTree = "<group>"; };
 		8476A55423C7234E0002334C /* FilterIssueTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterIssueTableViewCell.swift; sourceTree = "<group>"; };
-		8476A55623C72E820002334C /* FilterSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSection.swift; sourceTree = "<group>"; };
 		847A780F2387711600911851 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		847A78112387745D00911851 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		847A78132387758F00911851 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
@@ -240,6 +244,10 @@
 		847A781723878AEC00911851 /* ProjectController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectController.swift; sourceTree = "<group>"; };
 		847DD05F23ACAA5E001AF6BD /* IssueTypeTableViewCellv2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IssueTypeTableViewCellv2.swift; path = ../IssueTypeTableViewCellv2.swift; sourceTree = "<group>"; };
 		847DD06023ACAA5E001AF6BD /* IssueTypeTableViewCellv2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IssueTypeTableViewCellv2.xib; sourceTree = "<group>"; };
+		847FD26C23CEBE730005E446 /* CreatedRecentlyIssueFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatedRecentlyIssueFilter.swift; sourceTree = "<group>"; };
+		847FD26E23CEC09A0005E446 /* UpdatedRecentlyIssueFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatedRecentlyIssueFilter.swift; sourceTree = "<group>"; };
+		847FD27023CEC1410005E446 /* OpenIssueFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenIssueFilter.swift; sourceTree = "<group>"; };
+		847FD27223CEC4160005E446 /* DoneIssueFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneIssueFilter.swift; sourceTree = "<group>"; };
 		847FD53623A0F49900399145 /* DragAttachmentItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragAttachmentItem.swift; sourceTree = "<group>"; };
 		848C483A23C56953001B5CC8 /* UICollectionViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewExtension.swift; sourceTree = "<group>"; };
 		848FCEB12397980E00CD6334 /* IssueDetailHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IssueDetailHeaderView.xib; sourceTree = "<group>"; };
@@ -252,6 +260,10 @@
 		84983EC523B1C33C003657F1 /* BoardTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardTableViewController.swift; sourceTree = "<group>"; };
 		84983EC723B1C7DB003657F1 /* BoardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BoardTableViewCell.swift; path = "AgileBoard/View/Custom Cell/BoardTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		84983EC923B1CB05003657F1 /* BoardDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardDetailViewController.swift; sourceTree = "<group>"; };
+		849E508723CC4A8000ED81D5 /* IssueFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueFilter.swift; sourceTree = "<group>"; };
+		849E508923CC4B1E00ED81D5 /* AllIssueFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllIssueFilter.swift; sourceTree = "<group>"; };
+		849E508B23CC5F8700ED81D5 /* DueTodayIssueFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DueTodayIssueFilter.swift; sourceTree = "<group>"; };
+		849E508D23CC665300ED81D5 /* DueThisWeekIssueFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DueThisWeekIssueFilter.swift; sourceTree = "<group>"; };
 		84A1FC1823A32F1D008648F9 /* StartDateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartDateTableViewCell.swift; sourceTree = "<group>"; };
 		84A1FC1A23A32F2F008648F9 /* EndDateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndDateTableViewCell.swift; sourceTree = "<group>"; };
 		84A51ABF237AF8DD00477B75 /* IssueTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueTableController.swift; sourceTree = "<group>"; };
@@ -355,8 +367,14 @@
 				84579E6123965068009575E4 /* Priority.swift */,
 				842686F123995BE900B981D7 /* Attachment.swift */,
 				84ACC2F423AB5AB8004B5281 /* Color.swift */,
-				8476A55223C709C20002334C /* IssueFilter.swift */,
-				8476A55623C72E820002334C /* FilterSection.swift */,
+				849E508723CC4A8000ED81D5 /* IssueFilter.swift */,
+				849E508923CC4B1E00ED81D5 /* AllIssueFilter.swift */,
+				849E508B23CC5F8700ED81D5 /* DueTodayIssueFilter.swift */,
+				849E508D23CC665300ED81D5 /* DueThisWeekIssueFilter.swift */,
+				847FD26C23CEBE730005E446 /* CreatedRecentlyIssueFilter.swift */,
+				847FD26E23CEC09A0005E446 /* UpdatedRecentlyIssueFilter.swift */,
+				847FD27023CEC1410005E446 /* OpenIssueFilter.swift */,
+				847FD27223CEC4160005E446 /* DoneIssueFilter.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -843,9 +861,12 @@
 				8458B443237CF98500D6D473 /* ShadowView.swift in Sources */,
 				840409BA239171290006829F /* IconCollectionViewController.swift in Sources */,
 				8438256023B057C200C506B9 /* StatusRule.swift in Sources */,
+				847FD26D23CEBE730005E446 /* CreatedRecentlyIssueFilter.swift in Sources */,
 				842FDD7623A1432B0038A796 /* Animations.swift in Sources */,
+				847FD27123CEC1410005E446 /* OpenIssueFilter.swift in Sources */,
 				843C58C92391049400F5FAB5 /* AppDataController.swift in Sources */,
 				841B42F223844275000871F6 /* IssueCollectionViewFlowLayout.swift in Sources */,
+				849E508823CC4A8000ED81D5 /* IssueFilter.swift in Sources */,
 				843BF016239A4C9C005F798D /* AttachmentTableViewCell.swift in Sources */,
 				84FA5A5323ACB44D003CDD65 /* StatusDetailViewController.swift in Sources */,
 				847A78122387745D00911851 /* Board.swift in Sources */,
@@ -862,6 +883,7 @@
 				84CEC23823B1F5540044B2B3 /* BoardTextFieldTitleView.swift in Sources */,
 				84983EC823B1C7DC003657F1 /* BoardTableViewCell.swift in Sources */,
 				84299FD32398FD9900432A66 /* IssuePriorityTableViewCell.swift in Sources */,
+				849E508E23CC665300ED81D5 /* DueThisWeekIssueFilter.swift in Sources */,
 				84094BD123C6DD3400650950 /* IssueListTableViewController.swift in Sources */,
 				84E5916623925C86006FBA5E /* ProjectKeyTextField.swift in Sources */,
 				843C8988237AE7460050586E /* BoardViewController.swift in Sources */,
@@ -884,9 +906,9 @@
 				84DB1E02237B0EFA008BB31A /* IssueTableView.swift in Sources */,
 				843C8984237AE7460050586E /* AppDelegate.swift in Sources */,
 				847DD06123ACAA5E001AF6BD /* IssueTypeTableViewCellv2.swift in Sources */,
+				847FD27323CEC4160005E446 /* DoneIssueFilter.swift in Sources */,
 				840409BC239173070006829F /* IconCollectionViewCell.swift in Sources */,
 				84BF40C1237D47C800600AE7 /* UIPanGestureRecognizer+Extension.swift in Sources */,
-				8476A55723C72E820002334C /* FilterSection.swift in Sources */,
 				8421F66B23974D3C001DF5D9 /* PriorityRowView.swift in Sources */,
 				84A51AC0237AF8DD00477B75 /* IssueTableController.swift in Sources */,
 				845227D1238D22FE000607A8 /* IssueCollectionView.swift in Sources */,
@@ -895,6 +917,7 @@
 				84579E6823965CD4009575E4 /* PriorityTableViewCell.swift in Sources */,
 				84579E602396412A009575E4 /* ProjectControllerMock.swift in Sources */,
 				846685F3239F4BCB0033BA1E /* AddIssueCollectionTableViewCell.swift in Sources */,
+				847FD26F23CEC09A0005E446 /* UpdatedRecentlyIssueFilter.swift in Sources */,
 				84B5F733238F860C00D344C3 /* IssueTypeTableViewCell.swift in Sources */,
 				84CEC23A23B1FD9D0044B2B3 /* BoardDetailStatusViewController.swift in Sources */,
 				847A781823878AEC00911851 /* ProjectController.swift in Sources */,
@@ -906,6 +929,7 @@
 				842686F02399519600B981D7 /* AttachmentCollectionViewFlowLayout.swift in Sources */,
 				848FCEB42397985100CD6334 /* IssueDetailHeaderView.swift in Sources */,
 				84094BCE23C6D58800650950 /* IssueListTableViewCell.swift in Sources */,
+				849E508C23CC5F8700ED81D5 /* DueTodayIssueFilter.swift in Sources */,
 				8408E50E23A9DEE3004A859C /* UIView+Extension.swift in Sources */,
 				84CEC23C23B2021E0044B2B3 /* BStatusCollectionViewCell.swift in Sources */,
 				84FCC14123C781E1002309C1 /* CalendarExtension.swift in Sources */,
@@ -914,7 +938,7 @@
 				84B5F731238F806B00D344C3 /* IssueTypeTableViewController.swift in Sources */,
 				8468D499238FBD71006B02D4 /* StatusController.swift in Sources */,
 				8462567723A4949800600F0F /* IssueController.swift in Sources */,
-				8476A55323C709C20002334C /* IssueFilter.swift in Sources */,
+				849E508A23CC4B1E00ED81D5 /* AllIssueFilter.swift in Sources */,
 				846B6A8C238CCA7600569BC2 /* IssuePageControlView.swift in Sources */,
 				8490889923A1E1B900D5DD96 /* HalfScreenPresentationController.swift in Sources */,
 				84694E0E239A1199004BC18D /* UIApplication+Extention.swift in Sources */,

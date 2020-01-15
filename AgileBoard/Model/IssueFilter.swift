@@ -2,25 +2,29 @@
 //  IssueFilter.swift
 //  Agile Board
 //
-//  Created by Huynh Tan Phu on 1/9/20.
+//  Created by Huynh Tan Phu on 1/13/20.
 //  Copyright © 2020 Filesoft. All rights reserved.
 //
 
 import Foundation
 import RealmSwift
 
-class IssueFilter: Object {
+protocol IssueFilterDelegate {
+    func sectionFor(_ issue: Issue)->String
+}
+
+typealias IssueFilter = BaseIssueFilter & IssueFilterDelegate
+
+class BaseIssueFilter {
+    var name: String
+    var imageName: String
     
-    @objc dynamic var id = UUID().uuidString
-    @objc dynamic var name = ""
-    @objc dynamic var predicate = ""
-    // House keeping fields
-    @objc dynamic var createdDate = Date()
-    @objc dynamic var modifiedDate = Date()
+    var issues: Results<Issue>? {
+        return nil
+    }
     
-    let sections = List<FilterSection>()
-    
-    override static func primaryKey() -> String? {
-        return "id"
+    init(name: String, imageName: String) {
+        self.name = name
+        self.imageName = imageName
     }
 }

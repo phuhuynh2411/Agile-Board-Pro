@@ -765,7 +765,7 @@
         <scene sceneID="UHD-t2-DUC">
             <objects>
                 <tableViewController id="Jbh-5Z-ofQ" customClass="IssueListTableViewController" customModule="Agile_Board" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" id="Oy1-DU-dLq">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="80" estimatedRowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" id="Oy1-DU-dLq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <connections>
@@ -1903,18 +1903,48 @@
                                 <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AHu-cF-ZfI">
+                                <rect key="frame" x="16" y="238.5" width="351" height="50.5"/>
+                                <string key="text">Switch on to mark the status as Done. Any issues that have this status will have a strikethrough style and be marked as completed.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" systemColor="placeholderTextColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="peY-tF-YyQ">
+                                <rect key="frame" x="16" y="199.5" width="343" height="31"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mark as DONE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t3F-b0-BbG">
+                                        <rect key="frame" x="0.0" y="0.0" width="294" height="31"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="8ty-Ef-8eS">
+                                        <rect key="frame" x="294" y="0.0" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="switchChanged:" destination="sI0-JO-3YB" eventType="valueChanged" id="B2h-4I-1wu"/>
+                                        </connections>
+                                    </switch>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="peY-tF-YyQ" firstAttribute="top" secondItem="ZtH-EQ-kWA" secondAttribute="bottom" constant="32" id="0mA-r0-6sg"/>
                             <constraint firstItem="Cco-2V-UVl" firstAttribute="trailing" secondItem="AU7-R0-wyd" secondAttribute="trailing" constant="16" id="0sK-eh-Sqd"/>
                             <constraint firstItem="ZtH-EQ-kWA" firstAttribute="leading" secondItem="Cco-2V-UVl" secondAttribute="leading" id="2Ak-aZ-7h8"/>
+                            <constraint firstItem="Cco-2V-UVl" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="AHu-cF-ZfI" secondAttribute="trailing" symbolic="YES" id="6DR-s5-5SH"/>
+                            <constraint firstItem="AHu-cF-ZfI" firstAttribute="leading" secondItem="Cco-2V-UVl" secondAttribute="leading" constant="16" id="7Jj-Hr-Wsk"/>
                             <constraint firstItem="v3X-Mn-ECa" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Cco-2V-UVl" secondAttribute="leading" constant="16" id="AbB-eY-hog"/>
                             <constraint firstItem="AU7-R0-wyd" firstAttribute="top" secondItem="v3X-Mn-ECa" secondAttribute="bottom" constant="8" id="EuZ-Vq-bCi"/>
                             <constraint firstItem="ZtH-EQ-kWA" firstAttribute="top" secondItem="AU7-R0-wyd" secondAttribute="bottom" constant="8" id="O3r-8d-fZP"/>
                             <constraint firstItem="Cco-2V-UVl" firstAttribute="trailing" secondItem="ZtH-EQ-kWA" secondAttribute="trailing" id="O6b-Sj-ywQ"/>
+                            <constraint firstItem="AHu-cF-ZfI" firstAttribute="top" secondItem="peY-tF-YyQ" secondAttribute="bottom" constant="8" id="UkV-M1-1u5"/>
+                            <constraint firstItem="peY-tF-YyQ" firstAttribute="leading" secondItem="Cco-2V-UVl" secondAttribute="leading" constant="16" id="eGX-LO-noH"/>
                             <constraint firstItem="v3X-Mn-ECa" firstAttribute="top" secondItem="Cco-2V-UVl" secondAttribute="top" constant="16" id="p1y-X3-zbj"/>
                             <constraint firstItem="Cco-2V-UVl" firstAttribute="trailing" secondItem="v3X-Mn-ECa" secondAttribute="trailing" constant="16" id="pvA-Vx-Kcg"/>
                             <constraint firstItem="AU7-R0-wyd" firstAttribute="leading" secondItem="Cco-2V-UVl" secondAttribute="leading" constant="16" id="r6A-d3-pVa"/>
+                            <constraint firstItem="Cco-2V-UVl" firstAttribute="trailing" secondItem="peY-tF-YyQ" secondAttribute="trailing" constant="16" id="tGq-sN-v0w"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Cco-2V-UVl"/>
                     </view>
@@ -1933,13 +1963,14 @@
                     <connections>
                         <outlet property="collectionView" destination="ZtH-EQ-kWA" id="6fe-HL-QAq"/>
                         <outlet property="doneButton" destination="3AY-Gu-Gbm" id="gHm-sP-Gai"/>
+                        <outlet property="doneSwitch" destination="8ty-Ef-8eS" id="6aC-q4-DXi"/>
                         <outlet property="errorLabel" destination="v3X-Mn-ECa" id="Lmj-qi-4R9"/>
                         <outlet property="statusTextField" destination="AU7-R0-wyd" id="J1r-BQ-gmM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hdV-Ut-DC9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5529" y="2171"/>
+            <point key="canvasLocation" x="5528.8000000000002" y="2170.1649175412294"/>
         </scene>
         <!--Issues-->
         <scene sceneID="qHX-vq-8yF">
@@ -1957,15 +1988,15 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pak-pa-ri7">
-                                            <rect key="frame" x="16" y="15" width="30" height="30"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="filter_all" translatesAutoresizingMaskIntoConstraints="NO" id="pak-pa-ri7">
+                                            <rect key="frame" x="16" y="13.5" width="33" height="33"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="30" id="XUs-FH-kIu"/>
-                                                <constraint firstAttribute="height" constant="30" id="m77-WR-dGA"/>
+                                                <constraint firstAttribute="width" constant="33" id="XUs-FH-kIu"/>
+                                                <constraint firstAttribute="height" constant="33" id="m77-WR-dGA"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due today" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WZZ-ga-24P">
-                                            <rect key="frame" x="62" y="19.5" width="78.5" height="21"/>
+                                            <rect key="frame" x="65" y="19.5" width="78.5" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -2121,6 +2152,7 @@
         <image name="board" width="38" height="38"/>
         <image name="default_project_icon" width="81" height="71"/>
         <image name="disclosure" width="10" height="16"/>
+        <image name="filter_all" width="40" height="40"/>
         <image name="issue" width="24" height="24"/>
         <image name="priority_lowest" width="12" height="10"/>
         <image name="profile" width="22" height="22"/>

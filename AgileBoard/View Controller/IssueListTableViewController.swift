@@ -9,35 +9,26 @@
 import UIKit
 import RealmSwift
 
-struct FilterKey: Hashable {
-    var order: Int
-    var key: String
-    
-    init(_ order: Int, _ key: String) {
-        self.order = order
-        self.key = key
-    }
-}
-
 class IssueListTableViewController: UITableViewController {
     
-    var issues: Results<Issue>?
     var filter: IssueFilter?
     
-    private var sections: [FilterKey] = []
-    private var sortedIssues: Results<Issue>?
+    private var sections: [String] = []
+    private var sortedIssues: Results<Issue>!
+    private lazy var dictionary: Dictionary<String, [Issue]> = [:]
     
-    private var dictionary: Dictionary<FilterKey, [Issue]>!
-
+    // Load items partially
+    private let numberOfFetchItems: Int = 10
+    private var offset: Int = 0
+    
+    // Cell label
+    var defaultLabelColor: UIColor?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Register table view cell
         tableView.register(UINib(nibName: "IssueListTableViewCell", bundle: nil), forCellReuseIdentifier: C.issueCell)
-        
-        // Load all issues
-        let realm = AppDataController.shared.realm
-        issues = realm?.objects(Issue.self)
         
         // Remove extra saparetors
         tableView.tableFooterView = UIView()
@@ -46,59 +37,90 @@ class IssueListTableViewController: UITableViewController {
         navigationItem.title = filter?.name
         
         // Sort issue by date
-        sortedIssues = issues?.sorted(byKeyPath: "createdDate", ascending: true)
-        
-        dictionary = Dictionary(grouping: sortedIssues!, by: { (issue: Issue) ->FilterKey in
-            let dateFormater = DateFormatter()
-            dateFormater.timeStyle = .none
-            
-            let calendar = Calendar.current
-            if calendar.isDateInToday(issue.createdDate) {
-                let name = "Today"
-                return section(for: name)
-                
-            } else if calendar.isDateInTomorrow(issue.createdDate) {
-                let name = "Tomorrow"
-                return section(for: name)
-                
-            } else if calendar.isDateInThisWeek(issue.createdDate) {
-                let name = "This week"
-                return section(for: name)
-                
-            } else if calendar.isDateInNextWeek(issue.createdDate) {
-                let name = "Next Week"
-                return section(for: name)
-                
-            } else if calendar.isDateInThisMonth(issue.createdDate) {
-                let name = "This Month"
-                return section(for: name)
-                
-            } else if calendar.isDateInNextMonth(issue.createdDate) {
-                let name = "Next Month"
-                return section(for: name)
-
-            } else {
-                dateFormater.dateFormat = "MMMM yyyy"
-                let name = dateFormater.string(from: issue.createdDate)
-                return section(for: name)
-            }
-            
-        })
+        sortedIssues = filter?.issues
+        loadMoreItems()
 
     }
 
     // MARK: - Helper Methods
     
-    private func section(for key: String)->FilterKey {
-        if let section = sections.first(where: { $0.key == key }) {
-            return section
-        }else{
-            let section = FilterKey(sections.count, key)
-            sections.append(section)
-            return section
+    /**
+     Arranges an issue into the dictionary
+     */
+    private func arrange(_ issue: Issue) {
+        
+        guard let filter = filter else { return }
+        
+        let sectionKey = filter.sectionFor(issue)
+        
+        // Create a new section if it does not exist
+        if sections.first(where: { $0 == sectionKey }) == nil {
+            sections.append(sectionKey)
+        }
+        
+        // Add issue in section
+        if dictionary[sectionKey] != nil {
+            dictionary[sectionKey]?.append(issue)
+        }else {
+            dictionary[sectionKey] = [issue]
         }
     }
-
+    
+    private func loadMoreItems(){
+        DispatchQueue.main.async {
+            self.fetchDataAsync(completion: self.fetchCompletion(items:))
+        }
+    }
+    
+    private func fetchCompletion(items: LazyFilterSequence<Results<Issue>>?) {
+        if let batchItems = items {
+            appendNewData(newItems: batchItems)
+        } else {
+            print("There are no items found.")
+        }
+    }
+    
+    private func appendNewData(newItems: LazyFilterSequence<Results<Issue>>) {
+        // Arrange new items into sections
+        for item in newItems {
+            arrange(item)
+        }
+        
+        // Increase offset
+        offset += newItems.count
+        print("Increased the offset to \(offset).")
+        
+        // Insert new items into the table view
+        tableView.reloadData()
+        print("Reloaded the table view.")
+    }
+    
+    private func fetchDataAsync(completion: (_ items: LazyFilterSequence<Results<Issue>>?)->Void) {
+        // Determine the fetching range of items
+        let start = offset
+        let end = offset + numberOfFetchItems
+        print("Trying loading item from \(start) to \(end)")
+        
+        // Find all of items in the above range
+        let batchItems = sortedIssues.filter { (issue) -> Bool in
+            if let index = self.sortedIssues?.index(of: issue) {
+                return index >= start && index <= end
+            }else {
+                return false
+            }
+        }
+        
+        guard batchItems.count > 0 else {
+            print("There are no item in the range.")
+            completion(nil)
+            return
+        }
+        
+        print("Found: \(batchItems.count) items.")
+        
+        completion(batchItems)
+    }
+    
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -107,35 +129,61 @@ class IssueListTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let key = sections[section]
-        
-        return dictionary?[key]?.count ?? 0
+        return dictionary[key]?.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: C.issueCell, for: indexPath) as! IssueListTableViewCell
+        
+        // Store the default label
+        if defaultLabelColor == nil {
+            defaultLabelColor = cell.summaryLabel.textColor
+        }
+        
         let key = sections[indexPath.section]
-        if let issue = dictionary?[key]?[indexPath.row] {
+        
+        if let issue = dictionary[key]?[indexPath.row] {
             
-            cell.summaryTextField.text = issue.summary
+            if let status = issue.status, status.markedAsDone == true {
+                let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: issue.summary)
+                attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, attributeString.length))
+                cell.summaryLabel.attributedText = attributeString
+                cell.summaryLabel.textColor = UIColor(red: 0, green: 0, blue: 0.0980392, alpha: 0.22)
+            }else {
+                cell.summaryLabel.attributedText =  .none
+                cell.summaryLabel.textColor = defaultLabelColor
+                cell.summaryLabel.text = issue.summary
+            }
+            
             cell.issueIdLabel.text = issue.issueID
+            
             if let typeImageName = issue.type?.imageName {
                 cell.typeImageView.image = UIImage(named: typeImageName)
             }
             if let prioryImageName = issue.priority?.imageName {
                 cell.priorityImageView.image = UIImage(named: prioryImageName)
             }
-            cell.statusButton.setTitle(issue.status?.name, for: .normal)
             
+            cell.statusButton.setTitle(issue.status?.name, for: .normal)
+        }
+        
+        // If it is the last item, loads more items
+        if indexPath.section == sections.count - 1,
+        indexPath.row == (dictionary[key]?.count ?? 0) - 1 {
+            loadMoreItems()
         }
         
         return cell
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sections[section].key
+        return sections[section]
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70
+    }
 
     /*
     // MARK: - Navigation
@@ -151,4 +199,5 @@ class IssueListTableViewController: UITableViewController {
         static let issueCell = "IssueCell"
     }
     typealias C = CellIdentifier
+    
 }

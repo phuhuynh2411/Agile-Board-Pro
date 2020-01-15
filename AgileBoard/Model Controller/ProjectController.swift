@@ -59,6 +59,7 @@ class ProjectController {
         let done = Status()
         done.name = "DONE"
         done.color = ColorController.shared.doneColor()
+        done.markedAsDone = true
         
         // Add statuses to project
         project.statuses.append(todo)
@@ -73,53 +74,104 @@ class ProjectController {
         // Add issue types to project
         project.issueTypes.append(objectsIn: [story, epic, task, bug])
         
-        // 3. Create issues
+        // 1. In three months issues
         let issue1 = Issue()
         issue1.summary = "Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum."
         issue1.status = todo
         issue1.orderNumber = 0
         issue1.type = story
-        // Tomorrow
-        issue1.createdDate = Calendar.current.date(byAdding: .day, value: 1, to: Date())!
+        issue1.createdDate = Calendar.current.date(byAdding: .month, value: -3, to: Date())!
         
+        // In two months issues
         let issue2 = Issue()
         issue2.summary = "Fringilla Fusce"
         issue2.status = todo
         issue2.orderNumber = 1
         issue2.type = story
-        // Last month
-        issue2.createdDate = Calendar.current.date(byAdding: .month, value: -1, to: Date())!
+        issue2.createdDate = Calendar.current.date(byAdding: .month, value: -2, to: Date())!
         
+        // Last month issues
         let issue3 = Issue()
         issue3.summary = "Donec sed odio dui."
         issue3.status = todo
         issue3.orderNumber = 2
         issue3.type = story
+        issue3.createdDate = Calendar.current.date(byAdding: .month, value: -1, to: Date())!
         
+        // This month issues
+        let issue8 = Issue()
+        issue8.summary = "Donec sed odio dui."
+        issue8.status = todo
+        issue8.orderNumber = 2
+        issue8.type = story
+        issue8.createdDate = Calendar.current.date(byAdding: .day, value: -15, to: Date())!
+        
+        // Last week issues
         let issue4 = Issue()
         issue4.summary = "Curabitur blandit tempus porttitor."
         issue4.status = inprogress
         issue4.orderNumber = 3
         issue4.type = story
-        // Next week
-        issue4.createdDate = Calendar.current.date(byAdding: .day, value: 7, to: Date())!
+        issue4.createdDate = Calendar.current.date(byAdding: .day, value: -7, to: Date())!
         
+        // This week issues
+        let issue9 = Issue()
+        issue9.summary = "Curabitur blandit tempus porttitor."
+        issue9.status = inprogress
+        issue9.orderNumber = 3
+        issue9.type = story
+        issue9.createdDate = Calendar.current.date(byAdding: .day, value: -2, to: Date())!
+        
+        // Yesterday issues
         let issue5 = Issue()
-        issue5.summary = "Nulla vitae elit libero, a pharetra augue."
+        issue5.summary = "Curabitur blandit tempus porttitor."
         issue5.status = inprogress
-        issue5.orderNumber = 4
+        issue5.orderNumber = 3
         issue5.type = story
-        // This week
-        issue5.createdDate = Calendar.current.date(byAdding: .day, value: 2, to: Date())!
+        issue5.createdDate = Calendar.current.date(byAdding: .day, value: -1, to: Date())!
         
+        // Today issues
         let issue6 = Issue()
-        issue6.summary = "Sed posuere consectetur est at lobortis."
-        issue6.status = done
-        issue6.orderNumber = 5
+        issue6.summary = "Nulla vitae elit libero, a pharetra augue."
+        issue6.status = inprogress
+        issue6.orderNumber = 4
         issue6.type = story
         
+        // Today issues
+        let issue7 = Issue()
+        issue7.summary = "Sed posuere consectetur est at lobortis."
+        issue7.status = done
+        issue7.orderNumber = 5
+        issue7.type = story
+        
+        // Due Today issue
+        let dueIssue1 = Issue()
+        dueIssue1.summary = "Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Maecenas faucibus mollis interdum."
+        dueIssue1.status = todo
+        dueIssue1.type = story
+        dueIssue1.dueDate = Date()
+        
+        let dueIssue2 = Issue()
+        dueIssue2.summary = "Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit."
+        dueIssue2.status = todo
+        dueIssue2.type = story
+        dueIssue2.dueDate = Date()
+        
+        let dueTomorrowIssue = Issue()
+        dueTomorrowIssue.summary = "Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor."
+        dueTomorrowIssue.status = todo
+        dueTomorrowIssue.type = bug
+        dueTomorrowIssue.dueDate = Calendar.current.date(byAdding: .day, value: 1, to: Date())
+        
+        let dueInNextTwoDays = Issue()
+        dueInNextTwoDays.summary = "Aenean lacinia bibendum nulla sed consectetur."
+        dueInNextTwoDays.status = inprogress
+        dueInNextTwoDays.type = task
+        dueInNextTwoDays.dueDate = Calendar.current.date(byAdding: .day, value: 2, to: Date())
+
+        
         // 4. Add issues to the project
-        let issues = [issue1, issue2, issue3, issue4, issue5, issue6]
+        let issues = [issue1, issue2, issue3, issue4, issue5, issue6, issue7, issue8, issue9, dueIssue1, dueIssue2, dueTomorrowIssue, dueInNextTwoDays]
         add(issues: issues, to: project)
         
         // 5. Create columns
