@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import SwipeCellKit
 
-class IssueListTableViewCell: UITableViewCell {
+class IssueListTableViewCell: SwipeTableViewCell {
 
     @IBOutlet weak var typeImageView: UIImageView!
     @IBOutlet weak var summaryLabel: UILabel!

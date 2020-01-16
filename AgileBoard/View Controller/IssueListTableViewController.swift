@@ -9,6 +9,7 @@
 import UIKit
 import RealmSwift
 import NotificationBannerSwift
+import SwipeCellKit
 
 class IssueListTableViewController: UITableViewController {
     
@@ -32,6 +33,9 @@ class IssueListTableViewController: UITableViewController {
     
     let searchController = UISearchController(searchResultsController: nil)
     var isActiveSearch = false
+    
+    // Issue
+    var selectedIssue: Issue?
     
     // MARK: - View Methods
     
@@ -111,6 +115,7 @@ class IssueListTableViewController: UITableViewController {
             // reloads the table view if user is searching for issues
             tableView.reloadData()
         }
+        refreshControl?.endRefreshing()
     }
     
     private func appendNewData(newItems: LazyFilterSequence<Results<Issue>>) {
@@ -180,8 +185,6 @@ class IssueListTableViewController: UITableViewController {
     
     @IBAction func refreshItems(_ sender: UIRefreshControl){
         reloadItems()
-        
-        refreshControl?.endRefreshing()
     }
     
     // MARK: - Configure Search View Controller
@@ -214,6 +217,7 @@ class IssueListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: C.issueCell, for: indexPath) as! IssueListTableViewCell
+        cell.delegate = self
         
         // Store the default label
         if defaultLabelColor == nil {
@@ -264,6 +268,19 @@ class IssueListTableViewController: UITableViewController {
         return 70
     }
     
+    // MARK: - UITableView Delegate
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let key = sections[indexPath.section]
+        if let issue = dictionary[key]?[indexPath.row]{
+            selectedIssue = issue
+            performSegue(withIdentifier: S.editIssue, sender: self)
+        }
+        
+    }
+
+    // MARK: - Segue Identifier and Cell Identifiers
+    
     struct CellIdentifier {
         static let issueCell = "IssueCell"
     }
@@ -271,6 +288,7 @@ class IssueListTableViewController: UITableViewController {
     
     struct SegueIdentifier {
         static let addIssue = "AddIssueSegue"
+        static let editIssue = "EditIssueSegue"
     }
     typealias S = SegueIdentifier
     
@@ -285,6 +303,14 @@ class IssueListTableViewController: UITableViewController {
             let priority = PriorityController.shared.default()
             
             addIssueTableViewController.initView(issueType: issueType, priority: priority,startDate: Date(), status: nil, delegate: self)
+        } else if segue.identifier == S.editIssue {
+            let navigationController = segue.destination as! UINavigationController
+            let issueDetailTableViewController =  navigationController.topViewController as! IssueDetailTableViewController
+            
+            guard let project = selectedIssue?.projectOwners.first, let issue = selectedIssue else {
+                fatalError("There was something wrong. The project or issue is nil.")
+            }
+            issueDetailTableViewController.initView(with: issue, project: project, delegate: self)
         }
     }
     
@@ -363,9 +389,12 @@ extension IssueListTableViewController: IssueDetailDelegate {
             fatalError("There was something wrong. The project should not be nil.")
         }
         
+        // Set issue's status to the first project's status
+        let status = project.statuses.first
+        
         project.write(code: {
             project.issues.append(issue)
-            
+            issue.status = status
         }) { (error) in
             if let error = error {
                 print("Could not add issue to the project with error \(error)")
@@ -382,6 +411,9 @@ extension IssueListTableViewController: IssueDetailDelegate {
                 banner.onTap = {
                     self.tappedOnBanner()
                 }
+                
+                // Set issue to selected issue
+                self.selectedIssue = issue
             }
         }
     }
@@ -391,7 +423,27 @@ extension IssueListTableViewController: IssueDetailDelegate {
     }
     
     func tappedOnBanner() {
-         print("Tapped on banner")
+        performSegue(withIdentifier: S.editIssue, sender: self)
+    }
+    
+}
+
+// MARK: - SwipeTableViewCellDelegate
+
+extension IssueListTableViewController: SwipeTableViewCellDelegate {
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        guard orientation == .right else { return nil }
+
+        let transAction = SwipeAction(style: .destructive, title: "Transition") { action, indexPath in
+            // handle action by updating model with deletion
+        }
+
+        // customize the action appearance
+//        transAction.backgroundColor = .blue
+//        transAction.textColor = .white
+
+        return [transAction]
     }
     
 }

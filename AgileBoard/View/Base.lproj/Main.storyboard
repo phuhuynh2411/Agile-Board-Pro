@@ -789,6 +789,7 @@
                     </navigationItem>
                     <connections>
                         <segue destination="OPr-22-lDI" kind="presentation" identifier="AddIssueSegue" modalPresentationStyle="fullScreen" id="N49-3h-qNm"/>
+                        <segue destination="OPr-22-lDI" kind="show" identifier="EditIssueSegue" id="ul6-za-gAi"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pqr-s0-0dN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1217,7 +1218,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" maximumZoomScale="5" translatesAutoresizingMaskIntoConstraints="NO" id="qMR-az-6i2">
-                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="574"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IP8-Rl-HSr">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="609.5"/>
@@ -2007,8 +2008,8 @@
                                                 <constraint firstAttribute="height" constant="33" id="m77-WR-dGA"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due today" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WZZ-ga-24P">
-                                            <rect key="frame" x="65" y="19.5" width="78.5" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filter issue" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WZZ-ga-24P">
+                                            <rect key="frame" x="65" y="19.5" width="83" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -2036,7 +2037,12 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Issues" id="YJN-Sx-NtJ">
                         <rightBarButtonItems>
-                            <barButtonItem systemItem="add" id="FVr-tF-YQf"/>
+                            <barButtonItem systemItem="add" id="FVr-tF-YQf">
+                                <connections>
+                                    <action selector="addButtonPressed:" destination="cHi-Bx-mt6" id="ZdQ-Z9-76b"/>
+                                    <segue destination="OPr-22-lDI" kind="presentation" identifier="AddIssueSegue" modalPresentationStyle="fullScreen" id="zSH-IA-yul"/>
+                                </connections>
+                            </barButtonItem>
                             <barButtonItem systemItem="search" id="0RZ-gr-OaM">
                                 <connections>
                                     <action selector="searchButtonPressed:" destination="cHi-Bx-mt6" id="Tcx-Q6-JcR"/>
@@ -2046,6 +2052,7 @@
                     </navigationItem>
                     <connections>
                         <segue destination="Jbh-5Z-ofQ" kind="show" identifier="IssueTableViewSegue" id="9nM-To-yhd"/>
+                        <segue destination="OPr-22-lDI" kind="show" identifier="EditIssueSegue" id="g0M-nV-Otg"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fAE-1F-sI8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2180,6 +2187,6 @@
         <segue reference="MHi-C5-gJy"/>
         <segue reference="U2G-ij-VVg"/>
         <segue reference="kzU-CZ-19t"/>
-        <segue reference="N49-3h-qNm"/>
+        <segue reference="g0M-nV-Otg"/>
     </inferredMetricsTieBreakers>
 </document>
