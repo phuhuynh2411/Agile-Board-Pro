@@ -11,6 +11,10 @@ import RealmSwift
 
 class AllIssueFilter: IssueFilter {
     
+    override var type: BaseIssueFilter.IssueFilterType? {
+        return .all
+    }
+    
     override var issues: Results<Issue>? {
         // Load all issues
         let realm = AppDataController.shared.realm

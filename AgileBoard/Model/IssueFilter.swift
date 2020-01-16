@@ -18,6 +18,9 @@ typealias IssueFilter = BaseIssueFilter & IssueFilterDelegate
 class BaseIssueFilter {
     var name: String
     var imageName: String
+    var type: IssueFilterType? {
+        return nil
+    }
     
     var issues: Results<Issue>? {
         return nil
@@ -26,5 +29,15 @@ class BaseIssueFilter {
     init(name: String, imageName: String) {
         self.name = name
         self.imageName = imageName
+    }
+    
+    enum IssueFilterType {
+        case all
+        case dueToday
+        case dueThisWeek
+        case createdRecenlty
+        case updateRecently
+        case open
+        case done
     }
 }

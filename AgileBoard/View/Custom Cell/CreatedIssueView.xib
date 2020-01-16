@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreatedIssueView" customModule="Agile_Board" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iN0-l3-epB" customClass="CreatedIssueView" customModule="Agile_Board" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="403" height="73"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="7SA-jz-Y7Z">
+                    <rect key="frame" x="16" y="8" width="371" height="57"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="v8N-aG-5JB">
+                            <rect key="frame" x="0.0" y="0.0" width="371" height="20"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cbQ-yO-5ji">
+                                    <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="20" id="B6O-uA-ZCh"/>
+                                        <constraint firstAttribute="height" constant="20" id="pwr-ef-9kV"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FT-0001" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ap-cd-1JT">
+                                    <rect key="frame" x="33" y="0.0" width="338" height="20"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lGv-P1-Z6R">
+                            <rect key="frame" x="0.0" y="20" width="371" height="37"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Issue has been created." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jw9-8s-FYM">
+                                    <rect key="frame" x="0.0" y="0.0" width="181.5" height="37"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Joc-82-qBe">
+                                    <rect key="frame" x="181.5" y="0.0" width="189.5" height="37"/>
+                                    <state key="normal" title="Tap here to view"/>
+                                </button>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="7SA-jz-Y7Z" secondAttribute="bottom" constant="8" id="NrK-HU-obk"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="7SA-jz-Y7Z" secondAttribute="trailing" constant="16" id="Tbf-m7-4Kn"/>
+                <constraint firstItem="7SA-jz-Y7Z" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="d9d-Bd-T2N"/>
+                <constraint firstItem="7SA-jz-Y7Z" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="fBT-Be-BXc"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="issueIDLabel" destination="7ap-cd-1JT" id="zgn-9V-aCx"/>
+                <outlet property="tapHereButton" destination="Joc-82-qBe" id="00N-W7-ifO"/>
+                <outlet property="typeImageView" destination="cbQ-yO-5ji" id="3Eb-1i-GJE"/>
+            </connections>
+            <point key="canvasLocation" x="129.71014492753625" y="-175.11160714285714"/>
+        </view>
+    </objects>
+</document>

@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import NotificationBannerSwift
 
 class IssueListTableViewController: UITableViewController {
     
@@ -18,7 +19,7 @@ class IssueListTableViewController: UITableViewController {
     private lazy var dictionary: Dictionary<String, [Issue]> = [:]
     
     // Load items partially
-    private let numberOfFetchItems: Int = 10
+    private let numberOfFetchItems: Int = 40
     private var offset: Int = 0
     var reachedEndOfItems = false
     
@@ -27,6 +28,7 @@ class IssueListTableViewController: UITableViewController {
     
     // Filter issues
     var filteredIssues: Results<Issue>?
+    var didFilter = false
     
     let searchController = UISearchController(searchResultsController: nil)
     var isActiveSearch = false
@@ -51,6 +53,10 @@ class IssueListTableViewController: UITableViewController {
         
         // Configure search view controller
         configureSearchViewController()
+        
+        // Add refresh controller
+        refreshControl = UIRefreshControl()
+        refreshControl?.addTarget(self, action: #selector(refreshItems(_:)), for: .valueChanged)
         
     }
     
@@ -172,6 +178,12 @@ class IssueListTableViewController: UITableViewController {
         performSegue(withIdentifier: S.addIssue, sender: self)
     }
     
+    @IBAction func refreshItems(_ sender: UIRefreshControl){
+        reloadItems()
+        
+        refreshControl?.endRefreshing()
+    }
+    
     // MARK: - Configure Search View Controller
     
     func configureSearchViewController() {
@@ -278,11 +290,11 @@ class IssueListTableViewController: UITableViewController {
     
     // MARK: - UIScroll View
 
-    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.y < 0 {
-            activateSearchControl()
-        }
-    }
+//    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+//        if scrollView.contentOffset.y < 0 {
+//            activateSearchControl()
+//        }
+//    }
     
     func activateSearchControl() {
         DispatchQueue.main.async {
@@ -316,6 +328,9 @@ extension IssueListTableViewController: UISearchBarDelegate {
         
         filteredIssues = sortedIssues.filter("summary contains[c] %@ OR issueDescription contains[c] %@", searchText.lowercased(), searchText.lowercased())
         
+        // User filter the issues list
+        didFilter = true
+        
         reloadItems()
     }
     
@@ -330,7 +345,11 @@ extension IssueListTableViewController: UISearchBarDelegate {
 extension IssueListTableViewController: UISearchControllerDelegate {
     
     func didDismissSearchController(_ searchController: UISearchController) {
-        reloadItems()
+        if didFilter {
+            reloadItems()
+        }
+        // Reset the status
+        didFilter = false
     }
 }
 
@@ -346,16 +365,33 @@ extension IssueListTableViewController: IssueDetailDelegate {
         
         project.write(code: {
             project.issues.append(issue)
-            reloadItems()
+            
         }) { (error) in
             if let error = error {
                 print("Could not add issue to the project with error \(error)")
+            }else {
+                // Add issue to sortedIssues array
+                let view: CreatedIssueView = .fromNib()
+                view.issueIDLabel.text = issue.issueID
+                if let typeImageName = issue.type?.imageName {
+                    view.typeImageView.image = UIImage(named: typeImageName)
+                }
+                
+                let banner = FloatingNotificationBanner(customView: view)
+                banner.show()
+                banner.onTap = {
+                    self.tappedOnBanner()
+                }
             }
         }
     }
     
     func didModidyIssue(issue: Issue) {
         
+    }
+    
+    func tappedOnBanner() {
+         print("Tapped on banner")
     }
     
 }

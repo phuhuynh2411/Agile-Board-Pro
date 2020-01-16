@@ -11,6 +11,10 @@ import RealmSwift
 
 class DueTodayIssueFilter: IssueFilter {
     
+    override var type: BaseIssueFilter.IssueFilterType? {
+           return .dueToday
+    }
+    
     override var issues: Results<Issue>? {
         let calendar = Calendar.current
         

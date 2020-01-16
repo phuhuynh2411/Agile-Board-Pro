@@ -84,6 +84,8 @@
 		847A781823878AEC00911851 /* ProjectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847A781723878AEC00911851 /* ProjectController.swift */; };
 		847DD06123ACAA5E001AF6BD /* IssueTypeTableViewCellv2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847DD05F23ACAA5E001AF6BD /* IssueTypeTableViewCellv2.swift */; };
 		847DD06223ACAA5E001AF6BD /* IssueTypeTableViewCellv2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 847DD06023ACAA5E001AF6BD /* IssueTypeTableViewCellv2.xib */; };
+		847EEF8123D041DA00FC207E /* CreatedIssueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847EEF8023D041DA00FC207E /* CreatedIssueView.swift */; };
+		847EEF8323D041F100FC207E /* CreatedIssueView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 847EEF8223D041F100FC207E /* CreatedIssueView.xib */; };
 		847FD26D23CEBE730005E446 /* CreatedRecentlyIssueFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847FD26C23CEBE730005E446 /* CreatedRecentlyIssueFilter.swift */; };
 		847FD26F23CEC09A0005E446 /* UpdatedRecentlyIssueFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847FD26E23CEC09A0005E446 /* UpdatedRecentlyIssueFilter.swift */; };
 		847FD27123CEC1410005E446 /* OpenIssueFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847FD27023CEC1410005E446 /* OpenIssueFilter.swift */; };
@@ -244,6 +246,8 @@
 		847A781723878AEC00911851 /* ProjectController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectController.swift; sourceTree = "<group>"; };
 		847DD05F23ACAA5E001AF6BD /* IssueTypeTableViewCellv2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IssueTypeTableViewCellv2.swift; path = ../IssueTypeTableViewCellv2.swift; sourceTree = "<group>"; };
 		847DD06023ACAA5E001AF6BD /* IssueTypeTableViewCellv2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IssueTypeTableViewCellv2.xib; sourceTree = "<group>"; };
+		847EEF8023D041DA00FC207E /* CreatedIssueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatedIssueView.swift; sourceTree = "<group>"; };
+		847EEF8223D041F100FC207E /* CreatedIssueView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreatedIssueView.xib; sourceTree = "<group>"; };
 		847FD26C23CEBE730005E446 /* CreatedRecentlyIssueFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatedRecentlyIssueFilter.swift; sourceTree = "<group>"; };
 		847FD26E23CEC09A0005E446 /* UpdatedRecentlyIssueFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatedRecentlyIssueFilter.swift; sourceTree = "<group>"; };
 		847FD27023CEC1410005E446 /* OpenIssueFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenIssueFilter.swift; sourceTree = "<group>"; };
@@ -484,6 +488,8 @@
 				84F96A3523B2169300F44C73 /* BColumnColumnCollectionViewCell.swift */,
 				84094BCC23C6D58800650950 /* IssueListTableViewCell.swift */,
 				84094BCD23C6D58800650950 /* IssueListTableViewCell.xib */,
+				847EEF8023D041DA00FC207E /* CreatedIssueView.swift */,
+				847EEF8223D041F100FC207E /* CreatedIssueView.xib */,
 			);
 			path = "Custom Cell";
 			sourceTree = "<group>";
@@ -731,6 +737,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84983EC223B1B623003657F1 /* BoardTitleView.xib in Resources */,
+				847EEF8323D041F100FC207E /* CreatedIssueView.xib in Resources */,
 				8442DC3C237E7B92008C88C6 /* IssueCollectionViewCell.xib in Resources */,
 				847DD06223ACAA5E001AF6BD /* IssueTypeTableViewCellv2.xib in Resources */,
 				8442DC40237E7DF8008C88C6 /* IssueTableViewCell.xib in Resources */,
@@ -946,6 +953,7 @@
 				842686F223995BE900B981D7 /* Attachment.swift in Sources */,
 				8426581B23AB169100061748 /* StatusTableViewController.swift in Sources */,
 				848C483B23C56953001B5CC8 /* UICollectionViewExtension.swift in Sources */,
+				847EEF8123D041DA00FC207E /* CreatedIssueView.swift in Sources */,
 				84C4042D23A2254B00A49A8D /* SelectDateViewController.swift in Sources */,
 				84ACC2FA23AB74A1004B5281 /* TextviewTableViewController.swift in Sources */,
 				841D97A9238E674300483928 /* AppNavigationController.swift in Sources */,
