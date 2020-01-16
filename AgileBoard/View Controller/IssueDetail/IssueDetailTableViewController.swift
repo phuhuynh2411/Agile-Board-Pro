@@ -11,7 +11,7 @@ import RealmSwift
 import SwiftValidator
 
 protocol IssueDetailDelegate {
-    func didAddIssue(with issue: Issue)
+    func didAddIssue(with issue: Issue, project: Project?)
     func didModidyIssue(issue: Issue)
 }
 
@@ -488,7 +488,7 @@ class IssueDetailTableViewController: UITableViewController {
         issue.issueDescription = header.descriptionTextView.text
         
         if isNew(){
-            delegate?.didAddIssue(with: issue)
+            delegate?.didAddIssue(with: issue, project: project)
         }
         // The issue has been modified
         else{

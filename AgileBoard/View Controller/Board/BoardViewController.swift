@@ -182,7 +182,7 @@ extension BoardViewController: IssueDetailDelegate {
     }
     
     
-    func didAddIssue(with issue: Issue) {
+    func didAddIssue(with issue: Issue, project: Project?) {
         if let project = project {
             ProjectController.shared.add(issue: issue, to: project)
             // Reload the collection view

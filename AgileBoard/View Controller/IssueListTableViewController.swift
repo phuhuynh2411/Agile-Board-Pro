@@ -20,9 +20,18 @@ class IssueListTableViewController: UITableViewController {
     // Load items partially
     private let numberOfFetchItems: Int = 10
     private var offset: Int = 0
+    var reachedEndOfItems = false
     
     // Cell label
     var defaultLabelColor: UIColor?
+    
+    // Filter issues
+    var filteredIssues: Results<Issue>?
+    
+    let searchController = UISearchController(searchResultsController: nil)
+    var isActiveSearch = false
+    
+    // MARK: - View Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +48,20 @@ class IssueListTableViewController: UITableViewController {
         // Sort issue by date
         sortedIssues = filter?.issues
         loadMoreItems()
-
+        
+        // Configure search view controller
+        configureSearchViewController()
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // Auto activate search controller if the isActiveSearch == true
+        if isActiveSearch {
+            activateSearchControl()
+        }
+       
     }
 
     // MARK: - Helper Methods
@@ -67,6 +89,7 @@ class IssueListTableViewController: UITableViewController {
     }
     
     private func loadMoreItems(){
+        reachedEndOfItems = false
         DispatchQueue.main.async {
             self.fetchDataAsync(completion: self.fetchCompletion(items:))
         }
@@ -77,6 +100,10 @@ class IssueListTableViewController: UITableViewController {
             appendNewData(newItems: batchItems)
         } else {
             print("There are no items found.")
+            reachedEndOfItems = true
+            
+            // reloads the table view if user is searching for issues
+            tableView.reloadData()
         }
     }
     
@@ -95,15 +122,23 @@ class IssueListTableViewController: UITableViewController {
         print("Reloaded the table view.")
     }
     
-    private func fetchDataAsync(completion: (_ items: LazyFilterSequence<Results<Issue>>?)->Void) {
+    private func fetchDataAsync(completion: @escaping (_ items: LazyFilterSequence<Results<Issue>>?)->Void) {
+        
         // Determine the fetching range of items
         let start = offset
         let end = offset + numberOfFetchItems
         print("Trying loading item from \(start) to \(end)")
         
         // Find all of items in the above range
-        let batchItems = sortedIssues.filter { (issue) -> Bool in
-            if let index = self.sortedIssues?.index(of: issue) {
+        // If user is searching an issue, use filteredIssues;
+        // otherwise, use sorted issue
+        guard let searchedIssues = isFiltering() ? filteredIssues : sortedIssues else {
+            completion(nil)
+            return
+        }
+        
+        let batchItems = searchedIssues.filter { (issue) -> Bool in
+            if let index = searchedIssues.index(of: issue) {
                 return index >= start && index <= end
             }else {
                 return false
@@ -119,6 +154,38 @@ class IssueListTableViewController: UITableViewController {
         print("Found: \(batchItems.count) items.")
         
         completion(batchItems)
+    }
+    
+    private func resetDict() {
+        offset = 0
+        dictionary = [:]
+        sections = []
+    }
+    
+    // MARK: - IB Actions
+    
+    @IBAction func searchButtonPressed(_ sender: UIBarButtonItem) {
+         activateSearchControl()
+    }
+    
+    @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: S.addIssue, sender: self)
+    }
+    
+    // MARK: - Configure Search View Controller
+    
+    func configureSearchViewController() {
+        // 2
+        searchController.obscuresBackgroundDuringPresentation = false
+        // 3
+        searchController.searchBar.placeholder = "Search issue"
+        // 4
+        navigationItem.searchController = searchController
+        // 5
+        definesPresentationContext = true
+        // 6
+        searchController.delegate = self
+        searchController.searchBar.delegate = self
     }
     
     // MARK: - Table view data source
@@ -170,7 +237,7 @@ class IssueListTableViewController: UITableViewController {
         
         // If it is the last item, loads more items
         if indexPath.section == sections.count - 1,
-        indexPath.row == (dictionary[key]?.count ?? 0) - 1 {
+            indexPath.row == (dictionary[key]?.count ?? 0) - 1, !reachedEndOfItems {
             loadMoreItems()
         }
         
@@ -184,20 +251,111 @@ class IssueListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
     struct CellIdentifier {
         static let issueCell = "IssueCell"
     }
     typealias C = CellIdentifier
+    
+    struct SegueIdentifier {
+        static let addIssue = "AddIssueSegue"
+    }
+    typealias S = SegueIdentifier
+    
+    // MARK: - Navigations
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == S.addIssue {
+            let navigationController = segue.destination as! UINavigationController
+            let addIssueTableViewController =  navigationController.topViewController as! IssueDetailTableViewController
+            //let selectedBoard = project?.selectedBoard
+            let issueType = IssueTypeController.shared.default()
+            let priority = PriorityController.shared.default()
+            
+            addIssueTableViewController.initView(issueType: issueType, priority: priority,startDate: Date(), status: nil, delegate: self)
+        }
+    }
+    
+    // MARK: - UIScroll View
+
+    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y < 0 {
+            activateSearchControl()
+        }
+    }
+    
+    func activateSearchControl() {
+        DispatchQueue.main.async {
+            self.searchController.isActive = true
+            self.searchController.searchBar.becomeFirstResponder()
+        }
+    }
+}
+
+// MARK: - UISearchBarDelegate
+
+extension IssueListTableViewController: UISearchBarDelegate {
+    
+    func isFiltering() -> Bool {
+        return searchController.isActive && !isEmptySearchBar()
+    }
+    
+    func isEmptySearchBar() -> Bool {
+        return searchController.searchBar.text!.isEmpty
+    }
+    
+    func reloadItems() {
+        // Reset the dict
+        resetDict()
+        
+        // Load items
+        loadMoreItems()
+    }
+    
+    func filterContentForSearchText(searchText: String) {
+        
+        filteredIssues = sortedIssues.filter("summary contains[c] %@ OR issueDescription contains[c] %@", searchText.lowercased(), searchText.lowercased())
+        
+        reloadItems()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filterContentForSearchText(searchText: searchText)
+    }
+    
+}
+
+// MARK: - UISearchControllerDelegate
+
+extension IssueListTableViewController: UISearchControllerDelegate {
+    
+    func didDismissSearchController(_ searchController: UISearchController) {
+        reloadItems()
+    }
+}
+
+
+// MARK: IssueDetailDelegate
+
+extension IssueListTableViewController: IssueDetailDelegate {
+    
+    func didAddIssue(with issue: Issue, project: Project?) {
+        guard let project = project else {
+            fatalError("There was something wrong. The project should not be nil.")
+        }
+        
+        project.write(code: {
+            project.issues.append(issue)
+            reloadItems()
+        }) { (error) in
+            if let error = error {
+                print("Could not add issue to the project with error \(error)")
+            }
+        }
+    }
+    
+    func didModidyIssue(issue: Issue) {
+        
+    }
     
 }

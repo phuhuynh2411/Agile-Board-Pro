@@ -761,7 +761,7 @@
             </objects>
             <point key="canvasLocation" x="161" y="976"/>
         </scene>
-        <!--Due today-->
+        <!--All Issues-->
         <scene sceneID="UHD-t2-DUC">
             <objects>
                 <tableViewController id="Jbh-5Z-ofQ" customClass="IssueListTableViewController" customModule="Agile_Board" sceneMemberID="viewController">
@@ -773,16 +773,27 @@
                             <outlet property="delegate" destination="Jbh-5Z-ofQ" id="jnp-cq-MU6"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Due today" largeTitleDisplayMode="never" id="JCS-F4-Y6f">
+                    <navigationItem key="navigationItem" title="All Issues" largeTitleDisplayMode="never" id="JCS-F4-Y6f">
                         <rightBarButtonItems>
-                            <barButtonItem systemItem="add" id="1uY-KB-QXn"/>
-                            <barButtonItem systemItem="search" id="LNc-92-ZAq"/>
+                            <barButtonItem systemItem="add" id="1uY-KB-QXn">
+                                <connections>
+                                    <action selector="addButtonPressed:" destination="Jbh-5Z-ofQ" id="YBi-Pz-GfX"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="search" id="LNc-92-ZAq">
+                                <connections>
+                                    <action selector="searchButtonPressed:" destination="Jbh-5Z-ofQ" id="YCt-b8-Zns"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <connections>
+                        <segue destination="OPr-22-lDI" kind="presentation" identifier="AddIssueSegue" modalPresentationStyle="fullScreen" id="N49-3h-qNm"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pqr-s0-0dN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1928.8" y="589.65517241379314"/>
+            <point key="canvasLocation" x="2086" y="663"/>
         </scene>
         <!--New Project-->
         <scene sceneID="817-fF-gv3">
@@ -1122,6 +1133,7 @@
             <objects>
                 <navigationController storyboardIdentifier="IssueDetailNavigationController" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="OPr-22-lDI" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="SXU-UN-BzE"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="tMp-Kb-aYu" customClass="AppNavigationBar" customModule="Agile_Board" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -2025,7 +2037,11 @@
                     <navigationItem key="navigationItem" title="Issues" id="YJN-Sx-NtJ">
                         <rightBarButtonItems>
                             <barButtonItem systemItem="add" id="FVr-tF-YQf"/>
-                            <barButtonItem systemItem="search" id="0RZ-gr-OaM"/>
+                            <barButtonItem systemItem="search" id="0RZ-gr-OaM">
+                                <connections>
+                                    <action selector="searchButtonPressed:" destination="cHi-Bx-mt6" id="Tcx-Q6-JcR"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
@@ -2164,5 +2180,6 @@
         <segue reference="MHi-C5-gJy"/>
         <segue reference="U2G-ij-VVg"/>
         <segue reference="kzU-CZ-19t"/>
+        <segue reference="N49-3h-qNm"/>
     </inferredMetricsTieBreakers>
 </document>

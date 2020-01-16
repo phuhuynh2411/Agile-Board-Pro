@@ -14,6 +14,8 @@ class IssueFilterTableViewController: UITableViewController {
     var filters = [IssueFilter]()
     
     var selectedFilter: IssueFilter?
+    
+    var isActiveSearch = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,9 +38,17 @@ class IssueFilterTableViewController: UITableViewController {
         // Remove extra separators
         tableView.tableFooterView = UIView()
         
-        
-        
     }
+    
+    // MARK: - IB Actions
+    
+    @IBAction func searchButtonPressed(_ sender: UIBarButtonItem) {
+        // Auto set the filter to the first one
+        selectedFilter = filters.first
+        isActiveSearch = true
+        performSegue(withIdentifier: S.issueList, sender: self)
+    }
+    
 
     // MARK: - Table view data source
 
@@ -61,9 +71,10 @@ class IssueFilterTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.identifier == "IssueTableViewSegue" {
+        if segue.identifier == S.issueList {
             let  issueListTableViewController = segue.destination as! IssueListTableViewController
             issueListTableViewController.filter = selectedFilter
+            issueListTableViewController.isActiveSearch = isActiveSearch
         }
     }
     
@@ -71,8 +82,14 @@ class IssueFilterTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedFilter = filters[indexPath.row]
-        performSegue(withIdentifier: "IssueTableViewSegue", sender: self)
-
+        // Do not activate search controller if selecting on the filter
+        isActiveSearch = false
+        performSegue(withIdentifier: S.issueList, sender: self)
     }
+    
+    struct SegueIdentifier {
+        static let issueList = "IssueTableViewSegue"
+    }
+    typealias S = SegueIdentifier
 
 }

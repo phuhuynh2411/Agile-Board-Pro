@@ -84,7 +84,7 @@ class AddIssueViewController: UIViewController {
         let projectController = ProjectController()
         projectController.add(issue: issue, to: project!)
         
-        delegate?.didAddIssue(with: issue)
+        delegate?.didAddIssue(with: issue, project: project)
         
         dismiss(animated: true, completion: nil)
         
