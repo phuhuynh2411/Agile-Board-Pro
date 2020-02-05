@@ -11,7 +11,7 @@ import UIKit
 
 extension UIScrollView {
     
-    var scrollDirection: ScrollDirection {
+    var scrollDirection: ScrollDirectionT {
         if self.panGestureRecognizer.translation(in: self.superview).x > 0 {
             return .left
         }
@@ -21,7 +21,9 @@ extension UIScrollView {
         }
     }
     
-    enum ScrollDirection {
+    // TODO: Need to rename the enumaration below
+    
+    enum ScrollDirectionT {
         case left
         case right
     }

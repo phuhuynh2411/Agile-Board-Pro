@@ -17,7 +17,7 @@ class IssueListTableViewController: UITableViewController {
     
     private var sections: [String] = []
     private var sortedIssues: Results<Issue>!
-    private lazy var dictionary: Dictionary<String, [Issue]> = [:]
+    private lazy var dictionary: Dictionary<String, List<Issue>> = [:]
     
     // Load items partially
     private let numberOfFetchItems: Int = 40
@@ -70,6 +70,8 @@ class IssueListTableViewController: UITableViewController {
         // Auto activate search controller if the isActiveSearch == true
         if isActiveSearch {
             activateSearchControl()
+            // Reset the flag
+            isActiveSearch = false
         }
        
     }
@@ -94,7 +96,9 @@ class IssueListTableViewController: UITableViewController {
         if dictionary[sectionKey] != nil {
             dictionary[sectionKey]?.append(issue)
         }else {
-            dictionary[sectionKey] = [issue]
+            let listIssue = List<Issue>()
+            listIssue.append(issue)
+            dictionary[sectionKey] = listIssue
         }
     }
     
@@ -247,6 +251,13 @@ class IssueListTableViewController: UITableViewController {
             if let prioryImageName = issue.priority?.imageName {
                 cell.priorityImageView.image = UIImage(named: prioryImageName)
             }
+            // Load status color
+            if let hexColor = issue.status?.color?.hexColor {
+                let color = UIColor(hexString: hexColor)
+                cell.statusImageView.image = UIImage(color: color)
+                cell.statusImageView.layer.cornerRadius = 3.0
+                cell.statusImageView.clipsToBounds = true
+            }
             
             cell.statusButton.setTitle(issue.status?.name, for: .normal)
         }
@@ -315,17 +326,11 @@ class IssueListTableViewController: UITableViewController {
     }
     
     // MARK: - UIScroll View
-
-//    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-//        if scrollView.contentOffset.y < 0 {
-//            activateSearchControl()
-//        }
-//    }
     
     func activateSearchControl() {
         DispatchQueue.main.async {
             self.searchController.isActive = true
-            self.searchController.searchBar.becomeFirstResponder()
+            //self.searchController.searchBar.searchTextField.becomeFirstResponder()
         }
     }
 }
@@ -376,6 +381,13 @@ extension IssueListTableViewController: UISearchControllerDelegate {
         }
         // Reset the status
         didFilter = false
+    }
+    
+    func didPresentSearchController(_ searchController: UISearchController) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            searchController.searchBar.becomeFirstResponder()
+        }
+        
     }
 }
 
@@ -434,16 +446,54 @@ extension IssueListTableViewController: SwipeTableViewCellDelegate {
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
         guard orientation == .right else { return nil }
+        
+        let key = sections[indexPath.section]
+               
+        guard let issue = dictionary[key]?[indexPath.row] else {
+            fatalError("There was something wrong. The issue should NOT be nil.")
+        }
 
-        let transAction = SwipeAction(style: .destructive, title: "Transition") { action, indexPath in
-            // handle action by updating model with deletion
+        let transAction = SwipeAction(style: .default, title: "Transition") { action, indexPath in
+            // transtion issue
+            action.fulfill(with: .reset)
+        }
+        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { (action, indexPath) in
+            // handel delete action by updating the model here
+            self.delete(issue, with: action, indexPath)
         }
 
         // customize the action appearance
-//        transAction.backgroundColor = .blue
-//        transAction.textColor = .white
 
-        return [transAction]
+        return [deleteAction,transAction]
+    }
+    
+    func delete(_ issue: Issue, with cellAction: SwipeAction, _ indexPath: IndexPath) {
+        
+        let alertController = UIAlertController(title: "Delete Issue", message: "Are you sure you want to delete the issue permanently?", preferredStyle: .actionSheet)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+        }
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (action) in
+            print("Pressed delete action")
+            let realm = AppDataController.shared.realm
+            do{
+                try realm?.write {
+                    realm?.delete(issue)
+                }
+            }catch{
+                print(error)
+            }
+            // Delete issue in dictionary
+            let key = self.sections[indexPath.section]
+            if let issues = self.dictionary[key] {
+                issues.remove(at: indexPath.row)
+                self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            }
+        }
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(deleteAction)
+        
+        present(alertController, animated: true, completion: nil)
     }
     
 }

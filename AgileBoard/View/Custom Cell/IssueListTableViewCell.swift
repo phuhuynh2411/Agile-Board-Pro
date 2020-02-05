@@ -17,6 +17,8 @@ class IssueListTableViewCell: SwipeTableViewCell {
     @IBOutlet weak var issueIdLabel: UILabel!
     @IBOutlet weak var priorityImageView: UIImageView!
     @IBOutlet weak var statusButton: UIButton!
+    @IBOutlet weak var statusImageView: UIImageView!
+    
         
     override func awakeFromNib() {
         super.awakeFromNib()    }
