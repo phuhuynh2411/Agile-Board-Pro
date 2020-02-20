@@ -67,8 +67,7 @@ public protocol CalendarViewDelegate {
     func calendar(_ calendar : CalendarView, canSelectDate date : Date) -> Bool
     func calendar(_ calendar : CalendarView, didDeselectDate date : Date) -> Void
     func calendar(_ calendar : CalendarView, didLongPressDate date : Date) -> Void
-    func calendar(_ calendar : CalendarView, didAddNextMonth endDate: Date)->Void
-    func calendar(_ calendar : CalendarView, didAddPreviousMonth startDate: Date)->Void
+    func calendar(_ calendar : CalendarView, didChangeMonthName monthName: String)->Void
 }
 
 extension CalendarViewDelegate {
@@ -148,7 +147,7 @@ public class CalendarView: UIView {
     }
     #endif
     
-    public var autoAddMonth = false
+    public var displayedMonthName = true
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -170,7 +169,7 @@ public class CalendarView: UIView {
         self.clipsToBounds = true
         
         /* Header View */
-        self.headerView = CalendarHeaderView(frame:CGRect.zero)
+        self.headerView = CalendarHeaderView(frame:CGRect.zero, displayedMonthName: false)
         self.addSubview(self.headerView)
         
         /* Layout */
@@ -276,6 +275,7 @@ public class CalendarView: UIView {
         
         return point
     }
+    
 }
 
 // MARK: Convertion
@@ -345,6 +345,10 @@ extension CalendarView {
         guard (date >= startDateCache) && (date <= endDateCache) else { return }
         self.collectionView.setContentOffset(self.scrollViewOffset(for: date), animated: animated)
         self.displayDateOnHeader(date)
+        
+        // The scroll view delegate does not get called if the amiated == true
+        // Need to call the delegate
+        //delegate?.calendar(self, didScrollToMonth: date)
     }
     
     /*

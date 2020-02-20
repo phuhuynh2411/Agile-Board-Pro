@@ -64,6 +64,9 @@
 		8442DC3F237E7DF8008C88C6 /* IssueTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8442DC3D237E7DF8008C88C6 /* IssueTableViewCell.swift */; };
 		8442DC40237E7DF8008C88C6 /* IssueTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8442DC3E237E7DF8008C88C6 /* IssueTableViewCell.xib */; };
 		8442DC42237E969C008C88C6 /* Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8442DC41237E969C008C88C6 /* Identifier.swift */; };
+		8445863523FE258E003889C7 /* CalendarIssueTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8445863423FE258E003889C7 /* CalendarIssueTableViewController.swift */; };
+		8445863723FE25C5003889C7 /* CalendarIssueTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8445863623FE25C5003889C7 /* CalendarIssueTableView.swift */; };
+		8445863923FE26E8003889C7 /* IssueCalendarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8445863823FE26E8003889C7 /* IssueCalendarTableViewCell.swift */; };
 		844A12E323B2510700E74020 /* BColumnCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A12E223B2510700E74020 /* BColumnCollectionReusableView.swift */; };
 		845227CF238CFC61000607A8 /* IssueCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845227CE238CFC61000607A8 /* IssueCollectionController.swift */; };
 		845227D1238D22FE000607A8 /* IssueCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845227D0238D22FE000607A8 /* IssueCollectionView.swift */; };
@@ -229,6 +232,9 @@
 		8442DC3D237E7DF8008C88C6 /* IssueTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IssueTableViewCell.swift; path = AgileBoard/View/IssueTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		8442DC3E237E7DF8008C88C6 /* IssueTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = IssueTableViewCell.xib; path = "AgileBoard/View/Custom Cell/Board/IssueTableViewCell.xib"; sourceTree = SOURCE_ROOT; };
 		8442DC41237E969C008C88C6 /* Identifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifier.swift; sourceTree = "<group>"; };
+		8445863423FE258E003889C7 /* CalendarIssueTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarIssueTableViewController.swift; sourceTree = "<group>"; };
+		8445863623FE25C5003889C7 /* CalendarIssueTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarIssueTableView.swift; sourceTree = "<group>"; };
+		8445863823FE26E8003889C7 /* IssueCalendarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueCalendarTableViewCell.swift; sourceTree = "<group>"; };
 		844A12E223B2510700E74020 /* BColumnCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BColumnCollectionReusableView.swift; path = "AgileBoard/View/Custom Cell/BColumnCollectionReusableView.swift"; sourceTree = SOURCE_ROOT; };
 		845227CE238CFC61000607A8 /* IssueCollectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueCollectionController.swift; sourceTree = "<group>"; };
 		845227D0238D22FE000607A8 /* IssueCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueCollectionView.swift; sourceTree = "<group>"; };
@@ -461,6 +467,7 @@
 				84382A6023B31DB1008A1F29 /* BColumnCollectionViewFlowLayout.swift */,
 				8476A55423C7234E0002334C /* FilterIssueTableViewCell.swift */,
 				8431757923EA5F390060C333 /* CalendarView */,
+				8445863323FE20CE003889C7 /* CalendarIssueView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -581,6 +588,16 @@
 				843C8991237AE7480050586E /* Info.plist */,
 			);
 			path = AgileBoard;
+			sourceTree = "<group>";
+		};
+		8445863323FE20CE003889C7 /* CalendarIssueView */ = {
+			isa = PBXGroup;
+			children = (
+				8445863423FE258E003889C7 /* CalendarIssueTableViewController.swift */,
+				8445863623FE25C5003889C7 /* CalendarIssueTableView.swift */,
+				8445863823FE26E8003889C7 /* IssueCalendarTableViewCell.swift */,
+			);
+			path = CalendarIssueView;
 			sourceTree = "<group>";
 		};
 		84579E5E23964107009575E4 /* Mock */ = {
@@ -927,6 +944,7 @@
 				849E508823CC4A8000ED81D5 /* IssueFilter.swift in Sources */,
 				843BF016239A4C9C005F798D /* AttachmentTableViewCell.swift in Sources */,
 				84FA5A5323ACB44D003CDD65 /* StatusDetailViewController.swift in Sources */,
+				8445863523FE258E003889C7 /* CalendarIssueTableViewController.swift in Sources */,
 				847A78122387745D00911851 /* Board.swift in Sources */,
 				84F56A05237C5B56007E6C68 /* UIColor+Extention.swift in Sources */,
 				845227CF238CFC61000607A8 /* IssueCollectionController.swift in Sources */,
@@ -1021,6 +1039,7 @@
 				84299FD723990BB800432A66 /* AttachmentCollectionViewController.swift in Sources */,
 				84983EC623B1C33C003657F1 /* BoardTableViewController.swift in Sources */,
 				84579E66239656E1009575E4 /* PriorityTableViewController.swift in Sources */,
+				8445863923FE26E8003889C7 /* IssueCalendarTableViewCell.swift in Sources */,
 				842D75C623AA2E8500193812 /* UITextView+Extension.swift in Sources */,
 				8442DC3B237E7B92008C88C6 /* IssueCollectionViewCell.swift in Sources */,
 				843C58C72390FFF800F5FAB5 /* ProjectIconController.swift in Sources */,
@@ -1031,6 +1050,7 @@
 				84D590F523B9F36E0011FA4B /* EditBoardNameViewController.swift in Sources */,
 				847A781623877FB500911851 /* Column.swift in Sources */,
 				84E59162239251A2006FBA5E /* ProjectNameTextField.swift in Sources */,
+				8445863723FE25C5003889C7 /* CalendarIssueTableView.swift in Sources */,
 				8431758723EA5F390060C333 /* CalendarView+Style.swift in Sources */,
 				842686F623995F4D00B981D7 /* AttachmentController.swift in Sources */,
 				841CEDDF23AC853C00D90369 /* ProjectTableViewCellv2.swift in Sources */,

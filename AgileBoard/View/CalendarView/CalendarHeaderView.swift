@@ -65,6 +65,17 @@ open class CalendarHeaderView: UIView {
         
     }()
     
+    private var displayedMonthName: Bool
+    
+    public init(frame: CGRect, displayedMonthName: Bool = true) {
+        self.displayedMonthName = displayedMonthName
+        super.init(frame: frame)
+    }
+
+    required public init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override open func layoutSubviews() {
         
         super.layoutSubviews()
@@ -73,13 +84,25 @@ open class CalendarHeaderView: UIView {
         frm.origin.y += 5.0
         frm.size.height = self.bounds.size.height / 2.0 - 5.0
         
-        self.monthLabel.frame = frm
+        let x: CGFloat      = 0.0
+        var y: CGFloat      = 0.0
+        var height: CGFloat = 0.0
+        
+        if displayedMonthName {
+            y = self.bounds.height / 2.0
+            height = self.bounds.height / 2.0
+            self.monthLabel.frame = frm
+        } else {
+            y = 0.0
+            height = self.bounds.height
+            self.monthLabel.frame = CGRect.zero
+        }
         
         var labelFrame = CGRect(
-            x: 0.0,
-            y: self.bounds.size.height / 2.0,
+            x: x,
+            y: y,
             width: self.bounds.size.width / 7.0,
-            height: self.bounds.size.height / 2.0
+            height: height
         )
         
         for lbl in self.dayLabelContainerView.subviews {

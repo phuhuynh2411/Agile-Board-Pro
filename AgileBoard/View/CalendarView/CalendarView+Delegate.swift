@@ -70,7 +70,6 @@ extension CalendarView: UICollectionViewDelegateFlowLayout {
     
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         self.updateAndNotifyScrolling()
-        
     }
     
     public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
@@ -84,24 +83,6 @@ extension CalendarView: UICollectionViewDelegateFlowLayout {
         self.displayDateOnHeader(date)
         self.delegate?.calendar(self, didScrollToMonth: date)
         
-        // Auto add next month if isAutoMonth = true and
-        // the currently view month is the last month
-        if autoAddMonth, calendar.component(.month, from: date) == calendar.component(.month, from: endDateCache) {
-            
-            let nextMonthDate = calendar.date(byAdding: .month, value: 1, to: endDateCache)!
-            delegate?.calendar(self, didAddNextMonth: nextMonthDate)
-            
-            reloadData()
-        }
-        
-        // Auto add previous month if isAutoMonth = true and
-        // the currenlty view month is the first month
-        if autoAddMonth, calendar.component(.month, from: date) == calendar.component(.month, from: startDateCache) {
-            let previousMonthDate = calendar.date(byAdding: .month, value: -1, to: startDateCache)!
-            delegate?.calendar(self, didAddPreviousMonth: previousMonthDate)
-            
-            reloadData()
-        }
     }
 
     @discardableResult
@@ -133,5 +114,9 @@ extension CalendarView: UICollectionViewDelegateFlowLayout {
         self.headerView.monthLabel.text = monthName + " " + String(year)
         
         self.displayDate = date
+        
+        delegate?.calendar(self, didChangeMonthName: monthName + " " + String(year))
+        
     }
+
 }

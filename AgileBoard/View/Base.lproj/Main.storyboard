@@ -738,24 +738,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="oGy-Rs-B7l">
-                                <rect key="frame" x="16" y="64" width="343" height="548"/>
+                                <rect key="frame" x="16" y="44" width="343" height="568"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UIV-ci-1eH" customClass="CalendarView" customModule="Agile_Board" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="329"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="284"/>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WQj-iK-zTU">
-                                        <rect key="frame" x="0.0" y="329" width="343" height="219"/>
-                                        <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </view>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TtU-kl-HS6">
+                                        <rect key="frame" x="0.0" y="284" width="343" height="284"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    </tableView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="WQj-iK-zTU" firstAttribute="height" secondItem="UIV-ci-1eH" secondAttribute="height" multiplier="1:1.5" id="dRV-Za-PG1"/>
+                                    <constraint firstItem="TtU-kl-HS6" firstAttribute="height" secondItem="UIV-ci-1eH" secondAttribute="height" id="5G2-7a-mz5"/>
                                 </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="oGy-Rs-B7l" firstAttribute="top" secondItem="nqE-uI-Al2" secondAttribute="top" constant="20" id="RPA-K4-9GH"/>
+                            <constraint firstItem="oGy-Rs-B7l" firstAttribute="top" secondItem="nqE-uI-Al2" secondAttribute="top" id="RPA-K4-9GH"/>
                             <constraint firstItem="oGy-Rs-B7l" firstAttribute="leading" secondItem="nqE-uI-Al2" secondAttribute="leading" constant="16" id="ZUN-qZ-nLM"/>
                             <constraint firstItem="nqE-uI-Al2" firstAttribute="trailing" secondItem="oGy-Rs-B7l" secondAttribute="trailing" constant="16" id="jom-Ga-50p"/>
                             <constraint firstItem="nqE-uI-Al2" firstAttribute="bottom" secondItem="oGy-Rs-B7l" secondAttribute="bottom" constant="6" id="zYg-fG-cGR"/>
@@ -763,7 +763,11 @@
                         <viewLayoutGuide key="safeArea" id="nqE-uI-Al2"/>
                     </view>
                     <navigationItem key="navigationItem" id="fY5-nm-10O">
-                        <barButtonItem key="leftBarButtonItem" title="Today" id="fX5-iQ-yxL"/>
+                        <barButtonItem key="leftBarButtonItem" title="Today" id="fX5-iQ-yxL">
+                            <connections>
+                                <action selector="todayButtonPressed:" destination="D1H-vY-9dA" id="sOO-7C-0YE"/>
+                            </connections>
+                        </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem systemItem="add" id="vxo-d7-f4R"/>
                             <barButtonItem systemItem="search" id="KyS-Nq-EnY"/>

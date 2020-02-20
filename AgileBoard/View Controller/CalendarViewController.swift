@@ -10,17 +10,20 @@ import UIKit
 
 class CalendarViewController: UIViewController {
     
+    // IBOutlets
+    
     @IBOutlet weak var calendarView: CalendarView!
+    
+    // Properties
+    
     var calendarEndDate: Date?
     var calendarStartDate: Date?
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         calendarView.dataSource     = self
         calendarView.delegate       = self
-        calendarView.autoAddMonth   = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -29,22 +32,54 @@ class CalendarViewController: UIViewController {
         self.calendarView.setDisplayDate(today, animated: false)
     }
     
+    // MARK: - IBActions
+    
+    @IBAction func todayButtonPressed(_ sender: UIBarButtonItem) {
+  
+        let todayDate = Date()
+        guard   let startDate = calendarStartDate,
+                let centerDate = calendarView.calendar.date(byAdding: .month, value: 2, to: startDate) else { return }
+        
+        
+        calendarStartDate = dateForStartDate
+        calendarEndDate = dateForEndDate
+        
+        calendarView.reloadData()
+        
+        calendarView.setDisplayDate(centerDate, animated: false)
+        calendarView.displayDateOnHeader(todayDate)
+               
+    }
+    
 }
 
 // MARK: - CalendarViewDataSource
 
 extension CalendarViewController: CalendarViewDataSource {
     
+    var dateForStartDate: Date {
+        var dateComponents = DateComponents()
+        dateComponents.month = -2
+        let today = Date()
+        guard let startDate = self.calendarView.calendar.date(byAdding: dateComponents, to: today) else { return today }
+        calendarStartDate = startDate
+        return startDate
+    }
+    
+    var dateForEndDate: Date {
+        var dateComponents = DateComponents()
+        dateComponents.month = 2
+        let today = Date()
+        guard let endDate = self.calendarView.calendar.date(byAdding: dateComponents, to: today) else { return today }
+        calendarEndDate = endDate
+        return endDate
+    }
+    
     func startDate() -> Date {
         if let startDate = calendarStartDate {
             return startDate
         } else {
-            var dateComponents = DateComponents()
-            dateComponents.month = -1
-            let today = Date()
-            let startDate = self.calendarView.calendar.date(byAdding: dateComponents, to: today)
-            calendarStartDate = startDate
-            return startDate!
+            return dateForStartDate
         }
     }
 
@@ -52,12 +87,7 @@ extension CalendarViewController: CalendarViewDataSource {
         if let endDate = calendarEndDate {
             return endDate
         } else {
-            var dateComponents = DateComponents()
-            dateComponents.month = 1
-            let today = Date()
-            let endDate = self.calendarView.calendar.date(byAdding: dateComponents, to: today)
-            calendarEndDate = endDate
-            return endDate!
+            return dateForEndDate
         }
     }
     
@@ -68,26 +98,68 @@ extension CalendarViewController: CalendarViewDataSource {
 extension CalendarViewController: CalendarViewDelegate {
     
     func calendar(_ calendar: CalendarView, didSelectDate date: Date, withEvents events: [CalendarEvent]) {
-        print("Did selecte date with events.")
     }
     
-    
     func calendar(_ calendar: CalendarView, didDeselectDate date: Date) {
-        print("Did select a date")
     }
     
     func calendar(_ calendar: CalendarView, didScrollToMonth date: Date) {
-        print("Did scroll to the month date: \(date).")
+
+        // If the date is equal the start date of the calendar
+        // Decreases one month on the start and end date
+        guard   let startDate = calendarStartDate,
+                let endDate = calendarEndDate,
+                let dateAfterStart = calendarView.calendar.date(byAdding: .month, value: 1, to: startDate),
+                let dateBeforeEnd = calendarView.calendar.date(byAdding: .month, value: -1, to: endDate) else { return }
+        
+        if calendarView.calendar.isDate(date, equalTo: dateAfterStart, toGranularity: .month) {
+            addOneMonth(direction: .left)
+        } else if calendarView.calendar.isDate(date, equalTo: dateBeforeEnd, toGranularity: .month) {
+            addOneMonth(direction: .right)
+        }
+        
     }
     
-    func calendar(_ calendar: CalendarView, didAddNextMonth endDate: Date) {
-        calendarEndDate = endDate
-    }
-    
-    func calendar(_ calendar: CalendarView, didAddPreviousMonth startDate: Date) {
-        calendarStartDate = startDate
+    func addOneMonth(direction: AddingMonthDirection) {
+        let calendar = calendarView.calendar
+        
+        guard   let startDate = calendarStartDate,
+                let endDate = calendarEndDate,
+                let dateAfterStart = calendarView.calendar.date(byAdding: .month, value: 1, to: startDate),
+                let dateBeforeEnd = calendarView.calendar.date(byAdding: .month, value: -1, to: endDate),
+                let centerDate = calendarView.calendar.date(byAdding: .month, value: 2, to: startDate) else { return }
+        
+        var dateOnHeader: Date!
+        
+        if direction == .left {
+            calendarStartDate = calendar.date(byAdding: .month, value: -1, to: startDate)
+            calendarEndDate = calendar.date(byAdding: .month, value: -1, to: endDate)
+            
+            dateOnHeader = dateAfterStart
+        } else if direction == .right {
+            calendarStartDate = calendar.date(byAdding: .month, value: 1, to: startDate)
+            calendarEndDate = calendar.date(byAdding: .month, value: 1, to: endDate)
+            
+            dateOnHeader = dateBeforeEnd
+        } else {
+            fatalError("Invalid case of AddingMonthDirection.")
+        }
+        
+        calendarView.reloadData()
+        
+        calendarView.setDisplayDate(centerDate, animated: false)
+        calendarView.displayDateOnHeader(dateOnHeader)
+        
     }
 
 
+    func calendar(_ calendar: CalendarView, didChangeMonthName monthName: String) {
+        navigationItem.title = monthName
+    }
+    
+    enum AddingMonthDirection {
+        case left
+        case right
+    }
     
 }
