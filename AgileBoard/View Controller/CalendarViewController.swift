@@ -21,9 +21,10 @@ class CalendarViewController: UIViewController {
     var calendarStartDate: Date!
     var calendarEndDate: Date!
 
-    let reuseableTableViewCell = "CalendarIssueCell"
+    let reuseableTableViewCell  = "CalendarIssueCell"
     
-    var issuesForSelectedDates = List<Issue>()
+    var issuesForSelectedDates  = List<Issue>()
+    var issues                  = List<Issue>()
 
     var defaultStartDate: Date {
         let today = Date()
@@ -91,6 +92,9 @@ class CalendarViewController: UIViewController {
         calendarStartDate = defaultStartDate
         calendarEndDate = defaultEndDate
         
+        let today = Date()
+        calendarView.selectDate(today)
+        
         calendarView.reloadData()
 
     }
@@ -124,7 +128,6 @@ class CalendarViewController: UIViewController {
         let dateFrom = startOfDate(for: calendarStartDate)
         let dateTo = endOfDate(for: startOfDate(for: calendarEndDate))
         
-        let issues = List<Issue>()
         if let issuesOfDate = realm?.objects(Issue.self).filter("startDate >= %@ AND endDate <= %@", dateFrom, dateTo) {
             issues.append(objectsIn: issuesOfDate)
         }
