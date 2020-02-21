@@ -6,7 +6,6 @@
 //  Copyright © 2019 Filesoft. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 extension UIImage {

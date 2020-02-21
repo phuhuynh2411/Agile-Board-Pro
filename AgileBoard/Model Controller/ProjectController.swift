@@ -74,6 +74,9 @@ class ProjectController {
         // Add issue types to project
         project.issueTypes.append(objectsIn: [story, epic, task, bug])
         
+        // Priority
+        let defaultPriority = PriorityController.shared.default()
+        
         // 1. In three months issues
         let issue1 = Issue()
         issue1.summary = "Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum."
@@ -81,6 +84,8 @@ class ProjectController {
         issue1.orderNumber = 0
         issue1.type = story
         issue1.createdDate = Calendar.current.date(byAdding: .month, value: -3, to: Date())!
+        issue1.startDate = Date()
+        issue1.endDate = Date()
         
         // In two months issues
         let issue2 = Issue()
@@ -89,6 +94,8 @@ class ProjectController {
         issue2.orderNumber = 1
         issue2.type = story
         issue2.createdDate = Calendar.current.date(byAdding: .month, value: -2, to: Date())!
+        issue2.startDate = Date()
+        issue2.endDate = Date()
         
         // Last month issues
         let issue3 = Issue()
@@ -97,6 +104,8 @@ class ProjectController {
         issue3.orderNumber = 2
         issue3.type = story
         issue3.createdDate = Calendar.current.date(byAdding: .month, value: -1, to: Date())!
+        issue3.startDate = Date()
+        issue3.endDate = Date()
         
         // This month issues
         let issue8 = Issue()
@@ -105,6 +114,8 @@ class ProjectController {
         issue8.orderNumber = 2
         issue8.type = story
         issue8.createdDate = Calendar.current.date(byAdding: .day, value: -15, to: Date())!
+        issue8.startDate = Date()
+        issue8.endDate = Date()
         
         // Last week issues
         let issue4 = Issue()
@@ -113,6 +124,8 @@ class ProjectController {
         issue4.orderNumber = 3
         issue4.type = story
         issue4.createdDate = Calendar.current.date(byAdding: .day, value: -7, to: Date())!
+        issue4.startDate = Date()
+        issue4.endDate = Date()
         
         // This week issues
         let issue9 = Issue()
@@ -121,6 +134,8 @@ class ProjectController {
         issue9.orderNumber = 3
         issue9.type = story
         issue9.createdDate = Calendar.current.date(byAdding: .day, value: -2, to: Date())!
+        issue9.startDate = Date()
+        issue9.endDate = Date()
         
         // Yesterday issues
         let issue5 = Issue()
@@ -129,6 +144,8 @@ class ProjectController {
         issue5.orderNumber = 3
         issue5.type = story
         issue5.createdDate = Calendar.current.date(byAdding: .day, value: -1, to: Date())!
+        issue5.startDate = Date()
+        issue5.endDate = Date()
         
         // Today issues
         let issue6 = Issue()
@@ -136,6 +153,8 @@ class ProjectController {
         issue6.status = inprogress
         issue6.orderNumber = 4
         issue6.type = story
+        issue6.startDate = Calendar.current.date(byAdding: .day, value: 4, to: Date())!
+        issue6.endDate = Calendar.current.date(byAdding: .day, value: 4, to: Date())!
         
         // Today issues
         let issue7 = Issue()
@@ -143,6 +162,8 @@ class ProjectController {
         issue7.status = done
         issue7.orderNumber = 5
         issue7.type = story
+        issue7.startDate = Calendar.current.date(byAdding: .day, value: 1, to: Date())!
+        issue7.endDate = Calendar.current.date(byAdding: .day, value: 1, to: Date())!
         
         // Due Today issue
         let dueIssue1 = Issue()
@@ -150,25 +171,36 @@ class ProjectController {
         dueIssue1.status = todo
         dueIssue1.type = story
         dueIssue1.dueDate = Date()
+        dueIssue1.startDate = Date()
+        dueIssue1.endDate = Date()
+        dueIssue1.priority = defaultPriority
         
         let dueIssue2 = Issue()
         dueIssue2.summary = "Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit."
         dueIssue2.status = todo
         dueIssue2.type = story
         dueIssue2.dueDate = Date()
+        dueIssue2.startDate = Date()
+        dueIssue2.endDate = Date()
+        dueIssue2.priority = defaultPriority
         
         let dueTomorrowIssue = Issue()
         dueTomorrowIssue.summary = "Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor."
         dueTomorrowIssue.status = todo
         dueTomorrowIssue.type = bug
         dueTomorrowIssue.dueDate = Calendar.current.date(byAdding: .day, value: 1, to: Date())
+        dueTomorrowIssue.startDate = Date()
+        dueTomorrowIssue.endDate = Date()
+        dueTomorrowIssue.priority = defaultPriority
         
         let dueInNextTwoDays = Issue()
         dueInNextTwoDays.summary = "Aenean lacinia bibendum nulla sed consectetur."
         dueInNextTwoDays.status = inprogress
         dueInNextTwoDays.type = task
         dueInNextTwoDays.dueDate = Calendar.current.date(byAdding: .day, value: 2, to: Date())
-
+        dueInNextTwoDays.startDate = Date()
+        dueInNextTwoDays.endDate = Date()
+        dueInNextTwoDays.priority = defaultPriority
         
         // 4. Add issues to the project
         let issues = [issue1, issue2, issue3, issue4, issue5, issue6, issue7, issue8, issue9, dueIssue1, dueIssue2, dueTomorrowIssue, dueInNextTwoDays]

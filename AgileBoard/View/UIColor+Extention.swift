@@ -61,4 +61,12 @@ extension UIColor {
             return UIColor.black
         }
     }
+    
+    static var officialApplePlaceholderGray: UIColor {
+        return UIColor(red: 0, green: 0, blue: 0.0980392, alpha: 0.22)
+    }
+    
+    static var buttonTextColor: UIColor {
+        return UIColor(red: 31, green: 117, blue: 255, alpha: 1)
+    }
 }

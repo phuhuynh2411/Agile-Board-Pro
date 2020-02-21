@@ -68,6 +68,7 @@ public protocol CalendarViewDelegate {
     func calendar(_ calendar : CalendarView, didDeselectDate date : Date) -> Void
     func calendar(_ calendar : CalendarView, didLongPressDate date : Date) -> Void
     func calendar(_ calendar : CalendarView, didChangeMonthName monthName: String)->Void
+    func calendarDidLoad()->Void
 }
 
 extension CalendarViewDelegate {
@@ -98,8 +99,8 @@ public class CalendarView: UIView {
 
     var selectedIndexPaths    = [IndexPath]()
     var selectedDates         = [Date]()
-    
-    internal var monthInfoForSection = [Int:(firstDay: Int, daysTotal: Int)]()
+        
+    internal var monthInfoForSection = [Int: (firstDay: Int, daysTotal: Int)]()
     internal var eventsByIndexPath = [IndexPath: [CalendarEvent]]()
         
     public var events: [CalendarEvent] = [] {
@@ -330,7 +331,11 @@ extension CalendarView {
      function: - reload all components in collection view
      */
     public func reloadData() {
-        self.collectionView.reloadData()
+        //self.collectionView.reloadData()
+        
+        self.collectionView.performBatchUpdates(nil) { (result) in
+            self.delegate?.calendarDidLoad()
+        }
     }
     
     /*
