@@ -85,6 +85,9 @@ extension CalendarView: UICollectionViewDataSource {
         
         self.monthInfoForSection[section] = info
         
+        // Make to reload the event
+        reloadEventsForIndexPath()
+        
         return 42 // rows:7 x cols:6
         
     }
@@ -92,6 +95,7 @@ extension CalendarView: UICollectionViewDataSource {
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let dayCell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath) as! CalendarDayCell
+        dayCell.eventsCount = 0
         
         guard let (firstDayIndex, numberOfDaysTotal) = self.monthInfoForSection[indexPath.section] else { return dayCell }
         
@@ -137,4 +141,15 @@ extension CalendarView: UICollectionViewDataSource {
         return dayCell
     }
     
+    private func reloadEventsForIndexPath(){
+        self.eventsByIndexPath.removeAll()
+        
+        for event in events {
+            guard let indexPath = self.indexPathForDate(event.startDate) else { continue }
+            
+            var eventsForIndexPath = eventsByIndexPath[indexPath] ?? []
+            eventsForIndexPath.append(event)
+            eventsByIndexPath[indexPath] = eventsForIndexPath
+        }
+    }
 }

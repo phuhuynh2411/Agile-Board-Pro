@@ -46,7 +46,7 @@ extension CalendarView {
         public static var firstWeekday              = FirstWeekdayOptions.monday
         
         //Default Style
-        public static var cellColorDefault          = UIColor(white: 0.0, alpha: 0.1)
+        public static var cellColorDefault          = UIColor(white: 1, alpha: 1)
         public static var cellTextColorDefault      = UIColor.gray
         public static var cellBorderColor           = UIColor.clear
         public static var cellBorderWidth           = CGFloat(0.0)

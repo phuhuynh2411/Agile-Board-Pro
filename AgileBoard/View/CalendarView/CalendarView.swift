@@ -69,12 +69,14 @@ public protocol CalendarViewDelegate {
     func calendar(_ calendar : CalendarView, didLongPressDate date : Date) -> Void
     func calendar(_ calendar : CalendarView, didChangeMonthName monthName: String)->Void
     func calendarDidLoad()->Void
+    func calendar(_ calendar : CalendarView, willScrollToMonth date : Date) -> Void
 }
 
 extension CalendarViewDelegate {
     func calendar(_ calendar : CalendarView, canSelectDate date : Date) -> Bool { return true }
     func calendar(_ calendar : CalendarView, didScrollToMonth date : Date) -> Void { return }
     func calendar(_ calendar : CalendarView, didLongPressDate date : Date) -> Void { return }
+    func calendar(_ calendar : CalendarView, willScrollToMonth date : Date) -> Void { return }
 }
 
 public class CalendarView: UIView {
@@ -102,6 +104,7 @@ public class CalendarView: UIView {
         
     internal var monthInfoForSection = [Int: (firstDay: Int, daysTotal: Int)]()
     internal var eventsByIndexPath = [IndexPath: [CalendarEvent]]()
+    internal var eventsByDate = [Date: [CalendarEvent]]()
         
     public var events: [CalendarEvent] = [] {
         didSet {
@@ -332,10 +335,12 @@ extension CalendarView {
      */
     public func reloadData() {
         //self.collectionView.reloadData()
-        
-        self.collectionView.performBatchUpdates(nil) { (result) in
-            self.delegate?.calendarDidLoad()
-        }
+        //DispatchQueue.main.async {
+            self.collectionView.reloadData {
+                self.delegate?.calendarDidLoad()
+            }
+       // }
+       
     }
     
     /*

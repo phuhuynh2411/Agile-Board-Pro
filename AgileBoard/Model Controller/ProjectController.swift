@@ -202,8 +202,36 @@ class ProjectController {
         dueInNextTwoDays.endDate = Date()
         dueInNextTwoDays.priority = defaultPriority
         
+        let nextMonthIssue1 = Issue()
+        nextMonthIssue1.summary = "Aenean lacinia bibendum nulla sed consectetur."
+        nextMonthIssue1.status = inprogress
+        nextMonthIssue1.type = task
+        nextMonthIssue1.dueDate = Calendar.current.date(byAdding: .month, value: 1, to: Date())
+        nextMonthIssue1.startDate = Calendar.current.date(byAdding: .month, value: 1, to: Date())
+        nextMonthIssue1.endDate = Calendar.current.date(byAdding: .month, value: 1, to: Date())
+        nextMonthIssue1.priority = defaultPriority
+        
+        let nextMonthIssue2 = Issue()
+        nextMonthIssue2.summary = "Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum."
+        nextMonthIssue2.status = inprogress
+        nextMonthIssue2.type = task
+        nextMonthIssue2.dueDate = Calendar.current.date(byAdding: .month, value: 1, to: Date())
+        nextMonthIssue2.startDate = Calendar.current.date(byAdding: .month, value: 1, to: Date())
+        nextMonthIssue2.endDate = Calendar.current.date(byAdding: .month, value: 1, to: Date())
+        nextMonthIssue2.priority = defaultPriority
+        
+        let lastTwoMonthsIssue = Issue()
+        lastTwoMonthsIssue.summary = "Curabitur blandit tempus porttitor."
+        lastTwoMonthsIssue.status = inprogress
+        lastTwoMonthsIssue.type = task
+        let lastTwoDates = Calendar.current.date(byAdding: .day, value: -2, to: Date())!
+        lastTwoMonthsIssue.dueDate = Calendar.current.date(byAdding: .month, value: -1, to: lastTwoDates)
+        lastTwoMonthsIssue.startDate = Calendar.current.date(byAdding: .month, value: -1, to: lastTwoDates)
+        lastTwoMonthsIssue.endDate = Calendar.current.date(byAdding: .month, value: -1, to: lastTwoDates)
+        lastTwoMonthsIssue.priority = defaultPriority
+        
         // 4. Add issues to the project
-        let issues = [issue1, issue2, issue3, issue4, issue5, issue6, issue7, issue8, issue9, dueIssue1, dueIssue2, dueTomorrowIssue, dueInNextTwoDays]
+        let issues = [issue1, issue2, issue3, issue4, issue5, issue6, issue7, issue8, issue9, dueIssue1, dueIssue2, dueTomorrowIssue, dueInNextTwoDays, nextMonthIssue1, nextMonthIssue2, lastTwoMonthsIssue]
         add(issues: issues, to: project)
         
         // 5. Create columns

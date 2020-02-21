@@ -25,4 +25,10 @@ extension UICollectionView {
     public func reloadHeader() {
         self.reloadSections(IndexSet(integer: 0))
     }
+    
+    func reloadData(completion: @escaping ()->()) {
+        UIView.animate(withDuration: 0, animations: { self.reloadData() })
+        { _ in completion() }
+    }
+
 }

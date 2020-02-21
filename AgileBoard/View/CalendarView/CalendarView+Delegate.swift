@@ -34,7 +34,8 @@ extension CalendarView: UICollectionViewDelegateFlowLayout {
         if let index = selectedIndexPaths.firstIndex(of: indexPath) {
 
             selectedIndexPaths.remove(at: index)
-            selectedDates.remove(at: index)
+            //selectedDates.remove(at: index)
+            selectedDates.removeAll { $0.compare(date) == .orderedSame }
             delegate?.calendar(self, didDeselectDate: date)
 
         } else {
@@ -74,6 +75,10 @@ extension CalendarView: UICollectionViewDelegateFlowLayout {
     
     public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         self.updateAndNotifyScrolling()
+    }
+    
+    public func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+        
     }
     
     func updateAndNotifyScrolling() {
