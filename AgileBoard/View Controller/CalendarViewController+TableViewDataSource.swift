@@ -11,13 +11,13 @@ import UIKit
 extension CalendarViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return issuesForSelectedDates.count
+        return issuesForSelectedDates?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseableTableViewCell) as! IssueCalendarTableViewCell
         
-        let issue = issuesForSelectedDates[indexPath.row]
+        guard let issue = issuesForSelectedDates?[indexPath.row] else { return cell }
         
         cell.idLabel.text = issue.issueID
         cell.titleLabel.text = issue.summary

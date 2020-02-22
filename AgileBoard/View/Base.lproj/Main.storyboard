@@ -743,7 +743,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UIV-ci-1eH" customClass="CalendarView" customModule="Agile_Board" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="287.5"/>
                                     </view>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="85u-0s-rf4">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="85u-0s-rf4">
                                         <rect key="frame" x="0.0" y="287.5" width="375" height="287.5"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -767,13 +767,19 @@
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
-                            <barButtonItem systemItem="add" id="vxo-d7-f4R"/>
+                            <barButtonItem systemItem="add" id="vxo-d7-f4R">
+                                <connections>
+                                    <action selector="addButtonPressed:" destination="D1H-vY-9dA" id="jYH-vJ-yGs"/>
+                                </connections>
+                            </barButtonItem>
                             <barButtonItem systemItem="search" id="KyS-Nq-EnY"/>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="calendarView" destination="UIV-ci-1eH" id="X4l-UE-vqE"/>
                         <outlet property="tableView" destination="85u-0s-rf4" id="etF-YH-5zV"/>
+                        <segue destination="OPr-22-lDI" kind="presentation" identifier="AddIssueSegue" modalPresentationStyle="fullScreen" id="gd1-Jh-sT0"/>
+                        <segue destination="OPr-22-lDI" kind="presentation" identifier="EditIssueSegue" modalPresentationStyle="fullScreen" id="Kaj-w7-ga6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dcm-fm-P1m" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1253,7 +1259,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" maximumZoomScale="5" translatesAutoresizingMaskIntoConstraints="NO" id="qMR-az-6i2">
-                                <rect key="frame" x="0.0" y="44" width="375" height="574"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IP8-Rl-HSr">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="609.5"/>
@@ -2241,6 +2247,6 @@
         <segue reference="MHi-C5-gJy"/>
         <segue reference="U2G-ij-VVg"/>
         <segue reference="kzU-CZ-19t"/>
-        <segue reference="ul6-za-gAi"/>
+        <segue reference="Kaj-w7-ga6"/>
     </inferredMetricsTieBreakers>
 </document>

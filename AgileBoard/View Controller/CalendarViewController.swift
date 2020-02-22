@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import NotificationBannerSwift
 
 class CalendarViewController: UIViewController {
     
@@ -23,8 +24,8 @@ class CalendarViewController: UIViewController {
 
     let reuseableTableViewCell  = "CalendarIssueCell"
     
-    var issuesForSelectedDates  = List<Issue>()
-    var issues                  = List<Issue>()
+    var issuesForSelectedDates  : Results<Issue>?
+    var issues                  : Results<Issue>?
 
     var defaultStartDate: Date {
         let today = Date()
@@ -66,6 +67,12 @@ class CalendarViewController: UIViewController {
     var issuesForMonths = [Date: Results<Issue>]()
     var eventsForMonths = [CalendarEvent]()
     
+    let addIssueSegue   = "AddIssueSegue"
+    let editIssueSegue  = "EditIssueSegue"
+    
+    let realm = AppDataController.shared.realm
+    
+    var selectedIssue: Issue?
     
     // MARK: - View Methods
     
@@ -108,21 +115,32 @@ class CalendarViewController: UIViewController {
         }
     }
     
+    @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: addIssueSegue, sender: self)
+    }
+    
+    
     // MARK: - Private Methods
     
     private func reloadIssuesForSelectedDates() {
+                        
+        var predicates = [NSPredicate]()
         
-        let realm = AppDataController.shared.realm
-        
-        let selectedDates = calendarView.selectedDates
-        issuesForSelectedDates.removeAll()
-        for date in selectedDates {
+        for date in calendarView.selectedDates {
             let dateFrom = startOfDate(for: date)
             let dateTo = endOfDate(for: dateFrom)
+   
+            let predicate = NSPredicate(format: "startDate >= %@ AND endDate <= %@ ", argumentArray: [dateFrom, dateTo])
+            predicates.append(predicate)
             
-            if let issuesOfDate = realm?.objects(Issue.self).filter("startDate >= %@ AND endDate <= %@ ", dateFrom, dateTo) {
-                issuesForSelectedDates.append(objectsIn: issuesOfDate)
-            }
+        }
+        
+        if predicates.count > 0 {
+            let compoundPredicates = NSCompoundPredicate(orPredicateWithSubpredicates: predicates)
+            self.issuesForSelectedDates = realm?.objects(Issue.self).filter(compoundPredicates).sorted(byKeyPath: "createdDate", ascending: false)
+        } else {
+            // Create an empty result
+            self.issuesForSelectedDates = realm?.objects(Issue.self).filter(NSPredicate(value: false))
         }
         
     }
@@ -145,7 +163,7 @@ class CalendarViewController: UIViewController {
         reloadIssuesForSelectedDates()
         
         // Add or remove table footer view
-        tableView.tableFooterView =  issuesForSelectedDates.count > 0 ? UIView() : self.tableFooterView
+        tableView.tableFooterView =  issuesForSelectedDates?.count ?? 0 > 0 ? UIView() : self.tableFooterView
         
         tableView.reloadData()
     }
@@ -188,6 +206,30 @@ class CalendarViewController: UIViewController {
         
         return calendar.date(byAdding: .day, value: -1, to: startOfNextMonth)!
     }
+    
+    private func tappedOnBanner() {
+        self.performSegue(withIdentifier: self.editIssueSegue, sender: self)
+    }
+    
+    // MARK: - Navigations
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == self.addIssueSegue {
+            let navigationController = segue.destination as! UINavigationController
+            let issueDetailTableViewController = navigationController.topViewController as! IssueDetailTableViewController
+            
+            issueDetailTableViewController.initView(with: nil, issueType: IssueTypeController.shared.default(), priority: PriorityController.shared.default(),startDate: Date(), status: nil, delegate: self)
+        } else if segue.identifier == self.editIssueSegue {
+            let navigationController = segue.destination as! UINavigationController
+            let issueDetailTableViewController =  navigationController.topViewController as! IssueDetailTableViewController
+            
+            guard let project = selectedIssue?.projectOwners.first, let issue = selectedIssue else {
+                fatalError("There was something wrong. The project or issue is nil.")
+            }
+            issueDetailTableViewController.initView(with: issue, project: project, delegate: self)
+        }
+    }
 }
 
 // MARK: - CalendarViewDataSource
@@ -223,7 +265,6 @@ extension CalendarViewController: CalendarViewDelegate {
             addOneMonth(direction: .right)
         }
         
-        print("Did scroll to month \(date)")
         loadIssues(forMonth: date)
     }
     
@@ -260,6 +301,41 @@ extension CalendarViewController: CalendarViewDelegate {
     enum AddingMonthDirection {
         case left
         case right
+    }
+    
+}
+
+extension CalendarViewController: IssueDetailDelegate {
+    
+    func didAddIssue(with issue: Issue, project: Project?) {
+        
+        guard let project = project else {
+            fatalError("There was something wrong. The project should not be nil.")
+        }
+        
+        // Set issue's status to the first project's status
+        issue.status = project.statuses.first
+        do{
+            try project.add(issue)
+        }catch{
+            print(error)
+        }
+        
+        let view: CreatedIssueView = .fromNib()
+        view.issueIDLabel.text = issue.issueID
+        if let typeImageName = issue.type?.imageName {
+            view.typeImageView.image = UIImage(named: typeImageName)
+        }
+        
+        self.selectedIssue = issue
+        
+        let banner = FloatingNotificationBanner(customView: view)
+        banner.show()
+        banner.onTap = {
+            self.tappedOnBanner()
+        }
+        
+        tableView.reloadData()
     }
     
 }

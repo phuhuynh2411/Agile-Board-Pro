@@ -232,6 +232,7 @@ class ProjectController {
         
         // 4. Add issues to the project
         let issues = [issue1, issue2, issue3, issue4, issue5, issue6, issue7, issue8, issue9, dueIssue1, dueIssue2, dueTomorrowIssue, dueInNextTwoDays, nextMonthIssue1, nextMonthIssue2, lastTwoMonthsIssue]
+        
         add(issues: issues, to: project)
         
         // 5. Create columns

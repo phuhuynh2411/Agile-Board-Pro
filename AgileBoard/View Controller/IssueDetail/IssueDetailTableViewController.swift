@@ -11,8 +11,14 @@ import RealmSwift
 import SwiftValidator
 
 protocol IssueDetailDelegate {
+    // Optional delete methods
     func didAddIssue(with issue: Issue, project: Project?)
     func didModidyIssue(issue: Issue)
+}
+
+extension IssueDetailDelegate {
+    func didAddIssue(with issue: Issue, project: Project?) { return }
+    func didModidyIssue(issue: Issue) { return }
 }
 
 class IssueDetailTableViewController: UITableViewController {
@@ -77,12 +83,13 @@ class IssueDetailTableViewController: UITableViewController {
         - priority: Initial priority
         - delegate: Callback functions after adding or modifying an issue
      */
-    func initView(with project: Project? = nil, issueType: IssueType? = nil, priority: Priority? = nil, startDate: Date?, status: Status? = nil, delegate: IssueDetailDelegate? = nil) {
+    func initView(with project: Project? = nil, issueType: IssueType? = nil, priority: Priority? = nil, startDate: Date?, status: Status? = nil, delegate: IssueDetailDelegate? = nil, endDate: Date? = Date() ) {
         issue = Issue()
         issue?.type = issueType
         issue?.priority = priority
         issue?.startDate = startDate
         issue?.status = status
+        issue?.endDate = endDate
         
         self.project = project
         self.delegate = delegate
