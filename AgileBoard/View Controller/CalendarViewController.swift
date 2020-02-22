@@ -52,11 +52,6 @@ class CalendarViewController: UIViewController {
         return Date()
     }()
     
-    var after2Date: Date {
-        guard let date = calendar.date(byAdding: .month, value: 2, to: calendarStartDate) else { return Date() }
-        return date
-    }
-    
     let calendar = Calendar.current
     
     var tableFooterView: UILabel {
@@ -94,8 +89,6 @@ class CalendarViewController: UIViewController {
         super.viewDidAppear(animated)
         
         self.goToToday()
-        // Load events for calendar view
-        // loadEvents()
     }
     
     // MARK: - IBActions
@@ -240,13 +233,16 @@ extension CalendarViewController: CalendarViewDelegate {
             displayDate = afterStartDate
             calendarStartDate = calendar.date(byAdding: .month, value: -1, to: calendarStartDate)
         } else if direction == .right {
-            displayDate = beforeEndDate
             calendarEndDate = calendar.date(byAdding: .month, value: 1, to: calendarEndDate)
         } else {
             fatalError("Invalid case of AddingMonthDirection.")
         }
         
-        calendarView.reloadData()
+        calendarView.reloadData {
+            if direction == .left {
+                self.calendarView.setDisplayDate(self.displayDate)
+            }
+        }
     }
 
 
@@ -255,7 +251,7 @@ extension CalendarViewController: CalendarViewDelegate {
     }
     
     func calendarDidLoad() {
-        calendarView.displayDateOnHeader(displayDate)
+        
     }
     
     enum AddingMonthDirection {

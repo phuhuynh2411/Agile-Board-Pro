@@ -335,12 +335,15 @@ extension CalendarView {
      */
     public func reloadData() {
         //self.collectionView.reloadData()
-        //DispatchQueue.main.async {
-            self.collectionView.reloadData {
-                self.delegate?.calendarDidLoad()
-            }
-       // }
-       
+        self.collectionView.reloadData {
+            self.delegate?.calendarDidLoad()
+        }
+    }
+    
+    public func reloadData(_ completion: @escaping ()->Void) {
+        self.collectionView.reloadData {
+            completion()
+        }
     }
     
     /*
