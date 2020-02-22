@@ -49,10 +49,11 @@ open class CalendarHeaderView: UIView {
             
             let weekdayLabel = UILabel()
             
-            weekdayLabel.font = UIFont(name: CalendarView.Style.headerFontName, size: 14.0)
+            weekdayLabel.font = UIFont.systemFont(ofSize: CalendarView.Style.weekLabelFontSize)
             
-            weekdayLabel.text = formatter.shortWeekdaySymbols[(index % 7)]
-            
+            // weekdayLabel.text = formatter.shortWeekdaySymbols[(index % 7)]
+            weekdayLabel.text = formatter.veryShortWeekdaySymbols[(index % 7)]
+
             weekdayLabel.textColor = CalendarView.Style.headerTextColor
             weekdayLabel.textAlignment = NSTextAlignment.center
             

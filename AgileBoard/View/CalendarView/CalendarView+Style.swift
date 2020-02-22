@@ -39,6 +39,7 @@ extension CalendarView {
         public static var headerTextColor = UIColor.gray
         public static var headerFontName: String = "Helvetica"
         public static var headerFontSize: CGFloat = 20.0
+        public static let weekLabelFontSize: CGFloat = 17.0
 
         //Common
         public static var cellShape                 = CellShapeOptions.bevel(4.0)
@@ -64,6 +65,9 @@ extension CalendarView {
         //Weekend Style
         public static var cellTextColorWeekend      = UIColor(red:1.00, green:0.84, blue:0.65, alpha:1.00)
         
+       //Cell
+        public static let cellLabelFontSize: CGFloat = 17.0
+        public static let cellLabelFontName: String = "Helvetica"
         
     }
 }
