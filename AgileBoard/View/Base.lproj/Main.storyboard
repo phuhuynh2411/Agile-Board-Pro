@@ -733,7 +733,7 @@
         <scene sceneID="bw6-kp-lDs">
             <objects>
                 <viewController id="D1H-vY-9dA" customClass="CalendarViewController" customModule="Agile_Board" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="nQl-ui-ux6">
+                    <view key="view" contentMode="scaleToFill" id="nQl-ui-ux6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -772,7 +772,11 @@
                                     <action selector="addButtonPressed:" destination="D1H-vY-9dA" id="jYH-vJ-yGs"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem systemItem="search" id="KyS-Nq-EnY"/>
+                            <barButtonItem systemItem="search" id="KyS-Nq-EnY">
+                                <connections>
+                                    <action selector="searchButtonPressed:" destination="D1H-vY-9dA" id="KFn-d7-Mwx"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
@@ -780,6 +784,7 @@
                         <outlet property="tableView" destination="85u-0s-rf4" id="etF-YH-5zV"/>
                         <segue destination="OPr-22-lDI" kind="presentation" identifier="AddIssueSegue" modalPresentationStyle="fullScreen" id="gd1-Jh-sT0"/>
                         <segue destination="OPr-22-lDI" kind="presentation" identifier="EditIssueSegue" modalPresentationStyle="fullScreen" id="Kaj-w7-ga6"/>
+                        <segue destination="Jbh-5Z-ofQ" kind="show" identifier="IssueListSegue" id="XXO-bh-0l1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dcm-fm-P1m" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2248,5 +2253,6 @@
         <segue reference="U2G-ij-VVg"/>
         <segue reference="kzU-CZ-19t"/>
         <segue reference="Kaj-w7-ga6"/>
+        <segue reference="XXO-bh-0l1"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -69,11 +69,13 @@ class CalendarViewController: UIViewController {
     
     let addIssueSegue   = "AddIssueSegue"
     let editIssueSegue  = "EditIssueSegue"
+    let issueListSegue  = "IssueListSegue"
     
     let realm = AppDataController.shared.realm
     
     var selectedIssue: Issue?
     
+    let refreshControler = UIRefreshControl()
     // MARK: - View Methods
     
     override func viewDidLoad() {
@@ -89,6 +91,9 @@ class CalendarViewController: UIViewController {
         
         calendarStartDate = defaultStartDate
         calendarEndDate = defaultEndDate
+    
+        refreshControler.addTarget(self, action: #selector(refreshTableView(_:)), for: .valueChanged)
+        tableView.refreshControl = refreshControler
         
     }
     
@@ -119,6 +124,14 @@ class CalendarViewController: UIViewController {
         performSegue(withIdentifier: addIssueSegue, sender: self)
     }
     
+    @IBAction func refreshTableView(_ sender: UIRefreshControl){
+        tableView.reloadData()
+        refreshControler.endRefreshing()
+    }
+    
+    @IBAction func searchButtonPressed(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: self.issueListSegue, sender: self)
+    }
     
     // MARK: - Private Methods
     
@@ -228,6 +241,10 @@ class CalendarViewController: UIViewController {
                 fatalError("There was something wrong. The project or issue is nil.")
             }
             issueDetailTableViewController.initView(with: issue, project: project, delegate: self)
+        } else if segue.identifier == self.issueListSegue {
+            let  issueListTableViewController = segue.destination as! IssueListTableViewController
+            issueListTableViewController.filter = AllIssueFilter(name: "All", imageName: "")
+            issueListTableViewController.isActiveSearch = true // isActiveSearch
         }
     }
 }
