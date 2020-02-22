@@ -75,8 +75,8 @@ class IssueCalendarTableViewCell: UITableViewCell {
         verticalStackView.axis = .vertical
         verticalStackView.spacing = 10
         
-        addSubview(verticalStackView)
         addSubview(typeImageView)
+        addSubview(verticalStackView)
         
         horizontalStackView.addArrangedSubview(idLabel)
         horizontalStackView.addArrangedSubview(prioriyImageView)
@@ -90,6 +90,7 @@ class IssueCalendarTableViewCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        //self.translatesAutoresizingMaskIntoConstraints = false
 
         verticalStackView.translatesAutoresizingMaskIntoConstraints     = false
         horizontalStackView.translatesAutoresizingMaskIntoConstraints   = false
@@ -102,11 +103,11 @@ class IssueCalendarTableViewCell: UITableViewCell {
         
         typeImageView.widthAnchor.constraint(equalToConstant: 20).isActive = true
         typeImageView.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        typeImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
+        typeImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16).isActive = true
         typeImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         
         verticalStackView.leadingAnchor.constraint(equalTo: typeImageView.trailingAnchor, constant: 8).isActive = true
-        verticalStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        verticalStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16).isActive = true
         //verticalStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 8).isActive = true
         //verticalStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 8).isActive = true
         verticalStackView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true

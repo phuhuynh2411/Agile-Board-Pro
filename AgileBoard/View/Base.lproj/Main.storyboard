@@ -733,37 +733,30 @@
         <scene sceneID="bw6-kp-lDs">
             <objects>
                 <viewController id="D1H-vY-9dA" customClass="CalendarViewController" customModule="Agile_Board" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="nQl-ui-ux6">
+                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="nQl-ui-ux6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="oGy-Rs-B7l">
-                                <rect key="frame" x="16" y="44" width="343" height="568"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="oGy-Rs-B7l">
+                                <rect key="frame" x="0.0" y="44" width="375" height="575"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UIV-ci-1eH" customClass="CalendarView" customModule="Agile_Board" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="284"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="287.5"/>
                                     </view>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TtU-kl-HS6">
-                                        <rect key="frame" x="0.0" y="284" width="343" height="284"/>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="85u-0s-rf4">
+                                        <rect key="frame" x="0.0" y="287.5" width="375" height="287.5"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                        <tableView key="tableFooterView" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="85u-0s-rf4">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="284"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                        </tableView>
                                     </tableView>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstItem="TtU-kl-HS6" firstAttribute="height" secondItem="UIV-ci-1eH" secondAttribute="height" id="5G2-7a-mz5"/>
-                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="oGy-Rs-B7l" firstAttribute="top" secondItem="nqE-uI-Al2" secondAttribute="top" id="RPA-K4-9GH"/>
-                            <constraint firstItem="oGy-Rs-B7l" firstAttribute="leading" secondItem="nqE-uI-Al2" secondAttribute="leading" constant="16" id="ZUN-qZ-nLM"/>
-                            <constraint firstItem="nqE-uI-Al2" firstAttribute="trailing" secondItem="oGy-Rs-B7l" secondAttribute="trailing" constant="16" id="jom-Ga-50p"/>
-                            <constraint firstItem="nqE-uI-Al2" firstAttribute="bottom" secondItem="oGy-Rs-B7l" secondAttribute="bottom" constant="6" id="zYg-fG-cGR"/>
+                            <constraint firstAttribute="bottom" secondItem="oGy-Rs-B7l" secondAttribute="bottom" constant="20" symbolic="YES" id="08M-X3-ApH"/>
+                            <constraint firstItem="oGy-Rs-B7l" firstAttribute="top" secondItem="nqE-uI-Al2" secondAttribute="top" id="dF5-w6-ceq"/>
+                            <constraint firstItem="oGy-Rs-B7l" firstAttribute="trailing" secondItem="nqE-uI-Al2" secondAttribute="trailing" id="ke0-kH-CEK"/>
+                            <constraint firstItem="oGy-Rs-B7l" firstAttribute="leading" secondItem="nqE-uI-Al2" secondAttribute="leading" id="nC3-HW-1S1"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nqE-uI-Al2"/>
                     </view>
