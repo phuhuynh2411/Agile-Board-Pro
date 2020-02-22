@@ -11,7 +11,7 @@ import RealmSwift
 extension Project {
     
     func add(_ issue: Issue) throws {
-        try realm?.write {
+        try self.write {
             issue.serial = nextIssueSerial()
             self.issues.append(issue)
         }

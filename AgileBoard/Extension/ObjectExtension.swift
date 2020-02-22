@@ -10,10 +10,10 @@ import Foundation
 import RealmSwift
 
 extension Object {
-    
+    /**
+     Write to Realm and update modified date
+     */
     func write(code: ()->Void, completion: ((_ error: Error?)->Void)? ) {
-        let realm = AppDataController.shared.realm
-        
         do{
             try realm?.write {
                 code()
@@ -25,6 +25,26 @@ extension Object {
         }catch{
             print(error)
             completion?(error)
+        }
+    }
+    
+    /**
+    Write to Realm and update modified date
+    */
+    func write(_ code: ()->Void) throws {
+        try realm?.write {
+            code()
+            self.setValue(Date(), forKey: "modifiedDate")
+        }
+    }
+    
+    /**
+     Remove an object its self
+     */
+    
+    func remove() throws {
+        try realm?.write {
+            realm?.delete(self)
         }
     }
     

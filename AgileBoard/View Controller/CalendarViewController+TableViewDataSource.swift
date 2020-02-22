@@ -16,6 +16,7 @@ extension CalendarViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseableTableViewCell) as! IssueCalendarTableViewCell
+        cell.delegate = self
         
         guard let issue = issuesForSelectedDates?[indexPath.row] else { return cell }
         
