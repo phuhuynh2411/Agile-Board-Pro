@@ -99,10 +99,13 @@ class CalendarViewController: UIViewController {
     
     private func goToToday() {
         self.displayDate = Date()
-        calendarView.selectDate(displayDate)
         calendarView.setDisplayDate(displayDate)
         
         loadIssues(forMonth: self.displayDate)
+        
+        if !calendarView.selectedDates.contains(where: { calendar.isDate(self.displayDate, inSameDayAs: $0) } ){
+            calendarView.selectDate(self.displayDate)
+        }
     }
     
     // MARK: - Private Methods
