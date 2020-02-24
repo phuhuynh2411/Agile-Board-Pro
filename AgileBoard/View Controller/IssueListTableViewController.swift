@@ -308,20 +308,28 @@ class IssueListTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == S.addIssue {
             let navigationController = segue.destination as! UINavigationController
-            let addIssueTableViewController =  navigationController.topViewController as! IssueDetailTableViewController
-            //let selectedBoard = project?.selectedBoard
-            let issueType = IssueTypeController.shared.default()
-            let priority = PriorityController.shared.default()
+            let vc =  navigationController.topViewController as! IssueDetailTableViewController
             
-            addIssueTableViewController.initView(issueType: issueType, priority: priority,startDate: Date(), status: nil, delegate: self)
+            let issue = Issue()
+            issue.type = .standard
+            issue.priority = .standard
+            issue.startDate = Date()
+            issue.endDate = Date()
+            
+            vc.delegate = self
+            vc.issue = issue
+            
         } else if segue.identifier == S.editIssue {
             let navigationController = segue.destination as! UINavigationController
-            let issueDetailTableViewController =  navigationController.topViewController as! IssueDetailTableViewController
+            let vc =  navigationController.topViewController as! IssueDetailTableViewController
             
             guard let project = selectedIssue?.projectOwners.first, let issue = selectedIssue else {
                 fatalError("There was something wrong. The project or issue is nil.")
             }
-            issueDetailTableViewController.initView(with: issue, project: project, delegate: self)
+            
+            vc.issue = issue
+            vc.project = project
+            vc.delegate = self
         }
     }
     
@@ -402,36 +410,29 @@ extension IssueListTableViewController: IssueDetailDelegate {
         }
         
         // Set issue's status to the first project's status
-        let status = project.statuses.first
+        issue.status = project.statuses.first
         
-        project.write({
-            project.issues.append(issue)
-            issue.status = status
-        }) { (error) in
-            if let error = error {
-                print("Could not add issue to the project with error \(error)")
-            }else {
-                // Add issue to sortedIssues array
-                let view: CreatedIssueView = .fromNib()
-                view.issueIDLabel.text = issue.issueID
-                if let typeImageName = issue.type?.imageName {
-                    view.typeImageView.image = UIImage(named: typeImageName)
-                }
-                
-                let banner = FloatingNotificationBanner(customView: view)
-                banner.show()
-                banner.onTap = {
-                    self.tappedOnBanner()
-                }
-                
-                // Set issue to selected issue
-                self.selectedIssue = issue
-            }
+        do{
+            try project.add(issue)
+        }catch{
+            print(error)
+            return
         }
-    }
-    
-    func didModidyIssue(issue: Issue) {
         
+        // Set issue to selected issue
+        self.selectedIssue = issue
+        // Add issue to sortedIssues array
+        let view: CreatedIssueView = .fromNib()
+        view.issueIDLabel.text = issue.issueID
+        if let typeImageName = issue.type?.imageName {
+            view.typeImageView.image = UIImage(named: typeImageName)
+        }
+        
+        let banner = FloatingNotificationBanner(customView: view)
+        banner.show()
+        banner.onTap = {
+            self.tappedOnBanner()
+        }
     }
     
     func tappedOnBanner() {

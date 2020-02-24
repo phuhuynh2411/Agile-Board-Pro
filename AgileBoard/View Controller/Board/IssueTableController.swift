@@ -45,14 +45,14 @@ class IssueTableController: NSObject {
             fatalError("The project should not be nil at this point.")
         }
         
-        let issueDetailTableViewController = UIStoryboard(name: I.storyBoard, bundle: .main).instantiateViewController(withIdentifier: I.issueDetailVC) as! IssueDetailTableViewController
+        let vc = UIStoryboard(name: I.storyBoard, bundle: .main).instantiateViewController(withIdentifier: I.issueDetailVC) as! IssueDetailTableViewController
         
-        issueDetailTableViewController.initView(with: issue, project: project)
-        //issueDetailTableViewController.modalPresentationStyle = .fullScreen
+        vc.issue = issue
+        vc.project = project
         
         let topViewController = UIApplication.getTopViewController()
         let nav = UIStoryboard(name: I.storyBoard, bundle: .main).instantiateViewController(withIdentifier: I.issueDetailNC) as! UINavigationController
-        nav.viewControllers = [issueDetailTableViewController]
+        nav.viewControllers = [vc]
         
         topViewController?.present(nav, animated: true, completion: nil)
         

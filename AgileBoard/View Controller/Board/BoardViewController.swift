@@ -135,10 +135,19 @@ class BoardViewController: UIViewController {
         if segue.identifier == Identifier.AddIssueTableViewControllerSegue {
             
             let navigationController = segue.destination as! UINavigationController
-            let addIssueTableViewController =  navigationController.topViewController as! IssueDetailTableViewController
+            let vc =  navigationController.topViewController as! IssueDetailTableViewController
             let selectedBoard = project?.selectedBoard
             
-            addIssueTableViewController.initView(with: project, issueType: IssueTypeController.shared.default(), priority: PriorityController.shared.default(),startDate: Date(), status: selectedBoard?.columns.first?.status, delegate: self)
+            let issue = Issue()
+            issue.type = .standard
+            issue.priority = .standard
+            issue.startDate = Date()
+            issue.endDate = Date()
+            issue.status = selectedBoard?.columns.first?.status
+            
+            vc.issue = issue
+            vc.project = project
+            vc.delegate = self
             
         }
         if segue.identifier == S.boardTableView {

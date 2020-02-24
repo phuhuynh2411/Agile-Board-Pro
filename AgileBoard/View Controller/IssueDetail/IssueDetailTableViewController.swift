@@ -17,8 +17,8 @@ protocol IssueDetailDelegate {
 }
 
 extension IssueDetailDelegate {
-    func didAddIssue(with issue: Issue, project: Project?) { return }
-    func didModidyIssue(issue: Issue) { return }
+    public func didAddIssue(with issue: Issue, project: Project?) { return }
+    public func didModidyIssue(issue: Issue) { return }
 }
 
 class IssueDetailTableViewController: UITableViewController {
@@ -26,6 +26,7 @@ class IssueDetailTableViewController: UITableViewController {
     // MARK: - IB Outlets or View
     
     @IBOutlet weak var createOrSaveButton: UIBarButtonItem!
+    
     var headerView: IssueDetailHeaderView!
     
     // MARK: Properites
@@ -56,47 +57,6 @@ class IssueDetailTableViewController: UITableViewController {
     /// Determines which text view has been tapped.
     var selectedTextViewTag: Int?
     
-    // MARK: Init methods
-    
-    /**
-     Call this method when modifying an existing issue
-     
-     - Parameters:
-        - issue: An issue that you want to modify
-        - delegate: Callback functions after adding or modifying an issue
-     */
-    
-    func initView(with issue: Issue, project: Project, delegate: IssueDetailDelegate? = nil) {
-        self.delegate = delegate
-        self.issue = issue
-        self.project = project
-        
-        createOrSaveButton.title = ""
-    }
-    
-    /**
-     Call this method when you want to add a new issue.
-     
-     - Parameters:
-        - project: Initial project of the issue
-        - issueType: Initial issue type
-        - priority: Initial priority
-        - delegate: Callback functions after adding or modifying an issue
-     */
-    func initView(with project: Project? = nil, issueType: IssueType? = nil, priority: Priority? = nil, startDate: Date?, status: Status? = nil, delegate: IssueDetailDelegate? = nil, endDate: Date? = Date() ) {
-        issue = Issue()
-        issue?.type = issueType
-        issue?.priority = priority
-        issue?.startDate = startDate
-        issue?.status = status
-        issue?.endDate = endDate
-        
-        self.project = project
-        self.delegate = delegate
-        
-        createOrSaveButton.title = "Create"
-    }
-    
     // MARK: View Methods
     
     override func viewDidLoad() {
@@ -126,6 +86,8 @@ class IssueDetailTableViewController: UITableViewController {
         registerCell(nibName: "ProjectTableViewCellv2", cellIdentifier: C.project)
         // Register issue type cell
         registerCell(nibName: "IssueTypeTableViewCellv2", cellIdentifier: C.issueType)
+        
+        createOrSaveButton.title = isNew() ? "Create" : ""
         
     }
     

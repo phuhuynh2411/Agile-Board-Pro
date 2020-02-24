@@ -109,6 +109,9 @@
 		848FCEB42397985100CD6334 /* IssueDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848FCEB32397985100CD6334 /* IssueDetailHeaderView.swift */; };
 		8490889723A1D75500D5DD96 /* DueDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8490889623A1D75500D5DD96 /* DueDateTableViewCell.swift */; };
 		8490889923A1E1B900D5DD96 /* HalfScreenPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8490889823A1E1B900D5DD96 /* HalfScreenPresentationController.swift */; };
+		8490AA7C2403BC9F00579312 /* IssueType+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8490AA7B2403BC9F00579312 /* IssueType+Extension.swift */; };
+		8490AA7E2403BEE300579312 /* Issue+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8490AA7D2403BEE300579312 /* Issue+Extension.swift */; };
+		8490AA802403C6C500579312 /* Priority+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8490AA7F2403C6C500579312 /* Priority+Extension.swift */; };
 		8490D5E923C5DD82002E787B /* UIScrollViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8490D5E823C5DD82002E787B /* UIScrollViewExtension.swift */; };
 		84983EC223B1B623003657F1 /* BoardTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84983EC123B1B623003657F1 /* BoardTitleView.xib */; };
 		84983EC423B1B702003657F1 /* BoardTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84983EC323B1B702003657F1 /* BoardTitleView.swift */; };
@@ -288,6 +291,9 @@
 		848FCEB32397985100CD6334 /* IssueDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetailHeaderView.swift; sourceTree = "<group>"; };
 		8490889623A1D75500D5DD96 /* DueDateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DueDateTableViewCell.swift; sourceTree = "<group>"; };
 		8490889823A1E1B900D5DD96 /* HalfScreenPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfScreenPresentationController.swift; sourceTree = "<group>"; };
+		8490AA7B2403BC9F00579312 /* IssueType+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IssueType+Extension.swift"; sourceTree = "<group>"; };
+		8490AA7D2403BEE300579312 /* Issue+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Issue+Extension.swift"; sourceTree = "<group>"; };
+		8490AA7F2403C6C500579312 /* Priority+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Priority+Extension.swift"; sourceTree = "<group>"; };
 		8490D5E823C5DD82002E787B /* UIScrollViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScrollViewExtension.swift; sourceTree = "<group>"; };
 		84983EC123B1B623003657F1 /* BoardTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BoardTitleView.xib; sourceTree = "<group>"; };
 		84983EC323B1B702003657F1 /* BoardTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BoardTitleView.swift; path = AgileBoard/View/BoardTitleView.swift; sourceTree = SOURCE_ROOT; };
@@ -486,6 +492,9 @@
 				848C483A23C56953001B5CC8 /* UICollectionViewExtension.swift */,
 				8490D5E823C5DD82002E787B /* UIScrollViewExtension.swift */,
 				84D8506E240114B2006DA605 /* Project+Extension.swift */,
+				8490AA7B2403BC9F00579312 /* IssueType+Extension.swift */,
+				8490AA7D2403BEE300579312 /* Issue+Extension.swift */,
+				8490AA7F2403C6C500579312 /* Priority+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1053,11 +1062,13 @@
 				84983EC623B1C33C003657F1 /* BoardTableViewController.swift in Sources */,
 				84579E66239656E1009575E4 /* PriorityTableViewController.swift in Sources */,
 				8445863923FE26E8003889C7 /* IssueCalendarTableViewCell.swift in Sources */,
+				8490AA7C2403BC9F00579312 /* IssueType+Extension.swift in Sources */,
 				842D75C623AA2E8500193812 /* UITextView+Extension.swift in Sources */,
 				8442DC3B237E7B92008C88C6 /* IssueCollectionViewCell.swift in Sources */,
 				843C58C72390FFF800F5FAB5 /* ProjectIconController.swift in Sources */,
 				84B5F72F238F647F00D344C3 /* SearchProjectTableViewCell.swift in Sources */,
 				84C340E62388368900C65AC9 /* ProjectTableViewCell.swift in Sources */,
+				8490AA802403C6C500579312 /* Priority+Extension.swift in Sources */,
 				8420628C237AFD7E0076CDAC /* Issue.swift in Sources */,
 				8490D5E923C5DD82002E787B /* UIScrollViewExtension.swift in Sources */,
 				84D590F523B9F36E0011FA4B /* EditBoardNameViewController.swift in Sources */,
@@ -1071,6 +1082,7 @@
 				84983ECA23B1CB05003657F1 /* BoardDetailViewController.swift in Sources */,
 				8431758523EA5F390060C333 /* CalendarView+Extensions.swift in Sources */,
 				84C340E42388361D00C65AC9 /* ProjectTableViewController.swift in Sources */,
+				8490AA7E2403BEE300579312 /* Issue+Extension.swift in Sources */,
 				847A78142387758F00911851 /* Project.swift in Sources */,
 				843BF018239A61EE005F798D /* PhotoViewController.swift in Sources */,
 			);

@@ -63,10 +63,7 @@ class CalendarViewController: UIViewController {
         label.textColor = .officialApplePlaceholderGray
         return label
     }
-    
-    var issuesForMonths = [Date: Results<Issue>]()
-    var eventsForMonths = [CalendarEvent]()
-    
+        
     let addIssueSegue   = "AddIssueSegue"
     let editIssueSegue  = "EditIssueSegue"
     let issueListSegue  = "IssueListSegue"
@@ -76,13 +73,17 @@ class CalendarViewController: UIViewController {
     var selectedIssue: Issue?
     
     let refreshControler = UIRefreshControl()
+    
+    private var isSelectedToday = false
+    
     // MARK: - View Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        calendarView.dataSource     = self
-        calendarView.delegate       = self
+        calendarView.dataSource                 = self
+        calendarView.delegate                   = self
+        calendarView.multipleSelectionEnable    = false
         
         tableView.dataSource        = self
         tableView.delegate          = self
@@ -100,7 +101,7 @@ class CalendarViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.goToToday()
+        if !isSelectedToday { self.goToToday() }
     }
     
     // MARK: - IBActions
@@ -111,13 +112,15 @@ class CalendarViewController: UIViewController {
     
     private func goToToday() {
         self.displayDate = Date()
-        calendarView.setDisplayDate(displayDate)
+        calendarView.setDisplayDate(self.displayDate)
         
         loadIssues(forMonth: self.displayDate)
         
-        if !calendarView.selectedDates.contains(where: { calendar.isDate(self.displayDate, inSameDayAs: $0) } ){
-            calendarView.selectDate(self.displayDate)
-        }
+        // After the view is loaded, selects today as selected date
+        // however, only selects once times.
+        guard !isSelectedToday else { return }
+        calendarView.selectDate(self.displayDate)
+        isSelectedToday = true
     }
     
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
@@ -126,6 +129,8 @@ class CalendarViewController: UIViewController {
     
     @IBAction func refreshTableView(_ sender: UIRefreshControl){
         tableView.reloadData()
+        reloadIssuesForCurrentMonth()
+        
         refreshControler.endRefreshing()
     }
     
@@ -140,7 +145,7 @@ class CalendarViewController: UIViewController {
      
      Loads issues that have the start date or due date within the current date.
      */
-    private func reloadIssuesForSelectedDates() {
+    private func loadIssuesForSelectedDates() {
                         
         var predicates = [NSPredicate]()
         
@@ -179,12 +184,14 @@ class CalendarViewController: UIViewController {
      Reload the issues on the table view
      */
     private func reloadIssues() {
-        reloadIssuesForSelectedDates()
-        
-        // Add or remove table footer view
-        tableView.tableFooterView =  issuesForSelectedDates?.count ?? 0 > 0 ? UIView() : self.tableFooterView
-        
-        tableView.reloadData()
+        DispatchQueue.main.async {
+            self.loadIssuesForSelectedDates()
+            
+            // Add or remove table footer view
+            self.tableView.tableFooterView =  self.issuesForSelectedDates?.count ?? 0 > 0 ? UIView() : self.tableFooterView
+            
+            self.tableView.reloadData()
+        }
     }
     
     /**
@@ -201,11 +208,10 @@ class CalendarViewController: UIViewController {
         let dateFrom = startOfDate(for: startOfMonth)
         let dateTo = endOfDate(for: startOfDate(for: endOfMonth))
         
-        guard issuesForMonths[startOfMonth] == nil else { return }
-        
         if let issuesOfDate = realm?.objects(Issue.self).filter("startDate >= %@ AND endDate <= %@", dateFrom, dateTo) {
-            issuesForMonths[startOfMonth] = issuesOfDate
-        
+            
+            var eventsForMonths = [CalendarEvent]()
+
             for issue in issuesOfDate {
                 guard let startDate = issue.startDate,
                     let endDate = issue.endDate else { continue }
@@ -250,23 +256,59 @@ class CalendarViewController: UIViewController {
         }
     }
     
+    /**
+     Reload all issues for the current month.
+     */
+    private func reloadIssuesForCurrentMonth() {
+        guard let displayDate = calendarView.displayDate else { return }
+        DispatchQueue.main.async {
+            self.loadIssues(forMonth: displayDate)
+            self.calendarView.reloadData()
+        }
+    }
+    
     // MARK: - Navigations
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == self.addIssueSegue {
             let navigationController = segue.destination as! UINavigationController
-            let issueDetailTableViewController = navigationController.topViewController as! IssueDetailTableViewController
+            let vc = navigationController.topViewController as! IssueDetailTableViewController
             
-            issueDetailTableViewController.initView(with: nil, issueType: IssueTypeController.shared.default(), priority: PriorityController.shared.default(),startDate: Date(), status: nil, delegate: self)
+            // If the user selected a date, sets the start date and end date to that selected date
+            // otherwise, set the start date and end date to first date of the display month
+            guard let displayDate = calendarView.displayDate else { return }
+            var startDate: Date
+            if let  date = calendarView.selectedDates.first,
+                    calendar.isDate(date, equalTo: displayDate, toGranularity: .month) {
+                
+                startDate = date
+            } else {
+                startDate = self.startOfMonth(fromDate: displayDate)
+            }
+            let endDate = startDate
+    
+            let issue = Issue()
+            issue.type = .standard
+            issue.priority = .standard
+            issue.startDate = startDate
+            issue.endDate = endDate
+            
+            vc.delegate = self
+            vc.issue = issue
+            
         } else if segue.identifier == self.editIssueSegue {
             let navigationController = segue.destination as! UINavigationController
-            let issueDetailTableViewController =  navigationController.topViewController as! IssueDetailTableViewController
+            let vc =  navigationController.topViewController as! IssueDetailTableViewController
             
             guard let project = selectedIssue?.projectOwners.first, let issue = selectedIssue else {
                 fatalError("There was something wrong. The project or issue is nil.")
             }
-            issueDetailTableViewController.initView(with: issue, project: project, delegate: self)
+            
+            vc.issue = issue
+            vc.project = project
+            vc.delegate = self
+            
         } else if segue.identifier == self.issueListSegue {
             let  issueListTableViewController = segue.destination as! IssueListTableViewController
             issueListTableViewController.filter = AllIssueFilter(name: "All", imageName: "")
@@ -379,12 +421,14 @@ extension CalendarViewController: IssueDetailDelegate {
         }
         
         tableView.reloadData()
-        self.updateBadge()
+        updateBadge()
+        reloadIssuesForCurrentMonth()
     }
     
     func didModidyIssue(issue: Issue) {
         tableView.reloadData()
-        self.updateBadge()
+        updateBadge()
+        reloadIssuesForCurrentMonth()
     }
     
 }

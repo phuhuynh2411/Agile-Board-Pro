@@ -106,4 +106,6 @@ class IssueTypeController {
         
         return issueType
     }
+    
+    
 }
