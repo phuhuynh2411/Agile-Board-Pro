@@ -131,7 +131,7 @@ extension IssueFilterTableViewController: IssueDetailDelegate {
         // Set issue's status to the first project's status
         let status = project.statuses.first
         
-        project.write(code: {
+        project.write({
             project.issues.append(issue)
             issue.status = status
             

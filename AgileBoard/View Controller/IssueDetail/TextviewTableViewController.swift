@@ -107,7 +107,7 @@ class TextviewTableViewController: UITableViewController {
             let issue = issue {
             
             //IssueController.shared.update(summary: summary, description: description, to: issue)
-            issue.write(code: {
+            issue.write({
                 issue.summary = summary
                 issue.issueDescription = description
             }) { (error) in

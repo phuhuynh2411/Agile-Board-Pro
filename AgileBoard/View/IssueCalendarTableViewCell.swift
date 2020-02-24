@@ -51,6 +51,15 @@ class IssueCalendarTableViewCell: SwipeTableViewCell {
         return label
     }()
     
+    lazy var dueLabel             : UILabel = {
+        let label = UILabel()
+        label.text = "Due today"
+        label.textColor = .red
+        label.font = UIFont.systemFont(ofSize: 15)
+       
+        return label
+    }()
+    
     let verticalStackView = UIStackView()
     let horizontalStackView = UIStackView()
     
@@ -83,6 +92,7 @@ class IssueCalendarTableViewCell: SwipeTableViewCell {
         horizontalStackView.addArrangedSubview(prioriyImageView)
         horizontalStackView.addArrangedSubview(statusImageView)
         horizontalStackView.addArrangedSubview(statusLabel)
+        horizontalStackView.addArrangedSubview(dueLabel)
         
         verticalStackView.addArrangedSubview(titleLabel)
         verticalStackView.addArrangedSubview(horizontalStackView)

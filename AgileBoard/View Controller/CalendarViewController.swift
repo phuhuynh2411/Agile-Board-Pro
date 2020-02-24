@@ -135,6 +135,11 @@ class CalendarViewController: UIViewController {
     
     // MARK: - Private Methods
     
+    /**
+     Reload issues for the selected dates
+     
+     Loads issues that have the start date or due date within the current date.
+     */
     private func reloadIssuesForSelectedDates() {
                         
         var predicates = [NSPredicate]()
@@ -143,7 +148,7 @@ class CalendarViewController: UIViewController {
             let dateFrom = startOfDate(for: date)
             let dateTo = endOfDate(for: dateFrom)
    
-            let predicate = NSPredicate(format: "startDate >= %@ AND endDate <= %@ ", argumentArray: [dateFrom, dateTo])
+            let predicate = NSPredicate(format: "( startDate >= %@ AND startDate <= %@ ) OR ( dueDate >= %@ AND dueDate <= %@ )", argumentArray: [dateFrom, dateTo, dateFrom, dateTo])
             predicates.append(predicate)
             
         }
@@ -155,7 +160,8 @@ class CalendarViewController: UIViewController {
             // Create an empty result
             self.issuesForSelectedDates = realm?.objects(Issue.self).filter(NSPredicate(value: false))
         }
-        
+     
+        self.updateBadge()
     }
     
     private func startOfDate(for date: Date) -> Date {
@@ -181,10 +187,14 @@ class CalendarViewController: UIViewController {
         tableView.reloadData()
     }
     
+    /**
+     Load all issues from the first date of the month to the last date.
+     
+     - Parameters:
+        - dateInMonth: Any date in the month.
+     */
     private func loadIssues(forMonth dateInMonth: Date) {
-        
-        let realm = AppDataController.shared.realm
-        
+                
         let startOfMonth = self.startOfMonth(fromDate: dateInMonth)
         let endOfMonth = self.endOfMonth(fromDate: dateInMonth)
         
@@ -222,6 +232,22 @@ class CalendarViewController: UIViewController {
     
     private func tappedOnBanner() {
         self.performSegue(withIdentifier: self.editIssueSegue, sender: self)
+    }
+    
+    /**
+     Show the number of due issues on the tab bar badge
+     */
+    private func updateBadge() {
+        // Add the badge to the tab bar to show a number of due issues.
+        let numberOfDueIssues = issuesForSelectedDates?.filter({ (issue) -> Bool in
+            guard let dueDate = issue.dueDate else { return false }
+            return self.calendar.isDate(dueDate, inSameDayAs: Date())
+            }).count
+        if  let tabItems = tabBarController?.tabBar.items,
+            let count = numberOfDueIssues {
+            let tabItem = tabItems[2]
+            tabItem.badgeValue = count > 0 ? "\(count)" : nil
+        }
     }
     
     // MARK: - Navigations
@@ -353,6 +379,12 @@ extension CalendarViewController: IssueDetailDelegate {
         }
         
         tableView.reloadData()
+        self.updateBadge()
+    }
+    
+    func didModidyIssue(issue: Issue) {
+        tableView.reloadData()
+        self.updateBadge()
     }
     
 }

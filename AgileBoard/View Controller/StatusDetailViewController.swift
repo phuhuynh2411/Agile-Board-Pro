@@ -124,7 +124,7 @@ class StatusDetailViewController: UIViewController {
             delegate?.didAddStatus(status: newStatus)
         }
         else if let status = status { // Modifying status
-            status.write(code: {
+            status.write( {
                 status.name = statusName
                 status.color = color
                 status.markedAsDone = doneSwitch.isOn

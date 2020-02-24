@@ -370,29 +370,10 @@ class IssueDetailTableViewController: UITableViewController {
         let navigationController = segue.destination as! UINavigationController
         let selectDateViewController = navigationController.topViewController as! SelectDateViewController
         // Set SelectDateDelegate
-        selectDateViewController.delegate = DateController(callback: { (selectedDate) in
-            switch dateType{
-            case .dueDate:
-                //IssueController.shared.update(dueDate: selectedDate!, to: self.issue!)
-                self.issue?.write(code: {
-                    self.issue?.dueDate = selectedDate
-                }, completion: nil)
-                break
-            case .startDate:
-                //IssueController.shared.update(startDate: selectedDate!, to: self.issue!)
-                self.issue?.write(code: {
-                    self.issue?.startDate = selectedDate
-                }, completion: nil)
-                break
-            case .endDate:
-                //IssueController.shared.update(endDate: selectedDate!, to: self.issue!)
-                self.issue?.write(code: {
-                    self.issue?.endDate = selectedDate
-                }, completion: nil)
-                break
-            }
+        selectDateViewController.delegate = DateController { (selectedDate) in
+            self.update(date: selectedDate, to: dateType)
             self.updateView(components: [.tableView], markAsModified: true)
-        })
+        }
         // Displays the previous selected date
         selectDateViewController.selectedDate = date
         
@@ -443,6 +424,23 @@ class IssueDetailTableViewController: UITableViewController {
         }
     }
     
+    private func update(date: Date?, to dateType: DateType){
+        // Adding a new issue
+        if isNew() {
+            switch dateType {
+            case .dueDate: issue?.dueDate = date ; return
+            case .startDate: issue?.startDate = date ; return
+            case .endDate: issue?.endDate = date ; return
+            }
+        }
+        // Modifying an existing issue
+        switch dateType{
+        case .dueDate: issue?.write({ issue?.dueDate = date }, completion: nil) ; return
+        case .startDate: issue?.write( { issue?.startDate = date }, completion: nil) ; return
+        case .endDate: issue?.write({ issue?.endDate = date }, completion: nil) ; return
+        }
+    }
+    
     // MARK: - IB Actions
     
     @objc func selectProjectPressed(sender: UIButton) {
@@ -467,14 +465,12 @@ class IssueDetailTableViewController: UITableViewController {
     @IBAction func closeButtonPressed(_ sender: UIBarButtonItem) {
         // Prevents user lose entered data
         // Shows a popup to ask user whether they really want to discard the changes
-        if isModifed, isNew() {
+        if isModifed, isNew() { // New issue
             let alertController = UIAlertController(title: "", message: "You added data to the form. Do you want to discard the changes? Select Cancel to keep working on it.", preferredStyle: .actionSheet)
             let discardAction = UIAlertAction(title: "Discard draft", style: .destructive) { (action) in
                 self.dismiss(animated: true, completion: nil)
             }
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
-                //self.dismiss(animated: true, completion: nil)
-            }
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_ ) in }
             // Add actions to alert controller
             alertController.addAction(discardAction)
             alertController.addAction(cancelAction)
@@ -482,8 +478,11 @@ class IssueDetailTableViewController: UITableViewController {
             // Presents the alert controller
             present(alertController, animated: true, completion: nil)
             
+        } else if isModifed, let issue = self.issue { // Modify an issue
+            delegate?.didModidyIssue(issue: issue)
+            dismiss(animated: true, completion: nil)
         }
-        else {
+        else { // User opened the issue, but did not make any changes.
             dismiss(animated: true, completion: nil)
         }
     }
@@ -645,7 +644,7 @@ extension IssueDetailTableViewController: IssueTypeTableViewDelegate {
     func didSelectIssueType(issueType: IssueType) {
         if let issue = issue{
             //IssueController.shared.update(type: issueType, to: issue)
-            issue.write(code: {
+            issue.write( {
                 issue.type = issueType
             }) { (error) in
                 if let error = error {
@@ -744,7 +743,7 @@ extension IssueDetailTableViewController: SelectPriorityDelegate {
     func didSelectPriority(priority: Priority) {
         if let issue = issue {
             //IssueController.shared.update(priority, to: issue)
-            issue.write(code: {
+            issue.write({
                 issue.priority = priority
             }, completion: nil)
             updateView(components: [.tableView], markAsModified: true)
@@ -789,7 +788,7 @@ class DateController: SelecteDateDelegate {
     
     var callback: (_ date: Date?)->Void
     
-    init(callback: @escaping (_ date: Date?)-> Void) {
+    init(_ callback: @escaping (_ date: Date?)-> Void) {
         self.callback = callback
     }
     
@@ -876,7 +875,7 @@ extension IssueDetailTableViewController: AttachmentDelegate {
     func didAddAttachment(attachment: Attachment) {
         if let issue = issue {
             //IssueController.shared.add(attachment, to: issue)
-            issue.write(code: {
+            issue.write( {
                 issue.attachments.append(attachment)
             }, completion: nil)
             updateView(components: [.tableView], markAsModified: true)
@@ -885,7 +884,7 @@ extension IssueDetailTableViewController: AttachmentDelegate {
     
     func didDeleteAttachment(attachment: Attachment, at indexPath: IndexPath) {
         //IssueController.shared.delete(attachment)
-        issue?.write(code: {
+        issue?.write( {
             issue?.realm?.delete(attachment)
         }, completion: nil)
         updateView(components: [.tableView], markAsModified: true)
@@ -922,7 +921,7 @@ extension IssueDetailTableViewController: StatusDelegate {
     func didSelectStatus(status: Status) {
         if let issue = issue{
             //IssueController.shared.update(status, to: issue)
-            issue.write(code: {
+            issue.write( {
                 issue.status = status
             }, completion: nil)
             updateView(components: [.status])

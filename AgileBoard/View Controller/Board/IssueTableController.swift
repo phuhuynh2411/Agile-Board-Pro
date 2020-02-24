@@ -202,7 +202,7 @@ extension IssueTableController: UITableViewDropDelegate {
                 desIndexPath = IndexPath(row: 0, section: 0)
             }
             if let moveToIndex = issues?.index(of: issue) {
-                issue.write(code: {
+                issue.write({
                     issue.status = column?.status
                 }, completion: { (error) in
                     if let error = error {

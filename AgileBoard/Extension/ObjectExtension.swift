@@ -13,7 +13,7 @@ extension Object {
     /**
      Write to Realm and update modified date
      */
-    func write(code: ()->Void, completion: ((_ error: Error?)->Void)? ) {
+    func write(_ code: ()->Void, completion: ((_ error: Error?)->Void)? ) {
         do{
             try realm?.write {
                 code()
@@ -21,7 +21,6 @@ extension Object {
                 self.setValue(Date(), forKey: "modifiedDate")
             }
             completion?(nil)
-            print("Update modified date: \(String(describing: self.value(forKey: "modifiedDate")))")
         }catch{
             print(error)
             completion?(error)

@@ -39,7 +39,7 @@ class BoardViewController: UIViewController {
         
         // Init the selected board
         if project?.selectedBoard == nil {
-            project?.write(code: {
+            project?.write({
                 project?.selectedBoard = project?.boards.first
             }, completion: nil)
         }
@@ -229,7 +229,7 @@ extension BoardViewController {
 extension BoardViewController: BoardTableViewControllerDelegate {
     
     func didSelectBoard(board: Board) {
-        project?.write(code: {
+        project?.write({
             project?.selectedBoard = board
         }, completion: nil)
         

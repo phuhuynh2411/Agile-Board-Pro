@@ -40,7 +40,7 @@ class EditBoardNameViewController: UIViewController {
     
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
         if let name = nameTextField.text, let board = board{
-            board.write(code: {
+            board.write({
                 board.name = name
             }, completion: nil)
             delegate?.didModifyName(board: board)

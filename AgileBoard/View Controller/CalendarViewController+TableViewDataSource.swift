@@ -23,15 +23,24 @@ extension CalendarViewController: UITableViewDataSource {
         cell.idLabel.text = issue.issueID
         cell.titleLabel.text = issue.summary
         cell.statusLabel.text = issue.status?.name
+        
         if let typeImageName = issue.type?.imageName {
             cell.typeImageView.image = UIImage(named: typeImageName)
         }
+        
         if let priorityImagename = issue.priority?.imageName {
             cell.prioriyImageView.image = UIImage(named: priorityImagename)
         }
+        
         if let statusColor = issue.status?.color?.hexColor {
             let color = UIColor(hexString: statusColor)
             cell.statusImageView.image = UIImage(color: color)
+        }
+        
+        if let dueDate = issue.dueDate, calendar.isDate(dueDate, inSameDayAs: Date()){
+            cell.dueLabel.text = "Due today"
+        } else {
+            cell.dueLabel.text = ""
         }
         
         return cell
