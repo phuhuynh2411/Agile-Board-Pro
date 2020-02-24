@@ -16,6 +16,7 @@ class CalendarViewController: UIViewController {
     
     @IBOutlet weak var calendarView: CalendarView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var stackView: UIStackView!
     
     // Properties
     
@@ -102,6 +103,22 @@ class CalendarViewController: UIViewController {
         super.viewDidAppear(animated)
         
         if !isSelectedToday { self.goToToday() }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        adjustView()
+    }
+    
+    private func adjustView() {
+        if UIApplication.shared.statusBarOrientation.isLandscape {
+            // activate landscape changes
+            stackView.axis = .horizontal
+        } else {
+            // activate portrait changes
+            stackView.axis = .vertical
+        }
+        self.view.layoutIfNeeded()
     }
     
     // MARK: - IBActions
@@ -315,6 +332,7 @@ class CalendarViewController: UIViewController {
             issueListTableViewController.isActiveSearch = true // isActiveSearch
         }
     }
+    
 }
 
 // MARK: - CalendarViewDataSource

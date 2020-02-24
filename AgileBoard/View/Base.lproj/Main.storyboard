@@ -733,7 +733,7 @@
         <scene sceneID="bw6-kp-lDs">
             <objects>
                 <viewController id="D1H-vY-9dA" customClass="CalendarViewController" customModule="Agile_Board" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="nQl-ui-ux6">
+                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="nQl-ui-ux6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -743,7 +743,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UIV-ci-1eH" customClass="CalendarView" customModule="Agile_Board" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="287.5"/>
                                     </view>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="85u-0s-rf4">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="85u-0s-rf4">
                                         <rect key="frame" x="0.0" y="287.5" width="375" height="287.5"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -753,10 +753,10 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="oGy-Rs-B7l" secondAttribute="bottom" constant="20" symbolic="YES" id="08M-X3-ApH"/>
-                            <constraint firstItem="oGy-Rs-B7l" firstAttribute="top" secondItem="nqE-uI-Al2" secondAttribute="top" id="dF5-w6-ceq"/>
-                            <constraint firstItem="oGy-Rs-B7l" firstAttribute="trailing" secondItem="nqE-uI-Al2" secondAttribute="trailing" id="ke0-kH-CEK"/>
-                            <constraint firstItem="oGy-Rs-B7l" firstAttribute="leading" secondItem="nqE-uI-Al2" secondAttribute="leading" id="nC3-HW-1S1"/>
+                            <constraint firstItem="oGy-Rs-B7l" firstAttribute="top" secondItem="nqE-uI-Al2" secondAttribute="top" id="1rx-qp-tu9"/>
+                            <constraint firstAttribute="bottom" secondItem="oGy-Rs-B7l" secondAttribute="bottom" constant="20" symbolic="YES" id="4xe-ms-bQB"/>
+                            <constraint firstItem="oGy-Rs-B7l" firstAttribute="leading" secondItem="nqE-uI-Al2" secondAttribute="leading" id="WaM-RM-Sn3"/>
+                            <constraint firstItem="oGy-Rs-B7l" firstAttribute="trailing" secondItem="nqE-uI-Al2" secondAttribute="trailing" id="uvm-3R-k7Q"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nqE-uI-Al2"/>
                     </view>
@@ -781,6 +781,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="calendarView" destination="UIV-ci-1eH" id="X4l-UE-vqE"/>
+                        <outlet property="stackView" destination="oGy-Rs-B7l" id="jja-76-g5l"/>
                         <outlet property="tableView" destination="85u-0s-rf4" id="etF-YH-5zV"/>
                         <segue destination="OPr-22-lDI" kind="presentation" identifier="AddIssueSegue" modalPresentationStyle="fullScreen" id="gd1-Jh-sT0"/>
                         <segue destination="OPr-22-lDI" kind="presentation" identifier="EditIssueSegue" modalPresentationStyle="fullScreen" id="Kaj-w7-ga6"/>
@@ -2218,7 +2219,7 @@
         <scene sceneID="dO3-0e-cer">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Mtd-TI-2dg" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Calendar" image="profile" id="x0A-dq-2Uh"/>
+                    <tabBarItem key="tabBarItem" title="Calendar" image="calendar" id="x0A-dq-2Uh"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="kor-8S-nVT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -2238,12 +2239,12 @@
         <image name="Accepted" width="23" height="22"/>
         <image name="addAttachment" width="100" height="100"/>
         <image name="board" width="38" height="38"/>
+        <image name="calendar" width="23" height="23"/>
         <image name="default_project_icon" width="81" height="71"/>
         <image name="disclosure" width="10" height="16"/>
         <image name="filter_all" width="40" height="40"/>
         <image name="issue" width="24" height="24"/>
         <image name="priority_lowest" width="12" height="10"/>
-        <image name="profile" width="22" height="22"/>
         <image name="project" width="25" height="25"/>
         <image name="settings" width="22" height="22"/>
     </resources>

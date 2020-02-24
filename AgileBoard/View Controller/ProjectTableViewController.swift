@@ -176,9 +176,27 @@ extension ProjectTableViewController: SwipeTableViewCellDelegate {
 
         let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
             // handle action by updating model with deletion
-            let project = self.projectList?[indexPath.row]
-            let projectController = ProjectController()
-            projectController.delete(project: project!)
+            guard let project = self.projectList?[indexPath.row] else { return }
+            
+            let alertController = UIAlertController(title: "", message: "Are you sure you want to delete this project permanently?", preferredStyle: .actionSheet)
+            
+            let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (action) in
+                do{
+                    try project.remove()
+                }catch{
+                    print(error)
+                    return
+                }
+                
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            }
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            
+            alertController.addAction(deleteAction)
+            alertController.addAction(cancelAction)
+            
+            self.present(alertController, animated: true, completion: nil)
         }
         
         let editAction = SwipeAction(style: .default, title: "Edit") { (action, indexPath) in
@@ -191,23 +209,7 @@ extension ProjectTableViewController: SwipeTableViewCellDelegate {
         
         return orientation == .right ? [deleteAction] : [editAction]
     }
-    
-    func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeOptions {
-        var options = SwipeOptions()
-        
-        // Delete project
-        if orientation == .right {
-            options.expansionStyle = .destructive
-            options.transitionStyle = .border
-        }
-        // Edit project
-        else {
-            options.expansionStyle = .selection
-            options.transitionStyle = .border
-        }
-        return options
-    }
-    
+
 }
 
 // MARK: - Add Project Delegate

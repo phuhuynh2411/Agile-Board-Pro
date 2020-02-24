@@ -470,18 +470,15 @@ extension IssueListTableViewController: SwipeTableViewCellDelegate {
     
     func delete(_ issue: Issue, with cellAction: SwipeAction, _ indexPath: IndexPath) {
         
-        let alertController = UIAlertController(title: "Delete Issue", message: "Are you sure you want to delete the issue permanently?", preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: "", message: "Are you sure you want to delete the issue permanently?", preferredStyle: .actionSheet)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
         }
         let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (action) in
-            print("Pressed delete action")
-            let realm = AppDataController.shared.realm
             do{
-                try realm?.write {
-                    realm?.delete(issue)
-                }
+                try issue.remove()
             }catch{
                 print(error)
+                return
             }
             // Delete issue in dictionary
             let key = self.sections[indexPath.section]
