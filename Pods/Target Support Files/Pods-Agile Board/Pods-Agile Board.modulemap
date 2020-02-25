@@ -1,0 +1,6 @@
+framework module Pods_Agile_Board {
+  umbrella header "Pods-Agile Board-umbrella.h"
+
+  export *
+  module * { export * }
+}
