@@ -183,7 +183,7 @@ class CalendarViewController: UIViewController {
             self.issuesForSelectedDates = realm?.objects(Issue.self).filter(NSPredicate(value: false))
         }
      
-        self.updateBadge()
+        //self.updateBadge()
     }
     
     private func startOfDate(for date: Date) -> Date {
@@ -439,13 +439,13 @@ extension CalendarViewController: IssueDetailDelegate {
         }
         
         tableView.reloadData()
-        updateBadge()
+        //updateBadge()
         reloadIssuesForCurrentMonth()
     }
     
     func didModidyIssue(issue: Issue) {
         tableView.reloadData()
-        updateBadge()
+        //updateBadge()
         reloadIssuesForCurrentMonth()
     }
     
