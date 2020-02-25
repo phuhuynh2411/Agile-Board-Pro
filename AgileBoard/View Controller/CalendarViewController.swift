@@ -170,7 +170,7 @@ class CalendarViewController: UIViewController {
             let dateFrom = startOfDate(for: date)
             let dateTo = endOfDate(for: dateFrom)
    
-            let predicate = NSPredicate(format: "( startDate >= %@ AND startDate <= %@ ) OR ( dueDate >= %@ AND dueDate <= %@ )", argumentArray: [dateFrom, dateTo, dateFrom, dateTo])
+            let predicate = NSPredicate(format: "startDate >= %@ AND startDate <= %@", argumentArray: [dateFrom, dateTo])
             predicates.append(predicate)
             
         }

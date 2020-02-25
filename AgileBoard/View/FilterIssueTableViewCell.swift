@@ -12,11 +12,26 @@ class FilterIssueTableViewCell: UITableViewCell {
 
     @IBOutlet weak var filterImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var numberOfDueButton: UIButton!
     
+    var numberOfDueIssue: Int = 0 {
+        didSet{
+            if numberOfDueIssue > 0 {
+                numberOfDueButton.setTitle("\(numberOfDueIssue)", for: .normal)
+                numberOfDueButton.backgroundColor = .red
+            } else{
+                numberOfDueButton.setTitle("", for: .normal)
+                numberOfDueButton.backgroundColor = .none
+            }
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        numberOfDueButton.layer.cornerRadius = 5.0
+        numberOfDueButton.clipsToBounds = true
+        numberOfDueButton.isUserInteractionEnabled = false
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

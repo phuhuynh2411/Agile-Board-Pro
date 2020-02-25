@@ -20,6 +20,8 @@ class IssueFilterTableViewController: UITableViewController {
     
     var selectedIssue: Issue?
 
+    // MARK: - View Methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -41,6 +43,12 @@ class IssueFilterTableViewController: UITableViewController {
         // Remove extra separators
         tableView.tableFooterView = UIView()
         
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        tableView.reloadData()
     }
     
     // MARK: - IB Actions
@@ -69,6 +77,13 @@ class IssueFilterTableViewController: UITableViewController {
         let filter = filters[indexPath.row]
         cell.nameLabel.text = filter.name
         cell.filterImageView.image = UIImage(named: filter.imageName)
+        
+        if (filter as? DueTodayIssueFilter) != nil || (filter as? DueThisWeekIssueFilter) != nil,
+            let count = filter.issues?.count {
+            cell.numberOfDueIssue = count
+        } else {
+            cell.numberOfDueIssue = 0
+        }
 
         return cell
     }
