@@ -7,9 +7,7 @@
 //
 
 extension IssueType {
-    
-    static let shared = IssueType()
-    
+        
     static var standard: IssueType{
         return story
     }
@@ -61,8 +59,9 @@ extension IssueType {
     }
     
     static func typeByName(name: String)->IssueType? {
+        let realm = AppDataController.shared.realm
         
-        if let type = shared.realm?.objects(IssueType.self).filter({ (type) -> Bool in
+        if let type = realm?.objects(IssueType.self).filter({ (type) -> Bool in
             type.name.lowercased() == name
         }).first {
             return type

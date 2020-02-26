@@ -10,8 +10,6 @@ import Foundation
 
 extension Color {
     
-    static var shared = Color()
-    
     static var todo:           Color { return .color(hex: "#3498db") }
     static var inprogress:     Color { return .color(hex: "#f1c40f") }
     static var done:           Color { return .color(hex: "#27ae60") }
@@ -69,8 +67,9 @@ extension Color {
     }
     
     static func findColor(by hex: String)->Color? {
+        let realm = AppDataController.shared.realm
         
-        if let color = shared.realm?.objects(Color.self).filter({ (color) -> Bool in
+        if let color = realm?.objects(Color.self).filter({ (color) -> Bool in
             color.hexColor.lowercased() == hex.lowercased()
         }).first {
             return color

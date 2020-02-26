@@ -14,6 +14,7 @@ class ProjectTableViewCell: SwipeTableViewCell {
     @IBOutlet weak var projectImageView: UIImageView!
     @IBOutlet weak var projectNameLabel: UILabel!
     @IBOutlet weak var projectDescriptionLabel: UILabel!
+    @IBOutlet weak var idLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

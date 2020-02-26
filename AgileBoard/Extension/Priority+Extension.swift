@@ -9,9 +9,7 @@
 import Foundation
 
 extension Priority {
-    
-    static let shared = Priority()
-    
+        
     static var standard: Priority {
         return medium
     }
@@ -37,11 +35,12 @@ extension Priority {
     }
     
     static func findPriority(by name: String)->Priority? {
+        let realm = AppDataController.shared.realm
         
-        if let type = shared.realm?.objects(Priority.self).filter({ (priority) -> Bool in
+        if let priority = realm?.objects(Priority.self).filter({ (priority) -> Bool in
             priority.name.lowercased() == name.lowercased()
         }).first {
-            return type
+            return priority
         }else {
             return nil
         }

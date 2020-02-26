@@ -10,8 +10,10 @@ import Foundation
 
 extension ProjectIcon {
     
-    static var shared = ProjectIcon()
-    
+    static var standard: ProjectIcon {
+           return .icon(name: "project_CFI")
+    }
+        
     static var alarm: ProjectIcon {
         return .icon(name: "project_alarm")
     }
@@ -53,8 +55,9 @@ extension ProjectIcon {
     }
     
     static func findIcon(by name: String)->ProjectIcon? {
+        let realm = AppDataController.shared.realm
         
-        if let icon = shared.realm?.objects(ProjectIcon.self).filter({ (icon) -> Bool in
+        if let icon = realm?.objects(ProjectIcon.self).filter({ (icon) -> Bool in
             icon.name.lowercased() == name.lowercased()
         }).first {
             return icon

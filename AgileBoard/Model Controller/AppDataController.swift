@@ -34,7 +34,7 @@ class AppDataController {
         
         // Create project's icon
         var icons = [ProjectIcon]()
-        icons.append(contentsOf: [.alarm, .cammera, .email, .heart,
+        icons.append(contentsOf: [.standard, .alarm, .cammera, .email, .heart,
                                   .lock, .photo, .photo2, .shield, .tidy, .cloud])
         self.add(toRealm: icons)
         
@@ -46,12 +46,8 @@ class AppDataController {
         // Add color
         self.add(toRealm: Color.colors)
         
-        // Create sample Projects
-        let project = Project(name: Lorem.words(5), description: Lorem.sentences(2), key: Lorem.word)
-        project.isSample = true
-        
-        self.add(toRealm: [project])
-        
+        // Add five sample projects
+        self.add(sampleProjects: 10)
     }
     
     func clearRealm(){
@@ -63,7 +59,7 @@ class AppDataController {
             print(error)
         }
     }
-    
+
     func add(toRealm objects: [Object]) {
         for object in objects {
             if object.realm == nil {
@@ -72,5 +68,20 @@ class AppDataController {
             }
         }
     }
-
+    
+    private func addSampleProject(){
+        // Create sample Projects
+        let key = Lorem.words(5).prefix(3).uppercased()
+        let project = Project(name: Lorem.sentence, description: Lorem.sentences(2), key: String(key))
+        project.isSample    = true
+        project.icon        = .standard
+        
+        self.add(toRealm: [project])
+    }
+    
+    func add(sampleProjects number: Int) {
+        for _ in 0..<number {
+            self.addSampleProject()
+        }
+    }
 }

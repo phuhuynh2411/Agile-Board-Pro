@@ -88,6 +88,7 @@ class ProjectTableViewController: UITableViewController {
         if let icon = project?.icon {
             cell.projectImageView.image = UIImage(named: icon.name)
         }
+        cell.idLabel.text = project?.key
 
         return cell
     }
