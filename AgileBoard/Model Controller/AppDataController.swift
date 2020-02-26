@@ -25,7 +25,36 @@ class AppDataController {
         
     func createSampleData() {
         
-        // Clear previous data
+        self.clearRealm()
+        
+        // Create issue types
+        var issueTypes = [IssueType]()
+        issueTypes.append(contentsOf: [.story, .epic, .bug, .task])
+        self.add(toRealm: issueTypes)
+        
+        // Create project's icon
+        var icons = [ProjectIcon]()
+        icons.append(contentsOf: [.alarm, .cammera, .email, .heart,
+                                  .lock, .photo, .photo2, .shield, .tidy, .cloud])
+        self.add(toRealm: icons)
+        
+        // Add priorities
+        var priorities = [Priority]()
+        priorities.append(contentsOf: [.highest, .high, .medium, .low, .lowest])
+        self.add(toRealm: priorities)
+        
+        // Add color
+        self.add(toRealm: Color.colors)
+        
+        // Create sample Projects
+        let project = Project(name: Lorem.words(5), description: Lorem.sentences(2), key: Lorem.word)
+        project.isSample = true
+        
+        self.add(toRealm: [project])
+        
+    }
+    
+    func clearRealm(){
         do{
             try realm?.write {
                 realm?.deleteAll()
@@ -33,18 +62,15 @@ class AppDataController {
         }catch{
             print(error)
         }
-        
-        // Create Sample Issue Types
-        IssueTypeController.shared.createSampleIssueTypes()
-        // Create sample Project Icons
-        ProjectIconController.createSampleIcons()
-        // Create sample priorities
-        PriorityController.shared.createSamplePriorities()
-        // Create sample colors
-        ColorController.shared.createSampleColors()
-        // Create sample Projects
-        let projectController = ProjectController()
-        projectController.createSampleProjects()
-        
     }
+    
+    func add(toRealm objects: [Object]) {
+        for object in objects {
+            if object.realm == nil {
+                do{ try realm?.write{ realm?.add(object) }
+                }catch{ print(error) }
+            }
+        }
+    }
+
 }

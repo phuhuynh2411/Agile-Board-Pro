@@ -17,63 +17,44 @@ extension Priority {
     }
     
     static var highest: Priority {
-        if let prioriy = priorityByName(name: "Highest") { return prioriy }
-        
-        let priority = Priority()
-        priority.name = "Highest"
-        priority.imageName = "priority_highest"
-        return priority
+        return .priority(name: "Highest", imageName: "priority_highest")
     }
     
     static var high: Priority {
-        if let prioriy = priorityByName(name: "High") { return prioriy }
-        
-        let priority = Priority()
-        priority.name = "High"
-        priority.imageName = "priority_high"
-        return priority
+        return .priority(name: "High", imageName: "priority_high")
     }
     
     static var medium: Priority {
-        if let priority = priorityByName(name: "Medium") { return priority }
-        
-        let priority = Priority()
-        priority.name = "Medium"
-        priority.imageName = "priority_medium"
-        priority.standard = true
-        
-        return priority
+        return .priority(name: "Medium", imageName: "priority_medium")
     }
     
     static var low: Priority {
-        if let priority = priorityByName(name: "Low") { return priority }
-        
-        let priority = Priority()
-        priority.name = "Low"
-        priority.imageName = "priority_low"
-        
-        return priority
+        return .priority(name: "Low", imageName: "priority_low")
     }
     
     static var lowest: Priority {
-        if let priority = priorityByName(name: "Lowest") { return priority }
-        
-        let priority = Priority()
-        priority.name = "Lowest"
-        priority.imageName = "priority_lowest"
-        
-        return priority
+        return .priority(name: "Lowest", imageName: "priority_lowest")
     }
     
-    static func priorityByName(name: String)->Priority? {
+    static func findPriority(by name: String)->Priority? {
         
         if let type = shared.realm?.objects(Priority.self).filter({ (priority) -> Bool in
-            priority.standard == true
+            priority.name.lowercased() == name.lowercased()
         }).first {
             return type
         }else {
             return nil
         }
+    }
+    
+    static func priority(name: String, imageName: String) -> Priority {
+        if let priority = findPriority(by: name) { return priority }
+        
+        let priority = Priority()
+        priority.name = name
+        priority.imageName = imageName
+        
+        return priority
     }
     
 }

@@ -37,5 +37,12 @@ class Project: Object {
     @objc dynamic var modifiedDate = Date()
     
     @objc dynamic var selectedBoard: Board?
+    
+    @objc dynamic var isSample: Bool = false {
+        willSet{
+            guard newValue else { return }
+            self.add(testIssue: TestIssue(project: self))
+        }
+    }
   
 }

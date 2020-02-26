@@ -89,6 +89,8 @@
 		8468D499238FBD71006B02D4 /* StatusController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468D498238FBD71006B02D4 /* StatusController.swift */; };
 		84694E0E239A1199004BC18D /* UIApplication+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84694E0D239A1199004BC18D /* UIApplication+Extention.swift */; };
 		846B6A8C238CCA7600569BC2 /* IssuePageControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846B6A8B238CCA7600569BC2 /* IssuePageControlView.swift */; };
+		846F39F2240600340020135D /* Column+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846F39F1240600340020135D /* Column+Extension.swift */; };
+		846F39F42406019C0020135D /* Board+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846F39F32406019C0020135D /* Board+Extension.swift */; };
 		8476A55523C7234E0002334C /* FilterIssueTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8476A55423C7234E0002334C /* FilterIssueTableViewCell.swift */; };
 		847A78102387711600911851 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847A780F2387711600911851 /* Status.swift */; };
 		847A78122387745D00911851 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847A78112387745D00911851 /* Board.swift */; };
@@ -151,6 +153,12 @@
 		84E59162239251A2006FBA5E /* ProjectNameTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E59161239251A2006FBA5E /* ProjectNameTextField.swift */; };
 		84E59164239253D3006FBA5E /* ValidatorError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E59163239253D3006FBA5E /* ValidatorError.swift */; };
 		84E5916623925C86006FBA5E /* ProjectKeyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E5916523925C86006FBA5E /* ProjectKeyTextField.swift */; };
+		84E87E6B240515A80008BDEE /* ProjectIcon+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E87E6A240515A80008BDEE /* ProjectIcon+Extension.swift */; };
+		84E87E6D24051CAC0008BDEE /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E87E6C24051CAC0008BDEE /* Color+Extension.swift */; };
+		84E87E6F240524210008BDEE /* Status+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E87E6E240524210008BDEE /* Status+Extension.swift */; };
+		84E87E71240574140008BDEE /* TestIssue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E87E70240574130008BDEE /* TestIssue.swift */; };
+		84E87E73240575200008BDEE /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E87E72240575200008BDEE /* Date+Extension.swift */; };
+		84E87E75240576890008BDEE /* LoremSwiftum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E87E74240576890008BDEE /* LoremSwiftum.swift */; };
 		84F49ABA238E4C72002B8B93 /* CircleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F49AB9238E4C72002B8B93 /* CircleImageView.swift */; };
 		84F49ABC238E4D04002B8B93 /* AssigneeImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F49ABB238E4D04002B8B93 /* AssigneeImageView.swift */; };
 		84F56A05237C5B56007E6C68 /* UIColor+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F56A04237C5B56007E6C68 /* UIColor+Extention.swift */; };
@@ -263,6 +271,8 @@
 		8468D498238FBD71006B02D4 /* StatusController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusController.swift; sourceTree = "<group>"; };
 		84694E0D239A1199004BC18D /* UIApplication+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIApplication+Extention.swift"; path = "AgileBoard/Model Controller/UIApplication+Extention.swift"; sourceTree = SOURCE_ROOT; };
 		846B6A8B238CCA7600569BC2 /* IssuePageControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssuePageControlView.swift; sourceTree = "<group>"; };
+		846F39F1240600340020135D /* Column+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Column+Extension.swift"; sourceTree = "<group>"; };
+		846F39F32406019C0020135D /* Board+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Board+Extension.swift"; sourceTree = "<group>"; };
 		8470DBBF2395FB8E00B146BD /* Pods_AgileBoard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_AgileBoard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8470DBC12395FBC000B146BD /* KMPlaceholderTextView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KMPlaceholderTextView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8470DBC32395FBC000B146BD /* Realm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Realm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -334,6 +344,12 @@
 		84E59161239251A2006FBA5E /* ProjectNameTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNameTextField.swift; sourceTree = "<group>"; };
 		84E59163239253D3006FBA5E /* ValidatorError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatorError.swift; sourceTree = "<group>"; };
 		84E5916523925C86006FBA5E /* ProjectKeyTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectKeyTextField.swift; sourceTree = "<group>"; };
+		84E87E6A240515A80008BDEE /* ProjectIcon+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProjectIcon+Extension.swift"; sourceTree = "<group>"; };
+		84E87E6C24051CAC0008BDEE /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
+		84E87E6E240524210008BDEE /* Status+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Status+Extension.swift"; sourceTree = "<group>"; };
+		84E87E70240574130008BDEE /* TestIssue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestIssue.swift; sourceTree = "<group>"; };
+		84E87E72240575200008BDEE /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		84E87E74240576890008BDEE /* LoremSwiftum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoremSwiftum.swift; sourceTree = "<group>"; };
 		84F49AB9238E4C72002B8B93 /* CircleImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImageView.swift; sourceTree = "<group>"; };
 		84F49ABB238E4D04002B8B93 /* AssigneeImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssigneeImageView.swift; sourceTree = "<group>"; };
 		84F56A04237C5B56007E6C68 /* UIColor+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIColor+Extention.swift"; path = "AgileBoard/View/UIColor+Extention.swift"; sourceTree = SOURCE_ROOT; };
@@ -495,6 +511,14 @@
 				8490AA7B2403BC9F00579312 /* IssueType+Extension.swift */,
 				8490AA7D2403BEE300579312 /* Issue+Extension.swift */,
 				8490AA7F2403C6C500579312 /* Priority+Extension.swift */,
+				84E87E6A240515A80008BDEE /* ProjectIcon+Extension.swift */,
+				84E87E72240575200008BDEE /* Date+Extension.swift */,
+				84E87E70240574130008BDEE /* TestIssue.swift */,
+				84E87E6C24051CAC0008BDEE /* Color+Extension.swift */,
+				84E87E6E240524210008BDEE /* Status+Extension.swift */,
+				84E87E74240576890008BDEE /* LoremSwiftum.swift */,
+				846F39F32406019C0020135D /* Board+Extension.swift */,
+				846F39F1240600340020135D /* Column+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -959,6 +983,7 @@
 				8431758823EA5F390060C333 /* CalendarView+Delegate.swift in Sources */,
 				8431758B23EA5F390060C333 /* CalendarView.swift in Sources */,
 				842FDD7623A1432B0038A796 /* Animations.swift in Sources */,
+				846F39F42406019C0020135D /* Board+Extension.swift in Sources */,
 				847FD27123CEC1410005E446 /* OpenIssueFilter.swift in Sources */,
 				843C58C92391049400F5FAB5 /* AppDataController.swift in Sources */,
 				841B42F223844275000871F6 /* IssueCollectionViewFlowLayout.swift in Sources */,
@@ -972,8 +997,10 @@
 				84E59164239253D3006FBA5E /* ValidatorError.swift in Sources */,
 				8468D497238FA76E006B02D4 /* IssueTypeController.swift in Sources */,
 				84299FD523990B8E00432A66 /* AttachmentCollectionView.swift in Sources */,
+				84E87E6B240515A80008BDEE /* ProjectIcon+Extension.swift in Sources */,
 				84245EBC238E551300AE479E /* Sprint.swift in Sources */,
 				847A78102387711600911851 /* Status.swift in Sources */,
+				84E87E73240575200008BDEE /* Date+Extension.swift in Sources */,
 				8445863B23FE2FE9003889C7 /* CalendarViewController+TableViewDataSource.swift in Sources */,
 				84579E6223965068009575E4 /* Priority.swift in Sources */,
 				8431758323EA5F390060C333 /* CalendarFlowLayout.swift in Sources */,
@@ -993,6 +1020,7 @@
 				84A1FC1923A32F1D008648F9 /* StartDateTableViewCell.swift in Sources */,
 				8442DC42237E969C008C88C6 /* Identifier.swift in Sources */,
 				844A12E323B2510700E74020 /* BColumnCollectionReusableView.swift in Sources */,
+				84E87E75240576890008BDEE /* LoremSwiftum.swift in Sources */,
 				84ACC2F523AB5AB8004B5281 /* Color.swift in Sources */,
 				843C58C52390FFB600F5FAB5 /* ProjectIcon.swift in Sources */,
 				84094BD323C6E46F00650950 /* IssueFilterTableViewController.swift in Sources */,
@@ -1014,6 +1042,7 @@
 				84A51AC0237AF8DD00477B75 /* IssueTableController.swift in Sources */,
 				8431758623EA5F390060C333 /* CalendarDayCell.swift in Sources */,
 				845227D1238D22FE000607A8 /* IssueCollectionView.swift in Sources */,
+				84E87E71240574140008BDEE /* TestIssue.swift in Sources */,
 				84579E642396513B009575E4 /* PriorityController.swift in Sources */,
 				84A1FC1B23A32F2F008648F9 /* EndDateTableViewCell.swift in Sources */,
 				84579E6823965CD4009575E4 /* PriorityTableViewCell.swift in Sources */,
@@ -1022,10 +1051,12 @@
 				847FD26F23CEC09A0005E446 /* UpdatedRecentlyIssueFilter.swift in Sources */,
 				84B5F733238F860C00D344C3 /* IssueTypeTableViewCell.swift in Sources */,
 				84CEC23A23B1FD9D0044B2B3 /* BoardDetailStatusViewController.swift in Sources */,
+				84E87E6F240524210008BDEE /* Status+Extension.swift in Sources */,
 				847A781823878AEC00911851 /* ProjectController.swift in Sources */,
 				84F49ABA238E4C72002B8B93 /* CircleImageView.swift in Sources */,
 				8468D494238FA69F006B02D4 /* IssueType.swift in Sources */,
 				846757A22390AF0F009BD2DE /* RoundImageView.swift in Sources */,
+				846F39F2240600340020135D /* Column+Extension.swift in Sources */,
 				84584E29238EDBDD000408AE /* SearchProjectViewController.swift in Sources */,
 				84D590F723B9FDD90011FA4B /* ObjectExtension.swift in Sources */,
 				842686F02399519600B981D7 /* AttachmentCollectionViewFlowLayout.swift in Sources */,
@@ -1079,6 +1110,7 @@
 				841CEDDF23AC853C00D90369 /* ProjectTableViewCellv2.swift in Sources */,
 				841D97AB238E685200483928 /* AppNavigationBar.swift in Sources */,
 				8476A55523C7234E0002334C /* FilterIssueTableViewCell.swift in Sources */,
+				84E87E6D24051CAC0008BDEE /* Color+Extension.swift in Sources */,
 				84983ECA23B1CB05003657F1 /* BoardDetailViewController.swift in Sources */,
 				8431758523EA5F390060C333 /* CalendarView+Extensions.swift in Sources */,
 				84C340E42388361D00C65AC9 /* ProjectTableViewController.swift in Sources */,
