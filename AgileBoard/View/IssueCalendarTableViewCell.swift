@@ -117,7 +117,7 @@ class IssueCalendarTableViewCell: SwipeTableViewCell {
         typeImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16).isActive = true
         typeImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         
-        verticalStackView.leadingAnchor.constraint(equalTo: typeImageView.trailingAnchor, constant: 8).isActive = true
+        verticalStackView.leadingAnchor.constraint(equalTo: typeImageView.trailingAnchor, constant: 16).isActive = true
         verticalStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16).isActive = true
         //verticalStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 8).isActive = true
         //verticalStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 8).isActive = true

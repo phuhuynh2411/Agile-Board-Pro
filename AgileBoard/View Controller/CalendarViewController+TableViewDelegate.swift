@@ -43,11 +43,53 @@ extension CalendarViewController: UITableViewDelegate, SwipeTableViewCellDelegat
             self.present(alertController, animated: true, completion: nil)
             
         }
+        
+        let transAction = SwipeAction(style: .default, title: "Transition") { (action, indexPath) in
+            self.selectedIssue = issue
+            // Indexpaths that need to be reloaded.
+            self.editedIndexPaths.removeAll()
+            self.editedIndexPaths.append(indexPath)
+            
+            self.performSegue(withIdentifier: self.changeStatueSegue, sender: self)
+        }
 
         // customize the action appearance
         deleteAction.image = UIImage(named: "delete")
 
-        return [deleteAction]
+        return [deleteAction, transAction]
+    }
+    
+}
+
+// MARK: - Status Delegate
+
+extension CalendarViewController: StatusDelegate {
+    
+    func didSelectStatus(status: Status) {
+        guard let issue = self.selectedIssue else { return }
+        
+        do{ try issue.write { issue.status = status }
+        }catch{ print(error) }
+        
+        tableView.reloadRows(at: self.editedIndexPaths, with: .fade)
+    }
+}
+
+// MARK: - UIViewControllerTransitioningDelegate
+
+extension CalendarViewController {
+    
+    class StatusTransitioningDelegate: UIViewController, UIViewControllerTransitioningDelegate {
+        
+        func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+            
+            let halfScreenPresentationController = HalfScreenPresentationController(presentedViewController: presented, presenting: presenting)
+            
+            halfScreenPresentationController.presentedViewHeight = view.frame.height/2
+            halfScreenPresentationController.presentedCornerRadius = 10.0
+            
+            return halfScreenPresentationController
+        }
     }
     
 }

@@ -42,18 +42,18 @@ extension CalendarView {
         public static let weekLabelFontSize: CGFloat = 17.0
 
         //Common
-        public static var cellShape                 = CellShapeOptions.bevel(4.0)
+        public static var cellShape                 = CellShapeOptions.round
         
         public static var firstWeekday              = FirstWeekdayOptions.monday
         
         //Default Style
         public static var cellColorDefault          = UIColor(white: 1, alpha: 1)
-        public static var cellTextColorDefault      = UIColor.gray
+        public static var cellTextColorDefault      = UIColor.black
         public static var cellBorderColor           = UIColor.clear
         public static var cellBorderWidth           = CGFloat(0.0)
         
         //Today Style
-        public static var cellTextColorToday        = UIColor.gray
+        public static var cellTextColorToday        = UIColor.black
         public static var cellColorToday            = UIColor(red: 254.0/255.0, green: 73.0/255.0, blue: 64.0/255.0, alpha: 0.3)
         
         //Selected Style
@@ -63,7 +63,7 @@ extension CalendarView {
         public static var cellSelectedTextColor     = UIColor.black
         
         //Weekend Style
-        public static var cellTextColorWeekend      = UIColor(red:1.00, green:0.84, blue:0.65, alpha:1.00)
+        public static var cellTextColorWeekend      = UIColor.lightGray //UIColor(red:1.00, green:0.84, blue:0.65, alpha:1.00)
         
        //Cell
         public static let cellLabelFontSize: CGFloat = 17.0

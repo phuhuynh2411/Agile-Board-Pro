@@ -37,7 +37,7 @@ class IssueListTableViewController: UITableViewController {
     // Issue
     var selectedIssue: Issue?
     
-    var statusTrasitioningDelegate: StatusTransitioningDelegate?
+    private var statusTrasitioningDelegate: StatusTransitioningDelegate?
     
     private let changeStatueSegue = "ChangeStatusSegue"
     
@@ -550,7 +550,6 @@ extension IssueListTableViewController: StatusDelegate {
         do{ try issue.write { issue.status = status }
         }catch{ print(error) }
         
-        //tableView.reloadData()
         tableView.reloadRows(at: self.editedIndexPaths, with: .fade)
     }
 }

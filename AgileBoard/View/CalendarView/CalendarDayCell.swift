@@ -87,8 +87,7 @@ open class CalendarDayCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         
-        self.textLabel.textAlignment = NSTextAlignment.center
-        //self.textLabel.font = UIFont(name: CalendarView.Style.cellLabelFontName, size: CalendarView.Style.cellLabelFontSize)
+        self.textLabel.textAlignment = .center
         self.textLabel.font = UIFont.systemFont(ofSize: CalendarView.Style.cellLabelFontSize)
         
         self.dotsView.backgroundColor = CalendarView.Style.cellEventColor

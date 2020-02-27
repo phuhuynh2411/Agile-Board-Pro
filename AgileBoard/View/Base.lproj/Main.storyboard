@@ -785,6 +785,7 @@
                         <segue destination="OPr-22-lDI" kind="presentation" identifier="AddIssueSegue" modalPresentationStyle="fullScreen" id="gd1-Jh-sT0"/>
                         <segue destination="OPr-22-lDI" kind="presentation" identifier="EditIssueSegue" modalPresentationStyle="fullScreen" id="Kaj-w7-ga6"/>
                         <segue destination="Jbh-5Z-ofQ" kind="show" identifier="IssueListSegue" id="XXO-bh-0l1"/>
+                        <segue destination="Th0-Pj-UqK" kind="presentation" identifier="ChangeStatusSegue" id="Qfh-vQ-v67"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dcm-fm-P1m" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2277,10 +2278,10 @@
     <inferredMetricsTieBreakers>
         <segue reference="R4r-id-FWv"/>
         <segue reference="MHi-C5-gJy"/>
-        <segue reference="CZT-l8-R7Q"/>
+        <segue reference="Qfh-vQ-v67"/>
         <segue reference="U2G-ij-VVg"/>
         <segue reference="kzU-CZ-19t"/>
-        <segue reference="N49-3h-qNm"/>
+        <segue reference="gd1-Jh-sT0"/>
         <segue reference="XXO-bh-0l1"/>
     </inferredMetricsTieBreakers>
 </document>

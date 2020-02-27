@@ -77,6 +77,12 @@ class CalendarViewController: UIViewController {
     
     private var isSelectedToday = false
     
+    internal var statusTrasitioningDelegate: StatusTransitioningDelegate?
+       
+    internal let changeStatueSegue = "ChangeStatusSegue"
+       
+    internal var editedIndexPaths = [IndexPath]()
+    
     // MARK: - View Methods
     
     override func viewDidLoad() {
@@ -330,6 +336,21 @@ class CalendarViewController: UIViewController {
             let  issueListTableViewController = segue.destination as! IssueListTableViewController
             issueListTableViewController.filter = AllIssueFilter(name: "All", imageName: "")
             issueListTableViewController.isActiveSearch = true // isActiveSearch
+            
+        } else if segue.identifier == "ChangeStatusSegue" {
+            let navigationController = segue.destination as! UINavigationController
+            let vc = navigationController.topViewController as! StatusTableViewController
+            
+            let project = selectedIssue?.projectOwners.first
+            vc.project = project
+            vc.statuses = project?.statuses
+            vc.selectedStatus = selectedIssue?.status
+            
+            vc.delegate = self
+            
+            statusTrasitioningDelegate = StatusTransitioningDelegate()
+            segue.destination.transitioningDelegate = statusTrasitioningDelegate
+            segue.destination.modalPresentationStyle = .custom
         }
     }
     

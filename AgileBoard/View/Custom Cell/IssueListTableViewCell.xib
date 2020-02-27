@@ -17,7 +17,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="405" height="75"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="W3Q-pd-9sZ">
+                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="W3Q-pd-9sZ">
                         <rect key="frame" x="20" y="15" width="369" height="45.5"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="issue_bug" translatesAutoresizingMaskIntoConstraints="NO" id="Sp2-1P-Bst">
@@ -28,16 +28,16 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="gLl-SI-idV">
-                                <rect key="frame" x="31" y="0.0" width="338" height="45.5"/>
+                                <rect key="frame" x="36" y="0.0" width="333" height="45.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Maecenas sed diam eget risus varius blandit sit amet non magna." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vT5-0e-d3k">
-                                        <rect key="frame" x="0.0" y="0.0" width="338" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="333" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="KPT-XZ-IXK">
-                                        <rect key="frame" x="0.0" y="29.5" width="338" height="16"/>
+                                        <rect key="frame" x="0.0" y="29.5" width="333" height="16"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="FT-00001" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YLx-El-Aff">
                                                 <rect key="frame" x="0.0" y="0.0" width="67" height="16"/>
@@ -60,7 +60,7 @@
                                                 </constraints>
                                             </imageView>
                                             <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rgr-Ru-F9N">
-                                                <rect key="frame" x="129" y="0.0" width="209" height="16"/>
+                                                <rect key="frame" x="129" y="0.0" width="204" height="16"/>
                                                 <state key="normal" title="DONE"/>
                                             </button>
                                         </subviews>

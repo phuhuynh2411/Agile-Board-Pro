@@ -488,7 +488,6 @@
 				8476A55423C7234E0002334C /* FilterIssueTableViewCell.swift */,
 				8445863823FE26E8003889C7 /* IssueCalendarTableViewCell.swift */,
 				8431757923EA5F390060C333 /* CalendarView */,
-				8445863323FE20CE003889C7 /* CalendarIssueView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -623,13 +622,6 @@
 				843C8991237AE7480050586E /* Info.plist */,
 			);
 			path = AgileBoard;
-			sourceTree = "<group>";
-		};
-		8445863323FE20CE003889C7 /* CalendarIssueView */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = CalendarIssueView;
 			sourceTree = "<group>";
 		};
 		8445864023FE41C7003889C7 /* IssueFilters */ = {
