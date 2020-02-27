@@ -42,7 +42,7 @@ extension CalendarView {
         public static let weekLabelFontSize: CGFloat = 17.0
 
         //Common
-        public static var cellShape                 = CellShapeOptions.round
+        public static var cellShape                 = CellShapeOptions.bevel(4)
         
         public static var firstWeekday              = FirstWeekdayOptions.monday
         
