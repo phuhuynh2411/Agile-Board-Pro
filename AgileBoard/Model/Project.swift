@@ -35,6 +35,7 @@ class Project: Object {
     // House keeping fields
     @objc dynamic var createdDate = Date()
     @objc dynamic var modifiedDate = Date()
+    @objc dynamic var recentlyViewed = Date()
     
     @objc dynamic var selectedBoard: Board?
     

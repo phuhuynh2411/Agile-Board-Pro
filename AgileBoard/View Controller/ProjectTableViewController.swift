@@ -22,21 +22,29 @@ class ProjectTableViewController: UITableViewController {
     
     let searchController = UISearchController(searchResultsController: nil)
     
-    let projectController = ProjectController()
+    private var reload = false
+        
+    // MARK: - View methods
     
     override func viewDidLoad() {
 
         super.viewDidLoad()
         
         // Get all projects from Realm database
-        projectList = realm?.objects(Project.self)
+        projectList = realm?.objects(Project.self).sorted(byKeyPath: "recentlyViewed", ascending: false)
        
         // Configure search view controller
         configureSearchViewController()
         
         // Configure table view
         configureTableView()
-
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // Reload the table view when navigating back from the board view controller only.
+        if reload { tableView.reloadData() ; reload = false }
     }
     
     // MARK: - Configure Search View Controller
@@ -70,7 +78,7 @@ class ProjectTableViewController: UITableViewController {
     
 
     // MARK: - Table view data source
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         let numberOfRows = !isFiltering() ? projectList?.count : filteredProjectList?.count
@@ -93,6 +101,25 @@ class ProjectTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView()
+        view.backgroundColor = .white
+        
+        let label = UILabel()
+        label.text = "Recently viewed"
+        label.textColor = UIColor(red: 0.14, green: 0.14, blue: 0.14, alpha: 1)
+        label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        
+        view.addSubview(label)
+        
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
+        label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
+        label.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        
+        return view
+    }
+    
     // MARK: - TableView Delegate
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -104,6 +131,8 @@ class ProjectTableViewController: UITableViewController {
         
         // Initialize a selected project at index path
         selectedProject = !isFiltering() ? projectList?[indexPath.row] : filteredProjectList?[indexPath.row]
+        
+        self.updateRecentlyViewed(for: selectedProject)
         
         performSegue(withIdentifier: Identifier.BoardViewControllerSegue, sender: self)
         
@@ -119,6 +148,8 @@ class ProjectTableViewController: UITableViewController {
             // Pass the selected project through the board view controller
             let boardViewController = segue.destination as! BoardViewController
             boardViewController.project = selectedProject
+            
+            self.reload = true
         }
         else if segue.identifier == Identifier.EditProjectSegue {
             let navigationController = segue.destination as! UINavigationController
@@ -136,6 +167,13 @@ class ProjectTableViewController: UITableViewController {
      
     }
     
+    // MARK: - Private methods
+    
+    private func updateRecentlyViewed(for project: Project?) {
+        do{
+            try project?.write { project?.recentlyViewed = Date() }
+        }catch { print(error) }
+    }
 
 }
 
