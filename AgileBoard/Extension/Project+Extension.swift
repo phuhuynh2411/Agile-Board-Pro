@@ -10,12 +10,13 @@ import RealmSwift
 
 extension Project {
     
-    convenience init(name: String, description: String, key: String) {
+    convenience init(name: String, description: String?, key: String, icon: ProjectIcon? = nil) {
         self.init()
         
         self.name                   = name
-        self.projectDescription     = description
+        self.projectDescription     = description ?? ""
         self.key                    = key
+        self.icon                   = icon
         
         statuses.append(objectsIn: [.todo, .inprogress, .done])
     

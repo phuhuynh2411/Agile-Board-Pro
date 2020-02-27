@@ -53,7 +53,7 @@
 		843C58C52390FFB600F5FAB5 /* ProjectIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843C58C42390FFB600F5FAB5 /* ProjectIcon.swift */; };
 		843C58C72390FFF800F5FAB5 /* ProjectIconController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843C58C62390FFF800F5FAB5 /* ProjectIconController.swift */; };
 		843C58C92391049400F5FAB5 /* AppDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843C58C82391049400F5FAB5 /* AppDataController.swift */; };
-		843C58CB2391073800F5FAB5 /* AddProjectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843C58CA2391073800F5FAB5 /* AddProjectTableViewController.swift */; };
+		843C58CB2391073800F5FAB5 /* ProjectDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843C58CA2391073800F5FAB5 /* ProjectDetailTableViewController.swift */; };
 		843C8984237AE7460050586E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843C8983237AE7460050586E /* AppDelegate.swift */; };
 		843C8988237AE7460050586E /* BoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843C8987237AE7460050586E /* BoardViewController.swift */; };
 		843C898B237AE7460050586E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 843C8989237AE7460050586E /* Main.storyboard */; };
@@ -231,7 +231,7 @@
 		843C58C42390FFB600F5FAB5 /* ProjectIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectIcon.swift; sourceTree = "<group>"; };
 		843C58C62390FFF800F5FAB5 /* ProjectIconController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectIconController.swift; sourceTree = "<group>"; };
 		843C58C82391049400F5FAB5 /* AppDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDataController.swift; sourceTree = "<group>"; };
-		843C58CA2391073800F5FAB5 /* AddProjectTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProjectTableViewController.swift; sourceTree = "<group>"; };
+		843C58CA2391073800F5FAB5 /* ProjectDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailTableViewController.swift; sourceTree = "<group>"; };
 		843C8980237AE7460050586E /* Agile Board.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Agile Board.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		843C8983237AE7460050586E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		843C8987237AE7460050586E /* BoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardViewController.swift; sourceTree = "<group>"; };
@@ -441,7 +441,7 @@
 				841D97A8238E674300483928 /* AppNavigationController.swift */,
 				84579E65239656E1009575E4 /* PriorityTableViewController.swift */,
 				840409B9239171290006829F /* IconCollectionViewController.swift */,
-				843C58CA2391073800F5FAB5 /* AddProjectTableViewController.swift */,
+				843C58CA2391073800F5FAB5 /* ProjectDetailTableViewController.swift */,
 				84B5F730238F806B00D344C3 /* IssueTypeTableViewController.swift */,
 				84584E28238EDBDD000408AE /* SearchProjectViewController.swift */,
 				84584E26238ED999000408AE /* AddIssueViewController.swift */,
@@ -1027,7 +1027,7 @@
 				84CA0F2123D152CF00F3B172 /* UIImageViewExtension.swift in Sources */,
 				8431758923EA5F390060C333 /* EventsManager.swift in Sources */,
 				84F96A3423B2157E00F44C73 /* BoardDetailColumnViewController.swift in Sources */,
-				843C58CB2391073800F5FAB5 /* AddProjectTableViewController.swift in Sources */,
+				843C58CB2391073800F5FAB5 /* ProjectDetailTableViewController.swift in Sources */,
 				84983EC423B1B702003657F1 /* BoardTitleView.swift in Sources */,
 				84B7EE0B239A40D10011BBD9 /* UIImageExtension.swift in Sources */,
 				8490889723A1D75500D5DD96 /* DueDateTableViewCell.swift in Sources */,

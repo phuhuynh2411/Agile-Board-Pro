@@ -10,11 +10,17 @@ import UIKit
 import KMPlaceholderTextView
 import SwiftValidator
 
-protocol AddProjectDelegate {
-    func didAddProject(project: Project?)
+protocol ProjectDetailDelegate {
+    func didAdd(_ project: Project) -> Void
+    func didEdit(_ project: Project) -> Void
 }
 
-class AddProjectTableViewController: UITableViewController {
+extension ProjectDetailDelegate {
+    func didAdd(project: Project) -> Void { return }
+    func didEdit(project: Project) -> Void { return }
+}
+
+class ProjectDetailTableViewController: UITableViewController {
     
     // MARK: IBOutlets
     
@@ -32,7 +38,7 @@ class AddProjectTableViewController: UITableViewController {
     
     var project: Project?
     var selectedIcon: ProjectIcon?
-    var delegate: AddProjectDelegate?
+    var delegate: ProjectDetailDelegate?
     
     /// Validation
     let validator = Validator()
@@ -63,40 +69,35 @@ class AddProjectTableViewController: UITableViewController {
     private func setUpView() {
         
         // Change the navigation item's title
-        navigationItem.title = isEditing() ? "Edit Project" : "New Project"
+        navigationItem.title = isNew ? "New Project" : "Edit Project"
         // Change the right button bar text
-        navigationItem.rightBarButtonItem?.title = isEditing() ? "Save" : "Create"
-        
-        // Hide the done button by default
-        doneButton.isEnabled = false
+        navigationItem.rightBarButtonItem?.title = isNew ? "Create" : ""
         
         // Load project data
         nameTextField.text = project?.name
         keyTextField.text = project?.key
         descriptionTextView.text = project?.projectDescription
-        selectedIcon = isEditing() ? project?.icon : ProjectIconController.defaultIcon()
-        
-        // Load Icon
-        loadIcon()
+        self.selectedIcon = isNew ? .standard : project?.icon
         
         // Register fields for validation
         registerFieldsForValidation()
+        
+        // Update view
+        self.updateView()
 
     }
     
     private func updateView() {
-        loadIcon()
-        doneButton.isEnabled = validated
-    }
-    
-    // MARK: Helper methods
-    
-    private func loadIcon() {
+        
         // Display the project's icon
         if let projectIcon = selectedIcon {
             iconImageView.image = UIImage(named: projectIcon.name)
         }
+        
+        doneButton.isEnabled = validated && isNew
     }
+    
+    // MARK: Helper methods
     
     /**
      Recalculate the table view content height based on the text view
@@ -125,40 +126,14 @@ class AddProjectTableViewController: UITableViewController {
     /**
      - Returns: `true` if the project is exist, otherwise ``false`
      */
-    private func isEditing() -> Bool {
-        return project == nil ? false : true
-    }
-    
-    private func createOrUpdateProject(callback: (_ error: NSError?)->Void) {
-        
-        guard let name = nameTextField.text else { return }
-        guard let key = keyTextField.text else { return }
-        let description = descriptionTextView.text!
-        
-        if isEditing() {
-            let editedProject = Project()
-            editedProject.name = name
-            editedProject.icon = selectedIcon
-            editedProject.projectDescription = description
-            editedProject.key = key
-            
-            ProjectController.shared.update(project: project!, by: editedProject, callback)
-            
-        }
-        else {
-            project = Project()
-            project?.name = name
-            project?.icon = selectedIcon
-            project?.projectDescription = description
-            project?.key = key
-            ProjectController.shared.add(project: project!, callback)
-        }
-       
+    private var isNew: Bool {
+        return project == nil ? true : false
     }
     
     // MARK: - IB Actions
     
     @IBAction func closeButtonPressed(_ sender: UIBarButtonItem) {
+        if validated && !isNew { self.delegate?.didEdit( self.project!) }
         dismiss(animated: true, completion: nil)
     }
     
@@ -175,16 +150,17 @@ class AddProjectTableViewController: UITableViewController {
         // Make sure the user's input is validated
         guard validated else { return }
         
-        createOrUpdateProject { (error) in
-            if let error = error {
-                print("Failed creating or updating project with error \(error)")
-            }
-            else {
-                delegate?.didAddProject(project: project)
-                dismiss(animated: true, completion: nil)
-            }
-        }
+        guard let name      = nameTextField.text else { return }
+        guard let key       = keyTextField.text else { return }
+        let description     = descriptionTextView.text
         
+        if isNew {
+            let project = Project(name: name, description: description, key: key, icon: self.selectedIcon)
+            self.delegate?.didAdd(project)
+        }
+        else { self.delegate?.didEdit( self.project! ) }
+        
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func tapedOnIconImageView(_ sender: UITapGestureRecognizer) {
@@ -207,7 +183,7 @@ class AddProjectTableViewController: UITableViewController {
 
 // MARK: - UI TextView Delegate
 
-extension AddProjectTableViewController: UITextViewDelegate {
+extension ProjectDetailTableViewController: UITextViewDelegate {
     
     func textViewDidChange(_ textView: UITextView) {
         viewFitsTextView()
@@ -219,20 +195,18 @@ extension AddProjectTableViewController: UITextViewDelegate {
 
 // MARK: - Select Icon Delegate
 
-extension AddProjectTableViewController: SelectIconDelegate {
+extension ProjectDetailTableViewController: SelectIconDelegate {
     
     func didSelectIcon(icon: ProjectIcon?) {
         selectedIcon = icon
         validator.validate(self)
-        
-        updateView()
     }
     
 }
 
 // MARK: - UI TextField Delegate
 
-extension AddProjectTableViewController: UITextFieldDelegate {
+extension ProjectDetailTableViewController: UITextFieldDelegate {
     
     // Use this if you have a UITextField
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -262,13 +236,25 @@ extension AddProjectTableViewController: UITextFieldDelegate {
 
 // MARK: - Validator
 
-extension AddProjectTableViewController: ValidationDelegate {
+extension ProjectDetailTableViewController: ValidationDelegate {
     
     // MARK: Validation successful
     
     func validationSuccessful() {
         validated = true
         updateView()
+        
+        guard let name      = nameTextField.text else { return }
+        guard let key       = keyTextField.text else { return }
+        let description     = descriptionTextView.text
+        do {
+            try project?.write{
+                project?.name               = name
+                project?.key                = key
+                project?.projectDescription = description ?? ""
+                project?.icon               = self.selectedIcon
+            }
+        } catch { print(error) }
     }
     
     // MARK: Validation failed

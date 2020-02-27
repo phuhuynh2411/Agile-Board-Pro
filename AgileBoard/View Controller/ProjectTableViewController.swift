@@ -16,7 +16,7 @@ class ProjectTableViewController: UITableViewController {
     
     var filteredProjectList: LazyFilterSequence<Results<Project>>?
     
-    lazy var realm = try! Realm()
+    lazy var realm = AppDataController.shared.realm
     
     var selectedProject: Project?
     
@@ -29,7 +29,7 @@ class ProjectTableViewController: UITableViewController {
         super.viewDidLoad()
         
         // Get all projects from Realm database
-        projectList = realm.objects(Project.self)
+        projectList = realm?.objects(Project.self)
        
         // Configure search view controller
         configureSearchViewController()
@@ -122,14 +122,14 @@ class ProjectTableViewController: UITableViewController {
         }
         else if segue.identifier == Identifier.EditProjectSegue {
             let navigationController = segue.destination as! UINavigationController
-            let addProjectTableViewController = navigationController.topViewController as! AddProjectTableViewController
+            let addProjectTableViewController = navigationController.topViewController as! ProjectDetailTableViewController
             
             addProjectTableViewController.project = selectedProject
             addProjectTableViewController.delegate = self
         }
         else if segue.identifier == Identifier.AddProjectSegue {
             let navigationController = segue.destination as! UINavigationController
-            let addProjectTableViewController = navigationController.topViewController as! AddProjectTableViewController
+            let addProjectTableViewController = navigationController.topViewController as! ProjectDetailTableViewController
             
             addProjectTableViewController.delegate = self
         }
@@ -215,9 +215,16 @@ extension ProjectTableViewController: SwipeTableViewCellDelegate {
 
 // MARK: - Add Project Delegate
 
-extension ProjectTableViewController: AddProjectDelegate {
+extension ProjectTableViewController: ProjectDetailDelegate {
     
-    func didAddProject(project: Project?) {
+    func didAdd(_ project: Project) {
+        do{
+            try realm?.write{ realm?.add(project) }
+        } catch{ print(error) }
+        tableView.reloadData()
+    }
+    
+    func didEdit(_ project: Project) {
         tableView.reloadData()
     }
 }

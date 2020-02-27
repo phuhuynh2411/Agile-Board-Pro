@@ -846,7 +846,7 @@
         <!--New Project-->
         <scene sceneID="817-fF-gv3">
             <objects>
-                <tableViewController storyboardIdentifier="addProjectTableViewController" id="Gmb-pi-FYd" customClass="AddProjectTableViewController" customModule="Agile_Board" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="addProjectTableViewController" id="Gmb-pi-FYd" customClass="ProjectDetailTableViewController" customModule="Agile_Board" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="1" id="fpc-bb-Dpb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

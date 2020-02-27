@@ -72,7 +72,8 @@ class AppDataController {
     private func addSampleProject(){
         // Create sample Projects
         let key = Lorem.words(5).prefix(3).uppercased()
-        let project = Project(name: Lorem.sentence, description: Lorem.sentences(2), key: String(key))
+        let name = Lorem.sentence.prefix(30)
+        let project = Project(name: String(name), description: Lorem.sentences(2), key: String(key))
         project.isSample    = true
         project.icon        = .standard
         
