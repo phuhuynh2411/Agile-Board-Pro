@@ -39,5 +39,9 @@ class BaseIssueFilter {
         case updateRecently
         case open
         case done
+        case story
+        case bug
+        case task
+        case epic
     }
 }

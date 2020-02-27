@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		1DB51538F85880BCF4157A34 /* Pods_Agile_Board.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60BDC45437DED51FB9EDFE20 /* Pods_Agile_Board.framework */; };
+		840390E72407C3750091934B /* StoryFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840390E62407C3750091934B /* StoryFilter.swift */; };
+		840390E92407C5D00091934B /* TaskFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840390E82407C5D00091934B /* TaskFilter.swift */; };
+		840390EB2407C5F30091934B /* EpicFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840390EA2407C5F30091934B /* EpicFilter.swift */; };
+		840390ED2407C6140091934B /* BugFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840390EC2407C6140091934B /* BugFilter.swift */; };
 		840409BA239171290006829F /* IconCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840409B9239171290006829F /* IconCollectionViewController.swift */; };
 		840409BC239173070006829F /* IconCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840409BB239173070006829F /* IconCollectionViewCell.swift */; };
 		8408E50E23A9DEE3004A859C /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8408E50D23A9DEE3004A859C /* UIView+Extension.swift */; };
@@ -187,6 +191,10 @@
 		527A2ED904C4DE16EE945F07 /* Pods-Agile Board.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agile Board.debug.xcconfig"; path = "Target Support Files/Pods-Agile Board/Pods-Agile Board.debug.xcconfig"; sourceTree = "<group>"; };
 		60BDC45437DED51FB9EDFE20 /* Pods_Agile_Board.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Agile_Board.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		760D95FF4FC9DB8BC409AD08 /* Pods-AgileBoardTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgileBoardTests.release.xcconfig"; path = "Target Support Files/Pods-AgileBoardTests/Pods-AgileBoardTests.release.xcconfig"; sourceTree = "<group>"; };
+		840390E62407C3750091934B /* StoryFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryFilter.swift; sourceTree = "<group>"; };
+		840390E82407C5D00091934B /* TaskFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskFilter.swift; sourceTree = "<group>"; };
+		840390EA2407C5F30091934B /* EpicFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpicFilter.swift; sourceTree = "<group>"; };
+		840390EC2407C6140091934B /* BugFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugFilter.swift; sourceTree = "<group>"; };
 		840409B9239171290006829F /* IconCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconCollectionViewController.swift; sourceTree = "<group>"; };
 		840409BB239173070006829F /* IconCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconCollectionViewCell.swift; sourceTree = "<group>"; };
 		8408E50D23A9DEE3004A859C /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
@@ -635,6 +643,10 @@
 				847FD26E23CEC09A0005E446 /* UpdatedRecentlyIssueFilter.swift */,
 				847FD27023CEC1410005E446 /* OpenIssueFilter.swift */,
 				847FD27223CEC4160005E446 /* DoneIssueFilter.swift */,
+				840390E62407C3750091934B /* StoryFilter.swift */,
+				840390E82407C5D00091934B /* TaskFilter.swift */,
+				840390EA2407C5F30091934B /* EpicFilter.swift */,
+				840390EC2407C6140091934B /* BugFilter.swift */,
 			);
 			path = IssueFilters;
 			sourceTree = "<group>";
@@ -977,6 +989,7 @@
 				847FD26D23CEBE730005E446 /* CreatedRecentlyIssueFilter.swift in Sources */,
 				8431758823EA5F390060C333 /* CalendarView+Delegate.swift in Sources */,
 				8431758B23EA5F390060C333 /* CalendarView.swift in Sources */,
+				840390E72407C3750091934B /* StoryFilter.swift in Sources */,
 				842FDD7623A1432B0038A796 /* Animations.swift in Sources */,
 				846F39F42406019C0020135D /* Board+Extension.swift in Sources */,
 				847FD27123CEC1410005E446 /* OpenIssueFilter.swift in Sources */,
@@ -994,6 +1007,7 @@
 				84299FD523990B8E00432A66 /* AttachmentCollectionView.swift in Sources */,
 				84E87E6B240515A80008BDEE /* ProjectIcon+Extension.swift in Sources */,
 				84245EBC238E551300AE479E /* Sprint.swift in Sources */,
+				840390ED2407C6140091934B /* BugFilter.swift in Sources */,
 				847A78102387711600911851 /* Status.swift in Sources */,
 				84E87E73240575200008BDEE /* Date+Extension.swift in Sources */,
 				8445863B23FE2FE9003889C7 /* CalendarViewController+TableViewDataSource.swift in Sources */,
@@ -1088,6 +1102,7 @@
 				84983EC623B1C33C003657F1 /* BoardTableViewController.swift in Sources */,
 				84579E66239656E1009575E4 /* PriorityTableViewController.swift in Sources */,
 				8445863923FE26E8003889C7 /* IssueCalendarTableViewCell.swift in Sources */,
+				840390E92407C5D00091934B /* TaskFilter.swift in Sources */,
 				8490AA7C2403BC9F00579312 /* IssueType+Extension.swift in Sources */,
 				842D75C623AA2E8500193812 /* UITextView+Extension.swift in Sources */,
 				8442DC3B237E7B92008C88C6 /* IssueCollectionViewCell.swift in Sources */,
@@ -1095,6 +1110,7 @@
 				846656E724076DF200596642 /* AppStyle.swift in Sources */,
 				84B5F72F238F647F00D344C3 /* SearchProjectTableViewCell.swift in Sources */,
 				84C340E62388368900C65AC9 /* ProjectTableViewCell.swift in Sources */,
+				840390EB2407C5F30091934B /* EpicFilter.swift in Sources */,
 				8490AA802403C6C500579312 /* Priority+Extension.swift in Sources */,
 				8420628C237AFD7E0076CDAC /* Issue.swift in Sources */,
 				8490D5E923C5DD82002E787B /* UIScrollViewExtension.swift in Sources */,

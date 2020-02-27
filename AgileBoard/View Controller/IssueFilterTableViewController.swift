@@ -40,8 +40,17 @@ class IssueFilterTableViewController: UITableViewController {
         //Done
          filters.append(DoneIssueFilter(name: "Done", imageName: "filter_done"))
         
+        //Story
+        filters.append(StoryFilter(name: "Story", imageName: "issue_story"))
+        //Task
+        filters.append(TaskFilter(name: "Task", imageName: "issue_task"))
+        //Epic
+        filters.append(EpicFilter(name: "Epic", imageName: "issue_epic"))
+        //Bug
+        filters.append(BugFilter(name: "Bug", imageName: "issue_bug"))
+        
         // Remove extra separators
-        tableView.tableFooterView = UIView()
+        //tableView.tableFooterView = UIView()
         
     }
 

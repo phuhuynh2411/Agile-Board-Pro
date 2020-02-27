@@ -39,9 +39,15 @@ class TestIssue {
         let dueInNextTwoDays = Issue(summary: Lorem.sentences(1), description: Lorem.sentences(3), status: .todo(of: project), type: .story, priority: .medium, createdDate: TestDate.today, startDate: TestDate.today, endDate: TestDate.today, dueDate: TestDate.inNextTwoDays)
         
         let nextMonth = Issue(summary: Lorem.sentences(1), description: Lorem.sentences(3), status: .todo(of: project), type: .story, priority: .medium, createdDate: TestDate.today, startDate: TestDate.nextMonth, endDate: TestDate.nextMonth, dueDate: TestDate.nextMonth)
+        
+        let task = Issue(summary: Lorem.sentences(1), description: Lorem.sentences(3), status: .todo(of: project), type: .task, priority: .medium, createdDate: TestDate.today, startDate: TestDate.nextMonth, endDate: TestDate.nextMonth, dueDate: TestDate.nextMonth)
+        
+        let epic = Issue(summary: Lorem.sentences(1), description: Lorem.sentences(3), status: .todo(of: project), type: .epic, priority: .medium, createdDate: TestDate.today, startDate: TestDate.nextMonth, endDate: TestDate.nextMonth, dueDate: TestDate.nextMonth)
+        
+        let bug = Issue(summary: Lorem.sentences(1), description: Lorem.sentences(3), status: .todo(of: project), type: .bug, priority: .medium, createdDate: TestDate.today, startDate: TestDate.nextMonth, endDate: TestDate.nextMonth, dueDate: TestDate.nextMonth)
     
         
-        return [lastThreeMonth, lastTwoMonth, lastMonth, lastWeek, thisWeek, yesterday, today, dueToday, dueTomorrow, dueInNextTwoDays, nextMonth]
+        return [lastThreeMonth, lastTwoMonth, lastMonth, lastWeek, thisWeek, yesterday, today, dueToday, dueTomorrow, dueInNextTwoDays, nextMonth, task, epic, bug]
     
     }
     

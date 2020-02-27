@@ -1097,11 +1097,11 @@
         <scene sceneID="WzP-qo-nPy">
             <objects>
                 <tableViewController id="VBh-5k-qwg" customClass="ProjectTableViewController" customModule="Agile_Board" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="q40-0e-0NI">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="q40-0e-0NI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <inset key="separatorInset" minX="56" minY="0.0" maxX="16" maxY="0.0"/>
+                        <inset key="separatorInset" minX="66" minY="0.0" maxX="16" maxY="0.0"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="70" id="rDd-iq-KUx" customClass="ProjectTableViewCell" customModule="Agile_Board" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="70"/>
@@ -2047,7 +2047,7 @@
         <scene sceneID="qHX-vq-8yF">
             <objects>
                 <tableViewController id="cHi-Bx-mt6" customClass="IssueFilterTableViewController" customModule="Agile_Board" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" estimatedRowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" id="bGe-NM-yfz">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" estimatedRowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" id="bGe-NM-yfz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -2281,7 +2281,7 @@
         <segue reference="Qfh-vQ-v67"/>
         <segue reference="U2G-ij-VVg"/>
         <segue reference="kzU-CZ-19t"/>
-        <segue reference="gd1-Jh-sT0"/>
-        <segue reference="XXO-bh-0l1"/>
+        <segue reference="zSH-IA-yul"/>
+        <segue reference="9nM-To-yhd"/>
     </inferredMetricsTieBreakers>
 </document>

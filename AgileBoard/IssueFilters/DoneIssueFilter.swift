@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-class DoneIssueFilter: AllIssueFilter{
+class DoneIssueFilter: AllIssueFilter {
     
     override var type: BaseIssueFilter.IssueFilterType? {
         return .done
