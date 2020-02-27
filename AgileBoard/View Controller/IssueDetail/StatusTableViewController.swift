@@ -11,7 +11,7 @@ import RealmSwift
 import SwipeCellKit
 
 protocol StatusDelegate {
-    func didSelectStatus(status: Status)
+    func didSelect(_ status: Status)
 }
 
 class StatusTableViewController: UITableViewController {
@@ -101,7 +101,7 @@ class StatusTableViewController: UITableViewController {
         let status = statuses?[indexPath.row]
         
         if let status = status {
-            delegate?.didSelectStatus(status: status)
+            delegate?.didSelect(status)
         }
         dismiss(animated: true, completion: nil)
     }

@@ -9,16 +9,7 @@
 import UIKit
 
 extension UIImage {
-    
-    static func image(filePath: String) -> UIImage? {
-        if let url = URL(string: filePath) {
-            guard let data = try? Data(contentsOf: url) else { return nil }
-            return UIImage(data: data)
-        }
         
-        return nil
-    }
-    
     public convenience init?(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) {
         let rect = CGRect(origin: .zero, size: size)
         UIGraphicsBeginImageContextWithOptions(rect.size, false, 0.0)

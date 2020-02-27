@@ -544,7 +544,7 @@ extension IssueListTableViewController {
 
 extension IssueListTableViewController: StatusDelegate {
     
-    func didSelectStatus(status: Status) {
+    func didSelect(_ status: Status) {
         guard let issue = self.selectedIssue else { return }
         
         do{ try issue.write { issue.status = status }

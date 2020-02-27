@@ -834,21 +834,19 @@ extension IssueDetailTableViewController {
 // MARK: - AttachmentDelegate
 
 extension IssueDetailTableViewController: AttachmentDelegate {
-    func didAddAttachment(attachment: Attachment) {
-        if let issue = issue {
-            //IssueController.shared.add(attachment, to: issue)
-            issue.write( {
-                issue.attachments.append(attachment)
-            }, completion: nil)
-            updateView(components: [.tableView], markAsModified: true)
-        }
+    
+    func didAdd(_ attachment: Attachment) {
+        do{
+            try issue?.write { issue?.attachments.append(attachment) }
+        }catch{ print(error) }
+    
+        updateView(components: [.tableView], markAsModified: true)
     }
     
-    func didDeleteAttachment(attachment: Attachment, at indexPath: IndexPath) {
-        //IssueController.shared.delete(attachment)
-        issue?.write( {
-            issue?.realm?.delete(attachment)
-        }, completion: nil)
+    func didDelete(_ attachment: Attachment, at indexPath: IndexPath) {
+        do{
+            try issue?.write{ issue?.realm?.delete(attachment) }
+        }catch { print(error)}
         updateView(components: [.tableView], markAsModified: true)
     }
 }
@@ -880,14 +878,15 @@ extension IssueDetailTableViewController: ValidationDelegate {
 // MARK: - Status Delegate
 
 extension IssueDetailTableViewController: StatusDelegate {
-    func didSelectStatus(status: Status) {
-        if let issue = issue{
-            //IssueController.shared.update(status, to: issue)
-            issue.write( {
-                issue.status = status
-            }, completion: nil)
-            updateView(components: [.status])
-        }
+    
+    func didSelect(_ status: Status) {
+        do{
+            try issue?.write{
+                issue?.status = status
+            }
+        }catch{ print(error) }
+            
+        updateView(components: [.status])
     }
 }
 

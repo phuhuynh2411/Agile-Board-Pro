@@ -25,9 +25,11 @@ class PhotoViewController: UIViewController {
     }
     
     private func setUpView() {
+        guard let attachment = self.attachment else  { return }
         
-        if let imageURL = attachment?.url {
-            photoImageView.image = UIImage.image(filePath: imageURL)
+        let ac = AttachmentController()
+        if let image = ac.load(fileName: attachment.name) {
+            photoImageView.image = image
         }
     }
     

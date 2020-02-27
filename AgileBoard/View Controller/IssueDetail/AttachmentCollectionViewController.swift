@@ -12,8 +12,8 @@ import RealmSwift
 private let reuseIdentifier = "Cell"
 
 protocol AttachmentDelegate {
-    func didAddAttachment(attachment: Attachment)
-    func didDeleteAttachment(attachment: Attachment, at indexPath: IndexPath)
+    func didAdd(_ attachment: Attachment)
+    func didDelete(_ attachment: Attachment, at indexPath: IndexPath)
 }
 
 class AttachmentCollectionViewController: UICollectionViewController {
@@ -105,9 +105,6 @@ class AttachmentCollectionViewController: UICollectionViewController {
          }
         topController?.present(imagePickerController, animated: true, completion: nil)
     }
-    
-    // MARK: Navigation
-
 
     // MARK: UICollectionViewDataSource
 
@@ -129,8 +126,9 @@ class AttachmentCollectionViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! AttachmentCollectionViewCell
         
         let attachment = attachments?[indexPath.row]
-        if let stringURL = attachment?.url {
-            cell.attachmentImageView.image = UIImage.image(filePath: stringURL)
+        let ac = AttachmentController()
+        if let name = attachment?.name, let image = ac.load(fileName: name) {
+            cell.attachmentImageView.image = image
         }
         
         return cell
@@ -172,15 +170,15 @@ extension AttachmentCollectionViewController: UIImagePickerControllerDelegate, U
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
-        let attachment = Attachment()
-
-        let originalImage = info[.originalImage] as! UIImage
-        // Save the selected image to temporary folder
-        attachment.name = attachment.id
-        guard let stringURL = AttachmentController.shared.saveToDocumentFolder(image: originalImage, name: attachment.name)?.absoluteString else { return }
-        attachment.url = stringURL
+        guard let originalImage = info[.originalImage] as? UIImage else { return }
         
-        delegate?.didAddAttachment(attachment: attachment)
+        let attachment = Attachment()
+        let ac = AttachmentController()
+        do{
+            attachment.name = try ac.save(image: originalImage)
+        }catch { print(error); return }
+        
+        delegate?.didAdd(attachment)
         
         collectionView.reloadData()
         
@@ -274,12 +272,19 @@ extension AttachmentCollectionViewController: UICollectionViewDropDelegate {
         
         for item in coordinator.items {
             if let dragItem = item.dragItem.localObject as? DragAttachmentItem,
-                collectionView == deleteZoneCollectionView {
+                    collectionView == deleteZoneCollectionView {
+                
                 let sourceCollectionView = dragItem.collectionView
                 let indexPath = dragItem.indexPath
                 
-                let attachment = attachments![indexPath.row]
-                delegate?.didDeleteAttachment(attachment: attachment, at: indexPath)
+                guard let attachment = attachments?[indexPath.row] else { return }
+                let ac = AttachmentController()
+                do{
+                    try ac.delete(attachment.name)
+                }catch{ print(error) ; return }
+                
+                delegate?.didDelete(attachment, at: indexPath)
+                
                 // Delete the attachemnt in the collection view
                 sourceCollectionView.deleteItems(at: [indexPath])
             }
