@@ -15,13 +15,17 @@ protocol IssueTypeTableViewDelegate {
 
 class IssueTypeTableViewController: UITableViewController {
     
-    var issueTypes: List<IssueType>?
+    var issueTypes: Results<IssueType>?
     var selectedIssueType: IssueType?
     
     var delegate: IssueTypeTableViewDelegate?
+    
+    var realm = AppDataController.shared.realm
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        issueTypes = realm?.objects(IssueType.self)
         
         // Remove extra seperators
         tableView.tableFooterView = UIView()

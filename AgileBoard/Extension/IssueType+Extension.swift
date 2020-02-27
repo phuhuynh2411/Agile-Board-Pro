@@ -62,7 +62,7 @@ extension IssueType {
         let realm = AppDataController.shared.realm
         
         if let type = realm?.objects(IssueType.self).filter({ (type) -> Bool in
-            type.name.lowercased() == name
+            type.name.lowercased() == name.lowercased()
         }).first {
             return type
         }else {

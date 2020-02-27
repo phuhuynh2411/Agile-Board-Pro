@@ -37,6 +37,12 @@ class IssueListTableViewController: UITableViewController {
     // Issue
     var selectedIssue: Issue?
     
+    var statusTrasitioningDelegate: StatusTransitioningDelegate?
+    
+    private let changeStatueSegue = "ChangeStatusSegue"
+    
+    private var editedIndexPaths = [IndexPath]()
+        
     // MARK: - View Methods
     
     override func viewDidLoad() {
@@ -330,6 +336,20 @@ class IssueListTableViewController: UITableViewController {
             vc.issue = issue
             vc.project = project
             vc.delegate = self
+        } else if segue.identifier == "ChangeStatusSegue" {
+            let navigationController = segue.destination as! UINavigationController
+            let vc = navigationController.topViewController as! StatusTableViewController
+            
+            let project = selectedIssue?.projectOwners.first
+            vc.project = project
+            vc.statuses = project?.statuses
+            vc.selectedStatus = selectedIssue?.status
+            
+            vc.delegate = self
+            
+            statusTrasitioningDelegate = StatusTransitioningDelegate()
+            segue.destination.transitioningDelegate = statusTrasitioningDelegate
+            segue.destination.modalPresentationStyle = .custom
         }
     }
     
@@ -455,8 +475,13 @@ extension IssueListTableViewController: SwipeTableViewCellDelegate {
         }
 
         let transAction = SwipeAction(style: .default, title: "Transition") { action, indexPath in
-            // transtion issue
-            action.fulfill(with: .reset)
+            self.selectedIssue = issue
+            // Indexpaths that need to be reloaded.
+            self.editedIndexPaths.removeAll()
+            self.editedIndexPaths.append(indexPath)
+            
+            self.performSegue(withIdentifier: self.changeStatueSegue, sender: self)
+            
         }
         let deleteAction = SwipeAction(style: .destructive, title: "Delete") { (action, indexPath) in
             // handel delete action by updating the model here
@@ -494,4 +519,38 @@ extension IssueListTableViewController: SwipeTableViewCellDelegate {
         present(alertController, animated: true, completion: nil)
     }
     
+}
+
+// MARK: - UIViewControllerTransitioningDelegate
+
+extension IssueListTableViewController {
+    
+    class StatusTransitioningDelegate: UIViewController, UIViewControllerTransitioningDelegate {
+        
+        func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+            
+            let halfScreenPresentationController = HalfScreenPresentationController(presentedViewController: presented, presenting: presenting)
+            
+            halfScreenPresentationController.presentedViewHeight = view.frame.height/2
+            halfScreenPresentationController.presentedCornerRadius = 10.0
+            
+            return halfScreenPresentationController
+        }
+    }
+    
+}
+
+// MARK: - Status Delegate
+
+extension IssueListTableViewController: StatusDelegate {
+    
+    func didSelectStatus(status: Status) {
+        guard let issue = self.selectedIssue else { return }
+        
+        do{ try issue.write { issue.status = status }
+        }catch{ print(error) }
+        
+        //tableView.reloadData()
+        tableView.reloadRows(at: self.editedIndexPaths, with: .fade)
+    }
 }

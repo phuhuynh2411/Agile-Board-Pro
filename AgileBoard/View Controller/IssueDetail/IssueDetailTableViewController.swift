@@ -550,7 +550,7 @@ extension IssueDetailTableViewController {
             let issueTypeTableViewController = navigationController.topViewController as! IssueTypeTableViewController
             
             issueTypeTableViewController.selectedIssueType = issue?.type
-            issueTypeTableViewController.issueTypes = project?.issueTypes
+            //issueTypeTableViewController.issueTypes = project?.issueTypes
             issueTypeTableViewController.delegate = self
         }
         

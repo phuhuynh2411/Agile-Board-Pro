@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProjectCell" rowHeight="96" id="KGk-i7-Jjw" customClass="ProjectTableViewCellv2" customModule="AgileBoard" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProjectCell" rowHeight="96" id="KGk-i7-Jjw" customClass="ProjectTableViewCellv2" customModule="Agile_Board" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="325" height="70"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -24,7 +24,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Project" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T9e-Py-c8p">
-                        <rect key="frame" x="44" y="30" width="103" height="22"/>
+                        <rect key="frame" x="44" y="30" width="99" height="22"/>
                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -40,7 +40,7 @@
                 <constraints>
                     <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="2sW-zC-uHU" secondAttribute="trailing" constant="259" id="FTO-yo-9FG"/>
                     <constraint firstItem="T9e-Py-c8p" firstAttribute="centerY" secondItem="aWM-0r-Z7n" secondAttribute="centerY" id="Hp0-1h-m6N"/>
-                    <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="T9e-Py-c8p" secondAttribute="trailing" constant="178" id="IYM-Rd-HQD"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="T9e-Py-c8p" secondAttribute="trailing" constant="16" id="IYM-Rd-HQD"/>
                     <constraint firstItem="2sW-zC-uHU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="JV2-XA-L7s"/>
                     <constraint firstItem="T9e-Py-c8p" firstAttribute="leading" secondItem="aWM-0r-Z7n" secondAttribute="trailing" constant="8" id="Jph-wL-iLY"/>
                     <constraint firstItem="aWM-0r-Z7n" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="TLt-Mg-hlg"/>
