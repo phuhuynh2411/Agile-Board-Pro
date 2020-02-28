@@ -69,4 +69,8 @@ extension UIColor {
     static var buttonTextColor: UIColor {
         return UIColor(red: 31, green: 117, blue: 255, alpha: 1)
     }
+    
+    static var buttonTitleColor: UIColor {
+        return UIColor(red: 0, green: 0.48, blue: 1, alpha: 1)
+    }
 }

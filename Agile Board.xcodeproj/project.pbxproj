@@ -85,6 +85,7 @@
 		84584E29238EDBDD000408AE /* SearchProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84584E28238EDBDD000408AE /* SearchProjectViewController.swift */; };
 		84588D4323C8BE8B006A1E6E /* CalendarExtensionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84588D4223C8BE8B006A1E6E /* CalendarExtensionTest.swift */; };
 		8458B443237CF98500D6D473 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8458B442237CF98500D6D473 /* ShadowView.swift */; };
+		845F821C2408EEE5002C5DB9 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845F821B2408EEE5002C5DB9 /* UIButton+Extension.swift */; };
 		8462567723A4949800600F0F /* IssueController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8462567623A4949800600F0F /* IssueController.swift */; };
 		8462567923A4968900600F0F /* AddIssueTableViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8462567823A4968900600F0F /* AddIssueTableViewControllerTest.swift */; };
 		846656E724076DF200596642 /* AppStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846656E624076DF200596642 /* AppStyle.swift */; };
@@ -273,6 +274,7 @@
 		84588D3C23C8BB39006A1E6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84588D4223C8BE8B006A1E6E /* CalendarExtensionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarExtensionTest.swift; sourceTree = "<group>"; };
 		8458B442237CF98500D6D473 /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
+		845F821B2408EEE5002C5DB9 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		8462567623A4949800600F0F /* IssueController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueController.swift; sourceTree = "<group>"; };
 		8462567823A4968900600F0F /* AddIssueTableViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIssueTableViewControllerTest.swift; sourceTree = "<group>"; };
 		846656E624076DF200596642 /* AppStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStyle.swift; sourceTree = "<group>"; };
@@ -531,6 +533,7 @@
 				84E87E74240576890008BDEE /* LoremSwiftum.swift */,
 				846F39F32406019C0020135D /* Board+Extension.swift */,
 				846F39F1240600340020135D /* Column+Extension.swift */,
+				845F821B2408EEE5002C5DB9 /* UIButton+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1067,6 +1070,7 @@
 				84E87E6F240524210008BDEE /* Status+Extension.swift in Sources */,
 				847A781823878AEC00911851 /* ProjectController.swift in Sources */,
 				84F49ABA238E4C72002B8B93 /* CircleImageView.swift in Sources */,
+				845F821C2408EEE5002C5DB9 /* UIButton+Extension.swift in Sources */,
 				8468D494238FA69F006B02D4 /* IssueType.swift in Sources */,
 				846757A22390AF0F009BD2DE /* RoundImageView.swift in Sources */,
 				846F39F2240600340020135D /* Column+Extension.swift in Sources */,

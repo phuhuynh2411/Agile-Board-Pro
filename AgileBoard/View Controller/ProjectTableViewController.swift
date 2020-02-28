@@ -24,6 +24,30 @@ class ProjectTableViewController: UITableViewController {
     
     private var reload = false
         
+    var footerView: UIView =  {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 60))
+        view.backgroundColor = .none
+        
+        let button = UIButton(type: .custom)
+        button.setTitle("Add project", for: .normal)
+        button.setImage(UIImage(named: "Add"), for: .normal)
+        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
+        button.contentHorizontalAlignment = .left
+        button.setTitleColor(.buttonTitleColor, for: .normal)
+        
+        view.addSubview(button)
+
+        button.translatesAutoresizingMaskIntoConstraints                                        = false
+        button.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive     = true
+        button.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive                   = true
+        button.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive                 = true
+        button.heightAnchor.constraint(equalTo: view.heightAnchor).isActive                     = true
+
+        button.addTarget(self, action: #selector(addProject(_:)), for: .touchUpInside)
+        
+        return view
+    }()
+        
     // MARK: - View methods
     
     override func viewDidLoad() {
@@ -35,17 +59,22 @@ class ProjectTableViewController: UITableViewController {
        
         // Configure search view controller
         configureSearchViewController()
-        
-        // Configure table view
-        configureTableView()
-    }
     
+        // Add refresh controller
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl?.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
+        
+        self.tableView.tableFooterView = self.footerView
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         // Reload the table view when navigating back from the board view controller only.
         if reload { tableView.reloadData() ; reload = false }
     }
+    
+    
     
     // MARK: - Configure Search View Controller
     
@@ -62,23 +91,25 @@ class ProjectTableViewController: UITableViewController {
         definesPresentationContext = true
     }
     
-    // MARK: - Configure Table View
-    
-    func configureTableView() {
-        
-        // Remove the extra separators in the table view
-        tableView.tableFooterView = UIView()
-    }
-    
     // MARK: - IB Actions
     
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: Identifier.AddProjectSegue, sender: self)
     }
     
+    @IBAction func refresh(_ sender: UIRefreshControl) {
+        tableView.reloadData()
+        
+        refreshControl?.endRefreshing()
+    }
+    
+    @IBAction func addProject(_ sender: UIButton){
+        performSegue(withIdentifier: Identifier.AddProjectSegue, sender: self)
+    }
+    
 
     // MARK: - Table view data source
-    
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         let numberOfRows = !isFiltering() ? projectList?.count : filteredProjectList?.count
@@ -121,7 +152,12 @@ class ProjectTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 25.0
+        if isFiltering(), let count = filteredProjectList?.count {
+            return count > 0 ? 30 : 0
+        }else {
+            guard let count = projectList?.count else { return 0}
+            return count > 0 ? 30 : 0
+        }
     }
     
     // MARK: - TableView Delegate
@@ -224,14 +260,15 @@ extension ProjectTableViewController: SwipeTableViewCellDelegate {
             let alertController = UIAlertController(title: "", message: "Are you sure you want to delete this project permanently?", preferredStyle: .actionSheet)
             
             let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (action) in
-                do{
-                    try project.remove()
-                }catch{
-                    print(error)
-                    return
-                }
+                do{ try project.remove()
+                }catch{ print(error) ; return }
                 
-                tableView.deleteRows(at: [indexPath], with: .automatic)
+                guard let count = self.projectList?.count else { return }
+                if count == 0 {
+                    tableView.reloadData()
+                }else {
+                    tableView.deleteRows(at: [indexPath], with: .automatic)
+                }
             }
             
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
