@@ -47,7 +47,7 @@ class AppDataController {
         self.add(toRealm: Color.colors)
         
         // Add five sample projects
-        self.add(sampleProjects: 10)
+        //self.add(sampleProjects: 10)
     }
     
     func clearRealm(){
