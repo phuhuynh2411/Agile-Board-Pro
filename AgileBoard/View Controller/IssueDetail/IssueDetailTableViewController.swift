@@ -611,7 +611,7 @@ extension IssueDetailTableViewController: IssueTypeTableViewDelegate {
             }catch { print(error) ; return }
         }
         
-        updateView(components: [.issueType, .tableView, .header], markAsModified: true)
+        updateView(components: [.issueType, .tableView, .issueId], markAsModified: true)
     }
 }
 
