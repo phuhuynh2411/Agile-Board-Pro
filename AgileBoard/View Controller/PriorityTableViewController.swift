@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 
 protocol SelectPriorityDelegate {
-    func didSelectPriority(priority: Priority)
+    func didSelect(_ priority: Priority)
 }
 
 class PriorityTableViewController: UITableViewController {
@@ -69,9 +69,9 @@ class PriorityTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        selectedPriority = priorityList?[indexPath.row]
+        guard let selectedPriority = priorityList?[indexPath.row] else { return }
         
-        delegate?.didSelectPriority(priority: selectedPriority!)
+        delegate?.didSelect(selectedPriority)
         navigationController?.popViewController(animated: true)
     }
     

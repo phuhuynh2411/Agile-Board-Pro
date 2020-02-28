@@ -13,12 +13,12 @@ import SwiftValidator
 protocol IssueDetailDelegate {
     // Optional delete methods
     func didAddIssue(with issue: Issue, project: Project?)
-    func didModidyIssue(issue: Issue)
+    func didModify(_ issue: Issue)
 }
 
 extension IssueDetailDelegate {
     public func didAddIssue(with issue: Issue, project: Project?) { return }
-    public func didModidyIssue(issue: Issue) { return }
+    public func didModify(_ issue: Issue) { return }
 }
 
 class IssueDetailTableViewController: UITableViewController {
@@ -441,8 +441,7 @@ class IssueDetailTableViewController: UITableViewController {
             present(alertController, animated: true, completion: nil)
             
         } else if isModifed, let issue = self.issue { // Modify an issue
-            delegate?.didModidyIssue(issue: issue)
-            dismiss(animated: true, completion: nil)
+            dismiss(animated: true, completion: { self.delegate?.didModify(issue) } )
         }
         else { // User opened the issue, but did not make any changes.
             dismiss(animated: true, completion: nil)
@@ -460,7 +459,7 @@ class IssueDetailTableViewController: UITableViewController {
         }
         // The issue has been modified
         else{
-            delegate?.didModidyIssue(issue: issue)
+            delegate?.didModify(issue)
         }
         
         dismiss(animated: true, completion: nil)
@@ -603,18 +602,16 @@ extension IssueDetailTableViewController {
 
 extension IssueDetailTableViewController: IssueTypeTableViewDelegate {
     
-    func didSelectIssueType(issueType: IssueType) {
-        if let issue = issue{
-            //IssueController.shared.update(type: issueType, to: issue)
-            issue.write( {
-                issue.type = issueType
-            }) { (error) in
-                if let error = error {
-                    print(error)
-                }
-            }
-            updateView(components: [.issueType, .tableView], markAsModified: true)
+    func didSelect(_ issueType: IssueType) {
+        guard let issue = self.issue else { return }
+        if isNew() { issue.type = issueType }
+        else {
+            do{
+                try issue.write { issue.type = issueType }
+            }catch { print(error) ; return }
         }
+        
+        updateView(components: [.issueType, .tableView, .header], markAsModified: true)
     }
 }
 
@@ -702,14 +699,17 @@ extension IssueDetailTableViewController {
 
 extension IssueDetailTableViewController: SelectPriorityDelegate {
     
-    func didSelectPriority(priority: Priority) {
-        if let issue = issue {
-            //IssueController.shared.update(priority, to: issue)
-            issue.write({
-                issue.priority = priority
-            }, completion: nil)
-            updateView(components: [.tableView], markAsModified: true)
+    func didSelect(_ priority: Priority) {
+        
+        guard let issue = self.issue else { return }
+        if isNew() {
+            issue.priority = priority
+        }else{
+            do{
+                try issue.write{ issue.priority = priority }
+            }catch { print(error) ; return }
         }
+        updateView(components: [.tableView], markAsModified: true)
     }
 }
 
@@ -880,13 +880,13 @@ extension IssueDetailTableViewController: ValidationDelegate {
 extension IssueDetailTableViewController: StatusDelegate {
     
     func didSelect(_ status: Status) {
-        do{
-            try issue?.write{
-                issue?.status = status
-            }
-        }catch{ print(error) }
-            
-        updateView(components: [.status])
+        if isNew() { issue?.status = status }
+        else{
+            do{
+                try issue?.write{ issue?.status = status }
+            }catch{ print(error) ; return }
+        }
+        updateView(components: [.status], markAsModified: true)
     }
 }
 

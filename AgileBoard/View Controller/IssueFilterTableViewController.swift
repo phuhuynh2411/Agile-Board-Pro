@@ -184,7 +184,7 @@ extension IssueFilterTableViewController: IssueDetailDelegate {
         }
     }
     
-    func didModidyIssue(issue: Issue) {
+    func didModify(_ issue: Issue) {
         
     }
     

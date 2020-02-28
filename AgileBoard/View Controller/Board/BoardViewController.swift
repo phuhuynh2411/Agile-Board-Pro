@@ -37,13 +37,6 @@ class BoardViewController: UIViewController {
         // Custom navigation title view
         navigationItem.titleView = customView
         
-        // Init the selected board
-        if project?.selectedBoard == nil {
-            project?.write({
-                project?.selectedBoard = project?.boards.first
-            }, completion: nil)
-        }
-        
         // Update board name
         customView.titleButton.setTitle(project?.selectedBoard?.name, for: .normal)
         
@@ -186,8 +179,9 @@ extension BoardViewController {
 // MARK: - Add Issue Delegate
 
 extension BoardViewController: IssueDetailDelegate {
-    func didModidyIssue(issue: Issue) {
-        // Do something here
+    
+    func didModify(_ issue: Issue) {
+       
     }
     
     

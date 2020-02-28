@@ -19,8 +19,10 @@ extension Project {
         self.icon                   = icon
         
         statuses.append(objectsIn: [.todo, .inprogress, .done])
+        let board = Board.main(of: self)
+        boards.append(board)
+        selectedBoard = board
     
-        boards.append(.main(of: self))
     }
     
     func add(_ issue: Issue) throws {

@@ -20,7 +20,6 @@
 		84094BD123C6DD3400650950 /* IssueListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84094BD023C6DD3400650950 /* IssueListTableViewController.swift */; };
 		84094BD323C6E46F00650950 /* IssueFilterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84094BD223C6E46F00650950 /* IssueFilterTableViewController.swift */; };
 		841B42F223844275000871F6 /* IssueCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841B42F123844275000871F6 /* IssueCollectionViewFlowLayout.swift */; };
-		841CEDDC23AC62E900D90369 /* IssueControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841CEDDB23AC62E900D90369 /* IssueControllerTest.swift */; };
 		841CEDDF23AC853C00D90369 /* ProjectTableViewCellv2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841CEDDD23AC853C00D90369 /* ProjectTableViewCellv2.swift */; };
 		841CEDE023AC853C00D90369 /* ProjectTableViewCellv2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841CEDDE23AC853C00D90369 /* ProjectTableViewCellv2.xib */; };
 		841D97A9238E674300483928 /* AppNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841D97A8238E674300483928 /* AppNavigationController.swift */; };
@@ -83,11 +82,9 @@
 		84579E6A239664FB009575E4 /* IssueDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84579E69239664FB009575E4 /* IssueDetailTableViewController.swift */; };
 		84584E27238ED999000408AE /* AddIssueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84584E26238ED999000408AE /* AddIssueViewController.swift */; };
 		84584E29238EDBDD000408AE /* SearchProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84584E28238EDBDD000408AE /* SearchProjectViewController.swift */; };
-		84588D4323C8BE8B006A1E6E /* CalendarExtensionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84588D4223C8BE8B006A1E6E /* CalendarExtensionTest.swift */; };
 		8458B443237CF98500D6D473 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8458B442237CF98500D6D473 /* ShadowView.swift */; };
 		845F821C2408EEE5002C5DB9 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845F821B2408EEE5002C5DB9 /* UIButton+Extension.swift */; };
 		8462567723A4949800600F0F /* IssueController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8462567623A4949800600F0F /* IssueController.swift */; };
-		8462567923A4968900600F0F /* AddIssueTableViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8462567823A4968900600F0F /* AddIssueTableViewControllerTest.swift */; };
 		846656E724076DF200596642 /* AppStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846656E624076DF200596642 /* AppStyle.swift */; };
 		846685F3239F4BCB0033BA1E /* AddIssueCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846685F2239F4BCB0033BA1E /* AddIssueCollectionTableViewCell.swift */; };
 		846757A22390AF0F009BD2DE /* RoundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846757A12390AF0F009BD2DE /* RoundImageView.swift */; };
@@ -137,8 +134,6 @@
 		84ACC2F523AB5AB8004B5281 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ACC2F423AB5AB8004B5281 /* Color.swift */; };
 		84ACC2F723AB5B26004B5281 /* ColorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ACC2F623AB5B26004B5281 /* ColorController.swift */; };
 		84ACC2FA23AB74A1004B5281 /* TextviewTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ACC2F923AB74A1004B5281 /* TextviewTableViewController.swift */; };
-		84B3010D2394BF0300D4BBA8 /* AddProjecTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B3010C2394BF0300D4BBA8 /* AddProjecTableViewControllerTests.swift */; };
-		84B301142394C17500D4BBA8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 843C8989237AE7460050586E /* Main.storyboard */; };
 		84B5F72F238F647F00D344C3 /* SearchProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B5F72E238F647F00D344C3 /* SearchProjectTableViewCell.swift */; };
 		84B5F731238F806B00D344C3 /* IssueTypeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B5F730238F806B00D344C3 /* IssueTypeTableViewController.swift */; };
 		84B5F733238F860C00D344C3 /* IssueTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B5F732238F860C00D344C3 /* IssueTypeTableViewCell.swift */; };
@@ -175,18 +170,7 @@
 		84FA5A5323ACB44D003CDD65 /* StatusDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA5A5223ACB44D003CDD65 /* StatusDetailViewController.swift */; };
 		84FA5A5523ACB6F4003CDD65 /* ColorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA5A5423ACB6F4003CDD65 /* ColorCollectionViewCell.swift */; };
 		84FCC14123C781E1002309C1 /* CalendarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FCC14023C781E1002309C1 /* CalendarExtension.swift */; };
-		FFF49E46EE092036BE38F7E1 /* Pods_Agile_BoardTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4708C22574B816C31C109DFF /* Pods_Agile_BoardTests.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		84B3010F2394BF0300D4BBA8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 843C8978237AE7460050586E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 843C897F237AE7460050586E;
-			remoteInfo = AgileBoard;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		4708C22574B816C31C109DFF /* Pods_Agile_BoardTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Agile_BoardTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -205,7 +189,6 @@
 		84094BD023C6DD3400650950 /* IssueListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListTableViewController.swift; sourceTree = "<group>"; };
 		84094BD223C6E46F00650950 /* IssueFilterTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueFilterTableViewController.swift; sourceTree = "<group>"; };
 		841B42F123844275000871F6 /* IssueCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
-		841CEDDB23AC62E900D90369 /* IssueControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueControllerTest.swift; sourceTree = "<group>"; };
 		841CEDDD23AC853C00D90369 /* ProjectTableViewCellv2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTableViewCellv2.swift; sourceTree = "<group>"; };
 		841CEDDE23AC853C00D90369 /* ProjectTableViewCellv2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectTableViewCellv2.xib; sourceTree = "<group>"; };
 		841D97A8238E674300483928 /* AppNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigationController.swift; sourceTree = "<group>"; };
@@ -270,13 +253,9 @@
 		84579E69239664FB009575E4 /* IssueDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetailTableViewController.swift; sourceTree = "<group>"; };
 		84584E26238ED999000408AE /* AddIssueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIssueViewController.swift; sourceTree = "<group>"; };
 		84584E28238EDBDD000408AE /* SearchProjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchProjectViewController.swift; sourceTree = "<group>"; };
-		84588D3A23C8BB39006A1E6E /* CalendarExtensionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarExtensionTest.swift; sourceTree = "<group>"; };
-		84588D3C23C8BB39006A1E6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		84588D4223C8BE8B006A1E6E /* CalendarExtensionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarExtensionTest.swift; sourceTree = "<group>"; };
 		8458B442237CF98500D6D473 /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
 		845F821B2408EEE5002C5DB9 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		8462567623A4949800600F0F /* IssueController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueController.swift; sourceTree = "<group>"; };
-		8462567823A4968900600F0F /* AddIssueTableViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIssueTableViewControllerTest.swift; sourceTree = "<group>"; };
 		846656E624076DF200596642 /* AppStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStyle.swift; sourceTree = "<group>"; };
 		846685F2239F4BCB0033BA1E /* AddIssueCollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIssueCollectionTableViewCell.swift; sourceTree = "<group>"; };
 		846757A12390AF0F009BD2DE /* RoundImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundImageView.swift; sourceTree = "<group>"; };
@@ -293,8 +272,6 @@
 		8470DBC52395FBC000B146BD /* RealmSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8470DBC72395FBC000B146BD /* SwiftValidator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftValidator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8470DBC92395FBC000B146BD /* SwipeCellKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwipeCellKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8470DBD123960A3A00B146BD /* AddProjectTableViewControllerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProjectTableViewControllerUITests.swift; sourceTree = "<group>"; };
-		8470DBD323960A3A00B146BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8476A55423C7234E0002334C /* FilterIssueTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterIssueTableViewCell.swift; sourceTree = "<group>"; };
 		847A780F2387711600911851 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		847A78112387745D00911851 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
@@ -334,9 +311,6 @@
 		84ACC2F423AB5AB8004B5281 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		84ACC2F623AB5B26004B5281 /* ColorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorController.swift; sourceTree = "<group>"; };
 		84ACC2F923AB74A1004B5281 /* TextviewTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextviewTableViewController.swift; sourceTree = "<group>"; };
-		84B3010A2394BF0300D4BBA8 /* Agile BoardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Agile BoardTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		84B3010C2394BF0300D4BBA8 /* AddProjecTableViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProjecTableViewControllerTests.swift; sourceTree = "<group>"; };
-		84B3010E2394BF0300D4BBA8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84B5F72E238F647F00D344C3 /* SearchProjectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchProjectTableViewCell.swift; sourceTree = "<group>"; };
 		84B5F730238F806B00D344C3 /* IssueTypeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueTypeTableViewController.swift; sourceTree = "<group>"; };
 		84B5F732238F860C00D344C3 /* IssueTypeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueTypeTableViewCell.swift; sourceTree = "<group>"; };
@@ -387,14 +361,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1DB51538F85880BCF4157A34 /* Pods_Agile_Board.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		84B301072394BF0300D4BBA8 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FFF49E46EE092036BE38F7E1 /* Pods_Agile_BoardTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -601,9 +567,6 @@
 			isa = PBXGroup;
 			children = (
 				843C8982237AE7460050586E /* AgileBoard */,
-				84B3010B2394BF0300D4BBA8 /* AgileBoardTests */,
-				8470DBD023960A3A00B146BD /* AgileBoardUITests */,
-				84588D3923C8BB39006A1E6E /* CalendarExtensionTest */,
 				843C8981237AE7460050586E /* Products */,
 				79FD8BA0861C60C87775EE90 /* Pods */,
 				46A71542EFECC73ABABC71F3 /* Frameworks */,
@@ -614,7 +577,6 @@
 			isa = PBXGroup;
 			children = (
 				843C8980237AE7460050586E /* Agile Board.app */,
-				84B3010A2394BF0300D4BBA8 /* Agile BoardTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -665,15 +627,6 @@
 			path = Mock;
 			sourceTree = "<group>";
 		};
-		84588D3923C8BB39006A1E6E /* CalendarExtensionTest */ = {
-			isa = PBXGroup;
-			children = (
-				84588D3A23C8BB39006A1E6E /* CalendarExtensionTest.swift */,
-				84588D3C23C8BB39006A1E6E /* Info.plist */,
-			);
-			path = CalendarExtensionTest;
-			sourceTree = "<group>";
-		};
 		8468D495238FA755006B02D4 /* Model Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -703,15 +656,6 @@
 			path = Board;
 			sourceTree = "<group>";
 		};
-		8470DBD023960A3A00B146BD /* AgileBoardUITests */ = {
-			isa = PBXGroup;
-			children = (
-				8470DBD123960A3A00B146BD /* AddProjectTableViewControllerUITests.swift */,
-				8470DBD323960A3A00B146BD /* Info.plist */,
-			);
-			path = AgileBoardUITests;
-			sourceTree = "<group>";
-		};
 		84ACC2F823AB6BC3004B5281 /* IssueDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -723,18 +667,6 @@
 				84ACC2F923AB74A1004B5281 /* TextviewTableViewController.swift */,
 			);
 			path = IssueDetail;
-			sourceTree = "<group>";
-		};
-		84B3010B2394BF0300D4BBA8 /* AgileBoardTests */ = {
-			isa = PBXGroup;
-			children = (
-				84588D4223C8BE8B006A1E6E /* CalendarExtensionTest.swift */,
-				841CEDDB23AC62E900D90369 /* IssueControllerTest.swift */,
-				8462567823A4968900600F0F /* AddIssueTableViewControllerTest.swift */,
-				84B3010C2394BF0300D4BBA8 /* AddProjecTableViewControllerTests.swift */,
-				84B3010E2394BF0300D4BBA8 /* Info.plist */,
-			);
-			path = AgileBoardTests;
 			sourceTree = "<group>";
 		};
 		84C4042B23A2234500A49A8D /* PresentationController */ = {
@@ -796,26 +728,6 @@
 			productReference = 843C8980237AE7460050586E /* Agile Board.app */;
 			productType = "com.apple.product-type.application";
 		};
-		84B301092394BF0300D4BBA8 /* Agile BoardTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 84B301112394BF0300D4BBA8 /* Build configuration list for PBXNativeTarget "Agile BoardTests" */;
-			buildPhases = (
-				4B8DEBCCA39AF04A9AD97F0B /* [CP] Check Pods Manifest.lock */,
-				84B301062394BF0300D4BBA8 /* Sources */,
-				84B301072394BF0300D4BBA8 /* Frameworks */,
-				84B301082394BF0300D4BBA8 /* Resources */,
-				5D957DD923B42F3C0D492437 /* [CP] Embed Pods Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				84B301102394BF0300D4BBA8 /* PBXTargetDependency */,
-			);
-			name = "Agile BoardTests";
-			productName = AgileBoardTests;
-			productReference = 84B3010A2394BF0300D4BBA8 /* Agile BoardTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -828,10 +740,6 @@
 				TargetAttributes = {
 					843C897F237AE7460050586E = {
 						CreatedOnToolsVersion = 11.2;
-					};
-					84B301092394BF0300D4BBA8 = {
-						CreatedOnToolsVersion = 11.2.1;
-						TestTargetID = 843C897F237AE7460050586E;
 					};
 				};
 			};
@@ -849,7 +757,6 @@
 			projectRoot = "";
 			targets = (
 				843C897F237AE7460050586E /* Agile Board */,
-				84B301092394BF0300D4BBA8 /* Agile BoardTests */,
 			);
 		};
 /* End PBXProject section */
@@ -874,56 +781,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		84B301082394BF0300D4BBA8 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				84B301142394C17500D4BBA8 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4B8DEBCCA39AF04A9AD97F0B /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Agile BoardTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5D957DD923B42F3C0D492437 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Agile BoardTests/Pods-Agile BoardTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Agile BoardTests/Pods-Agile BoardTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Agile BoardTests/Pods-Agile BoardTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		84709D4F23AF854600E3B539 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1140,26 +1000,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		84B301062394BF0300D4BBA8 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				84B3010D2394BF0300D4BBA8 /* AddProjecTableViewControllerTests.swift in Sources */,
-				84588D4323C8BE8B006A1E6E /* CalendarExtensionTest.swift in Sources */,
-				841CEDDC23AC62E900D90369 /* IssueControllerTest.swift in Sources */,
-				8462567923A4968900600F0F /* AddIssueTableViewControllerTest.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		84B301102394BF0300D4BBA8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 843C897F237AE7460050586E /* Agile Board */;
-			targetProxy = 84B3010F2394BF0300D4BBA8 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		843C8989237AE7460050586E /* Main.storyboard */ = {
@@ -1335,59 +1176,6 @@
 			};
 			name = Release;
 		};
-		84B301122394BF0300D4BBA8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = DAAD23B03B49DA760EEDD8C4 /* Pods-Agile BoardTests.debug.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9RUFVFAF79;
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/KMPlaceholderTextView\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Realm\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RealmSwift\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/SwiftValidator\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/SwiftValidator\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/SwipeCellKit\"",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = AgileBoardTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = filesoft.co.AgileBoardTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Agile Board.app/Agile Board";
-			};
-			name = Debug;
-		};
-		84B301132394BF0300D4BBA8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = CC4D246C1B013A93F5FFFE25 /* Pods-Agile BoardTests.release.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9RUFVFAF79;
-				INFOPLIST_FILE = AgileBoardTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = filesoft.co.AgileBoardTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Agile Board.app/Agile Board";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1405,15 +1193,6 @@
 			buildConfigurations = (
 				843C8995237AE7480050586E /* Debug */,
 				843C8996237AE7480050586E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		84B301112394BF0300D4BBA8 /* Build configuration list for PBXNativeTarget "Agile BoardTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				84B301122394BF0300D4BBA8 /* Debug */,
-				84B301132394BF0300D4BBA8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

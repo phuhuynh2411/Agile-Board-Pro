@@ -464,7 +464,7 @@ extension CalendarViewController: IssueDetailDelegate {
         reloadIssuesForCurrentMonth()
     }
     
-    func didModidyIssue(issue: Issue) {
+    func didModify(_ issue: Issue) {
         tableView.reloadData()
         //updateBadge()
         reloadIssuesForCurrentMonth()

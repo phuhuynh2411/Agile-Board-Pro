@@ -20,9 +20,8 @@ class IssueTableController: NSObject {
     var column: Column?
     var tableView: UITableView?
     
-    var realm = try! Realm()
-    
-    
+    var copyOfSelectedIssue: Issue?
+            
     init(tableView: UITableView) {
         super.init()
         self.tableView = tableView
@@ -36,7 +35,7 @@ class IssueTableController: NSObject {
         let nibName = UINib(nibName: I.issueTVC, bundle: .main)
         tableView.register(nibName, forCellReuseIdentifier: I.issueTVC)
     }
-    
+
     // MARK: - Help Methods
     
     func viewDetail(issue: Issue) {
@@ -47,8 +46,9 @@ class IssueTableController: NSObject {
         
         let vc = UIStoryboard(name: I.storyBoard, bundle: .main).instantiateViewController(withIdentifier: I.issueDetailVC) as! IssueDetailTableViewController
         
-        vc.issue = issue
-        vc.project = project
+        vc.issue    = issue
+        vc.project  = project
+        vc.delegate = self
         
         let topViewController = UIApplication.getTopViewController()
         let nav = UIStoryboard(name: I.storyBoard, bundle: .main).instantiateViewController(withIdentifier: I.issueDetailNC) as! UINavigationController
@@ -57,9 +57,7 @@ class IssueTableController: NSObject {
         topViewController?.present(nav, animated: true, completion: nil)
         
     }
-    
-    
-    
+
 }
 
 // MARK: - UITableView Datasource
@@ -95,13 +93,9 @@ extension IssueTableController: UITableViewDataSource {
     }
     
     func dataForTableView(with issues: List<Issue>,and column: Column) {
-        
-        self.issues = issues
-        self.column = column
-        if let status = column.status {
-            displayedIssues = issues.filter("status = %@", status)
-        }
-        
+        self.issues = issues ; self.column = column
+        guard let status = column.status else { return }
+        displayedIssues = issues.filter("status = %@", status)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -124,7 +118,9 @@ extension IssueTableController: UITableViewDelegate {
      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         selectedIssue = displayedIssues?[indexPath.row]
+        
         if let issue = selectedIssue {
+            copyOfSelectedIssue = Issue(value: issue)
             viewDetail(issue: issue)
         }
     }
@@ -273,4 +269,19 @@ extension IssueTableController {
         static let issueDetailNC = "IssueDetailNavigationController"
     }
     private typealias I = VCIdentifier
+}
+
+
+// MARK: - Issue Detail Delegate
+
+extension IssueTableController: IssueDetailDelegate {
+    
+    func didModify(_ issue: Issue) {
+        tableView?.reloadData()
+        // reload the collection view if issue's status has been changed.
+        if copyOfSelectedIssue?.status != issue.status {
+            let boardViewController = UIApplication.getTopViewController() as? BoardViewController
+            boardViewController?.collectionView.reloadData()
+        }
+    }
 }

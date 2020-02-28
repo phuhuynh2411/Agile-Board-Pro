@@ -13,51 +13,35 @@ class AppDataController {
     
     var realm: Realm?
     
+    static var shared = AppDataController()
+    
     init() {
-        do{
-            self.realm  = try Realm()
-        }catch let error as NSError {
-            print(error)
-        }
+        do{ self.realm  = try Realm()
+        }catch { print(error) }
     }
     
-    static var shared = AppDataController()
-        
-    func createSampleData() {
-        
-        self.clearRealm()
-        
+    func startUp() {
         // Create issue types
-        var issueTypes = [IssueType]()
-        issueTypes.append(contentsOf: [.story, .epic, .bug, .task])
+        let issueTypes: [IssueType] = [.story, .epic, .bug, .task]
         self.add(toRealm: issueTypes)
         
         // Create project's icon
-        var icons = [ProjectIcon]()
-        icons.append(contentsOf: [.standard, .alarm, .cammera, .email, .heart,
-                                  .lock, .photo, .photo2, .shield, .tidy, .cloud])
+        let icons: [ProjectIcon] = [.standard, .alarm, .cammera, .email, .heart,
+        .lock, .photo, .photo2, .shield, .tidy, .cloud]
         self.add(toRealm: icons)
         
         // Add priorities
-        var priorities = [Priority]()
-        priorities.append(contentsOf: [.highest, .high, .medium, .low, .lowest])
+        let priorities: [Priority] = [.highest, .high, .medium, .low, .lowest]
         self.add(toRealm: priorities)
         
         // Add color
         self.add(toRealm: Color.colors)
-        
-        // Add five sample projects
-        //self.add(sampleProjects: 10)
     }
     
     func clearRealm(){
         do{
-            try realm?.write {
-                realm?.deleteAll()
-            }
-        }catch{
-            print(error)
-        }
+            try realm?.write { realm?.deleteAll() }
+        } catch { print(error) }
     }
 
     func add(toRealm objects: [Object]) {

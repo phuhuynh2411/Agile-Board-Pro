@@ -146,9 +146,8 @@ extension IssueCollectionController {
     
         cell.headerLabel.text = status?.name
         if let issues = project?.issues, let column = columns?[indexPath.row] {
-              cell.tableViewController?.dataForTableView(with: issues, and: column)
+            cell.tableViewController?.dataForTableView(with: issues, and: column)
         }
-        
     }
     
     
