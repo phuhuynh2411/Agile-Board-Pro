@@ -41,7 +41,7 @@ extension Object {
      Remove an object its self
      */
     
-    func remove() throws {
+    @objc func remove() throws {
         try realm?.write {
             realm?.delete(self)
         }

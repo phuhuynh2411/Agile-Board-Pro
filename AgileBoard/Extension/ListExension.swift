@@ -76,3 +76,13 @@ extension List {
         }
     }
 }
+
+extension List where List.Element == Board {
+    
+    func remove() throws {
+        for element in self.elements {
+            let board = element as Board
+            try board.remove()
+        }
+    }
+}

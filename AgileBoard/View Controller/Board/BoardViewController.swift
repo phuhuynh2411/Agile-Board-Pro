@@ -87,7 +87,7 @@ class BoardViewController: UIViewController {
     
     func showHidePageControl() {
         
-        if UIDevice.current.orientation.isLandscape {
+        if UIApplication.shared.statusBarOrientation.isLandscape {
             pageControl.setVisible(state: false, with: 10)
         }
         else {

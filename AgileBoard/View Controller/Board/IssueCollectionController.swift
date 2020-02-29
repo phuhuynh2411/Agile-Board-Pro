@@ -112,7 +112,7 @@ extension IssueCollectionController: UICollectionViewDelegate, UICollectionViewD
         
     private func sizeForItem(_ collectionView: UICollectionView) ->CGSize {
         // Landscape mode
-        let width = UIDevice.current.orientation.isLandscape ? collectionView.frame.width/2 - 30
+        let width = UIApplication.shared.statusBarOrientation.isLandscape ? collectionView.frame.width/2 - 30
             : collectionView.frame.width - 40
         
         let height:CGFloat = collectionView.frame.height
