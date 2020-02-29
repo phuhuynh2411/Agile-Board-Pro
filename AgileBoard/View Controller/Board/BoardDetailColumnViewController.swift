@@ -163,6 +163,10 @@ extension BoardDetailColumnViewController: UICollectionViewDelegate, UICollectio
         
     }
     
+    private func scrollToLeft(_ scrollView: UIScrollView)-> Bool {
+        return scrollView.panGestureRecognizer.translation(in: scrollView.superview).x > 0 ? true : false
+    }
+    
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         
         // Only perform the following lines in portrait mode
@@ -174,7 +178,7 @@ extension BoardDetailColumnViewController: UICollectionViewDelegate, UICollectio
         
         // If user scrolls the view to the left, decreases the page number;
         // otherwise, increases the page number
-        pageNumber = scrollView.scrollDirection == .left ? pageNumber - 1 : pageNumber + 1
+        pageNumber = self.scrollToLeft(scrollView) ? pageNumber - 1 : pageNumber + 1
         // If page number is less than 0, sets it to 0
         pageNumber = pageNumber < 0 ? 0 : pageNumber
         // If page number is greater than a number of columns, sets it to the number of columns

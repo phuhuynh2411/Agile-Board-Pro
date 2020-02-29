@@ -6,7 +6,6 @@
 //  Copyright © 2019 Filesoft. All rights reserved.
 //
 
-import Foundation
 import RealmSwift
 
 class AppDataController {
@@ -54,10 +53,10 @@ class AppDataController {
     }
     
     private func addSampleProject(){
-        // Create sample Projects
-        let key = Lorem.words(5).prefix(3).uppercased()
-        let name = Lorem.sentence.prefix(30)
-        let project = Project(name: String(name), description: Lorem.sentences(2), key: String(key))
+        let key             = Lorem.words(5).prefix(3).uppercased()
+        let name            = Lorem.sentence.prefix(30)
+        
+        let project         = Project(name: String(name), description: Lorem.sentences(2), key: String(key))
         project.isSample    = true
         project.icon        = .standard
         
@@ -65,8 +64,6 @@ class AppDataController {
     }
     
     func add(sampleProjects number: Int) {
-        for _ in 0..<number {
-            self.addSampleProject()
-        }
+        for _ in 0..<number { self.addSampleProject() }
     }
 }

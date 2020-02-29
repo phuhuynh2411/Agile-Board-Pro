@@ -90,6 +90,7 @@ extension SearchProjectViewController: UITableViewDataSource {
         if let imageName = project?.icon?.name {
             cell.projectImageView.image = UIImage(named: imageName)
         }
+        cell.idLabel.text = project?.key
         
         // Mark the project as selected one
         if project?.id == selectedProject?.id {

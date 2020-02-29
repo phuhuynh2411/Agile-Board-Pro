@@ -49,9 +49,6 @@ class IssueFilterTableViewController: UITableViewController {
         //Bug
         filters.append(BugFilter(name: "Bug", imageName: "issue_bug"))
         
-        // Remove extra separators
-        //tableView.tableFooterView = UIView()
-        
     }
 
     override func viewDidAppear(_ animated: Bool) {

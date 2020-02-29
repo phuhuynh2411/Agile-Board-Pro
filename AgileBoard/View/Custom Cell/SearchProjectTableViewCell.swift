@@ -13,6 +13,7 @@ class SearchProjectTableViewCell: UITableViewCell {
     @IBOutlet weak var projectImageView: UIImageView!
     @IBOutlet weak var projectNameLabel: UILabel!
     @IBOutlet weak var projectDescription: UILabel!
+    @IBOutlet weak var idLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

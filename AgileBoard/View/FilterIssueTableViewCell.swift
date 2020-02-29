@@ -16,13 +16,7 @@ class FilterIssueTableViewCell: UITableViewCell {
     
     var numberOfDueIssue: Int = 0 {
         didSet{
-            if numberOfDueIssue > 0 {
-                numberOfDueButton.setTitle("\(numberOfDueIssue)", for: .normal)
-                numberOfDueButton.backgroundColor = .red
-            } else{
-                numberOfDueButton.setTitle("", for: .normal)
-                numberOfDueButton.backgroundColor = .none
-            }
+            self.backgroundColorForDueButton()
         }
     }
     
@@ -36,8 +30,17 @@ class FilterIssueTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        self.backgroundColorForDueButton()
+    }
+    
+    private func backgroundColorForDueButton() {
+        if numberOfDueIssue > 0 {
+            numberOfDueButton.setTitle("\(numberOfDueIssue)", for: .normal)
+            numberOfDueButton.backgroundColor = .red
+        } else{
+            numberOfDueButton.setTitle("", for: .normal)
+            numberOfDueButton.backgroundColor = .none
+        }
     }
 
 }
