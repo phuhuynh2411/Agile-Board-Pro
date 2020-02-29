@@ -105,15 +105,11 @@ class CalendarViewController: UIViewController {
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        if !isSelectedToday { self.goToToday() }
-    }
-    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         adjustView()
+        
+        if !isSelectedToday { self.goToToday() }
     }
     
     private func adjustView() {
