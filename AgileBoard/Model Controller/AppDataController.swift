@@ -20,7 +20,7 @@ class AppDataController {
     }
     
     func startUp() {
-        self.clearRealm()
+        //self.clearRealm()
         
         // Create issue types
         let issueTypes: [IssueType] = [.story, .epic, .bug, .task]

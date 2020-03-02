@@ -53,8 +53,9 @@ extension Project {
     override func remove() throws {
         do{
             try self.boards.remove()
+            try self.issues.remove()
+            
             try realm?.write{
-                realm?.delete(self.issues)
                 realm?.delete(self.statuses)
                 realm?.delete(self.sprints)
             }

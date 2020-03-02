@@ -86,3 +86,23 @@ extension List where List.Element == Board {
         }
     }
 }
+
+extension List where List.Element == Issue {
+    
+    func remove() throws {
+        for element in self.elements {
+            let issue = element as Issue
+            try issue.remove()
+        }
+    }
+}
+
+extension List where List.Element == Attachment {
+    
+    func remove() throws {
+        for element in self.elements {
+            let attachment = element as Attachment
+            try attachment.remove()
+        }
+    }
+}

@@ -29,12 +29,9 @@ extension Board {
     }
     
     override func remove() throws {
-        do{
-            try realm?.write{
-                realm?.delete(self.columns)
-            }
-        }catch { print(error) }
-        
+        try realm?.write{
+            realm?.delete(self.columns)
+        }
         try super.remove()
     }
 }

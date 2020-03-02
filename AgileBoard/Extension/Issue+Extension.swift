@@ -27,4 +27,9 @@ extension Issue {
         self.dueDate = dueDate
     }
     
+    override func remove() throws {
+        try self.attachments.remove()
+        try super.remove()
+    }
+    
 }
