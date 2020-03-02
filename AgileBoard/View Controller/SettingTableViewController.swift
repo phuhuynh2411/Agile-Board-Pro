@@ -16,6 +16,7 @@ class SettingTableViewController: UITableViewController {
     @IBOutlet weak var sendFeedbackCell: UITableViewCell!
     @IBOutlet weak var aboutCell: UITableViewCell!
     @IBOutlet weak var createSampleProjectCell: UITableViewCell!
+    @IBOutlet weak var verionLabel: UILabel!
     
     let appDataController   = AppDataController.shared
     let numberOfProjects    = 5
@@ -24,6 +25,8 @@ class SettingTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        verionLabel.text = appDataController.version ?? ""
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

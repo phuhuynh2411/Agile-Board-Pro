@@ -967,6 +967,7 @@
                         <outlet property="aboutCell" destination="o9E-5g-45w" id="S0w-tN-M1N"/>
                         <outlet property="createSampleProjectCell" destination="7Ae-Gv-0sD" id="K6X-WE-JhV"/>
                         <outlet property="sendFeedbackCell" destination="Ac8-vA-1t1" id="ctK-be-TMb"/>
+                        <outlet property="verionLabel" destination="Vkw-n5-COS" id="73N-0l-UTw"/>
                         <segue destination="CCx-WU-ByC" kind="show" identifier="AboutSegue" id="O9i-xh-UnA"/>
                     </connections>
                 </tableViewController>
