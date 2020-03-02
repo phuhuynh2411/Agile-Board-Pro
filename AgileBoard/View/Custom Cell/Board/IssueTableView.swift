@@ -122,15 +122,10 @@ class IssueTableView: UITableView{
      */
     func decreaseHeight(height: CGFloat, minHeight: CGFloat = 0, animated: Bool = true) {
         
-        print("Current table height: \(heightConstraint.constant)")
         var newHeight = heightConstraint.constant - height
         newHeight = newHeight < minHeight ? minHeight : newHeight
         
         heightConstraint.constant = newHeight
-        
-        print("New Height \(newHeight)")
-        print("Height: \(height)")
-        print("Min Height: \(minHeight)")
         
         if animated {
             UIView.animate(withDuration: 0.5) {

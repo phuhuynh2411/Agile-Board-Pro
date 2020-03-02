@@ -115,27 +115,25 @@ class StatusDetailViewController: UIViewController {
         
         guard isModified, let statusName = statusTextField.text, let color = selectedColor else { return }
         
-        let newStatus = Status()
-        newStatus.color = color
-        newStatus.name = statusName
-        newStatus.markedAsDone = doneSwitch.isOn
+        let newStatus           = Status()
+        newStatus.color         = color
+        newStatus.name          = statusName
+        newStatus.markedAsDone  = doneSwitch.isOn
+        
         // User is adding new status
-        if isNew(){
-            delegate?.didAddStatus(status: newStatus)
-        }
-        else if let status = status { // Modifying status
-            status.write( {
-                status.name = statusName
-                status.color = color
-                status.markedAsDone = doneSwitch.isOn
-            }, completion: { (error) in
-                if let error = error {
-                    print("An error occured while saving the status: \(error)")
+        if isNew() { delegate?.didAddStatus(status: newStatus) }
+        else {
+            do {
+                try status?.write {
+                    status?.name = statusName
+                    status?.color = color
+                    status?.markedAsDone = doneSwitch.isOn
                 }
-            })
-            delegate?.didModifyStatus(status: status)
-        } else {
-            fatalError("The status view controller only has two states add or modify. You are in another situation.")
+            } catch { print(error) }
+            
+            if let status = self.status {
+                delegate?.didModifyStatus(status: status)
+            }
         }
         dismiss(animated: true, completion: nil)
     }
@@ -149,7 +147,6 @@ class StatusDetailViewController: UIViewController {
     
     @IBAction func switchChanged(_ sender: UISwitch) {
         updateView(markAsModified: true)
-        print("Switch changed: \(sender.isOn)")
         validator.validate(self)
     }
     

@@ -17,7 +17,6 @@ class AttachmentCollectionView: UICollectionView {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        print("Collection view was initiated.")
         
         controller = AttachmentCollectionViewController(collectionViewLayout: collectionViewLayout)
         self.dataSource = controller

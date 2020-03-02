@@ -47,9 +47,7 @@ class BoardTableViewController: UITableViewController {
             switch changes {
             case .initial:
                 tableView.reloadData()
-            case .update(_ , let deletions, let insertions, let modifications):
-                print("Table view has been updated.")
-                
+            case .update(_ , let deletions, let insertions, let modifications):                
                 // Query results have changed, so apply them to the UITableView
                 tableView.beginUpdates()
                  //Always apply updates in the following order: deletions, insertions, then modifications.

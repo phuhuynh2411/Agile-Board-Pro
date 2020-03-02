@@ -32,7 +32,6 @@ class BColumnCollectionViewFlowLayout: UICollectionViewFlowLayout {
     
     override func invalidateLayout(with context: UICollectionViewLayoutInvalidationContext) {
         super.invalidateLayout(with: context)
-        print("Invalidate layout")
         
         context.contentSizeAdjustment = CGSize(width: 30, height: 30)
     }

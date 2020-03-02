@@ -55,13 +55,10 @@ class AttachmentCollectionViewController: UICollectionViewController {
     // MARK: IB Actions
     
     @objc func addAttachment(sender: UIButton) {
-        print("Add attachment pressed")
         
         let alert = UIAlertController(title: "", message: "Select the following options to add the attachments. Press OK if there is any message prompts out.", preferredStyle: .actionSheet)
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
-            print("Cancel pressed")
-        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_ ) in }
         let cameraAction = UIAlertAction(title: "Camera", style: .default) { (action) in
             self.takePhoto()
         }
@@ -93,7 +90,6 @@ class AttachmentCollectionViewController: UICollectionViewController {
     }
     
     private func takePhoto() {
-        print("Take photo")
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
         imagePickerController.sourceType = .camera

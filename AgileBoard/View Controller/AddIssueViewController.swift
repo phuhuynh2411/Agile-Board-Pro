@@ -91,7 +91,6 @@ class AddIssueViewController: UIViewController {
     }
     
     @IBAction func showMoreButtonPressed(_ sender: UIButton) {
-        print("Show more button pressed")
         
         let priorityView = PriorityRowView(priority: selectedPriority)
         priorityView.delegate = self

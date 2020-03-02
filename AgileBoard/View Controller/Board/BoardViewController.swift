@@ -55,11 +55,9 @@ class BoardViewController: UIViewController {
         notificationToken = project?.selectedBoard?.observe({ (change) in
             switch change {
             case .change(_):
-                print("The selected board has been changed.")
                 self.selectedBoardDidChange()
                 break
             case .deleted:
-                print("The selected board has been deleted.")
                 break
             case .error(let error):
                 print("An error occured \(error)")

@@ -79,7 +79,7 @@ extension BoardDetailStatusViewController: UICollectionViewDataSource {
             
             break
         default:
-            print("Undefine view")
+            fatalError("Undefine view")
         }
                 
                 
