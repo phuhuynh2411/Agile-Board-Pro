@@ -12,8 +12,13 @@ import SwiftValidator
 import NotificationBannerSwift
 
 protocol StatusDetailDelegate {
-    func didAddStatus(status: Status)
-    func didModifyStatus(status: Status)
+    func didAdd(_ status: Status)
+    func didModify(_ status: Status)
+}
+
+extension StatusDetailDelegate {
+    func didAdd(_ status: Status) { return }
+    func didModify(_ status: Status) { return }
 }
 
 class StatusDetailViewController: UIViewController {
@@ -38,6 +43,8 @@ class StatusDetailViewController: UIViewController {
     
     var delegate: StatusDetailDelegate?
     
+    let realm = AppDataController.shared.realm
+    
     //var pageNumber: CGFloat = 0
         
     override func viewDidLoad() {
@@ -46,7 +53,7 @@ class StatusDetailViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         
-        colors = ColorController.shared.all()
+        colors = realm?.objects(Color.self)
         
         // Set the status text view as the first responder
         statusTextField.becomeFirstResponder()
@@ -120,8 +127,9 @@ class StatusDetailViewController: UIViewController {
         newStatus.name          = statusName
         newStatus.markedAsDone  = doneSwitch.isOn
         
+        // TODO: reformat the code.
         // User is adding new status
-        if isNew() { delegate?.didAddStatus(status: newStatus) }
+        if isNew() { delegate?.didAdd(newStatus) }
         else {
             do {
                 try status?.write {
@@ -132,7 +140,7 @@ class StatusDetailViewController: UIViewController {
             } catch { print(error) }
             
             if let status = self.status {
-                delegate?.didModifyStatus(status: status)
+                delegate?.didModify(status)
             }
         }
         dismiss(animated: true, completion: nil)

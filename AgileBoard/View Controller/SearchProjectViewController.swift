@@ -29,11 +29,13 @@ class SearchProjectViewController: UIViewController {
     
     let searchController = UISearchController(searchResultsController: nil)
     
+    let realm = AppDataController.shared.realm
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Get all projects
-        projectList = ProjectController.shared.all()
+        projectList = realm?.objects(Project.self)
         
         // 1
         searchController.searchResultsUpdater = self

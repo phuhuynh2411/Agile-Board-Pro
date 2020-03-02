@@ -178,17 +178,13 @@ extension BoardViewController {
 
 extension BoardViewController: IssueDetailDelegate {
     
-    func didModify(_ issue: Issue) {
-       
-    }
-    
-    
-    func didAddIssue(with issue: Issue, project: Project?) {
-        if let project = project {
-            ProjectController.shared.add(issue: issue, to: project)
-            // Reload the collection view
-            collectionView.reloadData()
-        }
+    func didAdd(_ issue: Issue, to project: Project?) {
+        do {
+            try project?.add(issue)
+        } catch { print(error) }
+        
+        // Reload the collection view
+        collectionView.reloadData()
     }
 }
 

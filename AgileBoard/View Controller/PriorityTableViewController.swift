@@ -17,9 +17,11 @@ class PriorityTableViewController: UITableViewController {
     
     // MARK: Properties
     
-    var priorityList: Results<Priority>?
+    var priorities: Results<Priority>?
     var selectedPriority: Priority?
     var delegate: SelectPriorityDelegate?
+    
+    let realm = AppDataController.shared.realm
 
     // MARK: View Methods
     
@@ -31,7 +33,7 @@ class PriorityTableViewController: UITableViewController {
     
     private func setUpView() {
         // Load all priorities
-        priorityList = PriorityController.shared.all()
+        priorities = realm?.objects(Priority.self)
         
         // Remove extra seperators
         tableView.tableFooterView = UIView()
@@ -42,17 +44,16 @@ class PriorityTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return priorityList?.count ?? 0
+        return priorities?.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! PriorityTableViewCell
-        let priority = priorityList?[indexPath.row]
+        let priority = priorities?[indexPath.row]
         cell.priorityNameLabel.text = priority?.name
         if let imageName = priority?.imageName {
              cell.iconImageView.image = UIImage(named: imageName)
         }
-        
         
         // Show selected priority
         if priority?.id == selectedPriority?.id {
@@ -69,7 +70,7 @@ class PriorityTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        guard let selectedPriority = priorityList?[indexPath.row] else { return }
+        guard let selectedPriority = priorities?[indexPath.row] else { return }
         
         delegate?.didSelect(selectedPriority)
         navigationController?.popViewController(animated: true)

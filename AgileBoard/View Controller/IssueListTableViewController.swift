@@ -119,7 +119,6 @@ class IssueListTableViewController: UITableViewController {
         if let batchItems = items {
             appendNewData(newItems: batchItems)
         } else {
-            print("There are no items found.")
             reachedEndOfItems = true
             
             // reloads the table view if user is searching for issues
@@ -136,11 +135,9 @@ class IssueListTableViewController: UITableViewController {
         
         // Increase offset
         offset += newItems.count
-        print("Increased the offset to \(offset).")
         
         // Insert new items into the table view
         tableView.reloadData()
-        print("Reloaded the table view.")
     }
     
     private func fetchDataAsync(completion: @escaping (_ items: LazyFilterSequence<Results<Issue>>?)->Void) {
@@ -148,7 +145,6 @@ class IssueListTableViewController: UITableViewController {
         // Determine the fetching range of items
         let start = offset
         let end = offset + numberOfFetchItems
-        print("Trying loading item from \(start) to \(end)")
         
         // Find all of items in the above range
         // If user is searching an issue, use filteredIssues;
@@ -167,13 +163,10 @@ class IssueListTableViewController: UITableViewController {
         }
         
         guard batchItems.count > 0 else {
-            print("There are no item in the range.")
             completion(nil)
             return
         }
-        
-        print("Found: \(batchItems.count) items.")
-        
+                
         completion(batchItems)
     }
     
@@ -424,16 +417,12 @@ extension IssueListTableViewController: UISearchControllerDelegate {
 
 extension IssueListTableViewController: IssueDetailDelegate {
     
-    func didAddIssue(with issue: Issue, project: Project?) {
-        guard let project = project else {
-            fatalError("There was something wrong. The project should not be nil.")
-        }
-        
+    func didAdd(_ issue: Issue, to project: Project?) {
         // Set issue's status to the first project's status
-        issue.status = project.statuses.first
+        issue.status = project?.statuses.first
         
         do{
-            try project.add(issue)
+            try project?.add(issue)
         }catch{
             print(error)
             return

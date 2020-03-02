@@ -248,21 +248,17 @@ extension BoardDetailViewController: UITextFieldDelegate {
 // MARK: - StatusDetailDelegate
 
 extension BoardDetailViewController: StatusDetailDelegate {
-    
-    func didAddStatus(status: Status) {
-        if let project = project {
-            availableStatuses?.append(status)
-            ProjectController.shared.add(status: status, to: project)
-            statusCollectionView.reloadData()
-        }
+
+    func didAdd(_ status: Status) {
+        do {
+            try project?.add(status)
+        } catch { print(error) }
         
+        availableStatuses?.append(status)
+        statusCollectionView.reloadData()
     }
     
-    func didModifyStatus(status: Status) {
-//        if let selectedStatus = selectedStatus{
-//            StatusController.shared.update(status: selectedStatus, toStatus: status)
-//            statusCollectionView.reloadData()
-//        }
+    func didModify(_ status: Status) {
         statusCollectionView.reloadData()
     }
 }

@@ -427,16 +427,13 @@ extension CalendarViewController: CalendarViewDelegate {
 
 extension CalendarViewController: IssueDetailDelegate {
     
-    func didAddIssue(with issue: Issue, project: Project?) {
-        
-        guard let project = project else {
-            fatalError("There was something wrong. The project should not be nil.")
-        }
-        
+    func didAdd(_ issue: Issue, to project: Project?) {
         // Set issue's status to the first project's status
-        issue.status = project.statuses.first
+        
+        // TODO: auto set the status to column's first status
+        issue.status = project?.statuses.first
         do{
-            try project.add(issue)
+            try project?.add(issue)
         }catch{
             print(error)
         }

@@ -12,12 +12,12 @@ import SwiftValidator
 
 protocol IssueDetailDelegate {
     // Optional delete methods
-    func didAddIssue(with issue: Issue, project: Project?)
+    func didAdd(_ issue: Issue, to project: Project?)
     func didModify(_ issue: Issue)
 }
 
 extension IssueDetailDelegate {
-    public func didAddIssue(with issue: Issue, project: Project?) { return }
+    public func didAdd(_ issue: Issue, to project: Project?) { return }
     public func didModify(_ issue: Issue) { return }
 }
 
@@ -454,13 +454,8 @@ class IssueDetailTableViewController: UITableViewController {
         issue.summary = header.summaryTextView.text
         issue.issueDescription = header.descriptionTextView.text
         
-        if isNew(){
-            delegate?.didAddIssue(with: issue, project: project)
-        }
-        // The issue has been modified
-        else{
-            delegate?.didModify(issue)
-        }
+        if isNew(){ delegate?.didAdd(issue, to: project) }
+        else{ delegate?.didModify(issue) }
         
         dismiss(animated: true, completion: nil)
     }

@@ -63,4 +63,11 @@ extension Project {
 
         try super.remove()
     }
+    
+    func add(_ status: Status) throws {
+        try self.write {
+            self.statuses.append(status)
+        }
+    }
+    
 }

@@ -111,19 +111,16 @@ class StatusTableViewController: UITableViewController {
 // MARK: Status Detail Delegate
 
 extension StatusTableViewController: StatusDetailDelegate {
-    func didAddStatus(status: Status) {
-        if let project = project {
-            StatusController.shared.add(status, to: project)
-            tableView.reloadData()
-        }
+    
+    func didAdd(_ status: Status) {
+        do {
+            try project?.add(status)
+        } catch { print(error) }
+       
+        tableView.reloadData()
     }
     
-    func didModifyStatus(status: Status) {
-//        if let currentStatus = currentStatus {
-//            StatusController.shared.update(status: currentStatus, toStatus: status)
-//            tableView.reloadData()
-//        }
-        
+    func didModify(_ status: Status) {
         tableView.reloadData()
     }
 }
@@ -165,8 +162,11 @@ extension StatusTableViewController: SwipeTableViewCellDelegate {
     }
     
     private func delete(status: Status, at indexPath: IndexPath) {
-        if let project = self.project, !isUsed(status: status){
-            ProjectController.shared.removeStatus(at: indexPath.row, in: project)
+        if !isUsed(status: status){
+            do {
+                try status.remove()
+            } catch { print(error) }
+            
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }else {
             let alertController = UIAlertController(title: "Warning", message: "You cannot delete the status because it is in use. Please change all related issues to another one and try again.", preferredStyle: .actionSheet)

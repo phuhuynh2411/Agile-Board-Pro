@@ -15,27 +15,28 @@ protocol SelectIconDelegate {
 
 class IconCollectionViewController: UICollectionViewController {
     
-    var listIcon: Results<ProjectIcon>?
+    var icons: Results<ProjectIcon>?
     var selectedIcon: ProjectIcon?
     var delegate: SelectIconDelegate?
 
+    let realm = AppDataController.shared.realm
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        listIcon = ProjectIconController.all()
-        
+        icons = realm?.objects(ProjectIcon.self)
     }
 
     // MARK: - UICollectionViewDataSource
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return listIcon?.count ?? 0
+        return icons?.count ?? 0
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! IconCollectionViewCell
             
-        let icon = listIcon?[indexPath.row]
+        let icon = icons?[indexPath.row]
         if let iconName = icon?.name {
             cell.iconImageView.image = UIImage(named: iconName)
         }
@@ -55,7 +56,7 @@ class IconCollectionViewController: UICollectionViewController {
     // MARK: - UICollectionViewDelegate
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let icon = listIcon?[indexPath.row]
+        let icon = icons?[indexPath.row]
         
         delegate?.didSelectIcon(icon: icon)
             

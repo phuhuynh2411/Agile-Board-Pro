@@ -230,10 +230,11 @@ extension BoardDetailStatusViewController: SwipeCollectionViewCellDelegate {
     }
     
     private func delete(status: Status, at indexPath: IndexPath) {
-        if let project = self.project, !isUsed(status: status){
+        if !isUsed(status: status){
             // Delete status in realm
-            ProjectController.shared.removeStatus(at: indexPath.row, in: project)
-            // Also remvoe the status in the array
+            do { try status.remove()
+            } catch { print(error) }
+            // Also remove the status in the array
             statuses?.remove(at: indexPath.row)
             collectionView?.deleteItems(at: [indexPath])
         }else {
