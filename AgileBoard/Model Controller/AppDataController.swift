@@ -14,6 +14,8 @@ class AppDataController {
     
     static var shared = AppDataController()
     
+    let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+    
     init() {
         do{ self.realm  = try Realm()
         }catch { print(error) }

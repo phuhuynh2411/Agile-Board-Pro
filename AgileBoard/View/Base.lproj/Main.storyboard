@@ -927,9 +927,6 @@
                                                 <constraint firstItem="56E-jz-CLi" firstAttribute="trailing" secondItem="vpE-cl-bPi" secondAttribute="trailingMargin" id="wzb-nY-fLZ"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="CCx-WU-ByC" kind="show" id="ged-NV-6td"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="50" id="7Ae-Gv-0sD">
                                         <rect key="frame" x="0.0" y="214" width="375" height="50"/>
@@ -966,6 +963,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" id="wzA-a5-Bc7"/>
+                    <connections>
+                        <outlet property="aboutCell" destination="o9E-5g-45w" id="S0w-tN-M1N"/>
+                        <outlet property="createSampleProjectCell" destination="7Ae-Gv-0sD" id="K6X-WE-JhV"/>
+                        <outlet property="sendFeedbackCell" destination="Ac8-vA-1t1" id="ctK-be-TMb"/>
+                        <segue destination="CCx-WU-ByC" kind="show" identifier="AboutSegue" id="O9i-xh-UnA"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QhX-eq-K45" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1808,10 +1811,10 @@
                                             <rect key="frame" x="345" y="0.0" width="335" height="288"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nUe-yw-50I">
+                                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nUe-yw-50I">
                                                     <rect key="frame" x="0.0" y="0.0" width="335" height="50"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NEW COLUMN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jCl-JC-GI2">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="NEW COLUMN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jCl-JC-GI2">
                                                             <rect key="frame" x="8" y="15.5" width="112.5" height="19.5"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                             <nil key="textColor"/>
@@ -1826,10 +1829,10 @@
                                                         <constraint firstAttribute="height" constant="50" id="x6l-pE-PLV"/>
                                                     </constraints>
                                                 </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="srI-LV-VbD">
+                                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="srI-LV-VbD">
                                                     <rect key="frame" x="8" y="58" width="319" height="44"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Drop status here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0j-Nc-99b">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Drop status here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0j-Nc-99b">
                                                             <rect key="frame" x="96" y="12" width="127.5" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" systemColor="placeholderTextColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
