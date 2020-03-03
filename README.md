@@ -1,5 +1,6 @@
 # Agile-Board-Pro
 Personal issue tracking app that helps you to manage projects and issues. The app supports both portrait and landscape mode.
+![Agile Board](agile_board.png)
 
 ## Major features
 Projects:
