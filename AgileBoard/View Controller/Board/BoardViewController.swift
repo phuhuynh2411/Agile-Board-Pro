@@ -50,27 +50,15 @@ class BoardViewController: UIViewController {
         // Set up collection view
         collectionController = IssueCollectionController(collectionView: collectionView)
         collectionController?.project = project
-        //collectionController?.selectedBoard = project?.selectedBoard
         
-        notificationToken = project?.selectedBoard?.observe({ (change) in
-            switch change {
-            case .change(_):
-                self.selectedBoardDidChange()
-                break
-            case .deleted:
-                break
-            case .error(let error):
-                print("An error occured \(error)")
-                break
-            }
-        })
+        // Observe changes for the selected board
+        self.observeChanges(for: project?.selectedBoard)
         
         // Pass the page control through the collection view
         collectionController?.pageControl = pageControl
         
         // Show or hide page controll
         showHidePageControl()
-        
     }
     
     deinit {
@@ -112,6 +100,23 @@ class BoardViewController: UIViewController {
         // Update board name and reload the collection view
         customView.titleButton.setTitle(project?.selectedBoard?.name, for: .normal)
         collectionView.reloadData()
+    }
+    
+    private func observeChanges(for board: Board?) {
+        notificationToken?.invalidate()
+        
+        notificationToken = board?.observe({ (change) in
+            switch change {
+            case .change(_):
+                self.selectedBoardDidChange()
+                break
+            case .deleted:
+                break
+            case .error(let error):
+                print("An error occured \(error)")
+                break
+            }
+        })
     }
     
     // MARK: - IB Actions
@@ -232,13 +237,15 @@ extension BoardViewController {
 
 extension BoardViewController: BoardTableViewControllerDelegate {
     
-    func didSelectBoard(board: Board) {
-        project?.write({
-            project?.selectedBoard = board
-        }, completion: nil)
+    func didSelect(_ board: Board) {
+        do {
+            try project?.write { project?.selectedBoard = board }
+        } catch { print(error) }
         
         // Refresh the selected board
         selectedBoardDidChange()
+        // Observe changes for selected board
+        self.observeChanges(for: board)
     }
     
 }

@@ -11,7 +11,7 @@ import RealmSwift
 import SwipeCellKit
 
 protocol BoardTableViewControllerDelegate {
-    func didSelectBoard(board: Board)
+    func didSelect(_ board: Board)
 }
 
 class BoardTableViewController: UITableViewController {
@@ -115,7 +115,7 @@ class BoardTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let board = boards?[indexPath.row] {
-            delegate?.didSelectBoard(board: board)
+            delegate?.didSelect(board)
             dismiss(animated: true, completion: nil)
         }
     }

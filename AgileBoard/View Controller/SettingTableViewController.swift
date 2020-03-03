@@ -44,7 +44,7 @@ class SettingTableViewController: UITableViewController {
     
     private func createSampleProjects() {
         
-        let alertController = UIAlertController(title: "", message: "Create five sample projects to the app. They are used for testing only. You could use them to play with the app.", preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: "", message: "Create five sample projects. They are used for testing purpose only.", preferredStyle: .actionSheet)
         let createAction = UIAlertAction(title: "Create", style: .default) { (action) in
             self.appDataController.add(sampleProjects: self.numberOfProjects)
         }

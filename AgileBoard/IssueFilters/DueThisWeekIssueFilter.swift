@@ -26,8 +26,6 @@ class DueThisWeekIssueFilter: IssueFilter {
         guard let weekStartDate = calendar.startOfWeek, let endWeekDate = calendar.endOfWeek else {
             fatalError("The start and end date of the week is not available.")
         }
-        print("Start date of the week: \(weekStartDate)")
-        print("End date of the week: \(endWeekDate)")
         
         let realm = AppDataController.shared.realm
         let issues = realm?.objects(Issue.self).filter("dueDate >= %@ AND dueDate <= %@ AND status.markedAsDone = %@", weekStartDate, endWeekDate, false)
