@@ -5,7 +5,10 @@ Personal issue tracking app that helps you to manage projects and issues. The ap
 ## Major features
 Projects:
 - Drag and drop to order the issue.
+![Drag and drop to order the issue](reorder_issue.gif)
 - Drag and drop to transtion issue.
+![Drag and drop to transtion issue.](drag_transition_issue.gif)
+![Drag and drop to transtion issue.](drag_transition_issue_landscape.gif)
 - Add custom board
 
 Issues:
