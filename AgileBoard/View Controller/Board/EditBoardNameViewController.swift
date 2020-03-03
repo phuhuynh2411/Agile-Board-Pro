@@ -39,10 +39,10 @@ class EditBoardNameViewController: UIViewController {
     }
     
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
-        if let name = nameTextField.text, let board = board{
-            board.write({
-                board.name = name
-            }, completion: nil)
+        if let name = nameTextField.text, let board = board {
+            do {
+                try board.write { board.name = name }
+            } catch { print(error) }
             delegate?.didModifyName(board: board)
         }
         

@@ -10,22 +10,6 @@ import Foundation
 import RealmSwift
 
 extension Object {
-    /**
-     Write to Realm and update modified date
-     */
-    func write(_ code: ()->Void, completion: ((_ error: Error?)->Void)? ) {
-        do{
-            try realm?.write {
-                code()
-                // Auto update the modify date
-                self.setValue(Date(), forKey: "modifiedDate")
-            }
-            completion?(nil)
-        }catch{
-            print(error)
-            completion?(error)
-        }
-    }
     
     /**
     Write to Realm and update modified date

@@ -431,7 +431,7 @@ extension CalendarViewController: IssueDetailDelegate {
         issue.status = project?.statuses.first
         do{
             try project?.add(issue)
-        }catch{
+        } catch {
             print(error)
         }
         

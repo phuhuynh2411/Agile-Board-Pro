@@ -9,11 +9,8 @@
 import UIKit
 import RealmSwift
 
-protocol SelectProjectDelegate {
-    
-    // User did selecte a project at a index path
-    func didSelectdProject(project: Project?)
-    
+protocol SearchProjectDelegate {
+    func didSelect(_ project: Project?)
 }
 
 class SearchProjectViewController: UIViewController {
@@ -25,7 +22,7 @@ class SearchProjectViewController: UIViewController {
         
     var selectedProject: Project?
     
-    var delegate: SelectProjectDelegate?
+    var delegate: SearchProjectDelegate?
     
     let searchController = UISearchController(searchResultsController: nil)
     
@@ -119,7 +116,7 @@ extension SearchProjectViewController: UITableViewDelegate {
         
         let project = !isFiltering() ? projectList?[indexPath.row] : filteredProjectList?[indexPath.row]
         
-        delegate?.didSelectdProject(project: project)
+        delegate?.didSelect(project)
         
         // Dismiss the view controller
         dismiss(animated: true, completion: nil)
@@ -139,18 +136,14 @@ extension SearchProjectViewController: UISearchResultsUpdating {
     }
     
     func filterContentForSearchText(searchText: String) {
-        
         filteredProjectList = projectList?.filter({ (project) -> Bool in
             project.name.lowercased().contains(searchText.lowercased())
         })
         
         tableView.reloadData()
-
     }
     func updateSearchResults(for searchController: UISearchController) {
-        
         filterContentForSearchText(searchText: searchController.searchBar.text!)
-        
     }
     
 }

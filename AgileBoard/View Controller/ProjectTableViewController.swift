@@ -51,7 +51,6 @@ class ProjectTableViewController: UITableViewController {
     // MARK: - View methods
     
     override func viewDidLoad() {
-
         super.viewDidLoad()
         
         // Get all projects from Realm database
@@ -210,9 +209,9 @@ class ProjectTableViewController: UITableViewController {
     // MARK: - Private methods
     
     private func updateRecentlyViewed(for project: Project?) {
-        do{
+        do {
             try project?.write { project?.recentlyViewed = Date() }
-        }catch { print(error) }
+        } catch { print(error) }
     }
 
 }
@@ -294,7 +293,7 @@ extension ProjectTableViewController: SwipeTableViewCellDelegate {
 
 // MARK: - Add Project Delegate
 
-extension ProjectTableViewController: ProjectDetailDelegate {
+extension ProjectTableViewController: ProjectDetailTableViewDelegate {
     
     func didAdd(_ project: Project) {
         do{

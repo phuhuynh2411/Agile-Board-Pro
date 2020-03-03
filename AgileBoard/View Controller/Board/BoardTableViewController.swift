@@ -27,6 +27,8 @@ class BoardTableViewController: UITableViewController {
     var delegate: BoardTableViewControllerDelegate?
     
     private var notificationToken: NotificationToken?
+    
+    let realm = AppDataController.shared.realm
 
     // MARK: - View Methods
     
@@ -179,7 +181,9 @@ extension BoardTableViewController {
 extension BoardTableViewController: BoardDetailViewControllerDelegate {
     
     func didAddBoard(board: Board) {
-        boards?.append(board, completion: nil)
+        do {
+            try realm?.write{self.boards?.append(board)}
+        } catch { print(error) }
     }
 }
 
@@ -210,18 +214,21 @@ extension BoardTableViewController: SwipeTableViewCellDelegate {
     }
     
     private func deleteBoard(at indexPath: IndexPath) {
-        if let board = boards?[indexPath.row], let selectedBoard = selectedBoard {
+        if let board = boards?[indexPath.row], let selectedBoard = self.selectedBoard {
             // Could not delete the board because it is used as the main board.
             if selectedBoard.isEqual(board) {
                 let alertController = UIAlertController(title: "Delete board", message: "Could not delete this board because you are using it as the main board.", preferredStyle: .actionSheet)
                 let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
                 alertController.addAction(cancelAction)
                 present(alertController, animated: true, completion: nil)
+                
+                return
             }
+            
             // Delete the board
-            else {
-                boards?.remove(at: indexPath.row, completion: nil)
-            }
+            do {
+                try realm?.write { boards?.remove(at: indexPath.row) }
+            } catch { print(error) }
         }
     }
     

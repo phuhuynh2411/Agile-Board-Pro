@@ -21,7 +21,13 @@ class IssueTableController: NSObject {
     var tableView: UITableView?
     
     var copyOfSelectedIssue: Issue?
-            
+    
+    let realm = AppDataController.shared.realm
+    
+    var deleteZoneTableView: DeleteZoneTableView?
+    
+    private var isStartDragging = false
+                
     init(tableView: UITableView) {
         super.init()
         self.tableView = tableView
@@ -111,7 +117,11 @@ extension IssueTableController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         
         if let srcIssue = displayedIssues?[sourceIndexPath.row], let sourceIndex = issues?.index(of: srcIssue) {
-            issues?.move(from: sourceIndex, to: destinationIndexPath.row, completion: nil)
+            do {
+                try realm?.write{
+                    issues?.move(from: sourceIndex, to: destinationIndexPath.row)
+                }
+            } catch { print(error) }
         }
     }
     
@@ -142,9 +152,17 @@ extension IssueTableController: UITableViewDragDelegate {
             dragItem.localObject = dragIssue
             session.localContext = dragIssue
         }
-
+        
+        // Add delete zone
+        if deleteZoneTableView == nil {
+            deleteZoneTableView = DeleteZoneTableView(frame: .zero, style: .plain)
+            // If user is not dragging the item after 4 second. Auto removes the delete zone.
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                if !self.isStartDragging { self.removeDeleteZone() }
+            }
+        }
+        
         return [dragItem]
-
     }
 
     func tableView(_ tableView: UITableView, dragPreviewParametersForRowAt indexPath: IndexPath) -> UIDragPreviewParameters? {
@@ -163,8 +181,18 @@ extension IssueTableController: UITableViewDragDelegate {
         let rect = CGRect(x: padding, y: padding/2, width: bounds.width - padding * 2, height: bounds.height - padding)
 
         previewParameter.visiblePath = UIBezierPath(roundedRect: rect, cornerRadius: 7.0)
-
+        
         return previewParameter
+    }
+    
+    func tableView(_ tableView: UITableView, dragSessionWillBegin session: UIDragSession) {
+        // User starts dragging the item
+        self.isStartDragging = true
+    }
+    
+    func tableView(_ tableView: UITableView, dragSessionDidEnd session: UIDragSession) {
+        self.removeDeleteZone()
+        self.isStartDragging = false
     }
 
 }
@@ -178,7 +206,7 @@ extension IssueTableController: UITableViewDropDelegate {
         if session.localDragSession != nil { // Drag originated from the same app.
             return UITableViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
         }
-
+        
         return UITableViewDropProposal(operation: .cancel, intent: .unspecified)
     }
 
@@ -198,21 +226,10 @@ extension IssueTableController: UITableViewDropDelegate {
                 desIndexPath = IndexPath(row: 0, section: 0)
             }
             if let moveToIndex = issues?.index(of: issue) {
-                issue.write({
-                    issue.status = column?.status
-                }, completion: { (error) in
-                    if let error = error {
-                        print(error)
-                        return
-                    }
-                })
-                
-                issues?.move(from: moveToIndex, to: desIndexPath.row, completion: { (error) in
-                    if let error = error {
-                        print(error)
-                        return
-                    }
-                })
+                do{
+                    try issue.write { issue.status = column?.status }
+                    try realm?.write { issues?.move(from: moveToIndex, to: desIndexPath.row) }
+                } catch { print(error) }
             }
             
             // Reload the destination table view
@@ -230,8 +247,6 @@ extension IssueTableController: UITableViewDropDelegate {
 
             srcTableView.deleteRows(at: [srcIndexPath], with: .automatic)
             srcTableView.fitVisibleCellHeight(minHeight: 40, animated: true, full: false)
-
-    
         }
 
     }
@@ -252,11 +267,15 @@ extension IssueTableController: UITableViewDropDelegate {
         let rect = CGRect(x: padding, y: padding, width: bounds.width - padding * 2, height: bounds.height - padding * 2)
 
         previewParameter.visiblePath = UIBezierPath(roundedRect: rect, cornerRadius: 7.0)
-
-        return previewParameter
         
+        return previewParameter
     }
-
+    
+    private func removeDeleteZone() {
+        guard deleteZoneTableView != nil else { return }
+        self.deleteZoneTableView?.delete()
+        self.deleteZoneTableView = nil
+    }
 }
 
 // MARK: - Identifier

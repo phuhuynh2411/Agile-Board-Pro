@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-protocol SelectPriorityDelegate {
+protocol PriorityTableViewDelegate {
     func didSelect(_ priority: Priority)
 }
 
@@ -19,7 +19,7 @@ class PriorityTableViewController: UITableViewController {
     
     var priorities: Results<Priority>?
     var selectedPriority: Priority?
-    var delegate: SelectPriorityDelegate?
+    var delegate: PriorityTableViewDelegate?
     
     let realm = AppDataController.shared.realm
 

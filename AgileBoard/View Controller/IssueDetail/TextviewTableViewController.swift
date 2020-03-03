@@ -105,16 +105,13 @@ class TextviewTableViewController: UITableViewController {
         if let summary = headerView.summaryTextView.text,
             let description = headerView.descriptionTextView.text,
             let issue = issue {
-            
-            //IssueController.shared.update(summary: summary, description: description, to: issue)
-            issue.write({
-                issue.summary = summary
-                issue.issueDescription = description
-            }) { (error) in
-                if let error = error {
-                    print(error)
+
+            do {
+                try issue.write {
+                    issue.summary = summary
+                    issue.issueDescription = description
                 }
-            }
+            } catch { print(error) }
             delegate?.issueDidChange(issue: issue)
             
             dismiss(animated: true, completion: nil)

@@ -240,6 +240,7 @@ extension AttachmentCollectionViewController: UICollectionViewDragDelegate {
         
         deleteZoneCollectionView?.heightAnchor.constraint(equalToConstant: 100).isActive = true
         deleteZoneCollectionView?.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        
         deleteZoneCollectionView?.bottomAnchor.constraint(equalTo: toolbar!.topAnchor, constant: -16).isActive = true
         deleteZoneCollectionView?.centerXAnchor.constraint(equalTo: toolbar!.centerXAnchor).isActive = true
         // Add delete image to the collection view

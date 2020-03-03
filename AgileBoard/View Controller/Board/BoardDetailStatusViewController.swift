@@ -165,10 +165,13 @@ extension BoardDetailStatusViewController: UICollectionViewDropDelegate {
             let status = column.status {
             let lastIndexPath = IndexPath(row: statuses?.count ?? 0, section: 0)
             
-            if let _ = statuses?.realm {
-                statuses?.append(status, completion: nil)
+            let code = { self.statuses?.append(status) }
+            if let realm = statuses?.realm {
+                do {
+                    try realm.write { code () }
+                } catch { print(error) }
             }else {
-                statuses?.append(status)
+                code()
             }
             collectionView.insertItems(at: [lastIndexPath])
             // Reload header
@@ -179,10 +182,13 @@ extension BoardDetailStatusViewController: UICollectionViewDropDelegate {
             if let datasource = srcCollectionView.dataSource as? BoardDetailColumnViewController,
                 let srcColumns = datasource.columns {
                 
-                if let _ = srcColumns.realm {
-                    srcColumns.remove(at: srcIndexPath.row, completion: nil)
-                }else {
-                    srcColumns.remove(at: srcIndexPath.row)
+                let code = {  srcColumns.remove(at: srcIndexPath.row) }
+                if let realm = srcColumns.realm {
+                    do {
+                        try realm.write { code() }
+                    } catch { print(error) }
+                } else {
+                    code()
                 }
                 srcCollectionView.deleteItems(at: [srcIndexPath])
                 srcCollectionView.reloadVisibleItems()

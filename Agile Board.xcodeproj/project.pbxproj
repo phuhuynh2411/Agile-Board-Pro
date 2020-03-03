@@ -21,6 +21,8 @@
 		84094BD323C6E46F00650950 /* IssueFilterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84094BD223C6E46F00650950 /* IssueFilterTableViewController.swift */; };
 		840C618C240D168800CCC7BA /* UIApplication+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840C618B240D168800CCC7BA /* UIApplication+Extention.swift */; };
 		841B42F223844275000871F6 /* IssueCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841B42F123844275000871F6 /* IssueCollectionViewFlowLayout.swift */; };
+		841B6382240E953900F8116D /* DeleteZoneTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841B6381240E953900F8116D /* DeleteZoneTableView.swift */; };
+		841B6384240E9BC300F8116D /* DeleteZoneTableView+DropDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841B6383240E9BC300F8116D /* DeleteZoneTableView+DropDelegate.swift */; };
 		841CEDDF23AC853C00D90369 /* ProjectTableViewCellv2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841CEDDD23AC853C00D90369 /* ProjectTableViewCellv2.swift */; };
 		841CEDE023AC853C00D90369 /* ProjectTableViewCellv2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841CEDDE23AC853C00D90369 /* ProjectTableViewCellv2.xib */; };
 		841D97A9238E674300483928 /* AppNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841D97A8238E674300483928 /* AppNavigationController.swift */; };
@@ -71,6 +73,7 @@
 		8445863B23FE2FE9003889C7 /* CalendarViewController+TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8445863A23FE2FE9003889C7 /* CalendarViewController+TableViewDataSource.swift */; };
 		8445863D23FE3041003889C7 /* CalendarViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8445863C23FE3041003889C7 /* CalendarViewController+TableViewDelegate.swift */; };
 		844A12E323B2510700E74020 /* BColumnCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A12E223B2510700E74020 /* BColumnCollectionReusableView.swift */; };
+		84515CC4240E425000FC3BBE /* AppErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84515CC3240E425000FC3BBE /* AppErrorHandler.swift */; };
 		845227CF238CFC61000607A8 /* IssueCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845227CE238CFC61000607A8 /* IssueCollectionController.swift */; };
 		845227D1238D22FE000607A8 /* IssueCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845227D0238D22FE000607A8 /* IssueCollectionView.swift */; };
 		84579E6223965068009575E4 /* Priority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84579E6123965068009575E4 /* Priority.swift */; };
@@ -180,6 +183,8 @@
 		84094BD223C6E46F00650950 /* IssueFilterTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueFilterTableViewController.swift; sourceTree = "<group>"; };
 		840C618B240D168800CCC7BA /* UIApplication+Extention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIApplication+Extention.swift"; path = "AgileBoard/Controller/UIApplication+Extention.swift"; sourceTree = SOURCE_ROOT; };
 		841B42F123844275000871F6 /* IssueCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		841B6381240E953900F8116D /* DeleteZoneTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteZoneTableView.swift; sourceTree = "<group>"; };
+		841B6383240E9BC300F8116D /* DeleteZoneTableView+DropDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeleteZoneTableView+DropDelegate.swift"; sourceTree = "<group>"; };
 		841CEDDD23AC853C00D90369 /* ProjectTableViewCellv2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTableViewCellv2.swift; sourceTree = "<group>"; };
 		841CEDDE23AC853C00D90369 /* ProjectTableViewCellv2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectTableViewCellv2.xib; sourceTree = "<group>"; };
 		841D97A8238E674300483928 /* AppNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigationController.swift; sourceTree = "<group>"; };
@@ -232,6 +237,7 @@
 		8445863A23FE2FE9003889C7 /* CalendarViewController+TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CalendarViewController+TableViewDataSource.swift"; sourceTree = "<group>"; };
 		8445863C23FE3041003889C7 /* CalendarViewController+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CalendarViewController+TableViewDelegate.swift"; sourceTree = "<group>"; };
 		844A12E223B2510700E74020 /* BColumnCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BColumnCollectionReusableView.swift; path = "AgileBoard/View/Custom Cell/BColumnCollectionReusableView.swift"; sourceTree = SOURCE_ROOT; };
+		84515CC3240E425000FC3BBE /* AppErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppErrorHandler.swift; sourceTree = "<group>"; };
 		845227CE238CFC61000607A8 /* IssueCollectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueCollectionController.swift; sourceTree = "<group>"; };
 		845227D0238D22FE000607A8 /* IssueCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueCollectionView.swift; sourceTree = "<group>"; };
 		84579E6123965068009575E4 /* Priority.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Priority.swift; sourceTree = "<group>"; };
@@ -616,6 +622,7 @@
 			isa = PBXGroup;
 			children = (
 				843C58C82391049400F5FAB5 /* AppDataController.swift */,
+				84515CC3240E425000FC3BBE /* AppErrorHandler.swift */,
 				842686F523995F4D00B981D7 /* AttachmentController.swift */,
 				847FD53623A0F49900399145 /* DragAttachmentItem.swift */,
 			);
@@ -660,6 +667,8 @@
 			children = (
 				84983EC323B1B702003657F1 /* BoardTitleView.swift */,
 				843C8987237AE7460050586E /* BoardViewController.swift */,
+				841B6381240E953900F8116D /* DeleteZoneTableView.swift */,
+				841B6383240E9BC300F8116D /* DeleteZoneTableView+DropDelegate.swift */,
 				845227CE238CFC61000607A8 /* IssueCollectionController.swift */,
 				84A51ABF237AF8DD00477B75 /* IssueTableController.swift */,
 				84F5FF9B238538FB00F2E966 /* DragIssueItem.swift */,
@@ -876,6 +885,7 @@
 				84094BD323C6E46F00650950 /* IssueFilterTableViewController.swift in Sources */,
 				84CA0F2123D152CF00F3B172 /* UIImageViewExtension.swift in Sources */,
 				8431758923EA5F390060C333 /* EventsManager.swift in Sources */,
+				84515CC4240E425000FC3BBE /* AppErrorHandler.swift in Sources */,
 				84F96A3423B2157E00F44C73 /* BoardDetailColumnViewController.swift in Sources */,
 				843C58CB2391073800F5FAB5 /* ProjectDetailTableViewController.swift in Sources */,
 				84983EC423B1B702003657F1 /* BoardTitleView.swift in Sources */,
@@ -922,6 +932,7 @@
 				842686F423995E7E00B981D7 /* AttachmentCollectionViewCell.swift in Sources */,
 				84B5F731238F806B00D344C3 /* IssueTypeTableViewController.swift in Sources */,
 				849E508A23CC4B1E00ED81D5 /* AllIssueFilter.swift in Sources */,
+				841B6384240E9BC300F8116D /* DeleteZoneTableView+DropDelegate.swift in Sources */,
 				846B6A8C238CCA7600569BC2 /* IssuePageControlView.swift in Sources */,
 				84BB6680240CB13D007C4757 /* Attachment+Extension.swift in Sources */,
 				8490889923A1E1B900D5DD96 /* HalfScreenPresentationController.swift in Sources */,
@@ -960,6 +971,7 @@
 				8476A55523C7234E0002334C /* FilterIssueTableViewCell.swift in Sources */,
 				84E87E6D24051CAC0008BDEE /* Color+Extension.swift in Sources */,
 				84983ECA23B1CB05003657F1 /* BoardDetailViewController.swift in Sources */,
+				841B6382240E953900F8116D /* DeleteZoneTableView.swift in Sources */,
 				8431758523EA5F390060C333 /* CalendarView+Extensions.swift in Sources */,
 				84C340E42388361D00C65AC9 /* ProjectTableViewController.swift in Sources */,
 				8490AA7E2403BEE300579312 /* Issue+Extension.swift in Sources */,

@@ -85,30 +85,25 @@ extension BoardDetailColumnViewController: UICollectionViewDataSource {
         var number = columns?.count ?? 1
         number = number == 1 ? 1 : number + 1
         
-        // cell.titleLabel.text = "COLUMN \(number)"
         cell.placeholderBackground.layer.cornerRadius = 10.0
         cell.placeholderBackground.clipsToBounds = true
         
         // Make the cell round
         cell.layer.cornerRadius = 10
         cell.clipsToBounds = true
-        
-        // Adjusts the footer's size to be equal the item size
-        // let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        // cell.frame.size = layout.itemSize
                 
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-       updatePageControl()
+       updatePageNumber()
     }
     
     func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        updatePageControl()
+        updatePageNumber()
     }
     
-    private func updatePageControl() {
+    private func updatePageNumber() {
         // Update the total page numbers
         let count = (columns?.count ?? 1) + 1
         
@@ -220,8 +215,6 @@ extension BoardDetailColumnViewController: UICollectionViewDragDelegate {
         return [dragItem]
 
     }
-    
-    
 }
 
 // MARK: - UICollectionViewDropDelegate
@@ -246,15 +239,17 @@ extension BoardDetailColumnViewController: UICollectionViewDropDelegate {
             let (column, _, _) = item.dragItem.localObject as? (Column, UICollectionView, IndexPath){
             
             // User are modifying an existing board
-            if let _ = columns?.realm {
-                columns?.write(code: {
-                    columns?.remove(at: srcIndexPath.row)
-                    columns?.insert(column, at: desIndexPath.row)
-                }, completion: nil)
+            let code = {
+                self.columns?.remove(at: srcIndexPath.row)
+                self.columns?.insert(column, at: desIndexPath.row) }
+            
+            if let realm = columns?.realm {
+                do {
+                    try realm.write{ code() }
+                } catch { print(error) }
             }
             else {
-                columns?.remove(at: srcIndexPath.row)
-                columns?.insert(column, at: desIndexPath.row)
+                code()
             }
             
             collectionView.performBatchUpdates({
@@ -278,12 +273,14 @@ extension BoardDetailColumnViewController: UICollectionViewDropDelegate {
             if let desIndexPath = coordinator.destinationIndexPath {
                 // The columns array is in realm
                 // User is editing the board
-                if let _ = columns?.realm {
-                    columns?.insert(column, at: desIndexPath.row, completion: nil)
+                let code = { self.columns?.insert(column, at: desIndexPath.row) }
+                if let realm = columns?.realm {
+                    do {
+                        try realm.write{ code() }
+                    } catch { print(error) }
                 }
-                // User is adding a a new board.
                 else {
-                    columns?.insert(column, at: desIndexPath.row)
+                    code()
                 }
                 
                 // Update collection view
@@ -295,24 +292,30 @@ extension BoardDetailColumnViewController: UICollectionViewDropDelegate {
             } else {
                 let lastIndexPath = IndexPath(row: columns?.count ?? 0, section: 0)
                 // User is modifying an existing board
-                if let _ = columns?.realm {
-                    columns?.append(column, completion: nil)
+                let code = { self.columns?.append(column) }
+                if let realm = columns?.realm {
+                    do {
+                        try realm.write{ code() }
+                    } catch { print(error) }
                 }
                 // User is adding a new board
                 else {
-                    columns?.append(column)
+                    code()
                 }
                 collectionView.insertItems(at: [lastIndexPath])
             }
             
             // Remove the status at the source collection view
             if let datasource = srcCollectionView.dataSource as? BoardDetailStatusViewController,
-                let srcStatuses = datasource.statuses{
-                if let _ = srcStatuses.realm {
-                    srcStatuses.remove(at: srcIndexPath.row, completion: nil)
+                let srcStatuses = datasource.statuses {
+                let code = { srcStatuses.remove(at: srcIndexPath.row) }
+                if let realm = srcStatuses.realm {
+                    do {
+                        try realm.write{ code () }
+                    } catch { print(error) }
                 }
                 else {
-                    srcStatuses.remove(at: srcIndexPath.row)
+                    code()
                 }
                 srcCollectionView.deleteItems(at: [srcIndexPath])
                 // Reload collection view's header

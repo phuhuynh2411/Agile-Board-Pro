@@ -9,15 +9,15 @@
 import UIKit
 import RealmSwift
 
-protocol SelectIconDelegate {
-    func didSelectIcon(icon: ProjectIcon?)
+protocol IconCollectionViewDelegate {
+    func didSelect(_ icon: ProjectIcon?)
 }
 
 class IconCollectionViewController: UICollectionViewController {
     
     var icons: Results<ProjectIcon>?
     var selectedIcon: ProjectIcon?
-    var delegate: SelectIconDelegate?
+    var delegate: IconCollectionViewDelegate?
 
     let realm = AppDataController.shared.realm
     
@@ -58,7 +58,7 @@ class IconCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let icon = icons?[indexPath.row]
         
-        delegate?.didSelectIcon(icon: icon)
+        delegate?.didSelect(icon)
             
         navigationController?.popViewController(animated: true)
     }

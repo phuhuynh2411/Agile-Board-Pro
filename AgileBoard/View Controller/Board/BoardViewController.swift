@@ -27,7 +27,7 @@ class BoardViewController: UIViewController {
     var customView: BoardTitleView = .fromNib()
     
     private var notificationToken: NotificationToken?
-                
+                    
     override func viewDidLoad() {
         
         // Set the number of pages for the page control

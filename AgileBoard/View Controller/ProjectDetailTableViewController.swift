@@ -10,12 +10,12 @@ import UIKit
 import KMPlaceholderTextView
 import SwiftValidator
 
-protocol ProjectDetailDelegate {
+protocol ProjectDetailTableViewDelegate {
     func didAdd(_ project: Project) -> Void
     func didEdit(_ project: Project) -> Void
 }
 
-extension ProjectDetailDelegate {
+extension ProjectDetailTableViewDelegate {
     func didAdd(project: Project) -> Void { return }
     func didEdit(project: Project) -> Void { return }
 }
@@ -38,7 +38,7 @@ class ProjectDetailTableViewController: UITableViewController {
     
     var project: Project?
     var selectedIcon: ProjectIcon?
-    var delegate: ProjectDetailDelegate?
+    var delegate: ProjectDetailTableViewDelegate?
     
     /// Validation
     let validator = Validator()
@@ -172,9 +172,9 @@ class ProjectDetailTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == Identifier.SelectIconSegue {
-            let iconCollectionViewController = segue.destination as! IconCollectionViewController
-            iconCollectionViewController.selectedIcon = selectedIcon
-            iconCollectionViewController.delegate = self
+            let vc = segue.destination as! IconCollectionViewController
+            vc.selectedIcon = selectedIcon
+            vc.delegate = self
         }
         
     }
@@ -195,9 +195,9 @@ extension ProjectDetailTableViewController: UITextViewDelegate {
 
 // MARK: - Select Icon Delegate
 
-extension ProjectDetailTableViewController: SelectIconDelegate {
+extension ProjectDetailTableViewController: IconCollectionViewDelegate {
     
-    func didSelectIcon(icon: ProjectIcon?) {
+    func didSelect(_ icon: ProjectIcon?) {
         selectedIcon = icon
         validator.validate(self)
     }

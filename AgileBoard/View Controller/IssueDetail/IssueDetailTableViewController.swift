@@ -40,7 +40,7 @@ class IssueDetailTableViewController: UITableViewController {
      Determines whether users modifed any data in the form.
      `isModifed` is equal `true` if the data was modified; otherwise `false`
     */
-    var isModifed: Bool = false
+    var userModifiedData = false
     
     var issue: Issue?
     
@@ -48,7 +48,7 @@ class IssueDetailTableViewController: UITableViewController {
     
     var delegate: IssueDetailDelegate?
     
-    var validator = Validator()
+    private var validator = Validator()
     
     // MARK: Transitionning Delegate
     var dateTransitioningDelegate: DateTransitioningDelegate?
@@ -78,7 +78,7 @@ class IssueDetailTableViewController: UITableViewController {
         registerForValidation()
         
         // Display all table cell if user are modifying the issue
-        if !isNew() {
+        if !isNew {
             displayTableViewCell(true)
         }
         
@@ -87,7 +87,7 @@ class IssueDetailTableViewController: UITableViewController {
         // Register issue type cell
         registerCell(nibName: "IssueTypeTableViewCellv2", cellIdentifier: C.issueType)
         
-        createOrSaveButton.title = isNew() ? "Create" : ""
+        createOrSaveButton.title = isNew ? "Create" : ""
         
     }
     
@@ -107,7 +107,7 @@ class IssueDetailTableViewController: UITableViewController {
         }
         
         // Update issue type
-        if isNew(), components.contains(.issueType), let issueType = issue?.type?.name {
+        if isNew, components.contains(.issueType), let issueType = issue?.type?.name {
             let typeButton = headerView?.typeButton
             typeButton?.isSelected = true
             typeButton?.setTitle(issueType, for: .selected)
@@ -154,6 +154,7 @@ class IssueDetailTableViewController: UITableViewController {
         
         // Update Issue Id
         if components.contains(.issueId) {
+            guard !isNew else { return }
             if let issueID = issue?.issueID {
                 headerView.issueIDLabel.text = issueID
             }
@@ -164,7 +165,7 @@ class IssueDetailTableViewController: UITableViewController {
         
         // Marks issue as it was modified.
         // Only marks it as true if it is false.
-        isModifed = isModifed ? isModifed : markAsModified
+        userModifiedData = userModifiedData ? userModifiedData : markAsModified
     
         // Validate
         validator.validate(self)
@@ -186,7 +187,7 @@ class IssueDetailTableViewController: UITableViewController {
     }
     
     func viewForTableViewHeader()->UIView {
-        if isNew() {
+        if isNew {
             headerView.viewFor(.add)
         } else {
             headerView.viewFor(.edit)
@@ -350,15 +351,8 @@ class IssueDetailTableViewController: UITableViewController {
      Determines whether the user are modifying an exising issue or adding a new one.
      - Returns: `true` if the use are adding a new issue; otherwise `false`
      */
-    func isNew() -> Bool{
-        // If realm database does not contain the issue,
-        // it is the new one; otherwise, it is an exsiting issue.
-        if let issue = issue {
-            guard let _ = issue.realm else { return true }
-            return false
-        }else{
-            return true
-        }
+    private var isNew: Bool {
+        return self.issue?.realm == nil ? true : false
     }
     
     func displayTableViewCell(_ display: Bool) {
@@ -372,11 +366,11 @@ class IssueDetailTableViewController: UITableViewController {
         else {
             cells = [CellType]()
             cells?.append(.priority)
-            cells?.append(.dueDate)
             cells?.append(.startDate)
             cells?.append(.endDate)
+            cells?.append(.dueDate)
             // Only add the folowing cells in edit mode
-            if !isNew() {
+            if !isNew {
                 cells?.insert(.attachment, at: 1)
                 cells?.append(.project)
                 cells?.append(.issueType)
@@ -388,7 +382,7 @@ class IssueDetailTableViewController: UITableViewController {
     
     private func update(date: Date?, to dateType: DateType){
         // Adding a new issue
-        if isNew() {
+        if isNew {
             switch dateType {
             case .dueDate: issue?.dueDate = date ; return
             case .startDate: issue?.startDate = date ; return
@@ -397,9 +391,15 @@ class IssueDetailTableViewController: UITableViewController {
         }
         // Modifying an existing issue
         switch dateType{
-        case .dueDate: issue?.write({ issue?.dueDate = date }, completion: nil) ; return
-        case .startDate: issue?.write( { issue?.startDate = date }, completion: nil) ; return
-        case .endDate: issue?.write({ issue?.endDate = date }, completion: nil) ; return
+        case .dueDate:
+            do { try issue?.write{ issue?.dueDate = date } } catch { print(error) }
+            return
+        case .startDate:
+            do { try issue?.write { issue?.startDate = date } } catch { print(error) }
+            return
+        case .endDate:
+            do { try issue?.write { issue?.endDate = date } } catch { print(error) }
+            return
         }
     }
     
@@ -427,7 +427,7 @@ class IssueDetailTableViewController: UITableViewController {
     @IBAction func closeButtonPressed(_ sender: UIBarButtonItem) {
         // Prevents user lose entered data
         // Shows a popup to ask user whether they really want to discard the changes
-        if isModifed, isNew() { // New issue
+        if userModifiedData, isNew { // New issue
             let alertController = UIAlertController(title: "", message: "You added data to the form. Do you want to discard the changes? Select Cancel to keep working on it.", preferredStyle: .actionSheet)
             let discardAction = UIAlertAction(title: "Discard draft", style: .destructive) { (action) in
                 self.dismiss(animated: true, completion: nil)
@@ -440,7 +440,7 @@ class IssueDetailTableViewController: UITableViewController {
             // Presents the alert controller
             present(alertController, animated: true, completion: nil)
             
-        } else if isModifed, let issue = self.issue { // Modify an issue
+        } else if userModifiedData, let issue = self.issue { // Modify an issue
             dismiss(animated: true, completion: { self.delegate?.didModify(issue) } )
         }
         else { // User opened the issue, but did not make any changes.
@@ -454,7 +454,7 @@ class IssueDetailTableViewController: UITableViewController {
         issue.summary = header.summaryTextView.text
         issue.issueDescription = header.descriptionTextView.text
         
-        if isNew(){ delegate?.didAdd(issue, to: project) }
+        if isNew { delegate?.didAdd(issue, to: project) }
         else{ delegate?.didModify(issue) }
         
         dismiss(animated: true, completion: nil)
@@ -465,7 +465,7 @@ class IssueDetailTableViewController: UITableViewController {
     }
     
     @IBAction func tapedOnTextView(_sender: UITextView){
-        if !isNew(){
+        if !isNew {
             performSegue(withIdentifier: S.textView, sender: self)
         }
     }
@@ -506,19 +506,19 @@ extension IssueDetailTableViewController: UITextViewDelegate {
     
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
         selectedTextViewTag = textView == headerView.summaryTextView ? 0 : 1
-        if !isNew(){
+        if !isNew {
             performSegue(withIdentifier: S.textView, sender: self)
         }
         
-        return isNew() ? true : false
+        return isNew ? true : false
     }
 }
 
 // MARK: - SelectProjectProtocol
 
-extension IssueDetailTableViewController: SelectProjectDelegate {
+extension IssueDetailTableViewController: SearchProjectDelegate {
     
-    func didSelectdProject(project: Project?) {
+    func didSelect(_ project: Project?) {
         self.project = project
         updateView(components: [.project], markAsModified: true)
     }
@@ -599,7 +599,7 @@ extension IssueDetailTableViewController: IssueTypeTableViewDelegate {
     
     func didSelect(_ issueType: IssueType) {
         guard let issue = self.issue else { return }
-        if isNew() { issue.type = issueType }
+        if isNew { issue.type = issueType }
         else {
             do{
                 try issue.write { issue.type = issueType }
@@ -692,12 +692,12 @@ extension IssueDetailTableViewController {
 
 // MARK: - Select Priority Delegate
 
-extension IssueDetailTableViewController: SelectPriorityDelegate {
+extension IssueDetailTableViewController: PriorityTableViewDelegate {
     
     func didSelect(_ priority: Priority) {
         
         guard let issue = self.issue else { return }
-        if isNew() {
+        if isNew {
             issue.priority = priority
         }else{
             do{
@@ -862,7 +862,7 @@ extension IssueDetailTableViewController: ValidationDelegate {
     func validationSuccessful() {
         // Only enable the button when the validation has been successfully
         // and the isMofied flag has been marked as modified.
-        createOrSaveButton.isEnabled = isModifed && isNew()
+        createOrSaveButton.isEnabled = userModifiedData && isNew
     }
     
     func validationFailed(_ errors: [(Validatable, ValidationError)]) {
@@ -875,7 +875,7 @@ extension IssueDetailTableViewController: ValidationDelegate {
 extension IssueDetailTableViewController: StatusDelegate {
     
     func didSelect(_ status: Status) {
-        if isNew() { issue?.status = status }
+        if isNew { issue?.status = status }
         else{
             do{
                 try issue?.write{ issue?.status = status }
