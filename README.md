@@ -3,16 +3,19 @@ Personal issue tracking app that helps you to manage projects and issues. The ap
 ![Agile Board](agile_board.png)
 
 ## Major features
-Projects:
-- Drag and drop to order the issue.
-![Drag and drop to order the issue](reorder_issue.gif)
-- Drag and drop to transtion issue.
-![Drag and drop to transtion issue.](drag_transition_issue.gif)
-![Drag and drop to transtion issue.](drag_transition_issue_landscape.gif)
-- Add custom board
 
-Issues:
-- Quickly filter issues by the following criteria
+### Drag and drop to order the issue.
+![Drag and drop to order the issue](reorder_issue.gif)
+### Drag and drop to transtion issue on portrait mode.
+![Drag and drop to transtion issue.](drag_transition_issue.gif)
+### Drag and drop to transtion issue on landscape mode.
+![Drag and drop to transtion issue.](drag_transtion_issue_landscape.gif)
+### Add custom board
+
+### Re-order board's column
+![Re-order board's column](reorder_column.gif)
+
+### Quickly filter issues by the following criteria
   - All
   - Due today
   - Due this week
@@ -25,6 +28,6 @@ Issues:
   - Bug
   - Epic
   
-Calendar view:
-Support calendar view to display issues by date.
+### Supports calendar view to display issues by date
+
 
