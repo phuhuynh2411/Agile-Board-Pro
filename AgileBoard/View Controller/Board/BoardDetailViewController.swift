@@ -101,12 +101,18 @@ class BoardDetailViewController: UIViewController {
             titleView.nameTextField.becomeFirstResponder()
         }
         
+        // Show or hide page control
+        self.showHidePageControl()
+        
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        
         columnCollectionView.collectionViewLayout.invalidateLayout()
         statusCollectionView.collectionViewLayout.invalidateLayout()
+
+        self.showHidePageControl()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -114,6 +120,12 @@ class BoardDetailViewController: UIViewController {
         // Dismiss the keyboard when tapping on anywhere on the layout.
         // view.endEditing(true)
         titleView?.nameTextField.resignFirstResponder()
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        //columnCollectionView.collectionViewLayout.invalidateLayout()
+        //statusCollectionView.collectionViewLayout.invalidateLayout()
+        //columnCollectionView.reloadData()
     }
     
     // MARK: - Helper methods
@@ -170,6 +182,12 @@ class BoardDetailViewController: UIViewController {
         
     }
     
+    private func showHidePageControl() {
+        pageControl.isHidden = UIApplication.shared.statusBarOrientation.isLandscape
+    }
+    
+    // MARK: - IB Actions
+    
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
         titleView.nameTextField.resignFirstResponder()
     }
@@ -177,8 +195,6 @@ class BoardDetailViewController: UIViewController {
     private func isNew()-> Bool {
         return board == nil ? true : false
     }
-    
-    // MARK: - IB Actions
     
     @IBAction func closeButtonPressed(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)

@@ -135,7 +135,7 @@ extension BoardDetailColumnViewController: UICollectionViewDelegate, UICollectio
     private func sizeForItem(_ collectionView: UICollectionView) ->CGSize {
         
         // Landscape mode
-        let width = UIDevice.current.orientation.isLandscape ? collectionView.frame.width/2 - 5
+        let width = UIApplication.shared.statusBarOrientation.isLandscape ? collectionView.frame.width/2 - 5
             : collectionView.frame.width
            
         let insetTopBottom = collectionView.contentInset.top + collectionView.contentInset.bottom
@@ -156,7 +156,7 @@ extension BoardDetailColumnViewController: UICollectionViewDelegate, UICollectio
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         
         // Only perform the following lines in portrait mode
-        guard !UIDevice.current.orientation.isLandscape else { return }
+        guard !UIApplication.shared.statusBarOrientation.isLandscape else { return }
         
         // Stop scrollView sliding:
         targetContentOffset.pointee = scrollView.contentOffset
@@ -170,7 +170,7 @@ extension BoardDetailColumnViewController: UICollectionViewDelegate, UICollectio
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         
         // Only perform the following lines in portrait mode
-        guard !UIDevice.current.orientation.isLandscape, let layout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout,
+        guard !UIApplication.shared.statusBarOrientation.isLandscape, let layout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout,
         let columns = columns else { return }
     
         let cellWidth = layout.itemSize.width + layout.minimumLineSpacing
@@ -202,7 +202,6 @@ extension BoardDetailColumnViewController: UICollectionViewDelegate, UICollectio
         
         return pageNumber
     }
-    
     
 }
 

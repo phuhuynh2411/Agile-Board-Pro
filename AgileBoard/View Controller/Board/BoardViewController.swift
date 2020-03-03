@@ -26,8 +26,8 @@ class BoardViewController: UIViewController {
     
     var customView: BoardTitleView = .fromNib()
     
-    var notificationToken: NotificationToken?
-            
+    private var notificationToken: NotificationToken?
+                
     override func viewDidLoad() {
         
         // Set the number of pages for the page control
@@ -83,13 +83,23 @@ class BoardViewController: UIViewController {
         notificationToken?.invalidate()
     }
     
-    func showHidePageControl() {
+    private func showHidePageControl() {
         
         if UIApplication.shared.statusBarOrientation.isLandscape {
             pageControl.setVisible(state: false, with: 10)
         }
         else {
             pageControl.setVisible(state: true, with: 37)
+        }
+    }
+    
+    private func willShowHidePageControl() {
+        
+        if UIApplication.shared.statusBarOrientation.isLandscape {
+            pageControl.setVisible(state: true, with: 37)
+        }
+        else {
+            pageControl.setVisible(state: false, with: 10)
         }
     }
     
@@ -162,14 +172,11 @@ class BoardViewController: UIViewController {
 extension BoardViewController {
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+       
+        self.willShowHidePageControl()
         
-        // Show or hide the page control
-        showHidePageControl()
-
-        // Reload the collection data when users change the orientation
         collectionView.collectionViewLayout.invalidateLayout()
         collectionView.reloadData()
-        
     }
     
 }

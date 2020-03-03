@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="S2E-3z-RmC" customClass="IssuePageControlView" customModule="Agile_Board" customModuleProvider="target">
+                            <pageControl opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="S2E-3z-RmC" customClass="IssuePageControlView" customModule="Agile_Board" customModuleProvider="target">
                                 <rect key="frame" x="16" y="581" width="343" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" identifier="heightConstrant" id="Kga-hZ-QSD"/>
@@ -1867,7 +1867,7 @@
                                 </subviews>
                                 <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="20" bottom="8" trailing="20"/>
                             </stackView>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="DkD-LO-u1H">
+                            <pageControl opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="DkD-LO-u1H">
                                 <rect key="frame" x="16" y="614" width="343" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="AcI-uo-xIW"/>

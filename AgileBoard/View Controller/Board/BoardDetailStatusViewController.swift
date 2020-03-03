@@ -107,7 +107,7 @@ extension BoardDetailStatusViewController: UICollectionViewDelegate, UICollectio
     private func sizeForItem(_ collectionView: UICollectionView) ->CGSize {
         
         // Landscape mode
-        var width = UIDevice.current.orientation.isLandscape ? collectionView.frame.width/2
+        var width = UIApplication.shared.statusBarOrientation.isLandscape ? collectionView.frame.width/2
             : collectionView.frame.width
         width -= 20
 
