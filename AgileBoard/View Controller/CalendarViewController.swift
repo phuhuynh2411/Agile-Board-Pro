@@ -428,9 +428,6 @@ extension CalendarViewController: CalendarViewDelegate {
 extension CalendarViewController: IssueDetailDelegate {
     
     func didAdd(_ issue: Issue, to project: Project?) {
-        // Set issue's status to the first project's status
-        
-        // TODO: auto set the status to column's first status
         issue.status = project?.statuses.first
         do{
             try project?.add(issue)
@@ -453,13 +450,11 @@ extension CalendarViewController: IssueDetailDelegate {
         }
         
         tableView.reloadData()
-        //updateBadge()
         reloadIssuesForCurrentMonth()
     }
     
     func didModify(_ issue: Issue) {
         tableView.reloadData()
-        //updateBadge()
         reloadIssuesForCurrentMonth()
     }
     

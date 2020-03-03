@@ -37,7 +37,7 @@ class StatusDetailViewController: UIViewController {
     /// required when modifying status
     var project: Project?
     
-    var isModified = false
+    var userModifiedData = false
     
     let validator = Validator()
     
@@ -68,7 +68,7 @@ class StatusDetailViewController: UIViewController {
         
         // Rename Done button to add if selected color is empty
         // User adds a new color
-        if isNew(){
+        if isNew {
             navigationItem.rightBarButtonItem?.title = "Create"
             // Select first color
             selectFirstColor()
@@ -93,7 +93,7 @@ class StatusDetailViewController: UIViewController {
     
     private func updateView(components: [ViewCompoments] = [], markAsModified: Bool = false) {
         // Mark as modifed
-        isModified = isModified ? isModified : markAsModified
+        userModifiedData = userModifiedData ? userModifiedData : markAsModified
     }
     
     private func selectFirstColor() {
@@ -107,7 +107,7 @@ class StatusDetailViewController: UIViewController {
     /**
      If status is nil, user is adding a new status; otherwise modifying the status
      */
-    private func isNew()->Bool {
+    private var isNew: Bool {
         return status == nil ? true : false
     }
     
@@ -120,36 +120,32 @@ class StatusDetailViewController: UIViewController {
     
     @IBAction func doneButtonPressed(_ sender: UIBarButtonItem) {
         
-        guard isModified, let statusName = statusTextField.text, let color = selectedColor else { return }
+        guard userModifiedData, let statusName = statusTextField.text, let color = selectedColor else { return }
         
         let newStatus           = Status()
         newStatus.color         = color
         newStatus.name          = statusName
         newStatus.markedAsDone  = doneSwitch.isOn
         
-        // TODO: reformat the code.
-        // User is adding new status
-        if isNew() { delegate?.didAdd(newStatus) }
-        else {
-            do {
-                try status?.write {
-                    status?.name = statusName
-                    status?.color = color
-                    status?.markedAsDone = doneSwitch.isOn
-                }
-            } catch { print(error) }
-            
-            if let status = self.status {
-                delegate?.didModify(status)
-            }
+        if isNew { dismiss(animated: true, completion: { self.delegate?.didAdd(newStatus) })
+            return
         }
-        dismiss(animated: true, completion: nil)
+        // Modify status
+        guard let status = self.status else { return }
+        do {
+            try status.write {
+                status.name = statusName
+                status.color = color
+                status.markedAsDone = doneSwitch.isOn
+            }
+        } catch { print(error) }
+
+        dismiss(animated: true, completion: { self.delegate?.didModify(status) })
     }
     
     
     @IBAction func textFieldDidChange(_ sender: UITextField) {
         updateView(markAsModified: true)
-        // Validate
         validator.validate(self)
     }
     
@@ -165,7 +161,7 @@ class StatusDetailViewController: UIViewController {
         if let project = project {
             var rules: [Rule] = [RequiredRule()]
             let statusRule = StatusRule(project: project)
-            if !isNew() {
+            if !isNew {
                 statusRule.status = status
             }
             rules.append(statusRule)
@@ -296,7 +292,7 @@ extension StatusDetailViewController: UICollectionViewDelegate {
 
 extension StatusDetailViewController: ValidationDelegate {
     func validationSuccessful() {
-        doneButton.isEnabled = isModified
+        doneButton.isEnabled = userModifiedData
         
         errorLabel.text = ""
     }

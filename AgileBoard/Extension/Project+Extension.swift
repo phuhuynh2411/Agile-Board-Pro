@@ -69,5 +69,4 @@ extension Project {
             self.statuses.append(status)
         }
     }
-    
 }

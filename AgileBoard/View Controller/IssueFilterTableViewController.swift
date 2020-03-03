@@ -41,13 +41,13 @@ class IssueFilterTableViewController: UITableViewController {
          filters.append(DoneIssueFilter(name: "Done", imageName: "filter_done"))
         
         //Story
-        filters.append(StoryFilter(name: "Story", imageName: "issue_story"))
+        filters.append(StoryFilter(name: "Story", imageName: "issue_filter_story"))
         //Task
-        filters.append(TaskFilter(name: "Task", imageName: "issue_task"))
+        filters.append(TaskFilter(name: "Task", imageName: "issue_filter_task"))
         //Epic
-        filters.append(EpicFilter(name: "Epic", imageName: "issue_epic"))
+        filters.append(EpicFilter(name: "Epic", imageName: "issue_filter_epic"))
         //Bug
-        filters.append(BugFilter(name: "Bug", imageName: "issue_bug"))
+        filters.append(BugFilter(name: "Bug", imageName: "issue_filter_bug"))
         
     }
 
