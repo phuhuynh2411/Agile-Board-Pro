@@ -11,7 +11,7 @@ Personal issue tracking app that helps you to manage projects and issues. The ap
 ### Drag and drop to transtion issue on landscape mode.
 ![Drag and drop to transtion issue.](drag_transtion_issue_landscape.gif)
 ### Add custom board
-
+![Add custom board](add_custom_board.gif)
 ### Re-order board's column
 ![Re-order board's column](reorder_column.gif)
 
@@ -28,6 +28,9 @@ Personal issue tracking app that helps you to manage projects and issues. The ap
   - Bug
   - Epic
   
-### Supports calendar view to display issues by date
+### Supports calendar view to display issues by date in postrait mode
+![Supports calendar view to display issues by date in postrait mode](calendar_view.gif)
 
+### Supports calendar view to display issues by date in landscape mode
+![Supports calendar view to display issues by date in landscape mode](calendar_view_landscape.gif)
 
