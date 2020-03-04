@@ -14,7 +14,7 @@ class ProjectTableViewController: UITableViewController {
     
     var projectList: Results<Project>?
     
-    var filteredProjectList: LazyFilterSequence<Results<Project>>?
+    var filteredProjectList: Results<Project>?
     
     lazy var realm = AppDataController.shared.realm
     
@@ -230,9 +230,7 @@ extension ProjectTableViewController: UISearchResultsUpdating {
     
     func filterContentForSearchText(searchText: String) {
         
-        filteredProjectList = projectList?.filter({ (project) -> Bool in
-            project.name.lowercased().contains(searchText.lowercased())
-        })
+        filteredProjectList = projectList?.filter("name contains[c] %@ OR projectDescription contains[c] %@", searchText.lowercased(), searchText.lowercased())
         
         tableView.reloadData()
 

@@ -1,54 +1,55 @@
 //
-//  DeleteZoneTableView.swift
+//  DeleteZoneCollectionView.swift
 //  Agile Board
 //
-//  Created by Huynh Tan Phu on 3/3/20.
+//  Created by Huynh Tan Phu on 3/4/20.
 //  Copyright © 2020 Filesoft. All rights reserved.
 //
 
 import UIKit
 
-class DeleteZoneTableView: UITableView {
+class DeleteZoneCollectionView: UICollectionView {
     
-    override init(frame: CGRect, style: UITableView.Style) {
-        super.init(frame: frame, style: style)
+    init() {
+        let layout = UICollectionViewFlowLayout()
+        //layout.itemSize = CGSize(width: 100, height: 100)
+        let frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+        
+        super.init(frame: frame, collectionViewLayout: layout)
         
         self.setup()
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     private func setup() {
         
-        self.backgroundView = self.imageForDeleteZone(isActive: false)
-        self.backgroundColor = .none
-        self.dropDelegate = self
+        // Setup collection view
         self.dragInteractionEnabled = true
-        self.separatorStyle = .none
+        self.dropDelegate = self
+        
+        self.backgroundColor = .none
+        self.backgroundView = imageForDeleteZone(isActive: false)
+        
+        guard let topVC = UIApplication.getTopViewController() as? IssueDetailTableViewController,
+                let toolbar = topVC.navigationController?.toolbar  else { return }
+        
+        let mainView = topVC.view
+        mainView?.addSubview(self)
         
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.widthAnchor.constraint(equalToConstant: 100).isActive = true
         self.heightAnchor.constraint(equalToConstant: 100).isActive = true
-        
-        guard let topVc = UIApplication.getTopViewController() as? BoardViewController,
-            let view = topVc.view else { return }
-        
-        view.addSubview(self)
-        
-        self.bottomAnchor.constraint(equalTo: topVc.pageControl.bottomAnchor, constant: -16).isActive = true
-        self.centerXAnchor.constraint(equalTo: topVc.pageControl.centerXAnchor).isActive = true
+        self.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        self.bottomAnchor.constraint(equalTo: toolbar.topAnchor, constant: -16).isActive = true
+        self.centerXAnchor.constraint(equalTo: toolbar.centerXAnchor).isActive = true
         
         // Redraw the layout
-        topVc.view.layoutIfNeeded()
+        topVC.view.layoutIfNeeded()
         
-        // Start animiating
+        // Start animating
         self.startAnimating()
-    }
-    
-    func delete() {
-        self.removeFromSuperview()
     }
     
     internal func imageForDeleteZone(isActive: Bool) -> UIImageView {
@@ -71,5 +72,9 @@ class DeleteZoneTableView: UITableView {
             self.transform = CGAffineTransform(rotationAngle: -CGFloat(Double.pi + 10))
         }) { (complete) in
         }
+    }
+    
+    func delete() {
+        self.removeFromSuperview()
     }
 }

@@ -141,6 +141,8 @@
 		84CEC23A23B1FD9D0044B2B3 /* BoardDetailStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CEC23923B1FD9D0044B2B3 /* BoardDetailStatusViewController.swift */; };
 		84CEC23C23B2021E0044B2B3 /* BStatusCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CEC23B23B2021E0044B2B3 /* BStatusCollectionViewCell.swift */; };
 		84CEC23E23B210570044B2B3 /* BStatusHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CEC23D23B210570044B2B3 /* BStatusHeaderCell.swift */; };
+		84D58268240F4CE5003BD80B /* DeleteZoneCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D58267240F4CE5003BD80B /* DeleteZoneCollectionView.swift */; };
+		84D5826A240F4E7A003BD80B /* DeleteZoneCollectionView+DropDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D58269240F4E7A003BD80B /* DeleteZoneCollectionView+DropDelegate.swift */; };
 		84D590F523B9F36E0011FA4B /* EditBoardNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D590F423B9F36E0011FA4B /* EditBoardNameViewController.swift */; };
 		84D590F723B9FDD90011FA4B /* ObjectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D590F623B9FDD90011FA4B /* ObjectExtension.swift */; };
 		84D8506F240114B2006DA605 /* Project+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D8506E240114B2006DA605 /* Project+Extension.swift */; };
@@ -311,6 +313,8 @@
 		84CEC23923B1FD9D0044B2B3 /* BoardDetailStatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardDetailStatusViewController.swift; sourceTree = "<group>"; };
 		84CEC23B23B2021E0044B2B3 /* BStatusCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BStatusCollectionViewCell.swift; sourceTree = "<group>"; };
 		84CEC23D23B210570044B2B3 /* BStatusHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BStatusHeaderCell.swift; path = "AgileBoard/View/Custom Cell/BStatusHeaderCell.swift"; sourceTree = SOURCE_ROOT; };
+		84D58267240F4CE5003BD80B /* DeleteZoneCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteZoneCollectionView.swift; sourceTree = "<group>"; };
+		84D58269240F4E7A003BD80B /* DeleteZoneCollectionView+DropDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeleteZoneCollectionView+DropDelegate.swift"; sourceTree = "<group>"; };
 		84D590F423B9F36E0011FA4B /* EditBoardNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditBoardNameViewController.swift; sourceTree = "<group>"; };
 		84D590F623B9FDD90011FA4B /* ObjectExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectExtension.swift; sourceTree = "<group>"; };
 		84D8506E240114B2006DA605 /* Project+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Project+Extension.swift"; sourceTree = "<group>"; };
@@ -417,8 +421,8 @@
 				840409B9239171290006829F /* IconCollectionViewController.swift */,
 				843C58CA2391073800F5FAB5 /* ProjectDetailTableViewController.swift */,
 				84B5F730238F806B00D344C3 /* IssueTypeTableViewController.swift */,
-				84584E28238EDBDD000408AE /* SearchProjectViewController.swift */,
 				84C340E32388361D00C65AC9 /* ProjectTableViewController.swift */,
+				84584E28238EDBDD000408AE /* SearchProjectViewController.swift */,
 				84E0E0C023A8B8E70057A360 /* Board */,
 				84ACC2F823AB6BC3004B5281 /* IssueDetail */,
 				84FA5A5223ACB44D003CDD65 /* StatusDetailViewController.swift */,
@@ -646,6 +650,8 @@
 			children = (
 				84579E69239664FB009575E4 /* IssueDetailTableViewController.swift */,
 				84299FD623990BB800432A66 /* AttachmentCollectionViewController.swift */,
+				84D58267240F4CE5003BD80B /* DeleteZoneCollectionView.swift */,
+				84D58269240F4E7A003BD80B /* DeleteZoneCollectionView+DropDelegate.swift */,
 				843BF017239A61EE005F798D /* PhotoViewController.swift */,
 				84C4042C23A2254B00A49A8D /* SelectDateViewController.swift */,
 				8426581A23AB169100061748 /* StatusTableViewController.swift */,
@@ -849,6 +855,7 @@
 				841B42F223844275000871F6 /* IssueCollectionViewFlowLayout.swift in Sources */,
 				849E508823CC4A8000ED81D5 /* IssueFilter.swift in Sources */,
 				843BF016239A4C9C005F798D /* AttachmentTableViewCell.swift in Sources */,
+				84D58268240F4CE5003BD80B /* DeleteZoneCollectionView.swift in Sources */,
 				84FA5A5323ACB44D003CDD65 /* StatusDetailViewController.swift in Sources */,
 				847A78122387745D00911851 /* Board.swift in Sources */,
 				84F56A05237C5B56007E6C68 /* UIColor+Extention.swift in Sources */,
@@ -959,6 +966,7 @@
 				84B5F72F238F647F00D344C3 /* SearchProjectTableViewCell.swift in Sources */,
 				84C340E62388368900C65AC9 /* ProjectTableViewCell.swift in Sources */,
 				840390EB2407C5F30091934B /* EpicFilter.swift in Sources */,
+				84D5826A240F4E7A003BD80B /* DeleteZoneCollectionView+DropDelegate.swift in Sources */,
 				8490AA802403C6C500579312 /* Priority+Extension.swift in Sources */,
 				8420628C237AFD7E0076CDAC /* Issue.swift in Sources */,
 				84D590F523B9F36E0011FA4B /* EditBoardNameViewController.swift in Sources */,

@@ -828,7 +828,7 @@ extension IssueDetailTableViewController {
 
 // MARK: - AttachmentDelegate
 
-extension IssueDetailTableViewController: AttachmentDelegate {
+extension IssueDetailTableViewController: AttachmentCollectionViewDelegate {
     
     func didAdd(_ attachment: Attachment) {
         do{

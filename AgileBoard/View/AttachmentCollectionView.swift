@@ -25,8 +25,6 @@ class AttachmentCollectionView: UICollectionView {
         
         // Enable dragging
         dragInteractionEnabled = true
-        self.dragDelegate = controller
-        self.dropDelegate = controller
-        
+        self.dragDelegate = controller        
     }
 }
