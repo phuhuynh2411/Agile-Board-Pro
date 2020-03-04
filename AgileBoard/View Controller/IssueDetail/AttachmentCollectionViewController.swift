@@ -238,3 +238,4 @@ extension AttachmentCollectionViewController: UICollectionViewDragDelegate {
         self.deleteZoneCollectionView = nil
     }
 }
+

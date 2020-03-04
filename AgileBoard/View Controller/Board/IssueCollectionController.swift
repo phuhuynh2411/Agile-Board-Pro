@@ -16,6 +16,8 @@ class IssueCollectionController: NSObject {
     var pageControl: IssuePageControlView?
     
     var collectionView: UICollectionView?
+    
+    var scrollVelocity: CGPoint?
         
     init(collectionView: UICollectionView) {
         super.init()
@@ -67,13 +69,15 @@ extension IssueCollectionController: UICollectionViewDelegate, UICollectionViewD
         
         // Stop scrollView sliding:
         targetContentOffset.pointee = scrollView.contentOffset
+        self.scrollVelocity = velocity
         
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         
         // Only perform the following lines in portrait mode
-        guard !UIDevice.current.orientation.isLandscape else { return }
+        guard !UIDevice.current.orientation.isLandscape,
+            let velocity = self.scrollVelocity else { return }
         
         let pageWidth = scrollView.frame.size.width
         var pageNumber: Int = Int(floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1)
@@ -86,23 +90,32 @@ extension IssueCollectionController: UICollectionViewDelegate, UICollectionViewD
         
         let totalCellWidth = CGFloat(numberOfCells) * cellWidth
         let totalSpacing = CGFloat(numberOfCells ) * spacing
+        
+        let oldX = CGFloat(pageNumber) * (totalSpacing + totalCellWidth)
 
+        let segueX = cellWidth/2
+        pageNumber = isScrollToLeft(scrollView) ? pageNumber - 1 : pageNumber + 1
+        
         // Scroll left
-        if scrollView.panGestureRecognizer.translation(in: scrollView.superview).x > 0 {
-            pageNumber -= 1
+        if isScrollToLeft(scrollView), !(scrollView.contentOffset.x < oldX - segueX), abs(velocity.x) < 0.5 {
+            scrollTo(x: oldX, scrollView) ; return
+        } else if !(scrollView.contentOffset.x > oldX + segueX), abs(velocity.x) < 0.5 {
+            scrollTo(x: oldX, scrollView) ; return
+        } else {
+            let newX = CGFloat(pageNumber) * (totalSpacing + totalCellWidth)
+            self.scrollTo(x: newX, scrollView)
         }
-        // Scroll right
-        else {
-            pageNumber += 1
-        }
-        let newX = CGFloat(pageNumber) * (totalSpacing + totalCellWidth)
-        
-        let rect = CGRect(x: newX, y: 0, width: scrollView.frame.width, height: scrollView.frame.height)
-        scrollView.scrollRectToVisible(rect, animated: true)
-        
         // Update the page number
         pageControl?.currentPage = pageNumber
-        
+    }
+    
+    private func isScrollToLeft(_ scrollView: UIScrollView) -> Bool {
+        return scrollView.panGestureRecognizer.translation(in: scrollView.superview).x > 0
+    }
+    
+    private func scrollTo(x: CGFloat, _ scrollView: UIScrollView) {
+        let rect = CGRect(x: x, y: 0, width: scrollView.frame.width, height: scrollView.frame.height)
+        scrollView.scrollRectToVisible(rect, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
