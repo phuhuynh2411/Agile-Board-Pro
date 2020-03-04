@@ -464,6 +464,10 @@
 				8476A55423C7234E0002334C /* FilterIssueTableViewCell.swift */,
 				8445863823FE26E8003889C7 /* IssueCalendarTableViewCell.swift */,
 				8431757923EA5F390060C333 /* CalendarView */,
+				84D58267240F4CE5003BD80B /* DeleteZoneCollectionView.swift */,
+				84D58269240F4E7A003BD80B /* DeleteZoneCollectionView+DropDelegate.swift */,
+				841B6381240E953900F8116D /* DeleteZoneTableView.swift */,
+				841B6383240E9BC300F8116D /* DeleteZoneTableView+DropDelegate.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -650,8 +654,6 @@
 			children = (
 				84579E69239664FB009575E4 /* IssueDetailTableViewController.swift */,
 				84299FD623990BB800432A66 /* AttachmentCollectionViewController.swift */,
-				84D58267240F4CE5003BD80B /* DeleteZoneCollectionView.swift */,
-				84D58269240F4E7A003BD80B /* DeleteZoneCollectionView+DropDelegate.swift */,
 				843BF017239A61EE005F798D /* PhotoViewController.swift */,
 				84C4042C23A2254B00A49A8D /* SelectDateViewController.swift */,
 				8426581A23AB169100061748 /* StatusTableViewController.swift */,
@@ -673,8 +675,6 @@
 			children = (
 				84983EC323B1B702003657F1 /* BoardTitleView.swift */,
 				843C8987237AE7460050586E /* BoardViewController.swift */,
-				841B6381240E953900F8116D /* DeleteZoneTableView.swift */,
-				841B6383240E9BC300F8116D /* DeleteZoneTableView+DropDelegate.swift */,
 				845227CE238CFC61000607A8 /* IssueCollectionController.swift */,
 				84A51ABF237AF8DD00477B75 /* IssueTableController.swift */,
 				84F5FF9B238538FB00F2E966 /* DragIssueItem.swift */,
