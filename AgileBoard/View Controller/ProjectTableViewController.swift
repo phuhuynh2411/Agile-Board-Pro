@@ -230,7 +230,7 @@ extension ProjectTableViewController: UISearchResultsUpdating {
     
     func filterContentForSearchText(searchText: String) {
         
-        filteredProjectList = projectList?.filter("name contains[c] %@ OR projectDescription contains[c] %@", searchText.lowercased(), searchText.lowercased())
+        filteredProjectList = projectList?.filter("name contains[c] %@ OR projectDescription contains[c] %@ OR key contains[c] %@", searchText.lowercased(), searchText.lowercased(), searchText.lowercased())
         
         tableView.reloadData()
 

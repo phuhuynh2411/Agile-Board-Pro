@@ -23,7 +23,7 @@ class BoardDetailStatusViewController: NSObject {
         self.collectionView = collectionView
     }
     
-    // MARK: - IB Actions
+    // MARK: - Navigations
 
 }
 
@@ -129,6 +129,7 @@ extension BoardDetailStatusViewController: UICollectionViewDelegate, UICollectio
         }
         
     }
+
 }
 
 // MARK: - UICollectionViewDragDelegate

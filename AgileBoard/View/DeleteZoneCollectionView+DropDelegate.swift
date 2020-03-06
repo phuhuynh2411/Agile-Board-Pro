@@ -29,6 +29,9 @@ extension DeleteZoneCollectionView: UICollectionViewDropDelegate {
         
         // Delete the attachemnt in the collection view
         sourceCollectionView.deleteItems(at: [indexPath])
+        // Refresh the number of attachments
+        let topVc = UIApplication.getTopViewController() as? IssueDetailTableViewController
+        topVc?.refreshNumberOfAttachments()
     }
     
     func collectionView(_ collectionView: UICollectionView, dropSessionDidExit session: UIDropSession) {

@@ -57,6 +57,8 @@ class IssueDetailTableViewController: UITableViewController {
     /// Determines which text view has been tapped.
     var selectedTextViewTag: Int?
     
+    var numberOfAttachmentsLabel: UILabel?
+    
     // MARK: View Methods
     
     override func viewDidLoad() {
@@ -88,6 +90,7 @@ class IssueDetailTableViewController: UITableViewController {
         registerCell(nibName: "IssueTypeTableViewCellv2", cellIdentifier: C.issueType)
         
         createOrSaveButton.title = isNew ? "Create" : ""
+        createOrSaveButton.isEnabled = false
         
     }
     
@@ -241,6 +244,7 @@ class IssueDetailTableViewController: UITableViewController {
         // Attachment Cell
         if let attachmentCell = cell as? AttachmentTableViewCell {
             attachmentCell.numberLabel.text = "\(issue?.attachments.count ?? 0)"
+            self.numberOfAttachmentsLabel = attachmentCell.numberLabel
         }
         
         // Collection cell
@@ -401,6 +405,10 @@ class IssueDetailTableViewController: UITableViewController {
             do { try issue?.write { issue?.endDate = date } } catch { print(error) }
             return
         }
+    }
+    
+    func refreshNumberOfAttachments() {
+        self.numberOfAttachmentsLabel?.text = "\(issue?.attachments.count ?? 0)"
     }
     
     // MARK: - IB Actions
@@ -860,6 +868,8 @@ extension IssueDetailTableViewController: ValidationDelegate {
     }
     
     func validationSuccessful() {
+        // Make sure user already selected a project.
+        guard self.project != nil else { createOrSaveButton.isEnabled = false ; return }
         // Only enable the button when the validation has been successfully
         // and the isMofied flag has been marked as modified.
         createOrSaveButton.isEnabled = userModifiedData && isNew

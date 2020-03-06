@@ -212,42 +212,43 @@ extension IssueTableController: UITableViewDropDelegate {
 
     func tableView(_ tableView: UITableView, performDropWith coordinator: UITableViewDropCoordinator) {
         
-        for item in coordinator.items {
-            guard let (issue, srcTableView, cell, srcIndexPath ) = item.dragItem.localObject
-                as? (Issue, IssueTableView, UITableViewCell, IndexPath) else { return }
+        guard
+            let item = coordinator.items.first,
+            let (issue, srcTableView, cell, srcIndexPath ) = item.dragItem.localObject
+            as? (Issue, IssueTableView, UITableViewCell, IndexPath) else { return }
 
-            let desIndexPath: IndexPath
-            
-            if let destinationIndexPath = coordinator.destinationIndexPath{
-                desIndexPath = destinationIndexPath
-            }
-            // Draging an issue into an empty table view
-            else {
-                desIndexPath = IndexPath(row: 0, section: 0)
-            }
-            if let moveToIndex = issues?.index(of: issue) {
-                do{
-                    try issue.write { issue.status = column?.status }
-                    try realm?.write { issues?.move(from: moveToIndex, to: desIndexPath.row) }
-                } catch { print(error) }
-            }
-            
-            // Reload the destination table view
-            let destinationTableView = tableView as! IssueTableView
-            // Only increase the cell height if the number of rows is greater than one
-            if destinationTableView.numberOfRows(inSection: 0) == 0 {
-                destinationTableView.setHeight(height: cell.frame.height, animated: true)
-            }else {
-                destinationTableView.increaseHeight(with: cell.frame.height)
-            }
-            
-            tableView.insertRows(at: [desIndexPath], with: .automatic)
-            // Animates the item to the specificed index path in the table view
-            coordinator.drop(item.dragItem, toRowAt: desIndexPath)
-
-            srcTableView.deleteRows(at: [srcIndexPath], with: .automatic)
-            srcTableView.fitVisibleCellHeight(minHeight: 40, animated: true, full: false)
+        let desIndexPath: IndexPath
+        
+        if let destinationIndexPath = coordinator.destinationIndexPath{
+            desIndexPath = destinationIndexPath
         }
+        // Draging an issue into an empty table view
+        else {
+            desIndexPath = IndexPath(row: 0, section: 0)
+        }
+        if let moveToIndex = issues?.index(of: issue) {
+            do{
+                try issue.write { issue.status = column?.status }
+                try realm?.write { issues?.move(from: moveToIndex, to: desIndexPath.row) }
+            } catch { print(error) }
+        }
+        
+        // Reload the destination table view
+        let destinationTableView = tableView as! IssueTableView
+        // Only increase the cell height if the number of rows is greater than one
+        if destinationTableView.numberOfRows(inSection: 0) == 0 {
+            destinationTableView.setHeight(height: cell.frame.height, animated: true)
+        }else {
+            destinationTableView.increaseHeight(with: cell.frame.height)
+        }
+        
+        //tableView.insertRows(at: [desIndexPath], with: .automatic)
+        // Animates the item to the specificed index path in the table view
+        //coordinator.drop(item.dragItem, toRowAt: desIndexPath)
+        tableView.reloadData()
+
+        srcTableView.deleteRows(at: [srcIndexPath], with: .automatic)
+        srcTableView.fitVisibleCellHeight(minHeight: 40, animated: true, full: false)
 
     }
 
@@ -276,6 +277,8 @@ extension IssueTableController: UITableViewDropDelegate {
         self.deleteZoneTableView?.delete()
         self.deleteZoneTableView = nil
     }
+    
+    
 }
 
 // MARK: - Identifier

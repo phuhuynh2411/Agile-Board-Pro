@@ -153,21 +153,23 @@ class StatusDetailViewController: UIViewController {
         updateView(markAsModified: true)
         validator.validate(self)
     }
-    
-    
+
     // MARK: - Validations
     
     private func registerForValidation() {
-        if let project = project {
-            var rules: [Rule] = [RequiredRule()]
-            let statusRule = StatusRule(project: project)
-            if !isNew {
-                statusRule.status = status
-            }
-            rules.append(statusRule)
-            
-            validator.registerField(statusTextField, errorLabel: errorLabel, rules: rules)
+        
+        guard let project = self.project else {
+            fatalError("The project is required when creating a new status.")
         }
+        var rules: [Rule] = [RequiredRule()]
+        let statusRule = StatusRule(project: project)
+        if !isNew {
+            statusRule.status = status
+        }
+        rules.append(statusRule)
+        
+        validator.registerField(statusTextField, errorLabel: errorLabel, rules: rules)
+        
     }
 
     enum ViewCompoments {

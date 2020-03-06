@@ -222,6 +222,7 @@ class BoardDetailViewController: UIViewController {
             let navigationController = segue.destination as! UINavigationController
             let statusDetailViewController = navigationController.topViewController as! StatusDetailViewController
             statusDetailViewController.delegate = self
+            statusDetailViewController.project = self.project
         }
         else if segue.identifier == S.editStatus {
             let navigationController = segue.destination as! UINavigationController

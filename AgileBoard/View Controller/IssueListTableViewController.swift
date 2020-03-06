@@ -281,8 +281,12 @@ class IssueListTableViewController: UITableViewController {
     // MARK: - UITableView Delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Add current index path to the selected index path
+        self.editedIndexPaths.removeAll()
+        self.editedIndexPaths.append(indexPath)
+        
         let key = sections[indexPath.section]
-        if let issue = dictionary[key]?[indexPath.row]{
+        if let issue = dictionary[key]?[indexPath.row] {
             selectedIssue = issue
             performSegue(withIdentifier: S.editIssue, sender: self)
         }
@@ -442,6 +446,10 @@ extension IssueListTableViewController: IssueDetailDelegate {
         banner.onTap = {
             self.tappedOnBanner()
         }
+    }
+    
+    func didModify(_ issue: Issue) {
+        tableView.reloadRows(at: editedIndexPaths, with: .automatic)
     }
     
     func tappedOnBanner() {
