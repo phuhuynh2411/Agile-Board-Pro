@@ -259,6 +259,11 @@ class IssueListTableViewController: UITableViewController {
             }
             
             cell.statusButton.setTitle(issue.status?.name, for: .normal)
+            
+            // Show number of attachments
+            let attachmentCount = issue.attachments.count
+            cell.numberOfAttachmentsLabel.text = attachmentCount > 0 ? "\(attachmentCount)" : ""
+            cell.attachmentImageView.image = attachmentCount > 0 ? UIImage(named: "Attachment") : .none
         }
         
         // If it is the last item, loads more items

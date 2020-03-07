@@ -18,10 +18,19 @@ extension DeleteZoneCollectionView: UICollectionViewDropDelegate {
     func collectionView(_ collectionView: UICollectionView, performDropWith coordinator: UICollectionViewDropCoordinator) {
         
         guard let item = coordinator.items.first,
-            let dragItem = item.dragItem.localObject as? DragAttachmentItem else { return }
+            let dragItem = item.dragItem.localObject as? DragAttachmentItem,
+            let topVc = UIApplication.getTopViewController() as? IssueDetailTableViewController else { return }
     
         let sourceCollectionView = dragItem.collectionView
         let indexPath = dragItem.indexPath
+        
+        if topVc.isNew {
+            guard let index = topVc.issue?.attachments.index(of: dragItem.attachment) else {
+                fatalError("Something went wrong. Could not get the index of the attachment.")
+            }
+            // Remove the attachment in the issue's attachments
+            topVc.issue?.attachments.remove(at: index)
+        }
         
         do{
             try dragItem.attachment.remove()
@@ -30,8 +39,7 @@ extension DeleteZoneCollectionView: UICollectionViewDropDelegate {
         // Delete the attachemnt in the collection view
         sourceCollectionView.deleteItems(at: [indexPath])
         // Refresh the number of attachments
-        let topVc = UIApplication.getTopViewController() as? IssueDetailTableViewController
-        topVc?.refreshNumberOfAttachments()
+        topVc.refreshNumberOfAttachments()
     }
     
     func collectionView(_ collectionView: UICollectionView, dropSessionDidExit session: UIDropSession) {

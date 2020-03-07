@@ -97,6 +97,10 @@ extension IssueTableController: UITableViewDataSource {
         if let priorityImageName = issue?.priority?.imageName {
             cell.priorityImageView.image = UIImage(named: priorityImageName)
         }
+        // Show number of the attachments
+        let attachmentCount = issue?.attachments.count ?? 0
+        cell.numberOfAttachmentsLabel.text = "\(attachmentCount > 0 ? "\(attachmentCount)" : "")"
+        cell.attachmentImageView.image = attachmentCount > 0 ? UIImage(named: "Attachment") : .none
                     
         return cell
     }

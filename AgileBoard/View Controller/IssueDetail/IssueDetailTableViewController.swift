@@ -357,7 +357,7 @@ class IssueDetailTableViewController: UITableViewController {
      Determines whether the user are modifying an exising issue or adding a new one.
      - Returns: `true` if the use are adding a new issue; otherwise `false`
      */
-    private var isNew: Bool {
+    var isNew: Bool {
         return self.issue?.realm == nil ? true : false
     }
     
@@ -905,18 +905,6 @@ extension IssueDetailTableViewController: AttachmentCollectionViewDelegate {
         updateView(components: [.tableView], markAsModified: true)
     }
     
-    func didDelete(_ attachment: Attachment, at indexPath: IndexPath) {
-        let code = { self.issue?.realm?.delete(attachment) }
-        
-        if isNew {
-            code()
-        } else {
-            do{
-                try issue?.write{ code() }
-            }catch { print(error)}
-        }
-        updateView(components: [.tableView], markAsModified: true)
-    }
 }
 
 // MARK: - Validations

@@ -36,13 +36,21 @@
                             <constraint firstAttribute="height" constant="20" id="wix-Jk-1us"/>
                         </constraints>
                     </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="disclosure" translatesAutoresizingMaskIntoConstraints="NO" id="GGP-cW-UmH">
+                        <rect key="frame" x="299" y="28" width="10" height="14"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="14" id="dKn-fI-DMd"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="GGP-cW-UmH" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="6do-Lc-NTZ"/>
                     <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="2sW-zC-uHU" secondAttribute="trailing" constant="259" id="FTO-yo-9FG"/>
                     <constraint firstItem="T9e-Py-c8p" firstAttribute="centerY" secondItem="aWM-0r-Z7n" secondAttribute="centerY" id="Hp0-1h-m6N"/>
                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="T9e-Py-c8p" secondAttribute="trailing" constant="16" id="IYM-Rd-HQD"/>
                     <constraint firstItem="2sW-zC-uHU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="JV2-XA-L7s"/>
                     <constraint firstItem="T9e-Py-c8p" firstAttribute="leading" secondItem="aWM-0r-Z7n" secondAttribute="trailing" constant="8" id="Jph-wL-iLY"/>
+                    <constraint firstAttribute="trailing" secondItem="GGP-cW-UmH" secondAttribute="trailing" constant="16" id="QlF-LJ-TIF"/>
                     <constraint firstItem="aWM-0r-Z7n" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="TLt-Mg-hlg"/>
                     <constraint firstItem="2sW-zC-uHU" firstAttribute="leading" secondItem="aWM-0r-Z7n" secondAttribute="leading" id="Tue-LI-VF4"/>
                     <constraint firstItem="aWM-0r-Z7n" firstAttribute="top" secondItem="2sW-zC-uHU" secondAttribute="bottom" constant="8" id="q44-VO-B3o"/>
@@ -56,4 +64,7 @@
             <point key="canvasLocation" x="141.30434782608697" y="108.48214285714285"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="disclosure" width="10" height="16"/>
+    </resources>
 </document>
