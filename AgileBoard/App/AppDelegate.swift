@@ -20,5 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
+    func applicationWillTerminate(_ application: UIApplication) {
+        let topVC = UIApplication.getTopViewController() as? IssueDetailTableViewController
+        topVC?.cleanUp()
+    }
 }
 

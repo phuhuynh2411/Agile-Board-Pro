@@ -198,6 +198,7 @@ extension BoardViewController: IssueDetailDelegate {
         // Reload the collection view
         collectionView.reloadData()
     }
+
 }
 
 extension BoardViewController {

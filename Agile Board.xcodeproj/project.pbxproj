@@ -1129,6 +1129,7 @@
 			baseConfigurationReference = 527A2ED904C4DE16EE945F07 /* Pods-Agile Board.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9RUFVFAF79;
 				INFOPLIST_FILE = AgileBoard/Info.plist;
@@ -1139,6 +1140,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = filesoft.co.AgileBoard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1149,6 +1151,7 @@
 			baseConfigurationReference = C41F7E6D16A1CEC115914B99 /* Pods-Agile Board.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9RUFVFAF79;
 				INFOPLIST_FILE = AgileBoard/Info.plist;
@@ -1159,6 +1162,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = filesoft.co.AgileBoard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

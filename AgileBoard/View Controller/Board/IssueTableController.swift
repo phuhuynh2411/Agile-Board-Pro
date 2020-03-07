@@ -94,6 +94,9 @@ extension IssueTableController: UITableViewDataSource {
         
         cell.summaryLabel.text = issue?.summary
         cell.issueIDLabel.text = issue?.issueID
+        if let priorityImageName = issue?.priority?.imageName {
+            cell.priorityImageView.image = UIImage(named: priorityImageName)
+        }
                     
         return cell
     }
@@ -301,7 +304,9 @@ extension IssueTableController: IssueDetailDelegate {
     func didModify(_ issue: Issue) {
         tableView?.reloadData()
         // reload the collection view if issue's status has been changed.
-        if copyOfSelectedIssue?.status != issue.status {
+        if copyOfSelectedIssue?.status != issue.status ||
+            copyOfSelectedIssue?.projectOwners.first != issue.projectOwners.first {
+            
             let boardViewController = UIApplication.getTopViewController() as? BoardViewController
             boardViewController?.collectionView.reloadData()
         }

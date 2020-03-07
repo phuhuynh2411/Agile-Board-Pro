@@ -59,6 +59,8 @@ class IssueDetailTableViewController: UITableViewController {
     
     var numberOfAttachmentsLabel: UILabel?
     
+    let realm = AppDataController.shared.realm
+    
     // MARK: View Methods
     
     override func viewDidLoad() {
@@ -373,9 +375,9 @@ class IssueDetailTableViewController: UITableViewController {
             cells?.append(.startDate)
             cells?.append(.endDate)
             cells?.append(.dueDate)
+            cells?.insert(.attachment, at: 1)
             // Only add the folowing cells in edit mode
             if !isNew {
-                cells?.insert(.attachment, at: 1)
                 cells?.append(.project)
                 cells?.append(.issueType)
             }
@@ -411,6 +413,17 @@ class IssueDetailTableViewController: UITableViewController {
         self.numberOfAttachmentsLabel?.text = "\(issue?.attachments.count ?? 0)"
     }
     
+    func cleanUp() {
+        // Clean up the attachment if user is adding an new issue and terminate the app
+        // Delete all issue's attachments if any
+        guard isNew, let issue = self.issue else { return }
+        for attachment in issue.attachments {
+            do {
+                try attachment.remove()
+            } catch { print(error) }
+        }
+    }
+    
     // MARK: - IB Actions
     
     @objc func selectProjectPressed(sender: UIButton) {
@@ -433,11 +446,16 @@ class IssueDetailTableViewController: UITableViewController {
     }
 
     @IBAction func closeButtonPressed(_ sender: UIBarButtonItem) {
+        guard let issue = self.issue else {
+            fatalError("The issue is nil. Something is wrong.")
+        }
         // Prevents user lose entered data
         // Shows a popup to ask user whether they really want to discard the changes
-        if userModifiedData, isNew { // New issue
+        if isNew, userModifiedData { // New issue
             let alertController = UIAlertController(title: "", message: "You added data to the form. Do you want to discard the changes? Select Cancel to keep working on it.", preferredStyle: .actionSheet)
             let discardAction = UIAlertAction(title: "Discard draft", style: .destructive) { (action) in
+                // clean up attachment
+                self.cleanUp()
                 self.dismiss(animated: true, completion: nil)
             }
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_ ) in }
@@ -448,7 +466,7 @@ class IssueDetailTableViewController: UITableViewController {
             // Presents the alert controller
             present(alertController, animated: true, completion: nil)
             
-        } else if userModifiedData, let issue = self.issue { // Modify an issue
+        } else if userModifiedData { // Modify an issue
             dismiss(animated: true, completion: { self.delegate?.didModify(issue) } )
         }
         else { // User opened the issue, but did not make any changes.
@@ -527,8 +545,40 @@ extension IssueDetailTableViewController: UITextViewDelegate {
 extension IssueDetailTableViewController: SearchProjectDelegate {
     
     func didSelect(_ project: Project?) {
-        self.project = project
-        updateView(components: [.project], markAsModified: true)
+        // Select a project when adding new issue
+        if isNew {
+            self.project = project
+            updateView(components: [.project], markAsModified: true)
+        }
+        // Move an issue from a project to another one
+        else {
+            // Remove issue's owner
+            guard
+                let oldProject = self.project,
+                let issue = self.issue,
+                let index = oldProject.issues.index(of: issue) else {
+                fatalError("Could not find the isuse in the current project.")
+            }
+            // Remove issue out of its project
+            do {
+                try realm?.write {
+                    oldProject.issues.remove(at: index)
+                    // Change issue's status to the first status of the selected project.
+                    issue.status = project?.statuses.first
+                }
+            } catch { print(error) ; return }
+            
+            // Add issue to the selected project
+            do {
+                try project?.add(issue)
+            } catch { print(error) ; return }
+            
+            // Change the current project to the selected project
+            self.project = project
+            
+            // Reload the tableview
+            updateView(components: [.issueId, .tableView, .status], markAsModified: true)
+        }
     }
     
 }
@@ -667,6 +717,10 @@ extension IssueDetailTableViewController {
         // Tap on issue type cell
         else if cells?[indexPath.row] == .issueType {
             performSegue(withIdentifier: S.issueType, sender: self)
+        }
+        // Tap on project cell
+        else if cells?[indexPath.row] == .project {
+            performSegue(withIdentifier: S.searchProject, sender: self)
         }
     }
     
@@ -839,17 +893,28 @@ extension IssueDetailTableViewController {
 extension IssueDetailTableViewController: AttachmentCollectionViewDelegate {
     
     func didAdd(_ attachment: Attachment) {
-        do{
-            try issue?.write { issue?.attachments.append(attachment) }
-        }catch{ print(error) }
-    
+        let code = { self.issue?.attachments.append(attachment) }
+        
+        if isNew {
+            code()
+        } else {
+            do{
+                try issue?.write { code() }
+            }catch{ print(error) }
+        }
         updateView(components: [.tableView], markAsModified: true)
     }
     
     func didDelete(_ attachment: Attachment, at indexPath: IndexPath) {
-        do{
-            try issue?.write{ issue?.realm?.delete(attachment) }
-        }catch { print(error)}
+        let code = { self.issue?.realm?.delete(attachment) }
+        
+        if isNew {
+            code()
+        } else {
+            do{
+                try issue?.write{ code() }
+            }catch { print(error)}
+        }
         updateView(components: [.tableView], markAsModified: true)
     }
 }
