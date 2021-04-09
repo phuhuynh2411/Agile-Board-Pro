@@ -1,3 +1,7 @@
+# App Store
+Here is the link to get the app from the App Store.
+https://apps.apple.com/app/id1561714497
+
 # Agile-Board-Pro
 Personal issue tracking app that helps you to manage projects and issues. The app supports both portrait and landscape mode.
 ![Agile Board](agile_board.png)
