@@ -9,6 +9,7 @@
 import UIKit
 import KMPlaceholderTextView
 import SwiftValidator
+import NotificationBannerSwift
 
 protocol ProjectDetailTableViewDelegate {
     func didAdd(_ project: Project) -> Void
@@ -24,9 +25,9 @@ class ProjectDetailTableViewController: UITableViewController {
     
     // MARK: IBOutlets
     
-    @IBOutlet weak var nameTextField: ProjectNameTextField!
+    @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var iconImageView: RoundImageView!
-    @IBOutlet weak var keyTextField: ProjectKeyTextField!
+    @IBOutlet weak var keyTextField: UITextField!
     @IBOutlet weak var descriptionTextView: KMPlaceholderTextView!
     @IBOutlet weak var descriptionCell: UITableViewCell!
     @IBOutlet weak var doneButton: UIBarButtonItem!
@@ -71,7 +72,7 @@ class ProjectDetailTableViewController: UITableViewController {
         // Change the navigation item's title
         navigationItem.title = isNew ? "New Project" : "Edit Project"
         // Change the right button bar text
-        navigationItem.rightBarButtonItem?.title = isNew ? "Create" : ""
+        navigationItem.rightBarButtonItem?.title = isNew ? "Create" : "Done"
         
         // Load project data
         nameTextField.text = project?.name
@@ -94,7 +95,7 @@ class ProjectDetailTableViewController: UITableViewController {
             iconImageView.image = UIImage(named: projectIcon.name)
         }
         
-        doneButton.isEnabled = validated && isNew
+        doneButton.isEnabled = validated
     }
     
     // MARK: Helper methods
@@ -152,13 +153,23 @@ class ProjectDetailTableViewController: UITableViewController {
         
         guard let name      = nameTextField.text else { return }
         guard let key       = keyTextField.text else { return }
-        let description     = descriptionTextView.text
+        let description     = descriptionTextView.text ?? ""
         
         if isNew {
             let project = Project(name: name, description: description, key: key, icon: self.selectedIcon)
             self.delegate?.didAdd(project)
         }
-        else { self.delegate?.didEdit( self.project! ) }
+        else {
+            do {
+                try self.project?.write {
+                    project?.name = name
+                    project?.key = key
+                    project?.projectDescription = description
+                    project?.icon = self.selectedIcon
+                }
+            } catch { print(error) }
+            self.delegate?.didEdit( self.project! )
+        }
         
         self.dismiss(animated: true, completion: nil)
     }
@@ -243,18 +254,6 @@ extension ProjectDetailTableViewController: ValidationDelegate {
     func validationSuccessful() {
         validated = true
         updateView()
-        
-        guard let name      = nameTextField.text else { return }
-        guard let key       = keyTextField.text else { return }
-        let description     = descriptionTextView.text
-        do {
-            try project?.write{
-                project?.name               = name
-                project?.key                = key
-                project?.projectDescription = description ?? ""
-                project?.icon               = self.selectedIcon
-            }
-        } catch { print(error) }
     }
     
     // MARK: Validation failed
@@ -272,7 +271,7 @@ extension ProjectDetailTableViewController: ValidationDelegate {
         validator.registerField(nameTextField, rules: nameRules)
         
         // The key is required and limited 5 characters.
-        let keyRules: [Rule] = [RequiredRule(), MaxLengthRule(length: 5)]
+        let keyRules: [Rule] = [RequiredRule(), MaxLengthRule(length: 5), ProjectKeyRule(project: self.project)]
         validator.registerField(keyTextField, rules: keyRules)
         
     }

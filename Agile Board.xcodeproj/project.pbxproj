@@ -82,6 +82,7 @@
 		84579E6A239664FB009575E4 /* IssueDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84579E69239664FB009575E4 /* IssueDetailTableViewController.swift */; };
 		84584E29238EDBDD000408AE /* SearchProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84584E28238EDBDD000408AE /* SearchProjectViewController.swift */; };
 		8458B443237CF98500D6D473 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8458B442237CF98500D6D473 /* ShadowView.swift */; };
+		845DCDB02413964A00AA7C39 /* ProjectKeyRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845DCDAF2413964A00AA7C39 /* ProjectKeyRule.swift */; };
 		845F821C2408EEE5002C5DB9 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845F821B2408EEE5002C5DB9 /* UIButton+Extension.swift */; };
 		846656E724076DF200596642 /* AppStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846656E624076DF200596642 /* AppStyle.swift */; };
 		846685F3239F4BCB0033BA1E /* AddIssueCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846685F2239F4BCB0033BA1E /* AddIssueCollectionTableViewCell.swift */; };
@@ -147,9 +148,7 @@
 		84D590F723B9FDD90011FA4B /* ObjectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D590F623B9FDD90011FA4B /* ObjectExtension.swift */; };
 		84D8506F240114B2006DA605 /* Project+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D8506E240114B2006DA605 /* Project+Extension.swift */; };
 		84DB1E02237B0EFA008BB31A /* IssueTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DB1E01237B0EFA008BB31A /* IssueTableView.swift */; };
-		84E59162239251A2006FBA5E /* ProjectNameTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E59161239251A2006FBA5E /* ProjectNameTextField.swift */; };
 		84E59164239253D3006FBA5E /* ValidatorError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E59163239253D3006FBA5E /* ValidatorError.swift */; };
-		84E5916623925C86006FBA5E /* ProjectKeyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E5916523925C86006FBA5E /* ProjectKeyTextField.swift */; };
 		84E87E6B240515A80008BDEE /* ProjectIcon+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E87E6A240515A80008BDEE /* ProjectIcon+Extension.swift */; };
 		84E87E6D24051CAC0008BDEE /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E87E6C24051CAC0008BDEE /* Color+Extension.swift */; };
 		84E87E6F240524210008BDEE /* Status+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E87E6E240524210008BDEE /* Status+Extension.swift */; };
@@ -248,6 +247,7 @@
 		84579E69239664FB009575E4 /* IssueDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetailTableViewController.swift; sourceTree = "<group>"; };
 		84584E28238EDBDD000408AE /* SearchProjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchProjectViewController.swift; sourceTree = "<group>"; };
 		8458B442237CF98500D6D473 /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
+		845DCDAF2413964A00AA7C39 /* ProjectKeyRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectKeyRule.swift; sourceTree = "<group>"; };
 		845F821B2408EEE5002C5DB9 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		846656E624076DF200596642 /* AppStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStyle.swift; sourceTree = "<group>"; };
 		846685F2239F4BCB0033BA1E /* AddIssueCollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIssueCollectionTableViewCell.swift; sourceTree = "<group>"; };
@@ -319,9 +319,7 @@
 		84D590F623B9FDD90011FA4B /* ObjectExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectExtension.swift; sourceTree = "<group>"; };
 		84D8506E240114B2006DA605 /* Project+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Project+Extension.swift"; sourceTree = "<group>"; };
 		84DB1E01237B0EFA008BB31A /* IssueTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueTableView.swift; sourceTree = "<group>"; };
-		84E59161239251A2006FBA5E /* ProjectNameTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNameTextField.swift; sourceTree = "<group>"; };
 		84E59163239253D3006FBA5E /* ValidatorError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatorError.swift; sourceTree = "<group>"; };
-		84E5916523925C86006FBA5E /* ProjectKeyTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectKeyTextField.swift; sourceTree = "<group>"; };
 		84E87E6A240515A80008BDEE /* ProjectIcon+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProjectIcon+Extension.swift"; sourceTree = "<group>"; };
 		84E87E6C24051CAC0008BDEE /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		84E87E6E240524210008BDEE /* Status+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Status+Extension.swift"; sourceTree = "<group>"; };
@@ -690,10 +688,9 @@
 		84E5915E2392508B006FBA5E /* Validator */ = {
 			isa = PBXGroup;
 			children = (
-				84E59161239251A2006FBA5E /* ProjectNameTextField.swift */,
-				84E5916523925C86006FBA5E /* ProjectKeyTextField.swift */,
 				84E59163239253D3006FBA5E /* ValidatorError.swift */,
 				8438255F23B057C200C506B9 /* StatusRule.swift */,
+				845DCDAF2413964A00AA7C39 /* ProjectKeyRule.swift */,
 			);
 			path = Validator;
 			sourceTree = "<group>";
@@ -728,7 +725,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1130;
-				LastUpgradeCheck = 1130;
+				LastUpgradeCheck = 1230;
 				ORGANIZATIONNAME = Filesoft;
 				TargetAttributes = {
 					843C897F237AE7460050586E = {
@@ -847,6 +844,7 @@
 				8438256023B057C200C506B9 /* StatusRule.swift in Sources */,
 				847FD26D23CEBE730005E446 /* CreatedRecentlyIssueFilter.swift in Sources */,
 				8431758823EA5F390060C333 /* CalendarView+Delegate.swift in Sources */,
+				845DCDB02413964A00AA7C39 /* ProjectKeyRule.swift in Sources */,
 				8431758B23EA5F390060C333 /* CalendarView.swift in Sources */,
 				840390E72407C3750091934B /* StoryFilter.swift in Sources */,
 				846F39F42406019C0020135D /* Board+Extension.swift in Sources */,
@@ -877,7 +875,6 @@
 				84299FD32398FD9900432A66 /* IssuePriorityTableViewCell.swift in Sources */,
 				849E508E23CC665300ED81D5 /* DueThisWeekIssueFilter.swift in Sources */,
 				84094BD123C6DD3400650950 /* IssueListTableViewController.swift in Sources */,
-				84E5916623925C86006FBA5E /* ProjectKeyTextField.swift in Sources */,
 				843C8988237AE7460050586E /* BoardViewController.swift in Sources */,
 				8445863D23FE3041003889C7 /* CalendarViewController+TableViewDelegate.swift in Sources */,
 				843242FD23B9B36600BA5135 /* ListExension.swift in Sources */,
@@ -971,7 +968,6 @@
 				8420628C237AFD7E0076CDAC /* Issue.swift in Sources */,
 				84D590F523B9F36E0011FA4B /* EditBoardNameViewController.swift in Sources */,
 				847A781623877FB500911851 /* Column.swift in Sources */,
-				84E59162239251A2006FBA5E /* ProjectNameTextField.swift in Sources */,
 				8431758723EA5F390060C333 /* CalendarView+Style.swift in Sources */,
 				842686F623995F4D00B981D7 /* AttachmentController.swift in Sources */,
 				841CEDDF23AC853C00D90369 /* ProjectTableViewCellv2.swift in Sources */,
@@ -1036,6 +1032,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1060,7 +1057,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1096,6 +1093,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1114,7 +1112,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1131,9 +1129,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 9RUFVFAF79;
 				INFOPLIST_FILE = AgileBoard/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1153,9 +1152,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 9RUFVFAF79;
 				INFOPLIST_FILE = AgileBoard/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
